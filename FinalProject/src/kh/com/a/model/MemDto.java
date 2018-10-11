@@ -4,14 +4,21 @@ import java.io.Serializable;
 import java.sql.Date;
 
 public class MemDto implements Serializable {
+	
 	private String id;
 	private String pwd;
 	private String name;
-	private String pjone;
+	private String phone;
 	private String email;
 	private String genre;
 	private String location;
-	private Date birth;
+	private int birth;
+	private String teamname;
+	private String profilIMG;
+	private String position;
+	private int right;
+	private int auth;
+	private int online_check;
 	private String gender;
 	private int mem_seq;
 	
@@ -19,17 +26,43 @@ public class MemDto implements Serializable {
 		super();
 	}
 
-	public MemDto(String id, String pwd, String name, String pjone, String email, String genre, String location,
-			Date birth, String gender, int mem_seq) {
+	//일반 회원
+	public MemDto(String id, String pwd, String name, String phone, String email, String genre, String location,
+			int birth, int auth, int online_check, String gender, int mem_seq) {
 		super();
 		this.id = id;
 		this.pwd = pwd;
 		this.name = name;
-		this.pjone = pjone;
+		this.phone = phone;
 		this.email = email;
 		this.genre = genre;
 		this.location = location;
 		this.birth = birth;
+		this.auth = auth;
+		this.online_check = online_check;
+		this.gender = gender;
+		this.mem_seq = mem_seq;
+	}
+
+	//뮤지션
+	public MemDto(String teamname, String id, String pwd, String name, String phone, String email, String genre, String location,
+			int birth, String profilIMG, String position, int right, int auth, int online_check,
+			String gender, int mem_seq) {
+		super();
+		this.id = id;
+		this.pwd = pwd;
+		this.name = name;
+		this.phone = phone;
+		this.email = email;
+		this.genre = genre;
+		this.location = location;
+		this.birth = birth;
+		this.teamname = teamname;
+		this.profilIMG = profilIMG;
+		this.position = position;
+		this.right = right;
+		this.auth = auth;
+		this.online_check = online_check;
 		this.gender = gender;
 		this.mem_seq = mem_seq;
 	}
@@ -58,12 +91,12 @@ public class MemDto implements Serializable {
 		this.name = name;
 	}
 
-	public String getPjone() {
-		return pjone;
+	public String getPhone() {
+		return phone;
 	}
 
-	public void setPjone(String pjone) {
-		this.pjone = pjone;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public String getEmail() {
@@ -90,12 +123,60 @@ public class MemDto implements Serializable {
 		this.location = location;
 	}
 
-	public Date getBirth() {
+	public int getBirth() {
 		return birth;
 	}
 
-	public void setBirth(Date birth) {
+	public void setBirth(int birth) {
 		this.birth = birth;
+	}
+
+	public String getTeamname() {
+		return teamname;
+	}
+
+	public void setTeamname(String teamname) {
+		this.teamname = teamname;
+	}
+
+	public String getProfilIMG() {
+		return profilIMG;
+	}
+
+	public void setProfilIMG(String profilIMG) {
+		this.profilIMG = profilIMG;
+	}
+
+	public String getPosition() {
+		return position;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
+	}
+
+	public int getRight() {
+		return right;
+	}
+
+	public void setRight(int right) {
+		this.right = right;
+	}
+
+	public int getAuth() {
+		return auth;
+	}
+
+	public void setAuth(int auth) {
+		this.auth = auth;
+	}
+
+	public int getOnline_check() {
+		return online_check;
+	}
+
+	public void setOnline_check(int online_check) {
+		this.online_check = online_check;
 	}
 
 	public String getGender() {
@@ -116,9 +197,10 @@ public class MemDto implements Serializable {
 
 	@Override
 	public String toString() {
-		return "MemberDto [id=" + id + ", pwd=" + pwd + ", name=" + name + ", pjone=" + pjone + ", email=" + email
-				+ ", genre=" + genre + ", location=" + location + ", birth=" + birth + ", gender=" + gender
-				+ ", mem_seq=" + mem_seq + "]";
+		return "MemDto [id=" + id + ", pwd=" + pwd + ", name=" + name + ", phone=" + phone + ", email=" + email
+				+ ", genre=" + genre + ", location=" + location + ", birth=" + birth + ", teamname=" + teamname
+				+ ", profilIMG=" + profilIMG + ", position=" + position + ", right=" + right + ", auth=" + auth
+				+ ", online_check=" + online_check + ", gender=" + gender + ", mem_seq=" + mem_seq + "]";
 	}
 	
 	
