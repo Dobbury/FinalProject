@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-gd
+<%
+response.sendRedirect("main.do");
+%>
 </body>
 </html>
