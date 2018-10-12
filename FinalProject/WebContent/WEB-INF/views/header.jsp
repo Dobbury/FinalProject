@@ -4,9 +4,15 @@
     <div class="sticky-nav">
     	<a id="mobile-nav" class="menu-nav" href="#menu-nav"></a>
         
+        <div id="menu">
+        <a href="#"><span class="font-icon-align-justify" style="font-size: 30px;"></span></a>
+        </div>
+        
         <div id="logo">
         	<a id="goUp" href="#home-slider" title="Brushed | Responsive One Page Template">Brushed Template</a>
         </div>
+        
+        
         
         <nav id="menu">
         	<ul id="menu-nav">
