@@ -5,6 +5,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+
 <%-- <% request.setCharacterEncoding("UTF-8"); %> --%>
 <fmt:requestEncoding value="utf-8"/>
 	
@@ -15,6 +16,15 @@
 
 <!-- Bootstrap -->
 <link href="_include/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">  -->
+
+<!-- 부가적인 테마 -->
+ <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"> -->
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+ <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>  -->
 
 <!-- Main Style -->
 <link href="_include/css/main.css" rel="stylesheet">
@@ -49,7 +59,7 @@
 <link rel="apple-touch-icon" href="#">
 <link rel="apple-touch-icon" sizes="114x114" href="#">
 <link rel="apple-touch-icon" sizes="72x72" href="#">
-<link rel="apple-touch-icon" sizes="144x144" href="#">
+<link rel="apple-touch-icon" sizes="144x144" href="#">      
 
 <!-- Modernizr -->
 <script src="_include/js/modernizr.js"></script>
@@ -86,7 +96,7 @@
 
     <div class="slider-text">
     	<div id="slidecaption"></div>
-    </div>   
+    </div>    
 	
 	<div class="control-nav">
         <a id="prevslide" class="load-item"><i class="font-icon-arrow-simple-left"></i></a>
@@ -95,7 +105,7 @@
         
         <a id="nextsection" href="#work"><i class="font-icon-arrow-simple-down"></i></a>
     </div>
-</div>
+</div>  
 <!-- End Homepage Slider -->
 
 <!-- header -->

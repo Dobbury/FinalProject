@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="KH.com.a">
+	<logger name="kh.com.a">
 		<level value="info" />
 	</logger>
 	

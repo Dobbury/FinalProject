@@ -10,16 +10,36 @@ public class PerformCastBBSDto implements Serializable {
 	private String email;
 	private String phone;
 	private String place;
-	private int price;
+	private String price;
+	private String location;
 	private int totalcount;
-	private int agegrade;
+	private String agegrade;
 	private String content;
 	private int approval;
+	
 	public PerformCastBBSDto() {
 		super();
 	}
+	
+	/*
+	public PerformCastBBSDto(String name, String compname, String email, String phone, String place,
+			String price, String location, int totalcount, String content, int approval) {
+		super();
+		this.name = name;
+		this.compname = compname;
+		this.email = email;
+		this.phone = phone;
+		this.place = place;
+		this.price = price;
+		this.location = location;
+		this.totalcount = totalcount;
+		this.content = content;
+		this.approval = approval;
+	}*/
+
+
 	public PerformCastBBSDto(int perform_seq, String name, String compname, String email, String phone, String place,
-			int price, int totalcount, int agegrade, String content, int approval) {
+			String price, String location, int totalcount, String agegrade, String content, int approval) {
 		super();
 		this.perform_seq = perform_seq;
 		this.name = name;
@@ -28,6 +48,7 @@ public class PerformCastBBSDto implements Serializable {
 		this.phone = phone;
 		this.place = place;
 		this.price = price;
+		this.location = location;
 		this.totalcount = totalcount;
 		this.agegrade = agegrade;
 		this.content = content;
@@ -69,10 +90,10 @@ public class PerformCastBBSDto implements Serializable {
 	public void setPlace(String place) {
 		this.place = place;
 	}
-	public int getPrice() {
+	public String getPrice() {
 		return price;
 	}
-	public void setPrice(int price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 	public int getTotalcount() {
@@ -81,10 +102,10 @@ public class PerformCastBBSDto implements Serializable {
 	public void setTotalcount(int totalcount) {
 		this.totalcount = totalcount;
 	}
-	public int getAgegrade() {
+	public String getAgegrade() {
 		return agegrade;
 	}
-	public void setAgegrade(int agegrade) {
+	public void setAgegrade(String agegrade) {
 		this.agegrade = agegrade;
 	}
 	public String getContent() {
@@ -99,12 +120,19 @@ public class PerformCastBBSDto implements Serializable {
 	public void setApproval(int approval) {
 		this.approval = approval;
 	}
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
 	@Override
 	public String toString() {
-		return "Perform_Cast_BBSDto [perform_seq=" + perform_seq + ", name=" + name + ", compname=" + compname
-				+ ", email=" + email + ", phone=" + phone + ", place=" + place + ", price=" + price + ", totalcount="
-				+ totalcount + ", agegrade=" + agegrade + ", content=" + content + ", approval=" + approval + "]";
+		return "PerformCastBBSDto [perform_seq=" + perform_seq + ", name=" + name + ", compname=" + compname
+				+ ", email=" + email + ", phone=" + phone + ", place=" + place + ", price=" + price + ", location="
+				+ location + ", totalcount=" + totalcount + ", agegrade=" + agegrade + ", content=" + content
+				+ ", approval=" + approval + "]";
 	}
-	
+
 	
 }
