@@ -25,21 +25,22 @@
 							Projects</a></li>
 					<li><a href="#filter" data-option-value=".ing">Ing</a></li>
 					<li><a href="#filter" data-option-value=".end">End</a></li>
-					
+
 				</ul>
 			</nav>
 			<!-- End Filter -->
 		</div>
-		
+
 		<div class="span9">
 			<div class="row">
 				<section id="projects">
 					<ul id="thumbs">
-
 						<!-- 여기 for문 돌리면 됨 -->
-						<c:forEach items="${musiRecuList}" var="item" varStatus="status">
+						<c:forEach items="${musiRecuList}" end="9" var="item"
+							varStatus="status">
 							<!-- Item Project and Filter Name -->
-							<li class="item-thumbs span3 <c:choose>
+							<li
+								class="item-thumbs span3 <c:choose>
 										<c:when test="${item.edate >= now}">
 											ing					
 										</c:when>
@@ -47,19 +48,17 @@
 											end
 										</c:otherwise>
 									</c:choose>">
-								<a class="hover-wrap fancybox" data-fancybox-group="gallery" href="main.do"> 
-									<span class="overlay-img"></span> 
-									<span class="overlay-img-thumb font-icon-plus"></span>
-								</a> 
-								<!-- Thumb Image and Description --> 
-									<c:choose>
-										<c:when test="${item.edate < now}">
-											<img src="_include/img/work/thumbs/end.jpg">					
-										</c:when>
-										<c:otherwise>
-											<img src="_include/img/work/thumbs/ing.jpg">
-										</c:otherwise>
-									</c:choose>
+								<a class="hover-wrap fancybox" data-fancybox-group="gallery"
+								href="main.do"> <span class="overlay-img"></span> <span
+									class="overlay-img-thumb font-icon-plus"></span>
+							</a> <!-- Thumb Image and Description --> <c:choose>
+									<c:when test="${item.edate < now}">
+										<img src="_include/img/work/thumbs/end.jpg">
+									</c:when>
+									<c:otherwise>
+										<img src="_include/img/work/thumbs/ing.jpg">
+									</c:otherwise>
+								</c:choose>
 								<div>
 									<p>지역:${item.location }</p>
 									<p>장소:${item.place }</p>
@@ -76,19 +75,48 @@
 				<input type="button" style="width: 100%" value="더보기" id="more">
 			</div>
 		</div>
-		
+
+		<!-- 페이징 처리 -->
+		<div id="paging_wrap">
+			<jsp:include page="/WEB-INF/views/common/paging.jsp" flush="false">
+				<jsp:param value="${pageNumber }" name="pageNumber" />
+				<jsp:param value="${pageCountPerScreen }" name="pageCountPerScreen" />
+				<jsp:param value="${recordCountPerPage }" name="recordCountPerPage" />
+				<jsp:param value="${totalRecordCount }" name="totalRecordCount" />
+			</jsp:include>
+		</div>
+		<!--  -->
 	</div>
-	<div>
-	</div>
+	<div></div>
 </div>
 
 <script type="text/javascript">
-$("#more").on("click",function (){
-	$("#thumbs").append("<li class='item-thumbs span3 ing isotope-item' style='position: absolute; left: 0px; top: 0px; transform: translate3d(600px, 420px, 0px);'><a class='hover-wrap fancybox' data-fancybox-group='gallery'"+
+	$(document)
+			.on(
+					"click",
+					"#more",
+					function() {
+						$("#thumbs")
+								.append(
+										"<li class='item-thumbs span3 ing'><a class='hover-wrap fancybox' data-fancybox-group='gallery'"+
+			"title='The Beach' href='_include/img/work/full/image-07-full.jpg'>"
+												+ "<span class='overlay-img'></span> <span class='overlay-img-thumb font-icon-plus'></span>"
+												+ "</a><img src='_include/img/work/thumbs/image-07.jpg'"+
+			"alt='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.'>"
+												+ "</li>").trigger("create");
+					});
+	/* $("#more").on("click",function (){
+	
+	 //var c = document.getElementById("thumbs").children.length;
+	
+	 //var li = document.createElement('li');
+	
+	 $("#thumbs").append("<li class='item-thumbs span3 ing'><a class='hover-wrap fancybox' data-fancybox-group='gallery'"+
 			"title='The Beach' href='_include/img/work/full/image-07-full.jpg'>"+
-				"<span class='overlay-img'></span> <span class='overlay-img-thumb font-icon-plus'></span>"+
-		"</a><img src='_include/img/work/thumbs/image-07.jpg'"+
+	 "<span class='overlay-img'></span> <span class='overlay-img-thumb font-icon-plus'></span>"+
+	 "</a><img src='_include/img/work/thumbs/image-07.jpg'"+
 			"alt='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.'>"+
-		"</li>");
-});
+	 "</li>");
+	
+	 }); */
 </script>
