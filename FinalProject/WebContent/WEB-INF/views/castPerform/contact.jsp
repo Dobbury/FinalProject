@@ -138,60 +138,10 @@
 
 <script type="text/javascript">
 
-/* function submit(f) {
-	alert('문의신청이 되었습니다');	
-	$("#contact-form").attr({ "target":"_self", "action":"castSchedule.do" }).submit();
-} */
 
 	$("#sending").click(function() {	
 		alert('문의신청이 되었습니다');	
-		/* $("#contact-form").attr({ "method":"post", "target":"_self", "action":"castSchedule.do" }).submit(); */	
+		
 	});
 
 </script>
-
-
-<%-- 
-<script type="text/javascript">
-/* 
-function ajaxcalendar(i, id, rdate) {
-	$("#mytd"+i).css("background-color", "#ff0000");
-	showallcust(i, id, rdate);
-}
-function mout(i) {
-	$("#mytd"+i).css("background-color", "#ffffff");
-	$("#my"+i).hide();
-}
-$(document).ready(function name() {
-	$("#my").html("나는 미래다");
-});
- */
- 
-function showallcust(i, id, rdate) {
-	//alert("showallcust");
-	$.ajax({
-		type:"POST",
-		url:"<%=application.getContextPath() %>/calendarjson.do",
-		async:true,
-		data:"id="+id+"&rdate="+rdate,
-		success:function(msg){	
-			
-			alert("success");
-			
-			if(msg.my != null){
-				
-				$.each(msg.my, function(index, value) { 
-					alert(index + '번째:' + value.title);					
-				});
-			}  
-			
-		//	alert("날짜:" + i + " 아이디:" + id +  " 연월일:" + rdate);
-		//	console.log("날짜:" + i + " 아이디:" + id +  " 연월일:" + rdate);
-		}
-	});	
-}  
-
-
-</script>
-
- --%>

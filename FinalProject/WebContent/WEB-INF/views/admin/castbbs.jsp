@@ -41,16 +41,10 @@
 		
 		<!-- 문의자성함/연락처/이메일/지역/연령대/공연횟수/예산/기타 문의사항 -->
 		
-		<td style="text-align: left"><%-- <jsp:getProperty property="arrow" 
-			name="ubbs"/> --%>
-			<%-- <c:if test="${bbs.del == 0 }"> --%>
+		<td style="text-align: left">
 				<a href='castbbsdetail.do?seq=${castbbs.perform_seq}'>
 				${castbbs.compname}
-				</a>
-			<%-- </c:if> --%>
-			<%-- <c:if test="${bbs.del == 1 }">
-				이 글은 작성자에 의해서 삭제 되었습니다
-			</c:if> --%>
+				</a>		
 		</td>
 		
 		<td>${castbbs.place}</td>
@@ -63,9 +57,16 @@
 <div id="add">
 <button id="addbtn" onclick="moreList();">더보기</button>
 </div>
+
+
+
+
 <script>
+var vs = 5;
+
 	function moreList(){
 		alert("alram");
+		
 		
 	    $.ajax({
 	        url : "<%=application.getContextPath() %>/moreList.do",
@@ -73,7 +74,6 @@
 	        type : "GET",
 	        cache : false,
 	        dataType: 'json',
-	        /* data : "compname="+compname */
 	        success : function(data){
 	            //console.log(data);
 	            alert("success");
@@ -86,15 +86,17 @@
 				alert("dataList 도착");
 				
 	            for(var i=0; i<data.length; i++){
+	                vs += 1; 
 	                content +=
 	                "<tr class='_hover_tr'>"+
-	                	"<td>"+"count"+"</td>"+
-	                    "<td>"+data[i].compname+"</td>"+
+	                    "<td>"+vs+"</td>"+ 
+	                    "<td><a href='castdetail.do?seq="+data[i].perform_seq+"'>"+
+	                    data[i].compname+"</a></td>"+	
 	                    "<td>"+data[i].place+"</td>"+
 	                    "<td>"+data[i].wdate+"</td>"+
 	                "</tr>";
-	            }
-	            
+	            	}
+	           
 	            }
 	            btn="<button id='addbtn' onclick='moreList();'>더보기</button>";
 	            $('#addbtn').remove();//remove btn
@@ -106,17 +108,4 @@
 	    }); 
 	};
 </script>
-<!-- 페이징 처리 -->
-<%-- <div id="paging_wrap">
-<jsp:include page="/WEB-INF/views/common/paging.jsp" flush="false">
-	<jsp:param value="${pageNumber }" name="pageNumber"/>
-	<jsp:param value="${pageCountPerScreen }" name="pageCountPerScreen"/>
-	<jsp:param value="${recordCountPerPage }" name="recordCountPerPage"/>
-	<jsp:param value="${totalRecordCount }" name="totalRecordCount"/>
-</jsp:include>
-</div> --%>
-
-<!--  -->
-
-
 
