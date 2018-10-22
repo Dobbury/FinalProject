@@ -7,10 +7,32 @@
 	<put-attribute name="content" value="/WEB-INF/views/main.jsp"/>
 	<put-attribute name="footer" value="/WEB-INF/views/footer.jsp"/>
 </definition>
-<!-- 
-<definition name="regi.tiles" extends="login.tiles">
+
+
+<definition name="regi.tiles" extends="main.tiles">
 	<put-attribute name="content" value="/WEB-INF/views/login/regi.jsp"/>
 </definition>
- -->
+
+<definition name="mypage.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/login/mypage.jsp"/>
+</definition>
+
+<definition name="musireculist.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/musirecu/musireculist.jsp"/>
+</definition>
+
+
+<definition name="VideoBBS.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/VideoBBS/VideoBBS.jsp"/>
+</definition>
+
+<definition name="VideoBBSWrite.tiles" extends="login.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/VideoBBS/VideoBBSWrite.jsp"/>
+</definition>
+
+<definition name="VideoBbsDetail.tiles" extends="login.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/VideoBBS/VideoBBSDetail.jsp"/>
+</definition>
+
 </tiles-definitions>
 

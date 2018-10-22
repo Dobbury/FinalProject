@@ -8,6 +8,7 @@
 </head>
 <body>
 <%
+/* response.sendRedirect("regi.do"); */
 response.sendRedirect("main.do");
 %>
 </body>

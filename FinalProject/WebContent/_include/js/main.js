@@ -402,7 +402,7 @@ BRUSHED.toolTip = function(){
 BRUSHED.slider();
 
 $(document).ready(function(){
-	Modernizr.load([
+/*	Modernizr.load([
 	{
 		test: Modernizr.placeholder,
 		nope: '_include/js/placeholder.js', 
@@ -417,7 +417,7 @@ $(document).ready(function(){
 				}
 		}
 	}
-	]);
+	]);*/
 	
 	// Preload the page with jPreLoader
 	$('body').jpreLoader({

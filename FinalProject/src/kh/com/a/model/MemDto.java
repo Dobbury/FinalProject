@@ -12,9 +12,10 @@ public class MemDto implements Serializable {
 	private String email;
 	private String genre;
 	private String location;
-	private int birth;
+	private String birth;
 	private String teamname;
-	private String profilIMG;
+	private String ori_profilIMG;
+	private String new_profilIMG;
 	private String position;
 	private int right;
 	private int auth;
@@ -25,10 +26,10 @@ public class MemDto implements Serializable {
 	public MemDto() {
 		super();
 	}
-
+	
 	//일반 회원
 	public MemDto(String id, String pwd, String name, String phone, String email, String genre, String location,
-			int birth, int auth, int online_check, String gender, int mem_seq) {
+			String birth, int auth, int online_check, String gender, int mem_seq) {
 		super();
 		this.id = id;
 		this.pwd = pwd;
@@ -46,7 +47,7 @@ public class MemDto implements Serializable {
 
 	//뮤지션
 	public MemDto(String teamname, String id, String pwd, String name, String phone, String email, String genre, String location,
-			int birth, String profilIMG, String position, int right, int auth, int online_check,
+			String birth, String ori_profilIMG,String new_profilIMG, String position, int right, int auth, int online_check,
 			String gender, int mem_seq) {
 		super();
 		this.id = id;
@@ -58,7 +59,8 @@ public class MemDto implements Serializable {
 		this.location = location;
 		this.birth = birth;
 		this.teamname = teamname;
-		this.profilIMG = profilIMG;
+		this.ori_profilIMG = ori_profilIMG;
+		this.new_profilIMG = new_profilIMG;
 		this.position = position;
 		this.right = right;
 		this.auth = auth;
@@ -123,11 +125,11 @@ public class MemDto implements Serializable {
 		this.location = location;
 	}
 
-	public int getBirth() {
+	public String getBirth() {
 		return birth;
 	}
 
-	public void setBirth(int birth) {
+	public void setBirth(String birth) {
 		this.birth = birth;
 	}
 
@@ -139,14 +141,20 @@ public class MemDto implements Serializable {
 		this.teamname = teamname;
 	}
 
-	public String getProfilIMG() {
-		return profilIMG;
+	public String getOri_profilIMG() {
+		return ori_profilIMG;
 	}
 
-	public void setProfilIMG(String profilIMG) {
-		this.profilIMG = profilIMG;
+	public void setOri_profilIMG(String ori_profilIMG) {
+		this.ori_profilIMG = ori_profilIMG;
+	}
+	public String getNew_profilIMG() {
+		return new_profilIMG;
 	}
 
+	public void setNew_profilIMG(String new_profilIMG) {
+		this.new_profilIMG = new_profilIMG;
+	}
 	public String getPosition() {
 		return position;
 	}
@@ -199,9 +207,11 @@ public class MemDto implements Serializable {
 	public String toString() {
 		return "MemDto [id=" + id + ", pwd=" + pwd + ", name=" + name + ", phone=" + phone + ", email=" + email
 				+ ", genre=" + genre + ", location=" + location + ", birth=" + birth + ", teamname=" + teamname
-				+ ", profilIMG=" + profilIMG + ", position=" + position + ", right=" + right + ", auth=" + auth
-				+ ", online_check=" + online_check + ", gender=" + gender + ", mem_seq=" + mem_seq + "]";
+				+ ", ori_profilIMG=" + ori_profilIMG + ", new_profilIMG=" + new_profilIMG + ", position=" + position
+				+ ", right=" + right + ", auth=" + auth + ", online_check=" + online_check + ", gender=" + gender
+				+ ", mem_seq=" + mem_seq + "]";
 	}
+
 	
 	
 }
