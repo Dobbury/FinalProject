@@ -10,12 +10,14 @@ public class ScheduleBBSDto implements Serializable {
 	private String place;
 	private int count;
 	private int price;
+	private String ori_consertIMG;
+	private String new_consertIMG;
 	private int schedule_seq;
 	public ScheduleBBSDto() {
 		super();
 	}
 	public ScheduleBBSDto(Date sdate, Date edate, String location, String place, int count, int price,
-			int schedule_seq) {
+			String ori_consertIMG, String new_consertIMG, int schedule_seq) {
 		super();
 		this.sdate = sdate;
 		this.edate = edate;
@@ -23,6 +25,8 @@ public class ScheduleBBSDto implements Serializable {
 		this.place = place;
 		this.count = count;
 		this.price = price;
+		this.ori_consertIMG = ori_consertIMG;
+		this.new_consertIMG = new_consertIMG;
 		this.schedule_seq = schedule_seq;
 	}
 	public Date getSdate() {
@@ -61,6 +65,18 @@ public class ScheduleBBSDto implements Serializable {
 	public void setPrice(int price) {
 		this.price = price;
 	}
+	public String getOri_consertIMG() {
+		return ori_consertIMG;
+	}
+	public void setOri_consertIMG(String ori_consertIMG) {
+		this.ori_consertIMG = ori_consertIMG;
+	}
+	public String getNew_consertIMG() {
+		return new_consertIMG;
+	}
+	public void setNew_consertIMG(String new_consertIMG) {
+		this.new_consertIMG = new_consertIMG;
+	}
 	public int getSchedule_seq() {
 		return schedule_seq;
 	}
@@ -70,8 +86,10 @@ public class ScheduleBBSDto implements Serializable {
 	@Override
 	public String toString() {
 		return "ScheduleBBSDto [sdate=" + sdate + ", edate=" + edate + ", location=" + location + ", place=" + place
-				+ ", count=" + count + ", price=" + price + ", schedule_seq=" + schedule_seq + "]";
+				+ ", count=" + count + ", price=" + price + ", ori_consertIMG=" + ori_consertIMG + ", new_consertIMG="
+				+ new_consertIMG + ", schedule_seq=" + schedule_seq + "]";
 	}
+	
 	
 	
 }
