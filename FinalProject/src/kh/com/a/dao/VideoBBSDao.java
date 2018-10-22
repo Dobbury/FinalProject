@@ -10,4 +10,6 @@ public interface VideoBBSDao {
 	public List<VideoBBSDto> getVideoBbsList() throws Exception;
 	
 	public VideoBBSDto getVideoBbs(int seq);
+
+	public List<VideoBBSDto> getVideoForUser();
 }

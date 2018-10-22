@@ -51,6 +51,10 @@
 			<!--  
                 <li><a href="#contact">Contact</a></li>
 				<li><a href="shortcodes.html" class="external">Shortcodes</a></li> -->
+			<li><a class="external" href="aboutus.do">About our site</a></li>
+         	<li><a class="external" href="videoBbs.do">뮤지션's 버스킹</a></li>
+            <li><a class="external" href="schedule.do">공연일정</a></li>
+            <li><a class="external" href="contact.do">공연섭외문의</a></li>
 			<li><a href="VideoBBS.do" class="external">영상게시판</a></li>
 			<%if(dto==null){ %>
 				<li><a data-toggle="modal" href="#myModal">Login</a></li>
@@ -134,3 +138,39 @@ $("ul li").click(function () {
 	%>
 });
 </script>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>    
+
+<fmt:requestEncoding value="utf-8"/>
+ 
+<span class="accordion-heading togglize">
+                            <a class="accordion-toggle inactive collapsed" data-toggle="collapse" data-parent="#" href="#castbbs">
+                                	관리
+                                <span class="font-icon-plus"></span>
+                                <span class="font-icon-minus"></span>
+                            </a>
+                        </span> 
+
+<!-- Header -->
+    <div class="sticky-nav">
+    	<a id="mobile-nav" class="menu-nav" href="#menu-nav"></a>
+    	
+    		
+        <!-- <ul>
+        <li style="line-height: 20px; margin: 15px; list-style: none; cursor: pointer;"> -->
+       	<a href="castbbs.do" class="font-icon-cog" style="font-size: 32px;"></a>
+        <!-- </li>
+        </ul> -->
+        <!-- <a id="pcmenu" href="#" class="font-icon-align-justify" style="font-size: 30px;"></a> -->	     
+ 	        
+        <!-- <div id="logo">
+        	<a id="goUp" href="#home-slider" title="Brushed | Responsive One Page Template">Brushed Template</a>
+        </div>
+         -->
+        
+    </div>
+    
+    <div id="castbbs"><font color="#ffffff"><a href="castbbs.do">섭외신청목록</a></font></div>
+<!-- End Header -->

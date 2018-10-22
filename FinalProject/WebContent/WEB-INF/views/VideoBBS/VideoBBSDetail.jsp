@@ -6,7 +6,7 @@
 <video>
 	<source src="${getVideoBbs.video }">
 </video>
-
+${getVideoBbs.thumbnail }
 <table border="solid">
 <tr>
 	<th>THUMBNAIL</th>

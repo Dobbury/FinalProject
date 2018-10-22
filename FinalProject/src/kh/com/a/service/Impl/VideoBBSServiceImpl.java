@@ -33,5 +33,7 @@ public class VideoBBSServiceImpl implements VideoBBSService {
 		return dao.getVideoBbs(seq);
 	}
 	
-	
+	public List<VideoBBSDto> getVideoForUser() {
+		return dao.getVideoForUser();
+	}
 }	

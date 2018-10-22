@@ -6,6 +6,19 @@
   
 <mapper namespace="PerformCastBBS">
 
+	<insert id="sendCompanyInfo" parameterType="kh.com.a.model.PerformCastBBSDto">
+		INSERT INTO PERFORM_CAST_BBS
+		<!-- (PERFORM_SEQ,NAME,COMPNAME,EMAIL,PHONE,PLACE,PRICE,
+		 LOCATION,TOTALCOUNT,AGEGRADE,CONTENT,APPROVAL) -->
+	    VALUES(PERFORM_SEQ.nextval, #{name}, #{compname}, #{email}, 
+	    	  #{phone}, #{place}, #{price}, #{location}, #{totalcount}, #{agegrade}, #{content}, 0, SYSDATE)
+	</insert>
 	
+	<select id="getCastBbs" resultType="kh.com.a.model.PerformCastBBSDto">
+		SELECT * FROM PERFORM_CAST_BBS WHERE PERFORM_SEQ <![CDATA[ < ]]> 25
+	</select>
 	
+	<select id="getMoreList" resultType="kh.com.a.model.PerformCastBBSDto">
+		SELECT * FROM PERFORM_CAST_BBS WHERE PERFORM_SEQ <![CDATA[ >= ]]> 25
+	</select>
 </mapper>

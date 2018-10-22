@@ -46,8 +46,8 @@ public class MemDto implements Serializable {
 	}
 
 	//뮤지션
-	public MemDto(String teamname, String id, String pwd, String name, String phone, String email, String genre, String location,
-			String birth, String ori_profilIMG,String new_profilIMG, String position, int right, int auth, int online_check,
+	public MemDto(String id, String pwd, String name, String phone, String email, String genre, String location,
+			String birth, String teamname, String ori_profilIMG,String new_profilIMG, String position, int right, int auth, int online_check,
 			String gender, int mem_seq) {
 		super();
 		this.id = id;

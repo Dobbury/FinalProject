@@ -1,10 +1,17 @@
 package kh.com.a.controller;
 
+
 import java.io.File;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Date;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -25,15 +32,21 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.mysql.cj.api.Session;
 
+
 import kh.com.a.arrow.FUpUtil;
 import kh.com.a.model.GenreDto;
 import kh.com.a.model.LocationDto;
-import kh.com.a.model.MemDto;
 import kh.com.a.model.PositionDto;
 import kh.com.a.service.GenreService;
 import kh.com.a.service.LocationService;
-import kh.com.a.service.MemService;
 import kh.com.a.service.PositionService;
+
+import kh.com.a.model.MemDto;
+import kh.com.a.model.ScheduleBBSDto;
+import kh.com.a.model.VideoBBSDto;
+import kh.com.a.service.MemService;
+import kh.com.a.service.ScheduleBBSService;
+import kh.com.a.service.VideoBBSService;
 
 
 @Controller
@@ -51,9 +64,28 @@ public class MemController {
 	PositionService positionService;
 	
 	
-	@RequestMapping(value="main.do",method= {RequestMethod.GET, RequestMethod.POST})
-	public String mainView() {
-		logger.info("MemController mainView "+ new Date());
+	@Autowired
+	VideoBBSService videoBbsService;
+	
+	@Autowired
+	ScheduleBBSService scheduleBbsService;
+	
+	@RequestMapping(value="main.do",method=RequestMethod.GET)
+	public String mainView(HttpServletRequest req, HttpServletResponse rep, Model model) {
+		logger.info("KhMemberController mainView"+ new Date());
+		
+		List<VideoBBSDto> videoRank = null;
+		List<ScheduleBBSDto> ComingSchedule = null;
+		List<ScheduleBBSDto> IngSchedule = null;
+		
+		videoRank = videoBbsService.getVideoForUser();
+		ComingSchedule = scheduleBbsService.getComingSchedule();
+		IngSchedule = scheduleBbsService.getIngSchedule();
+		
+		model.addAttribute("videoList", videoRank);
+		model.addAttribute("ComingList", ComingSchedule);
+		model.addAttribute("IngList", IngSchedule);
+		/*model.addAttribute("login", login);*/
 		
 		return "main.tiles";
 	}
@@ -211,5 +243,42 @@ public class MemController {
 		memberService.updateMusition(dto);
 
 		return "redirect:/main.do";
+	}
+
+	@RequestMapping(value="aboutus.do", method=RequestMethod.GET)
+	public String aboutusPage() {
+		logger.info("KhMemberController aboutus" + new Date());
+		
+		return "aboutus.tiles";
+	}
+	
+	@RequestMapping(value="loginAf.do", method=RequestMethod.GET)
+	public String loginAf(HttpServletRequest req, HttpServletResponse rep, MemDto mem) throws IOException{
+		logger.info("KhMemberController loginAf" + new Date());
+		
+		MemDto login = null;
+		// login을 DB 확인
+		//login = memberService.login(mem);
+		PrintWriter out;
+		
+		
+		login = new MemDto("testId", "testPwd", "testName", "01020233808", "yuns0316@gmail.com", "Rock", "Seoul", "890209", "testTN", "IMG", "IMG", "Vocal", 1, 1, 1, "M", 1);
+				/*new MemDto("testTN", "testId", "testPwd", "testName", "01020233808", "yuns0316@gmail.com", "Rock", "Seoul", 890209, "IMG", "Vocal", 1, 1, 1, "M", 1);*/
+		if(login != null && !login.getId().equals("")) {
+			
+			req.getSession().setAttribute("login", login);
+			
+			return "redirect:/main.do";			
+		}else {
+			req.getSession().invalidate();
+			
+			out = rep.getWriter();
+			out.println("로그인 아이디 또는 비밀번호가 일치하지 않습니다"); 
+			out.close();
+		 						
+			return "login.tiles";
+		//	return "forward:/login.do";
+		}
+		
 	}
 }

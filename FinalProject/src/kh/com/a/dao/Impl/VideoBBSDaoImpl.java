@@ -35,8 +35,11 @@ public class VideoBBSDaoImpl implements VideoBBSDao {
 		VideoBBSDto dto = sqlSession.selectOne(namespace + "getVideoBbs", seq);
 		return dto;
 	}
+	
 
-	
-	
-	
+	@Override
+	public List<VideoBBSDto> getVideoForUser() {
+		return sqlSession.selectList(namespace + "getVideoRank");
+	}
+
 }

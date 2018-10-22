@@ -8,7 +8,6 @@
 	<put-attribute name="footer" value="/WEB-INF/views/footer.jsp"/>
 </definition>
 
-
 <definition name="regi.tiles" extends="main.tiles">
 	<put-attribute name="content" value="/WEB-INF/views/login/regi.jsp"/>
 </definition>
@@ -33,6 +32,39 @@
 <definition name="VideoBbsDetail.tiles" extends="login.tiles">
 	<put-attribute name="content" value="/WEB-INF/views/VideoBBS/VideoBBSDetail.jsp"/>
 </definition>
+
+<definition name="aboutus.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/introduce/aboutus.jsp"/>	
+</definition>
+
+<definition name="login.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/login/login.jsp"/>	
+</definition> 
+
+<definition name="contact.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/castPerform/contact.jsp"/>	
+</definition> 
+
+<definition name="castbbs.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/admin/castbbs.jsp"/>	
+</definition>
+
+<definition name="management.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/admin/management.jsp"/>	
+</definition>
+
+<definition name="schedule.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/schedules/schedule.jsp"/>
+</definition>
+
+<definition name="AddSchedule.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/schedules/AddSchedule.jsp"/>
+</definition>
+
+<definition name="scheduleDetail.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/schedules/scheduleDetail.jsp"/>
+</definition>
+
 
 </tiles-definitions>
 
