@@ -20,18 +20,15 @@
 	FROM VIDEOBBS
 	WHERE VIDEO_SEQ=#{video_seq}
 	</select>
-
-	<!-- <select id="getVideosForMember" 
-			parameterType="kh.com.a.model.MemDto"
-			resultType="kh.com.a.model.VideoBBSDto">	
-	</select> -->
 	
 	<!-- 비로그인 유저 / 로그인 유저 (공통) -->
 	<!-- 1. 뮤지션 Table (뮤지션 별 업로드 영상의 누적 좋아요 순 랭킹 정렬) -->
 	<select id="getVideoRank" resultType="kh.com.a.model.VideoBBSDto">
 							
-		SELECT VB.ID, VB.TITLE, VB.CONTENT, VB.VIDEO, VB.WDATE, VB.VIDEO_SEQ FROM VIDEOBBS VB,(SELECT VIDEO_SEQ, COUNT(MEMID) TOTAL FROM VIDEO_LIKE 
-							GROUP BY VIDEO_SEQ ORDER BY COUNT(MEMID)) VL WHERE VB.VIDEO_SEQ = VL.VIDEO_SEQ ORDER BY TOTAL DESC
+		SELECT VB.ID, VB.TITLE, VB.CONTENT, VB.VIDEO, VB.WDATE, VB.VIDEO_SEQ FROM VIDEOBBS VB,
+										(SELECT VIDEO_SEQ, COUNT(MEMID) TOTAL FROM VIDEO_LIKE 
+										GROUP BY VIDEO_SEQ ORDER BY COUNT(MEMID)) VL 
+										WHERE VB.VIDEO_SEQ = VL.VIDEO_SEQ ORDER BY TOTAL DESC
 							
 	</select>
 	
