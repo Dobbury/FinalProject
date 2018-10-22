@@ -37,23 +37,22 @@ public class PerformCastBBSController {
 		return "contact.tiles";
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="moreList.do", method= {RequestMethod.GET, RequestMethod.POST})
+	public List<PerformCastBBSDto> getCompanyList() {
+		
+		List<PerformCastBBSDto> list = performCastBBSService.getMoreList();
+		
+		return list;
+		
+	}
+	
 	
 	@RequestMapping(value="castSchedule.do", method={RequestMethod.GET,RequestMethod.POST})
 	public String castSchedule(HttpServletRequest req, HttpServletResponse resp,PerformCastBBSDto dto, Model model) throws Exception {
 		
 		//req.setCharacterEncoding("UTF-8");
-		
-		if (dto != null) {
-			System.out.println("이름="+dto.getName());
-			System.out.println("회사="+dto.getCompname());
-			System.out.println("이메일="+dto.getEmail());
-			System.out.println("지역="+dto.getLocation());
-			System.out.println("주소="+dto.getPlace());
-			System.out.println("폰="+dto.getPhone());
-			System.out.println("횟수="+dto.getTotalcount());
-			System.out.println("콘텐트="+dto.getContent());
-			System.out.println("가격="+dto.getPrice());
-		}
+	
 		
 		String agegrade[] = new String[6];
 		String temp = new String();
@@ -81,7 +80,7 @@ public class PerformCastBBSController {
 		
 		List<PerformCastBBSDto> castbbslist = performCastBBSService.getCastBbs();
 		
-		model.addAttribute("bbslist", castbbslist);
+		model.addAttribute("castbbslist", castbbslist);
 		if (castbbslist != null) {
 			for (int i = 0; i < castbbslist.size(); i++) {
 				System.out.println(castbbslist.get(i).toString());

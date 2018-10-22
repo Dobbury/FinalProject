@@ -29,5 +29,10 @@ public class PerformCastBBSServiceImpl implements PerformCastBBSService{
 		 
 	}
 
+	@Override
+	public List<PerformCastBBSDto> getMoreList() {
+		return dao.getMoreList();
+	}
+
 	
 }	

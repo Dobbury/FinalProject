@@ -9,5 +9,7 @@ public interface PerformCastBBSService {
 	public boolean sendCompInfo(PerformCastBBSDto dto) throws Exception;
 	
 	public List<PerformCastBBSDto> getCastBbs();
+	
+	public List<PerformCastBBSDto> getMoreList();
 
 }

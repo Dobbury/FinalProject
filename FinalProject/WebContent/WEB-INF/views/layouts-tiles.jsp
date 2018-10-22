@@ -122,6 +122,29 @@
 </footer>
 
 <!-- Js -->
+<script type="text/javascript">
+function ajaxMoreList() {
+	
+	$.ajax({
+		type:"POST",
+		url:"<%=application.getContextPath() %>/castMoreList.do",
+		async:true,
+		data:"id="+id+"&rdate="+rdate,
+		success:function(){	
+			
+			alert("success");
+			
+			/* if(msg.my != null){
+				
+				$.each(msg.my, function(index, value) { 
+					alert(index + '번째:' + value.title);					
+				});
+			}  */ 
+		}
+	});
+}
+</script>
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> <!-- jQuery Core -->
 <script src="_include/js/bootstrap.min.js"></script> <!-- Bootstrap -->
 <script src="_include/js/supersized.3.2.7.min.js"></script> <!-- Slider -->

@@ -6,12 +6,22 @@
 
 <fmt:requestEncoding value="utf-8"/>
  
+<span class="accordion-heading togglize">
+                            <a class="accordion-toggle inactive collapsed" data-toggle="collapse" data-parent="#" href="#castbbs">
+                                	관리
+                                <span class="font-icon-plus"></span>
+                                <span class="font-icon-minus"></span>
+                            </a>
+                        </span> 
+
 <!-- Header -->
     <div class="sticky-nav">
     	<a id="mobile-nav" class="menu-nav" href="#menu-nav"></a>
+    	
+    		
         <!-- <ul>
         <li style="line-height: 20px; margin: 15px; list-style: none; cursor: pointer;"> -->
-       	<a class="font-icon-cog" style="font-size: 32px;"></a>
+       	<a href="castbbs.do" class="font-icon-cog" style="font-size: 32px;"></a>
         <!-- </li>
         </ul> -->
         <!-- <a id="pcmenu" href="#" class="font-icon-align-justify" style="font-size: 30px;"></a> -->	     
@@ -35,4 +45,6 @@
         </nav>
         
     </div>
+    
+    <div id="castbbs"><font color="#ffffff"><a href="castbbs.do">섭외신청목록</a></font></div>
 <!-- End Header -->

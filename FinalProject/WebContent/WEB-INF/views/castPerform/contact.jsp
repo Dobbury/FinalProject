@@ -36,7 +36,7 @@
                 	<input id="contact_phone" type="text" placeholder="연락처 ('-'제외하고 입력)" value="" name="phone"/>
                 </p>
                 <p class="contact-place">
-                	<input id="contact_place" type="text" placeholder="주소" value="" name="place"/>
+                	<input id="contact_place" type="text" placeholder="장소" value="" name="place"/>
                 </p>
                 <select style="margin-bottom: 1px;" name="location">
                 	<option value="지역" style="text-shadow: background;">지역</option>
@@ -61,7 +61,7 @@
 				
 				
                 <p class="contact-comment">
-                	<textarea id="contact-comment" placeholder="문의 사항" name="content" rows="15" cols="40"></textarea>
+                	<textarea id="contact-comment" placeholder="기관이나 단체에 대한 한마디 또는 다른 문의사항 입력해주세요" name="content" rows="15" cols="40"></textarea>
                 </p>              
                 	 <input id="sending" type="submit" value="문의하기" style="background: #5e0404">
                 	

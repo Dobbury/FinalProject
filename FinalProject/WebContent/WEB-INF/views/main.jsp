@@ -26,9 +26,9 @@
 	videoList -->
 	
 	
-	<%-- <c:forEach items="${ComingList}" var="cSchedule" varStatus="vs">${vs.count}-${cSchedule.sdate}</c:forEach>
+	<c:forEach items="${ComingList}" var="cSchedule" varStatus="vs">${vs.count}-${cSchedule.sdate}</c:forEach>
 	<c:forEach items="${IngList}" var="iSchedule" varStatus="vs">${vs.count}-${iSchedule.sdate}</c:forEach>
-	<c:forEach items="${videoList}" var="video" varStatus="vs">${vs.count}-${video.title}</c:forEach> --%>
+	<c:forEach items="${videoList}" var="video" varStatus="vs">${vs.count}-${video.title}</c:forEach> 
 	
 	
 	<!-- End Title Page -->

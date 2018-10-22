@@ -16,6 +16,7 @@ public class PerformCastBBSDto implements Serializable {
 	private String agegrade;
 	private String content;
 	private int approval;
+	private String wdate;
 	
 	public PerformCastBBSDto() {
 		super();
@@ -39,7 +40,7 @@ public class PerformCastBBSDto implements Serializable {
 
 
 	public PerformCastBBSDto(int perform_seq, String name, String compname, String email, String phone, String place,
-			String price, String location, int totalcount, String agegrade, String content, int approval) {
+			String price, String location, int totalcount, String agegrade, String content, int approval, String wdate) {
 		super();
 		this.perform_seq = perform_seq;
 		this.name = name;
@@ -53,7 +54,16 @@ public class PerformCastBBSDto implements Serializable {
 		this.agegrade = agegrade;
 		this.content = content;
 		this.approval = approval;
+		this.wdate = wdate;
 	}
+	public String getWdate() {
+		return wdate;
+	}
+
+	public void setWdate(String wdate) {
+		this.wdate = wdate;
+	}
+
 	public int getPerform_seq() {
 		return perform_seq;
 	}
@@ -126,13 +136,15 @@ public class PerformCastBBSDto implements Serializable {
 	public void setLocation(String location) {
 		this.location = location;
 	}
+
 	@Override
 	public String toString() {
 		return "PerformCastBBSDto [perform_seq=" + perform_seq + ", name=" + name + ", compname=" + compname
 				+ ", email=" + email + ", phone=" + phone + ", place=" + place + ", price=" + price + ", location="
 				+ location + ", totalcount=" + totalcount + ", agegrade=" + agegrade + ", content=" + content
-				+ ", approval=" + approval + "]";
+				+ ", approval=" + approval + ", wdate=" + wdate + "]";
 	}
+	
 
 	
 }
