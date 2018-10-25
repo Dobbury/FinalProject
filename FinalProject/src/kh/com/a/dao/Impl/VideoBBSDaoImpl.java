@@ -42,4 +42,17 @@ public class VideoBBSDaoImpl implements VideoBBSDao {
 		return sqlSession.selectList(namespace + "getVideoRank");
 	}
 
+	@Override
+	public void videoBbsUpdate(VideoBBSDto bbs) throws Exception {
+		sqlSession.update(namespace + "videoBbsUpdate", bbs);
+	}
+
+	@Override
+	public void videoBbsDelete(int seq) throws Exception {
+		sqlSession.update(namespace + "videoBbsDelete", seq);
+		
+	}
+	
+	
+	
 }

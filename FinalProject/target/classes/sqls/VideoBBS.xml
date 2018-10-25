@@ -20,6 +20,18 @@
 	FROM VIDEOBBS
 	WHERE VIDEO_SEQ=#{video_seq}
 	</select>
+	
+	<update id="videoBbsUpdate" parameterType="kh.com.a.model.VideoBBSDto">
+	UPDATE VIDEOBBS
+	SET TITLE=#{title}, CONTENT=#{content}, WDATE=SYSDATE
+	WHERE VIDEO_SEQ=#{video_seq}
+	</update>
+	
+	<delete id="videoBbsDelete" parameterType="java.lang.Integer">
+		DELETE
+		FROM VIDEOBBS
+		WHERE VIDEO_SEQ=#{video_seq}
+	</delete>
 
 	<!-- <select id="getVideosForMember" 
 			parameterType="kh.com.a.model.MemDto"
