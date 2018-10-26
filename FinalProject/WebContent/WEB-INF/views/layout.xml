@@ -20,7 +20,7 @@
 	<put-attribute name="content" value="/WEB-INF/views/musirecu/musireculist.jsp"/>
 </definition>
 
-
+<!--VideoBBS=======  -->
 <definition name="VideoBBS.tiles" extends="main.tiles">
 	<put-attribute name="content" value="/WEB-INF/views/VideoBBS/VideoBBS.jsp"/>
 </definition>
@@ -32,6 +32,12 @@
 <definition name="VideoBbsDetail.tiles" extends="login.tiles">
 	<put-attribute name="content" value="/WEB-INF/views/VideoBBS/VideoBBSDetail.jsp"/>
 </definition>
+
+<definition name="VideoBbsUpdate.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/VideoBBS/VideoBBSUpdate.jsp"/>
+</definition>
+
+
 
 <definition name="aboutus.tiles" extends="main.tiles">
 	<put-attribute name="content" value="/WEB-INF/views/introduce/aboutus.jsp"/>	
@@ -64,6 +70,7 @@
 <definition name="scheduleDetail.tiles" extends="main.tiles">
 	<put-attribute name="content" value="/WEB-INF/views/schedules/scheduleDetail.jsp"/>
 </definition>
+
 
 
 </tiles-definitions>

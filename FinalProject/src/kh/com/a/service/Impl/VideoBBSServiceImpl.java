@@ -36,4 +36,18 @@ public class VideoBBSServiceImpl implements VideoBBSService {
 	public List<VideoBBSDto> getVideoForUser() {
 		return dao.getVideoForUser();
 	}
+
+	@Override
+	public void videoBbsUpdate(VideoBBSDto bbs) throws Exception {
+		dao.videoBbsUpdate(bbs);
+	}
+
+	@Override
+	public void videoBbsDelete(int seq) throws Exception {
+		dao.videoBbsDelete(seq);
+		
+	}
+	
+	
+	
 }	

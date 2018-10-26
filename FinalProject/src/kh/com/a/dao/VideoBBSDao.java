@@ -12,4 +12,8 @@ public interface VideoBBSDao {
 	public VideoBBSDto getVideoBbs(int seq);
 
 	public List<VideoBBSDto> getVideoForUser();
+	
+	public void videoBbsUpdate(VideoBBSDto bbs)throws Exception;
+	
+	public void videoBbsDelete(int seq)throws Exception;
 }
