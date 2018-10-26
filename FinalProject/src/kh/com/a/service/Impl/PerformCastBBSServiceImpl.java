@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import kh.com.a.dao.PerformCastBBSDao;
 import kh.com.a.dao.ScheduleBBSDao;
 import kh.com.a.dao.VideoBBSDao;
+import kh.com.a.model.IndexDto;
 import kh.com.a.model.PerformCastBBSDto;
 import kh.com.a.service.PerformCastBBSService;
 
@@ -30,8 +31,14 @@ public class PerformCastBBSServiceImpl implements PerformCastBBSService{
 	}
 
 	@Override
-	public List<PerformCastBBSDto> getMoreList() {
-		return dao.getMoreList();
+	public List<PerformCastBBSDto> getMoreList(PerformCastBBSDto dto) {
+		return dao.getMoreList(dto);
+	}
+
+	@Override
+	public void approveAf(int seq_approve) {
+			dao.approveAf(seq_approve);
+			
 	}
 
 	

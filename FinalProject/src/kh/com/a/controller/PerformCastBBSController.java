@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kh.com.a.model.IndexDto;
 import kh.com.a.model.PerformCastBBSDto;
 import kh.com.a.service.PerformCastBBSService;
 
@@ -39,10 +40,11 @@ public class PerformCastBBSController {
 	
 	@ResponseBody
 	@RequestMapping(value="moreList.do", method= {RequestMethod.GET, RequestMethod.POST})
-	public List<PerformCastBBSDto> getCompanyList() {
+	public List<PerformCastBBSDto> getMoreList(PerformCastBBSDto dto, Model model) {
 		
-		List<PerformCastBBSDto> list = performCastBBSService.getMoreList();
+		List<PerformCastBBSDto> list = performCastBBSService.getMoreList(dto);
 		
+		model.addAttribute("castbbslist", list);
 		return list;
 		
 	}
@@ -52,7 +54,6 @@ public class PerformCastBBSController {
 	public String castSchedule(HttpServletRequest req, HttpServletResponse resp,PerformCastBBSDto dto, Model model) throws Exception {
 		
 		//req.setCharacterEncoding("UTF-8");
-	
 		
 		String agegrade[] = new String[6];
 		String temp = new String();
@@ -73,6 +74,14 @@ public class PerformCastBBSController {
 		performCastBBSService.sendCompInfo(dto);
 	
 		return "redirect:/contact.do";  
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="approveAf.do", method=RequestMethod.GET)
+	public void approveAf(int seq_approve){
+		
+		performCastBBSService.approveAf(seq_approve);
+		
 	}
 	
 	@RequestMapping(value="castbbs.do", method=RequestMethod.GET)

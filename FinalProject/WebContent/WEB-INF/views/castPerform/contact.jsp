@@ -1,6 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<!DOCTYPE html>    
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    
+<script>
+$(function() {
+  $( "#datepicker1" ).datepicker({
+    dateFormat: 'yy-mm-dd'
+  });
+});
+</script>    
 
 <!-- Contact Section -->
 
@@ -12,11 +23,19 @@
             <div class="title-page">
                 <h2 class="title">공연 섭외 문의</h2>
                 <h6 class="title-description">공연문의 내용을 이메일이나 핸드폰 메세지를 남겨주시면 빠른연락 드리겠습니다.</h6>
+                <h7 class="title-description"><font color="red">*</font>최소 1주일 전 문의 주시기 바랍니다</h7>
             </div>
         </div>
     </div>
     <!-- End Title Page -->
-    
+
+
+	<!-- 희망공연날짜: <input type="text" id="datepicker1" style="position: absolute;
+	z-index: 1000; font-size: 1em; color: #CCC; text-align: center; 
+	cursor: default; border: 1px solid; border-radius: 2px;
+	margin: 6px 0; background: #222; box-shadow: 8px 8px 12px rgba(0,0,0,0.2);"> -->
+	
+	
     <!-- Contact Form -->
     <form id="contact-form" class="contact-form" method="post" action="castSchedule.do">
     <div class="row">
@@ -34,6 +53,9 @@
                 </p>
                 <p class="contact-phone">
                 	<input id="contact_phone" type="text" placeholder="연락처 ('-'제외하고 입력)" value="" name="phone"/>
+                </p>
+                <p class="contact-place">
+                	<input id="contact_date" type="date" placeholder="희망날짜" value="" name="perform_date"/>
                 </p>
                 <p class="contact-place">
                 	<input id="contact_place" type="text" placeholder="장소" value="" name="place"/>
@@ -63,7 +85,7 @@
                 <p class="contact-comment">
                 	<textarea id="contact-comment" placeholder="기관이나 단체에 대한 한마디 또는 다른 문의사항 입력해주세요" name="content" rows="15" cols="40"></textarea>
                 </p>              
-                	 <input id="sending" type="submit" value="문의하기" style="background: #5e0404">
+                	 <input id="sending" type="submit" value="문의하기" style="background: #5e0404" onclick="show_alert();">
                 	
                 <div id="response">
                 
@@ -91,6 +113,7 @@
     <!-- End Contact Form -->
 </div>
 </div>
+
 
 <!-- End Contact Section -->
 
@@ -134,14 +157,13 @@
     </div>
 </div>
 <!-- End Socialize -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> <!-- jQuery Core -->
 
-<script type="text/javascript">
-
-
-	$("#sending").click(function() {	
-		alert('문의신청이 되었습니다');	
-		
-	});
-
+<script>
+	function show_alert(){
+	if(confirm("문의신청을 하시겠습니까?"))
+		document.forms[0].submit();
+	}
 </script>
+
+
+

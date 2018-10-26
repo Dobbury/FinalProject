@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.com.a.dao.PerformCastBBSDao;
+import kh.com.a.model.IndexDto;
 import kh.com.a.model.PerformCastBBSDto;
 
 @Repository
@@ -29,8 +30,15 @@ public class PerformCastBBSDaoImpl implements PerformCastBBSDao {
 	}
 
 	@Override
-	public List<PerformCastBBSDto> getMoreList() {
-		return sqlSession.selectList(namespace + "getMoreList");
+	public List<PerformCastBBSDto> getMoreList(PerformCastBBSDto dto) {
+		return sqlSession.selectList(namespace + "getMoreList", dto);
+		
+	}
+
+	@Override
+	public void approveAf(int seq_approve) {
+		 sqlSession.update(namespace + "approveAf", seq_approve);
+		 
 	}
 	
 	

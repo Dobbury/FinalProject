@@ -17,30 +17,29 @@ public class PerformCastBBSDto implements Serializable {
 	private String content;
 	private int approval;
 	private String wdate;
+	private String perform_date;
+	private int lati;
+	private int longi;
+	private int sindex;
+	private int eindex;
 	
-	public PerformCastBBSDto() {
-		super();
+	
+	
+	public int getSindex() {
+		return sindex;
 	}
-	
-	/*
-	public PerformCastBBSDto(String name, String compname, String email, String phone, String place,
-			String price, String location, int totalcount, String content, int approval) {
-		super();
-		this.name = name;
-		this.compname = compname;
-		this.email = email;
-		this.phone = phone;
-		this.place = place;
-		this.price = price;
-		this.location = location;
-		this.totalcount = totalcount;
-		this.content = content;
-		this.approval = approval;
-	}*/
+
+
+
+	public void setSindex(int sindex) {
+		this.sindex = sindex;
+	}
+
 
 
 	public PerformCastBBSDto(int perform_seq, String name, String compname, String email, String phone, String place,
-			String price, String location, int totalcount, String agegrade, String content, int approval, String wdate) {
+			String price, String location, int totalcount, String agegrade, String content, int approval, String wdate,
+			String perform_date,int lati, int longi, int sindex, int eindex) {
 		super();
 		this.perform_seq = perform_seq;
 		this.name = name;
@@ -55,7 +54,93 @@ public class PerformCastBBSDto implements Serializable {
 		this.content = content;
 		this.approval = approval;
 		this.wdate = wdate;
+		this.perform_date = perform_date;
+		this.sindex = sindex;
+		this.eindex = eindex;
+		this.lati = lati;
+		this.longi = longi;
 	}
+
+
+
+	public int getLati() {
+		return lati;
+	}
+
+
+
+	public void setLati(int lati) {
+		this.lati = lati;
+	}
+
+
+
+	public int getLongi() {
+		return longi;
+	}
+
+
+
+	public void setLongi(int longi) {
+		this.longi = longi;
+	}
+
+
+
+	public int getEindex() {
+		return eindex;
+	}
+
+
+
+	public void setEindex(int eindex) {
+		this.eindex = eindex;
+	}
+
+
+
+	
+	
+	public PerformCastBBSDto() {
+		super();
+	}
+
+
+	
+	public PerformCastBBSDto(int perform_seq, String name, String compname, String email, String phone, String place,
+			String price, String location, int totalcount, String agegrade, String content, int approval, String wdate,
+			String perform_date) {
+		super();
+		this.perform_seq = perform_seq;
+		this.name = name;
+		this.compname = compname;
+		this.email = email;
+		this.phone = phone;
+		this.place = place;
+		this.price = price;
+		this.location = location;
+		this.totalcount = totalcount;
+		this.agegrade = agegrade;
+		this.content = content;
+		this.approval = approval;
+		this.wdate = wdate;
+		this.perform_date = perform_date;
+	}
+
+
+
+	public String getPerform_date() {
+		return perform_date;
+	}
+
+
+
+	public void setPerform_date(String perform_date) {
+		this.perform_date = perform_date;
+	}
+
+
+
 	public String getWdate() {
 		return wdate;
 	}
@@ -137,13 +222,17 @@ public class PerformCastBBSDto implements Serializable {
 		this.location = location;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "PerformCastBBSDto [perform_seq=" + perform_seq + ", name=" + name + ", compname=" + compname
 				+ ", email=" + email + ", phone=" + phone + ", place=" + place + ", price=" + price + ", location="
 				+ location + ", totalcount=" + totalcount + ", agegrade=" + agegrade + ", content=" + content
-				+ ", approval=" + approval + ", wdate=" + wdate + "]";
+				+ ", approval=" + approval + ", wdate=" + wdate + ", perform_date=" + perform_date + "]";
 	}
+
+
 	
 
 	
