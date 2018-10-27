@@ -32,6 +32,11 @@ public class PerformCastBBSDaoImpl implements PerformCastBBSDao {
 	public List<PerformCastBBSDto> getMoreList() {
 		return sqlSession.selectList(namespace + "getMoreList");
 	}
+
+	@Override
+	public PerformCastBBSDto getPerformCastInfo(int perform_seq) {
+		return sqlSession.selectOne(namespace + "getPerformCastInfo",perform_seq);
+	}
 	
 	
 }

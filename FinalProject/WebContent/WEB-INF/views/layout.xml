@@ -20,6 +20,9 @@
 	<put-attribute name="content" value="/WEB-INF/views/musirecu/musireculist.jsp"/>
 </definition>
 
+<definition name="musirecudetail.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/musirecu/musirecudetail.jsp"/>
+</definition>
 
 <definition name="VideoBBS.tiles" extends="main.tiles">
 	<put-attribute name="content" value="/WEB-INF/views/VideoBBS/VideoBBS.jsp"/>
@@ -63,6 +66,26 @@
 
 <definition name="scheduleDetail.tiles" extends="main.tiles">
 	<put-attribute name="content" value="/WEB-INF/views/schedules/scheduleDetail.jsp"/>
+</definition>
+
+<definition name="perform_scheduleslist.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/perform_schedules/perform_scheduleslist.jsp"/>
+</definition>
+
+<definition name="perform_scheduledetail.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/perform_schedules/perform_scheduledetail.jsp"/>
+</definition>
+
+<definition name="perform_schedulewrite.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/perform_schedules/perform_schedulewrite.jsp"/>
+</definition>
+
+<definition name="musi_recu_deadline.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/admin//musirecu/musirecudeadlinelist.jsp"/>
+</definition>
+
+<definition name="musirecudeadlinedetail.tiles" extends="main.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/admin//musirecu/musirecudeadlinedetail.jsp"/>
 </definition>
 
 

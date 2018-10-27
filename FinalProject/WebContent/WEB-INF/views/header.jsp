@@ -51,6 +51,12 @@
 			<!--  
                 <li><a href="#contact">Contact</a></li>
 				<li><a href="shortcodes.html" class="external">Shortcodes</a></li> -->
+			<li class="afterloginOK"><%if(dto !=null){ %>
+										<a href="perform_scheduleslist.do"  class="external">고옹연 일정</a>
+									<%}else{ %>
+										<a data-toggle="modal" href="#myModal" >고옹연 일정</a>
+									<%} %>
+										</li><!-- 로그인이 필요한 경우  -->
 			<li><a class="external" href="aboutus.do">About our site</a></li>
          	<li><a class="external" href="videoBbs.do">뮤지션's 버스킹</a></li>
             <li><a class="external" href="schedule.do">공연일정</a></li>
@@ -145,7 +151,7 @@ $("ul li").click(function () {
 <fmt:requestEncoding value="utf-8"/>
  
 <span class="accordion-heading togglize">
-                            <a class="accordion-toggle inactive collapsed" data-toggle="collapse" data-parent="#" href="#castbbs">
+                            <a class="accordion-toggle inactive collapsed" data-toggle="collapse" data-parent="#" href="#adminmenu">
                                 	관리
                                 <span class="font-icon-plus"></span>
                                 <span class="font-icon-minus"></span>
@@ -171,5 +177,8 @@ $("ul li").click(function () {
         
     </div>
     
-    <div id="castbbs"><font color="#ffffff"><a href="castbbs.do">섭외신청목록</a></font></div>
+    <div id="adminmenu">
+    	<font color="#ffffff"><a href="castbbs.do">섭외신청목록</a></font><br>
+    	<font color="#ffffff"><a href="musi_recu_deadline.do">뮤지션 모집 마감 목록</a></font>
+    </div>
 <!-- End Header -->

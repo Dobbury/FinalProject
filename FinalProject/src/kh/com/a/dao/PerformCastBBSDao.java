@@ -12,4 +12,6 @@ public interface PerformCastBBSDao {
 	public List<PerformCastBBSDto> getCastBbs();
 	
 	public List<PerformCastBBSDto> getMoreList();
+	
+	public PerformCastBBSDto getPerformCastInfo(int perform_seq);
 }
