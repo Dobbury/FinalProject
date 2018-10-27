@@ -128,6 +128,7 @@ index = castbbslist.size()-1;
 perform_seq = castbbslist.get(index).getPerform_seq();
 %>
 </c:if>
+
 <div id="add2">
 <button id="addbtn2" onclick="moreList2();">더보기2</button>
 </div>

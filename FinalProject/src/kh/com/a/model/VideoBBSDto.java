@@ -20,34 +20,45 @@ public class VideoBBSDto implements Serializable{
 	private String content;
 	private String video;
 	private String thumbnail;
+	private String genre;
 	private String wdate;
 	private int readcount;
 	private int video_seq;
+	
 	
 	public VideoBBSDto() {
 		super();
 	}
 	
 	
-	
-	public VideoBBSDto(String id, String title, String content, String video, String thumbnail, String wdate, int readcount,
-			int video_seq) {
+	public VideoBBSDto(String id, String title, String content, String video, String thumbnail, String genre,
+			String wdate, int readcount, int video_seq) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.content = content;
 		this.video = video;
 		this.thumbnail = thumbnail;
+		this.genre = genre;
 		this.wdate = wdate;
 		this.readcount = readcount;
 		this.video_seq = video_seq;
 	}
-	
-	
+
 	public String getId() {
 		return id;
 	}
 
+
+
+	public String getGenre() {
+		return genre;
+	}
+
+
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
 
 
 	public void setId(String id) {

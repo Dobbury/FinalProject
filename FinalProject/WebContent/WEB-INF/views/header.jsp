@@ -129,7 +129,7 @@ $("ul li").click(function () {
 	<%
 	if(session.getAttribute("user") == null){
 	%>
-		if( $(this).hasClass("afterloginOK") ==true ){
+		if( $(this).hasClass("afterloginOK") == true ){
 			alert("로그인 후 가능합니다.");	
 			location.href="#home-slider";
 		}
