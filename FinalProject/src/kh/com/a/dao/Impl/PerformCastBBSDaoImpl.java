@@ -40,6 +40,11 @@ public class PerformCastBBSDaoImpl implements PerformCastBBSDao {
 		 sqlSession.update(namespace + "approveAf", seq_approve);
 		 
 	}
+
+	@Override
+	public PerformCastBBSDto getPerformCastInfo(int perform_seq) {
+		return sqlSession.selectOne(namespace + "getPerformCastInfo",perform_seq);
+	}
 	
 	
 }

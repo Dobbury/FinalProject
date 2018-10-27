@@ -91,7 +91,7 @@ public class MemController {
 	}
 	
 	@RequestMapping(value="myPage.do",method= {RequestMethod.GET, RequestMethod.POST})
-	public String myPage(HttpSession session, Model model) {
+	public String myPage(Model model) {
 		logger.info("MemController myPage "+ new Date());
 		
 		model.addAttribute("genreList",genreService.getGenreList());

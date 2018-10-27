@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kh.com.a.model.IndexDto;
+import kh.com.a.model.LocationDto;
 import kh.com.a.model.PerformCastBBSDto;
+import kh.com.a.service.LocationService;
 import kh.com.a.service.PerformCastBBSService;
 
 
@@ -30,10 +32,17 @@ public class PerformCastBBSController {
 	@Autowired
 	PerformCastBBSService performCastBBSService;
 	
+	@Autowired
+	LocationService locationService;
+	
 	@RequestMapping(value="contact.do", method=RequestMethod.GET)
-	public String contactPage() {
+	public String contactPage(Model model) {
 		
 		logger.info("PerformCastBbsController Contact" + new Date());
+		
+		/*model.addAttribute("locationList",locationService.getLocationList());*/
+		List<LocationDto> locationList = locationService.getLocationList();
+		model.addAttribute("locationList", locationList);
 		
 		return "contact.tiles";
 	}
@@ -54,6 +63,8 @@ public class PerformCastBBSController {
 	public String castSchedule(HttpServletRequest req, HttpServletResponse resp,PerformCastBBSDto dto, Model model) throws Exception {
 		
 		//req.setCharacterEncoding("UTF-8");
+
+		logger.info(dto.getAgegrade());
 		
 		String agegrade[] = new String[6];
 		String temp = new String();
@@ -90,6 +101,8 @@ public class PerformCastBBSController {
 		List<PerformCastBBSDto> castbbslist = performCastBBSService.getCastBbs();
 		
 		model.addAttribute("castbbslist", castbbslist);
+		
+		
 		if (castbbslist != null) {
 			for (int i = 0; i < castbbslist.size(); i++) {
 				System.out.println(castbbslist.get(i).toString());

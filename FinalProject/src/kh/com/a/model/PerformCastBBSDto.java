@@ -12,18 +12,46 @@ public class PerformCastBBSDto implements Serializable {
 	private String place;
 	private String price;
 	private String location;
+	private double lat;
+	private double lng;
 	private int totalcount;
 	private String agegrade;
 	private String content;
 	private int approval;
 	private String wdate;
 	private String perform_date;
-	private int lati;
-	private int longi;
 	private int sindex;
 	private int eindex;
 	
 	
+	public PerformCastBBSDto() {
+		super();
+	}
+
+	
+	public PerformCastBBSDto(int perform_seq, String name, String compname, String email, String phone, String place,
+			String price, String location, double lat, double lng, int totalcount, String agegrade, String content,
+			int approval, String wdate, String perform_date, int sindex, int eindex) {
+		super();
+		this.perform_seq = perform_seq;
+		this.name = name;
+		this.compname = compname;
+		this.email = email;
+		this.phone = phone;
+		this.place = place;
+		this.price = price;
+		this.location = location;
+		this.lat = lat;
+		this.lng = lng;
+		this.totalcount = totalcount;
+		this.agegrade = agegrade;
+		this.content = content;
+		this.approval = approval;
+		this.wdate = wdate;
+		this.perform_date = perform_date;
+		this.sindex = sindex;
+		this.eindex = eindex;
+	}
 	
 	public int getSindex() {
 		return sindex;
@@ -35,57 +63,7 @@ public class PerformCastBBSDto implements Serializable {
 		this.sindex = sindex;
 	}
 
-
-
-	public PerformCastBBSDto(int perform_seq, String name, String compname, String email, String phone, String place,
-			String price, String location, int totalcount, String agegrade, String content, int approval, String wdate,
-			String perform_date,int lati, int longi, int sindex, int eindex) {
-		super();
-		this.perform_seq = perform_seq;
-		this.name = name;
-		this.compname = compname;
-		this.email = email;
-		this.phone = phone;
-		this.place = place;
-		this.price = price;
-		this.location = location;
-		this.totalcount = totalcount;
-		this.agegrade = agegrade;
-		this.content = content;
-		this.approval = approval;
-		this.wdate = wdate;
-		this.perform_date = perform_date;
-		this.sindex = sindex;
-		this.eindex = eindex;
-		this.lati = lati;
-		this.longi = longi;
-	}
-
-
-
-	public int getLati() {
-		return lati;
-	}
-
-
-
-	public void setLati(int lati) {
-		this.lati = lati;
-	}
-
-
-
-	public int getLongi() {
-		return longi;
-	}
-
-
-
-	public void setLongi(int longi) {
-		this.longi = longi;
-	}
-
-
+	
 
 	public int getEindex() {
 		return eindex;
@@ -97,35 +75,7 @@ public class PerformCastBBSDto implements Serializable {
 		this.eindex = eindex;
 	}
 
-
-
 	
-	
-	public PerformCastBBSDto() {
-		super();
-	}
-
-
-	
-	public PerformCastBBSDto(int perform_seq, String name, String compname, String email, String phone, String place,
-			String price, String location, int totalcount, String agegrade, String content, int approval, String wdate,
-			String perform_date) {
-		super();
-		this.perform_seq = perform_seq;
-		this.name = name;
-		this.compname = compname;
-		this.email = email;
-		this.phone = phone;
-		this.place = place;
-		this.price = price;
-		this.location = location;
-		this.totalcount = totalcount;
-		this.agegrade = agegrade;
-		this.content = content;
-		this.approval = approval;
-		this.wdate = wdate;
-		this.perform_date = perform_date;
-	}
 
 
 
@@ -147,93 +97,121 @@ public class PerformCastBBSDto implements Serializable {
 
 	public void setWdate(String wdate) {
 		this.wdate = wdate;
+
 	}
 
 	public int getPerform_seq() {
 		return perform_seq;
 	}
+
 	public void setPerform_seq(int perform_seq) {
 		this.perform_seq = perform_seq;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getCompname() {
 		return compname;
 	}
+
 	public void setCompname(String compname) {
 		this.compname = compname;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getPhone() {
 		return phone;
 	}
+
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
 	public String getPlace() {
 		return place;
 	}
+
 	public void setPlace(String place) {
 		this.place = place;
 	}
+
 	public String getPrice() {
 		return price;
 	}
+
 	public void setPrice(String price) {
 		this.price = price;
 	}
-	public int getTotalcount() {
-		return totalcount;
-	}
-	public void setTotalcount(int totalcount) {
-		this.totalcount = totalcount;
-	}
-	public String getAgegrade() {
-		return agegrade;
-	}
-	public void setAgegrade(String agegrade) {
-		this.agegrade = agegrade;
-	}
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
-	}
-	public int getApproval() {
-		return approval;
-	}
-	public void setApproval(int approval) {
-		this.approval = approval;
-	}
+
 	public String getLocation() {
 		return location;
 	}
+
 	public void setLocation(String location) {
 		this.location = location;
 	}
 
-
-
-	@Override
-	public String toString() {
-		return "PerformCastBBSDto [perform_seq=" + perform_seq + ", name=" + name + ", compname=" + compname
-				+ ", email=" + email + ", phone=" + phone + ", place=" + place + ", price=" + price + ", location="
-				+ location + ", totalcount=" + totalcount + ", agegrade=" + agegrade + ", content=" + content
-				+ ", approval=" + approval + ", wdate=" + wdate + ", perform_date=" + perform_date + "]";
+	public double getLat() {
+		return lat;
 	}
 
+	public void setLat(double lat) {
+		this.lat = lat;
+	}
+
+	public double getLng() {
+		return lng;
+	}
+
+	public void setLng(double lng) {
+		this.lng = lng;
+	}
+
+	public int getTotalcount() {
+		return totalcount;
+	}
+
+	public void setTotalcount(int totalcount) {
+		this.totalcount = totalcount;
+	}
+
+	public String getAgegrade() {
+		return agegrade;
+	}
+
+	public void setAgegrade(String agegrade) {
+		this.agegrade = agegrade;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public int getApproval() {
+		return approval;
+	}
+
+	public void setApproval(int approval) {
+		this.approval = approval;
+	}
 
 	
-
 	
 }
