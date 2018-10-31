@@ -9,7 +9,7 @@ public class PerformScheduleBBSDto implements Serializable {
 	private String ori_consertIMG;
 	private String new_consertIMG;
 	private int perform_schedule_seq;
-	private int musi_recu_seq;	//musi_recu_bbs 의 시퀀스번호
+	private int perform_seq;	//PERFORM_CAST_BBS 의 시퀀스번호
 	private String title;
 	private String notice;
 	private String consert_info;
@@ -17,13 +17,13 @@ public class PerformScheduleBBSDto implements Serializable {
 		super();
 	}
 	public PerformScheduleBBSDto(String ticket_price, String ori_consertIMG, String new_consertIMG,
-			int perform_schedule_seq, int musi_recu_seq, String title, String notice, String consert_info) {
+			int perform_schedule_seq, int perform_seq, String title, String notice, String consert_info) {
 		super();
 		this.ticket_price = ticket_price;
 		this.ori_consertIMG = ori_consertIMG;
 		this.new_consertIMG = new_consertIMG;
 		this.perform_schedule_seq = perform_schedule_seq;
-		this.musi_recu_seq = musi_recu_seq;
+		this.perform_seq = perform_seq;
 		this.title = title;
 		this.notice = notice;
 		this.consert_info = consert_info;
@@ -52,11 +52,11 @@ public class PerformScheduleBBSDto implements Serializable {
 	public void setPerform_schedule_seq(int perform_schedule_seq) {
 		this.perform_schedule_seq = perform_schedule_seq;
 	}
-	public int getMusi_recu_seq() {
-		return musi_recu_seq;
+	public int getPerform_seq() {
+		return perform_seq;
 	}
-	public void setMusi_recu_seq(int musi_recu_seq) {
-		this.musi_recu_seq = musi_recu_seq;
+	public void setPerform_seq(int perform_seq) {
+		this.perform_seq = perform_seq;
 	}
 	public String getTitle() {
 		return title;
@@ -80,8 +80,8 @@ public class PerformScheduleBBSDto implements Serializable {
 	public String toString() {
 		return "PerformScheduleBBSDto [ticket_price=" + ticket_price + ", ori_consertIMG=" + ori_consertIMG
 				+ ", new_consertIMG=" + new_consertIMG + ", perform_schedule_seq=" + perform_schedule_seq
-				+ ", musi_recu_seq=" + musi_recu_seq + ", title=" + title + ", notice=" + notice + ", consert_info="
+				+ ", perform_seq=" + perform_seq + ", title=" + title + ", notice=" + notice + ", consert_info="
 				+ consert_info + "]";
 	}
-	
+		
 }

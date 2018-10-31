@@ -35,6 +35,18 @@ public class PerformScheduleBBSServiceImpl implements PerformScheduleBBSService 
 		return dao.getPerformScheduleBBSDto(perform_schedule_seq);
 	}
 
+	@Override
+	public void addPerformSchedule(PerformScheduleBBSDto dto) {
+		dao.addPerformSchedule(dto);
+		
+	}
+
+	@Override
+	public int getPerformScheduleSeqMax() {
+		// TODO Auto-generated method stub
+		return dao.getPerformScheduleSeqMax();
+	}
+
 	
 	
 }	
