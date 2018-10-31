@@ -25,8 +25,9 @@ System.out.println("끝");
     <th>조회수</th>
     <th>작성일</th>
   </tr>
-  
+ 
   	<c:forEach items="${bbslist }" var="bbs" varStatus="vs">
+  	 ${bbs.thumbnail }
   	<tr align="center">
 		<td>
 			<img alt="썸네일" src=${bbs.thumbnail } width="150px" height="80px" >

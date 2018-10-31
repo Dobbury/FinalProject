@@ -1,5 +1,6 @@
 package kh.com.a.service.Impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,29 @@ public class VideoBBSServiceImpl implements VideoBBSService {
 		dao.videoBbsDelete(seq);
 		
 	}
+
+	@Override
+	public int CheckAndFollow(HashMap<String, String> map) throws Exception {
+		System.out.println("afterCheck1 = ");
+		System.out.println(map.get("follower"));
+		System.out.println(map.get("following"));
+		
+		int seq = dao.CheckFollow(map); // Integer
+		
+		System.out.println("afterCheck2 = " + seq);
+		
+		if (seq > 0) {
+			return dao.CancelFollow(map);		 
+			
+		}else if(seq == 0){
+			return dao.doFollow(map);
+			
+		}else
+			return -1;
+		
+	}
+	
+	
 	
 	
 	

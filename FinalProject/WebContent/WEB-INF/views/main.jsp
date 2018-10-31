@@ -1,3 +1,4 @@
+<%@page import="kh.com.a.model.MemDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -29,7 +30,7 @@
 	
 	<c:forEach items="${ComingList}" var="cSchedule" varStatus="vs">${vs.count}-${cSchedule.sdate}</c:forEach>
 	<c:forEach items="${IngList}" var="iSchedule" varStatus="vs">${vs.count}-${iSchedule.sdate}</c:forEach>
-	<c:forEach items="${videoList}" var="video" varStatus="vs">${vs.count}-${video.title}</c:forEach> 
+	 
 	
 	
 	<!-- End Title Page -->
@@ -53,9 +54,9 @@
 					<li class="type-work">Type of Work</li>
 					<li><a href="#filter" data-option-value="*" class="selected">All
 							Projects</a></li>
-					<li><a href="#filter" data-option-value=".design">Design</a></li>
-					<li><a href="#filter" data-option-value=".photography">Photography</a></li>
-					<li><a href="#filter" data-option-value=".video">Video</a></li>
+					<li><a href="#filter">Design</a></li><!-- data-option-value=".design" -->
+					<li><a href="#filter">Photography</a></li><!-- data-option-value=".photography" -->
+					<li><a href="#filter">Video</a></li><!-- data-option-value=".video" -->
 				</ul>
 			</nav>
 			<!-- End Filter -->
@@ -71,23 +72,41 @@
 		
 		<hr><hr>
 		
-		<% request.getAttribute("login"); %>
-		<c:if test="${login ne ''}">
+		<%
+		MemDto loginDto = (MemDto)session.getAttribute("login");
+		
+		if(loginDto != null){
+					
+		%>
+		<%-- <c:if test="${login.id ne '' || login.id ne null}"> --%>
 		
 		<h1>${login.id}</h1>
-		<h1>login ne</h1>
+		<h1>Log On</h1>
 	
 		<div class="span9">
 			<div class="row">
 				<section id="projects">
 					<ul id="thumbs">
-						<div><hr>
+						<div>
 						<!-- Item Project and Filter Name -->
-						
+						<c:if test="${!empty videoList }">
+						<c:forEach items="${videoList}" var="video" varStatus="vs">
 						<li class="item-thumbs span3 design">
 							<!-- Fancybox - Gallery Enabled - Title - Full Image --> <a
 							class="hover-wrap fancybox" data-fancybox-group="gallery"
-							title="The City" href="_include/img/work/full/image-01-full.jpg">
+							title="The City" href="VideoBbsDetail.do?seq=${video.video_seq}">
+								<span class="overlay-img"></span> <span
+								class="overlay-img-thumb font-icon-plus"></span>
+						</a> <!-- Thumb Image and Description --> <img
+							src="${video.thumbnail}"
+							alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
+						</li>
+						</c:forEach>
+						</c:if> 
+						<li class="item-thumbs span3 design">
+							<!-- Fancybox - Gallery Enabled - Title - Full Image --> <a
+							class="hover-wrap fancybox" data-fancybox-group="gallery"
+							title="The City" href="VideoBbsDetail.do?seq=44">
 								<span class="overlay-img"></span> <span
 								class="overlay-img-thumb font-icon-plus"></span>
 						</a> <!-- Thumb Image and Description --> <img
@@ -205,14 +224,15 @@
 
 			</div>
 		</div>
-		</c:if>
-		<c:if test="${login.id eq ''}">
-		<h1>login 없음</h1>
+		<%-- </c:if> --%>
+		<%-- <c:if test="${login.id eq '' || login.id eq null}"> --%>
+		<% }else{ %>
+		<h1>Log Off</h1>
 		<div class="span9">
 			<div class="row">
 				<section id="projects">
 					<ul id="thumbs">
-
+					
 						<!-- Item Project and Filter Name -->
 						
 						<li class="item-thumbs span3 design">
@@ -335,7 +355,8 @@
 
 			</div>
 		</div>
-		</c:if>
+		<% } %>
+		<%-- </c:if> --%>
 	</div>
 	<!-- End Portfolio Projects -->
 </div>

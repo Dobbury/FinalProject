@@ -12,17 +12,16 @@ public class PerformCastBBSDto implements Serializable {
 	private String place;
 	private String price;
 	private String location;
-	private double lat;
-	private double lng;
 	private int totalcount;
 	private String agegrade;
 	private String content;
 	private int approval;
 	private String wdate;
 	private String perform_date;
+	private double lat;
+	private double lng;
 	private int sindex;
 	private int eindex;
-	
 	
 	public PerformCastBBSDto() {
 		super();

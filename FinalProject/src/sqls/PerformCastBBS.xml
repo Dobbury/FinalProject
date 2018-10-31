@@ -9,9 +9,9 @@
 	<insert id="sendCompanyInfo" parameterType="kh.com.a.model.PerformCastBBSDto">
 		INSERT INTO PERFORM_CAST_BBS(PERFORM_SEQ,NAME,COMPNAME,EMAIL,PHONE,PLACE,PRICE,
 		 LOCATION,TOTALCOUNT,AGEGRADE,CONTENT,APPROVAL,WDATE,PERFORM_DATE,LATI,LONGI)
-	    VALUES(PERFORM_SEQ.nextval, #{name}, #{compname}, #{email}, 
+	    VALUES(PERFORM_SEQ.NEXTVAL, #{name}, #{compname}, #{email}, 
 	    #{phone}, #{place}, #{price}, #{location}, #{totalcount}, 
-	    #{agegrade}, #{content}, 0, SYSDATE, TO_DATE(#{perform_date}), #{lat},#{lng})
+	    #{agegrade}, #{content}, 0, SYSDATE, TO_DATE(#{perform_date}), #{lat}, #{lng})
 	</insert>
 	
 	<!-- APPROVAL = 1(승인) // 0(미승인) -->

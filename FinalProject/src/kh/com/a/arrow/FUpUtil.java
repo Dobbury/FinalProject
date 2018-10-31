@@ -10,10 +10,12 @@ public class FUpUtil {
 		String filename="";
 		String fpost="";
 		//String fre="";
+		
+		// busking.mp4
 		if(f.indexOf('.')>=0){
-			fpost=f.substring(f.indexOf('.'));
+			fpost=f.substring(f.indexOf('.')); // mp4
 			//fre=f.substring(0,f.indexOf('.'));
-			filename=new Date().getTime()+fpost;
+			filename=new Date().getTime()+fpost; // 2018/10/27 20:22:24 -> 2018102720:22:24.mp4
 		}else{
 			filename=new Date().getTime()+".back";
 		}

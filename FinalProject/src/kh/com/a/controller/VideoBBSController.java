@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -113,7 +114,7 @@ public class VideoBBSController {
 			//String command = "C:\\windows\\explorer.exe";
 			
 			String ffmpegPath = "C:\\Windows\\ffmpeg\\bin\\ffmpeg.exe";
-			String fResult = fupload + "\\" + oname + "_%2d.png";
+			String fResult = fupload + "\\" + oname + ".png";
 			
 			String[] command = new String[]{ffmpegPath,
                                 "-i",
@@ -137,7 +138,7 @@ public class VideoBBSController {
 			
 			dto.setVideo("/FinalProject/upload/"+newFile);
 			dto.setThumbnail("/FinalProject/upload/"+oname+".png");
-			
+			dto.setGenre("Rock");
 			
 			// DB 저장
 			System.out.println(dto.toString());
@@ -264,5 +265,26 @@ public class VideoBBSController {
 		
 		return hlist;
     }
+	
+	@ResponseBody
+	@RequestMapping(value="ClickFollow.do", method={RequestMethod.GET, RequestMethod.POST})
+	public int CheckAndFollow(String follower, String following) {
+		logger.info("VideoBBSController ClickFollow " + new Date());
+		int yes = 0;
+		HashMap<String, String> map = new HashMap<>();
+		
+		System.out.println("Login = "+ follower + "Musician ="+ following);
+		
+		map.put("follower", follower);
+		map.put("following", following);
+		
+		try {
+			yes = videoBBSService.CheckAndFollow(map);
+		} catch (Exception e) {
+			System.out.println("VideoBBSController ClickFollow Method error발생");
+			e.printStackTrace();
+		}
+		return yes;
+	}
 	
 }

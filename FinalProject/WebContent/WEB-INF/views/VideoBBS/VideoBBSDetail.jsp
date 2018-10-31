@@ -23,7 +23,7 @@
 			<td>조회수 : ${getVideoBbs.readcount }<button>좋아요</button></td>
 		</tr>
 		<tr>
-			<td>팀명 : ${getVideoBbs.id }</td>
+			<td>팀명 : ${getVideoBbs.id }<%-- <button id="followB" onclick="Follow(${user.id}, ${getVideoBbs.id})">Follow</button> --%></td>
 		</tr>
 		<tr>
 			<td>영상내용 : ${getVideoBbs.content }</td>
@@ -64,6 +64,10 @@
 </form>
 </div>
 
+<c:if test="${user.id ne getVideoBbs.id}">
+<button id="followB" onclick="Follow()">Follow</button>
+</c:if>
+
 <div style="display: inline-block; vertical-align: top">
 <p align="center"><strong>뮤지션의 다른영상</strong></p>
 	<table style="margin: 20px">
@@ -79,9 +83,9 @@
   	<%-- <c:if test = "${getVideoBbs.video_seq } == ${bbs.video_seq }"> --%>
 	  	<tr align="center" style="margin: 10px">
 			<td>
-				<img alt="썸네일" src=${bbs.thumbnail } width="150px" height="80px" >
+				<img alt="썸네일" src=${bbs.thumbnail} width="150px" height="80px">
 			</td>
-	    	<td><a href="VideoBbsDetail.do?seq=${bbs.video_seq}">${bbs.title }</a></td>
+	    	<td><a href="VideoBbsDetail.do?seq=${bbs.video_seq}">${bbs.title}</a></td>
 			<td>${bbs.readcount }</td>
 			<td>${bbs.wdate }</td>
 		</tr>
@@ -100,11 +104,11 @@
 
 <script type="text/javascript">
 /* $(function(){
-	alert("seq = " + ${getVideoBbs.video_seq});
 	getCommentList();
 	
 }); */
-var seq = ${getVideoBbs.video_seq};
+
+/* var seq = ${getVideoBbs.video_seq};
 var list = {
 		"video_seq" : seq,
         };
@@ -142,7 +146,12 @@ $.ajax({
     	alert("댓글불러오기 안돼");
    }
     
-});
+}); */
+
+
+
+
+/* 
 
 function fn_comment(code){
 	
@@ -170,7 +179,38 @@ function fn_comment(code){
             alert("댓글달기 안돼");
        }
     });
-    
+} */
+    function Follow() {
+		
+		var following_id = "${getVideoBbs.id}";
+		var follower = "${user.id}";
+		
+		$.ajax({
+			
+			url : "ClickFollow.do",
+			async : true,
+			type : 'POST',
+			cache : false,
+			data : "follower="+follower+"&following="+following_id,
+			dataType : 'json',
+			success : function(data) {
+				alert(data);
+				if (data == 1) {
+					alert("팔로잉 하셨습니다");
+					$("#followB").attr( "color", "red" );
+				}else if (data == 0) {
+					alert("팔로잉을 취소하셨습니다");
+					$("#followB").attr( "color", "white" );
+				}
+					
+			
+			}, error : function (xhr, status, error) {
+				alert("ajax 에러 발생");
+			}
+			
+		});
+	}
+/*     
     function getCommentList(){
     	var seq = ${getVideoBbs.video_seq};
     	var list = {
@@ -213,18 +253,18 @@ function fn_comment(code){
             
         });
     }
-}
+
 
 
 
 $("#_btnUpdate").click(function() {	
 	alert('글수정하기');		
-	$("#_bbsfrm").attr({ "target":"_self", "action":"videoBbsUpdate.do?seq="+${getVideoBbs.video_seq} }).submit();
+	$("#_bbsfrm").attr({ "target":"_self", "action":"videoBbsUpdate.do?seq="+${getVideoBbs.video_seq}}).submit();
 });
 $("#_btnDelete").click(function() {	
 	alert('삭제하기');	
-	$("#_bbsfrm").attr({ "target":"_self", "action":"videoBbsDelete.do?seq="+${getVideoBbs.video_seq} }).submit();
-});
+	$("#_bbsfrm").attr({ "target":"_self", "action":"videoBbsDelete.do?seq="+${getVideoBbs.video_seq}}).submit();
+}); */
 </script>
 
 

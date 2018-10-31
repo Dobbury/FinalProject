@@ -190,15 +190,10 @@ function captureReturnKey(e) {
                 <!-- Map -->
                 <div id="map" style="height: 400px;"></div>
                 <input type="text" class="text text-default" id="search" placeholder="지도 검색할 위치를 입력해주세요" style="width: 100%">
-                
-                                
-                <p class="contact-date">
-                	<input id="contact_date" type="date" placeholder="희망날짜" value="" name="perform_date"/>
-                </p>
+                                            
                 
                 <p class="contact-place">
-                	<input id="contact_place" type="text" placeholder="장소" value="" name="place"/>
-                <input type="text" class="text text-default" id="contact_place2" name="place" placeholder="장소를 상세하게 입력해주세요" style="width: 100%">
+                	<input id="contact_place" type="text" placeholder="상세장소(ex:강남 파이낸스센터)" value="" name="place"/>
                 <input type="hidden" name="lat" id="lat" value="">
                 <input type="hidden" name="lng" id="lng" value="">
                 </p>

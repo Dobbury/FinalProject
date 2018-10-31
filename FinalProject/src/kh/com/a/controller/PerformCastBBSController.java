@@ -63,8 +63,7 @@ public class PerformCastBBSController {
 	public String castSchedule(HttpServletRequest req, HttpServletResponse resp,PerformCastBBSDto dto, Model model) throws Exception {
 		
 		//req.setCharacterEncoding("UTF-8");
-
-		logger.info(dto.getAgegrade());
+		System.out.println("공연섭외:"+dto.toString());
 		
 		String agegrade[] = new String[6];
 		String temp = new String();
