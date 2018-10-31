@@ -122,7 +122,7 @@
 </div>
 
 <!-- Modal -->
-<div align="center" class="modal fade" id="castModal" role="dialog"
+<div align="center" class="modal fade" id="castModal" role="dialog" tabindex="-1"
 	style="background-color: #26292E; width: 50%; height: 80%;">
 	<div class="modal-dialog">
 		<!-- Modal content-->

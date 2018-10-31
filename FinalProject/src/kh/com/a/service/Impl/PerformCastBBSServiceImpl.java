@@ -45,5 +45,6 @@ public class PerformCastBBSServiceImpl implements PerformCastBBSService{
 		return dao.getPerformCastInfo(perform_seq);
 	}
 
+
 	
 }	

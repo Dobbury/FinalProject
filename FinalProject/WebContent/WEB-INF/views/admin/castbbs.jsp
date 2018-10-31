@@ -161,7 +161,7 @@ var endindex = 7;
 	        }, /* +"&perform_seq="+perform_seq, */
 	        // datatype: code200 error : 뭣모르고 데이터타입 json으로 했다가 리턴값도 없는데 에러만 주구장창 걸렸음, 기억할것...
 	        success : function(){
-	        	
+	        	alert("승인 되었습니다.");
 	            btn="<button id='addbtn2' onclick='moreList2();'>더보기2</button>";
 	            $('#addbtn2').remove();//remove btn
 	            $(divId).remove();

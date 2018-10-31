@@ -39,6 +39,11 @@
 		SELECT * FROM MUSI_RECU_BBS WHERE MUSi_RECU_SEQ=#{musi_recu_seq}
 	</select>
 	
+	<insert id="addMusiRecuBBS" parameterType="kh.com.a.model.MusiRecuBBSDto">
+		INSERT INTO MUSI_RECU_BBS(SDATE,EDATE,TITLE,CONTENT,PERFORM_SEQ,APPROVAL,MUSI_RECU_SEQ)
+		VALUES(SYSDATE,#{edate},#{title},#{content},#{perform_seq},0,MUSI_RECU_SEQ.NEXTVAL)
+	</insert>
+	
 	<insert id="addRecuMusiInfo" parameterType="kh.com.a.model.RecuMusiInfoDto">
 		INSERT INTO RECU_MUSI_INFO(RECU_MUSI_INFO_SEQ,MUSI_RECU_SEQ, MUSIID) VALUES(RECU_MUSI_INFO_SEQ.NEXTVAL,#{musi_recu_seq},#{musiid})
 	</insert>
