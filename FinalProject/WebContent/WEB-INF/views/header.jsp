@@ -99,6 +99,32 @@
 	</div>
 </div>
 
+<div class="modal fade" id="museDetailModal" tabindex="-1" role="dialog" 
+   aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-lg"><!--  큰창:<div class="modal-dialog modal-lg"> 작은창 :<div class="modal-dialog modal-sm">  -->
+      <div class="modal-content" style="text-align: center">
+        아이디 : ${meminfo.id }
+        <br><br>
+        소속그룹 / 멤버 : ${meminfo.teamname }
+        <br><br>
+        이메일 : ${meminfo.email }
+        <br><br>
+        연락처 : ${meminfo.phone }
+        <br><br>
+        장르 : ${meminfo.genre }
+        <br><br>
+        지역 : ${meminfo.location }
+        <br><br>
+        팔로워 수 : 
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+               닫기
+            </button>
+         </div>
+      </div> 
+   </div> 
+</div>
+
 <script type="text/javascript">
 $("#login").on('click',function(){
 	$.ajax({

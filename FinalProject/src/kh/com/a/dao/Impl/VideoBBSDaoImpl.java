@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kh.com.a.dao.VideoBBSDao;
 import kh.com.a.model.VideoBBSDto;
+import kh.com.a.model.Video_LikeDto;
 
 @Repository
 public class VideoBBSDaoImpl implements VideoBBSDao {
@@ -52,6 +53,40 @@ public class VideoBBSDaoImpl implements VideoBBSDao {
 		sqlSession.update(namespace + "videoBbsDelete", seq);
 		
 	}
+
+	@Override
+	public void like(Video_LikeDto vlDto) {
+		sqlSession.insert(namespace + "like", vlDto);
+		
+	}
+
+	@Override
+	public void unlike(Video_LikeDto vlDto) {
+		sqlSession.delete(namespace + "unLike", vlDto);
+		
+	}
+
+	@Override
+	public boolean getLike(Video_LikeDto vlDto) {
+		Video_LikeDto vl = sqlSession.selectOne(namespace + "getLike", vlDto);
+		boolean like = true;
+		
+		if(vl == null)
+			like = false;
+		else if(vl != null)
+			like = true;
+		
+		return like;
+		
+	}
+
+	@Override
+	public boolean incReadCount(int seq) {
+		sqlSession.update(namespace + "incReadCount", seq);
+		return true;
+	}
+	
+	
 	
 	
 	

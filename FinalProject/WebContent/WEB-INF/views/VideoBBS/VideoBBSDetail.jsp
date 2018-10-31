@@ -4,10 +4,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <fmt:requestEncoding value="utf-8"/>
 
-<div style="width: 1200px; margin: 0 auto;vertical-align: middle; border: 1px solid white" >
-<div style="display: inline-block; border-right: 1px solid gold;">
+<div style="width: 920px; margin: auto">
+<div style="display: inline-block; width:auto; border-right: 1px solid gray; margin: auto">
 <form name="bbsfrm" id="_bbsfrm" method="post" action="videoBbsUpdate.do" style="margin: 20px">	
-	<table border="solid">
+	<table>
 		<tr align="center">
 			<td>
 				<video
@@ -17,16 +17,29 @@
 			</td>
 		</tr>
 		<tr>
-			<td>영상제목 : ${getVideoBbs.title }</td>
+			<td><span class="font-icon-book">&nbsp;&nbsp;${getVideoBbs.title }</td>
 		</tr>
 		<tr>
-			<td>조회수 : ${getVideoBbs.readcount }<button>좋아요</button></td>
+			<td>
+				<span class="font-icon-eye">&nbsp;&nbsp;${getVideoBbs.readcount }				
+			</td>
 		</tr>
 		<tr>
-			<td>팀명 : ${getVideoBbs.id }</td>
+			<td>
+				<c:if test="${likecheck == true }">
+					<a class="font-icon-heart" name="like" id="_like" onClick="fn_like()"/>
+				</c:if>
+				<c:if test="${likecheck == false }">
+					<a class="font-icon-heart-line" name="like" id="_like" onClick="fn_like()"/>
+				</c:if>	
+			</td>
+		</tr>
+		
+		<tr>
+			<td><span class="font-icon-group">&nbsp;&nbsp;<a data-toggle="modal" href="#museDetailModal">${getVideoBbs.id }</a></td>
 		</tr>
 		<tr>
-			<td>영상내용 : ${getVideoBbs.content }</td>
+			<td><span class="font-icon-paste">&nbsp;&nbsp;${getVideoBbs.content }</td>
 		</tr>
 	</table>
 	
@@ -37,7 +50,6 @@
 </form>
 
 <form name="commentfrm" id="commentfrm" method="post" style="margin: 20px">
-	<br><br>
         <div>
             <div>
                 <span><strong>Comments</strong></span> <span id="cCnt"></span>
@@ -49,7 +61,7 @@
                             <textarea style="width: 370px" rows="1" cols="30" id="comment" name="_comment" placeholder="댓글을 입력하세요"></textarea>
                             <br>
                             <div>
-                                <a onClick="fn_comment()" class="btn pull-right btn-success">등록</a>
+                                <a onClick="fn_comment()" class="button button-mini" align="right">등록</a>
                             </div>
                         </td>
                     </tr>
@@ -64,38 +76,24 @@
 </form>
 </div>
 
-<div style="display: inline-block; vertical-align: top">
+<div style="display: inline-block; vertical-align: top; margin-left: 50px">
 <p align="center"><strong>뮤지션의 다른영상</strong></p>
-	<table style="margin: 20px">
-	  <tr>
-	    <th>썸네일</th>
-	    <th>제목</th>
-	    <th>조회수</th>
-	    <th>작성일</th>
-	  </tr>
+	<c:set var = "thisvideo" value = "${getVideoBbs.id }"/>
   	<c:forEach items="${bbslist }" var="bbs" varStatus="vs">
-  	
-  	<!-- 해당 뮤지션의 영상 조건문 -->
-  	<%-- <c:if test = "${getVideoBbs.video_seq } == ${bbs.video_seq }"> --%>
-	  	<tr align="center" style="margin: 10px">
-			<td>
-				<img alt="썸네일" src=${bbs.thumbnail } width="150px" height="80px" >
-			</td>
-	    	<td><a href="VideoBbsDetail.do?seq=${bbs.video_seq}">${bbs.title }</a></td>
-			<td>${bbs.readcount }</td>
-			<td>${bbs.wdate }</td>
-		</tr>
-		<tr>
-			<td><br></td>
-			<td><br></td>
-			<td><br></td>
-			<td><br></td>
-		</tr>
-	<%-- </c:if> --%>
+	<c:set var = "othervideo" value = "${bbs.id }"/>
+  	<c:if test = "${thisvideo eq othervideo }">
+	  	<img alt="썸네일" src=${bbs.thumbnail } width="150px" height="80px" ><br>	
+	    <span class="font-icon-book">&nbsp;<a href="VideoBbsDetail.do?seq=${bbs.video_seq}">${bbs.title }</a><br>
+		<span class="font-icon-eye">&nbsp;${bbs.readcount }<br>
+		<span class="font-icon-calendar">&nbsp;${bbs.wdate }<br>
+		<p></p>
+	</c:if>
 	</c:forEach>
-</table>
 </div>
 </div>
+
+	  		
+
 
 
 <script type="text/javascript">
@@ -167,9 +165,10 @@ function fn_comment(code){
             }
         },
         error:function(request,status,error){
-            alert("댓글달기 안돼");
+            alert("내용을 입력해주세요");
        }
     });
+}
     
     function getCommentList(){
     	var seq = ${getVideoBbs.video_seq};
@@ -213,8 +212,34 @@ function fn_comment(code){
             
         });
     }
-}
 
+function fn_like(){
+	
+	var seq = ${getVideoBbs.video_seq};
+	var list = {
+			"video_seq" : seq,
+            };
+	
+    $.ajax({
+        type:'POST',
+        url : "like.do",
+        data:list,
+        async:true,
+        success : function(data){
+            if(data=="like")
+            {
+            	$('#_like').prop("class","font-icon-heart");
+            }
+            else if(data == "unlike")
+            {
+            	$('#_like').prop("class","font-icon-heart-line");
+            }
+        },
+        error:function(request,status,error){
+            alert("좋아요 실패");
+       }
+    });
+}
 
 
 $("#_btnUpdate").click(function() {	
