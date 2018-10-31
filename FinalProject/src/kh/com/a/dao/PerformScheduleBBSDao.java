@@ -12,4 +12,6 @@ public interface PerformScheduleBBSDao {
 	public int getPerformScheduleBBSCount(Param param);
 	
 	public PerformScheduleBBSDto getPerformScheduleBBSDto(int perform_schedule_seq);
+	public void addPerformSchedule(PerformScheduleBBSDto dto);
+	public int getPerformScheduleSeqMax();
 }

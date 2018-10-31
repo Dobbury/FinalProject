@@ -122,15 +122,6 @@ public class MemController {
 		}
 		
 		
-		if(id_rem!=null && id_rem.trim().equals("on")) { //체크가 되어있다면
-			cookie = new Cookie("id",java.net.URLEncoder.encode(id));
-			cookie.setMaxAge(60*60*24*365);//유효기간 1년
-			resp.addCookie(cookie);//쿠키값 클라이언트에 저장
-		}else {
-			cookie = new Cookie("id",null);
-			cookie.setMaxAge(0);
-			resp.addCookie(cookie);//쿠키값 클라이언트에 저장
-		}
 		map.put("result", "success");
 		session.setAttribute("user", dto);
 		session.setAttribute("login", dto);

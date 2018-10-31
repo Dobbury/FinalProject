@@ -69,9 +69,9 @@ var str='<%=category%>';
 								</a> 
 								<!-- Thumb Image and Description -->
 								<!-- 업로드된 이미지를 가져와야함 -->
-								<img src="_include/img/work/thumbs/end.jpg">	
-								<div>
-									<span>제목:${item.title }</span><br>
+								<img src="/FinalProject/upload/${item.new_consertIMG }">	
+								<div align="center" style="padding: 5px;">
+									<span>${item.title }</span>
 								</div>
 							</li>
 							<!-- End Item Project -->

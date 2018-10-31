@@ -108,7 +108,7 @@
 				<input type="password" style="height: 20%" placeholder="비밀번호 입력" name="pwd" id="pwd">
 				<br>
 				<div align="right" style="padding-right: 13%">
-					ID 저장&nbsp;<input type="checkbox" style="margin-bottom: 1px;" name="id_rem" id="id_rem"
+					ID 저장&nbsp;<input type="checkbox" style="margin-bottom: 1px;" id="_chk_save_id"
 							<% if(id.length() > 1) out.println("checked"); %>/>
 				</div>
 			</div>
@@ -127,8 +127,7 @@ $("#login").on('click',function(){
 		url:"login.do",
 		data:{
 			id: $("#id").val(),
-			pwd:$("#pwd").val(),
-			id_rem:$("#id_rem").val()
+			pwd:$("#pwd").val()
 		},
 		dataType:"json",
 		success:function(data){
@@ -198,3 +197,23 @@ $("ul li").click(function () {
     	<font color="#ffffff"><a href="musi_recu_deadline.do">뮤지션 모집 마감 목록</a></font>
     </div>
 <!-- End Header -->
+<script type="text/javascript">
+var user_id = $.cookie("user_id");
+if(user_id != null){
+   $("#id").val(user_id);
+   $("#_chk_save_id").attr("checked", "checked");
+}
+
+$("#_chk_save_id").click(function() {      
+   if($('input:checkbox[id="_chk_save_id"]').is(":checked")){
+      if($("#id").val() == ""){
+         $(this).prop("checked", false);
+         alert("아이디를 입력해 주십시오");
+      }else{
+         $.cookie("user_id", $("#id").val(), { expires: 7, path: '/' });
+      }      
+   }else{
+      $.removeCookie("user_id", { path:'/' });
+   }
+});
+</script>

@@ -6,16 +6,16 @@ public class TicketDto implements Serializable {
 	
 	private int ticket_seq;
 	private String ticket_serial;
-	private int schedule_seq;
+	private int perform_schedule_seq;
 	private String memid;
 	public TicketDto() {
 		super();
 	}
-	public TicketDto(int ticket_seq, String ticket_serial, int schedule_seq, String memid) {
+	public TicketDto(int ticket_seq, String ticket_serial, int perform_schedule_seq, String memid) {
 		super();
 		this.ticket_seq = ticket_seq;
 		this.ticket_serial = ticket_serial;
-		this.schedule_seq = schedule_seq;
+		this.perform_schedule_seq = perform_schedule_seq;
 		this.memid = memid;
 	}
 	public int getTicket_seq() {
@@ -30,11 +30,11 @@ public class TicketDto implements Serializable {
 	public void setTicket_serial(String ticket_serial) {
 		this.ticket_serial = ticket_serial;
 	}
-	public int getSchedule_seq() {
-		return schedule_seq;
+	public int getPerform_schedule_seq() {
+		return perform_schedule_seq;
 	}
-	public void setSchedule_seq(int schedule_seq) {
-		this.schedule_seq = schedule_seq;
+	public void setPerform_schedule_seq(int perform_schedule_seq) {
+		this.perform_schedule_seq = perform_schedule_seq;
 	}
 	public String getMemid() {
 		return memid;
@@ -44,8 +44,8 @@ public class TicketDto implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "TicketDto [ticket_seq=" + ticket_seq + ", ticket_serial=" + ticket_serial + ", schedule_seq="
-				+ schedule_seq + ", memid=" + memid + "]";
+		return "TicketDto [ticket_seq=" + ticket_seq + ", ticket_serial=" + ticket_serial + ", perform_schedule_seq="
+				+ perform_schedule_seq + ", memid=" + memid + "]";
 	}
 	
 	

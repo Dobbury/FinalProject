@@ -31,4 +31,14 @@
 	<select id="getPerformScheduleBBSDto" parameterType="java.lang.Integer" resultType="kh.com.a.model.PerformScheduleBBSDto">
 		SELECT * FROM PERFORM_SCHEDULEBBS WHERE PERFORM_SCHEDULE_SEQ=#{perform_schedule_seq}
 	</select>
+	
+	<insert id="addPerformSchedule" parameterType="kh.com.a.model.PerformScheduleBBSDto">
+		INSERT INTO PERFORM_SCHEDULEBBS(TICKET_PRICE, ORI_CONSERTIMG, NEW_CONSERTIMG, PERFORM_SCHEDULE_SEQ, PERFORM_SEQ, TITLE, NOTICE, CONSERT_INFO)
+		VALUES(#{ticket_price},#{ori_consertIMG},#{new_consertIMG},PERFORM_SCHEDULE_SEQ.NEXTVAL,#{perform_seq},#{title},#{notice},#{consert_info})
+	</insert>
+	
+	<select id="getPerformScheduleSeqMax" resultType="java.lang.Integer">
+		SELECT MAX(PERFORM_SCHEDULE_SEQ) FROM PERFORM_SCHEDULEBBS
+	</select>
+	
 </mapper>
