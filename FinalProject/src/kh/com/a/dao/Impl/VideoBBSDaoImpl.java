@@ -1,5 +1,6 @@
 package kh.com.a.dao.Impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -42,4 +43,41 @@ public class VideoBBSDaoImpl implements VideoBBSDao {
 		return sqlSession.selectList(namespace + "getVideoRank");
 	}
 
+	@Override
+	public void videoBbsUpdate(VideoBBSDto bbs) throws Exception {
+		sqlSession.update(namespace + "videoBbsUpdate", bbs);
+	}
+
+	@Override
+	public void videoBbsDelete(int seq) throws Exception {
+		sqlSession.update(namespace + "videoBbsDelete", seq);
+		
+	}
+
+	@Override
+	public int CheckFollow(HashMap<String, String> map) throws Exception {
+		
+		return sqlSession.selectOne(namespace + "checkfollow", map);
+	}
+
+	@Override
+	public int CancelFollow(HashMap<String, String> map) throws Exception {
+		int seq = sqlSession.selectOne(namespace + "checkSeq", map);	
+		sqlSession.delete(namespace + "cancelFollow", seq);
+		return 0;
+		
+		
+	}
+
+	@Override
+	public int doFollow(HashMap<String, String> map) throws Exception {
+		
+		sqlSession.insert(namespace + "dofollow", map);
+		
+		return 1;
+	}
+
+	
+	
+	
 }

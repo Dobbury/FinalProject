@@ -12,22 +12,25 @@ public class PerformCastBBSDto implements Serializable {
 	private String place;
 	private String price;
 	private String location;
-	private double lat;
-	private double lng;
 	private int totalcount;
 	private String agegrade;
 	private String content;
 	private int approval;
 	private String wdate;
 	private String perform_date;
+	private double lat;
+	private double lng;
+	private int sindex;
+	private int eindex;
 	
 	public PerformCastBBSDto() {
 		super();
 	}
 
+	
 	public PerformCastBBSDto(int perform_seq, String name, String compname, String email, String phone, String place,
 			String price, String location, double lat, double lng, int totalcount, String agegrade, String content,
-			int approval, String wdate, String perform_date) {
+			int approval, String wdate, String perform_date, int sindex, int eindex) {
 		super();
 		this.perform_seq = perform_seq;
 		this.name = name;
@@ -45,6 +48,55 @@ public class PerformCastBBSDto implements Serializable {
 		this.approval = approval;
 		this.wdate = wdate;
 		this.perform_date = perform_date;
+		this.sindex = sindex;
+		this.eindex = eindex;
+	}
+	
+	public int getSindex() {
+		return sindex;
+	}
+
+
+
+	public void setSindex(int sindex) {
+		this.sindex = sindex;
+	}
+
+	
+
+	public int getEindex() {
+		return eindex;
+	}
+
+
+
+	public void setEindex(int eindex) {
+		this.eindex = eindex;
+	}
+
+	
+
+
+
+	public String getPerform_date() {
+		return perform_date;
+	}
+
+
+
+	public void setPerform_date(String perform_date) {
+		this.perform_date = perform_date;
+	}
+
+
+
+	public String getWdate() {
+		return wdate;
+	}
+
+	public void setWdate(String wdate) {
+		this.wdate = wdate;
+
 	}
 
 	public int getPerform_seq() {
@@ -159,33 +211,6 @@ public class PerformCastBBSDto implements Serializable {
 		this.approval = approval;
 	}
 
-	public String getWdate() {
-		return wdate;
-	}
-
-	public void setWdate(String wdate) {
-		this.wdate = wdate;
-	}
-
-	public String getPerform_date() {
-		return perform_date;
-	}
-
-	public void setPerform_date(String perform_date) {
-		this.perform_date = perform_date;
-	}
-
-	@Override
-	public String toString() {
-		return "PerformCastBBSDto [perform_seq=" + perform_seq + ", name=" + name + ", compname=" + compname
-				+ ", email=" + email + ", phone=" + phone + ", place=" + place + ", price=" + price + ", location="
-				+ location + ", lat=" + lat + ", lng=" + lng + ", totalcount=" + totalcount + ", agegrade=" + agegrade
-				+ ", content=" + content + ", approval=" + approval + ", wdate=" + wdate + ", perform_date="
-				+ perform_date + "]";
-	}
-
 	
-	
-
 	
 }

@@ -17,33 +17,31 @@ Runtime.getRuntime().exec("C:\\windows\\explorer.exe");
 System.out.println("끝");
 %> --%>
 
-여기는 VideoBBS
-
 <table>
   <tr>
-    <th>글번호</th>
+    <th>썸네일</th>
     <th>제목</th>
     <th>작성자</th>
     <th>조회수</th>
     <th>작성일</th>
   </tr>
-  
+ 
   	<c:forEach items="${bbslist }" var="bbs" varStatus="vs">
+  	 ${bbs.thumbnail }
   	<tr align="center">
-		<td>${bbs.video_seq }</td>
+		<td>
+			<img alt="썸네일" src=${bbs.thumbnail } width="150px" height="80px" >
+		</td>
     	<td><a href="VideoBbsDetail.do?seq=${bbs.video_seq}">${bbs.title }</a></td>
 		<td>${bbs.id }</td>
 		<td>${bbs.readcount }</td>
 		<td>${bbs.wdate }</td>
 	</tr>
+	<br><br>
 	</c:forEach>
-  
 </table>
 
-
-
-
-<br><br><br>
+<br>
 <form action="VideoBBSWrite.do" method="post">
 	<input type="submit" value="게시글 작성">
 </form>

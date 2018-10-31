@@ -30,8 +30,14 @@ public class PerformCastBBSServiceImpl implements PerformCastBBSService{
 	}
 
 	@Override
-	public List<PerformCastBBSDto> getMoreList() {
-		return dao.getMoreList();
+	public List<PerformCastBBSDto> getMoreList(PerformCastBBSDto dto) {
+		return dao.getMoreList(dto);
+	}
+
+	@Override
+	public void approveAf(int seq_approve) {
+			dao.approveAf(seq_approve);
+			
 	}
 
 	@Override

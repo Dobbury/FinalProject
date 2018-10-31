@@ -40,8 +40,10 @@
 			<%if(dto!=null){ %>
 			<li><a href="myPage.do" class="external">My page</a></li>
 			<%} %>
+			
 			<li class="current"><a href="#home-slider">Home</a></li>
 			<li><a href="main.do" class="external">Main</a></li>
+			
 			<li class="afterloginOK"><%if(dto !=null){ %>
 										<a href="musireculist.do"  class="external">뮤지션 모집</a>
 									<%}else{ %>
@@ -54,14 +56,28 @@
 			<li class="afterloginOK"><%if(dto !=null){ %>
 										<a href="perform_scheduleslist.do"  class="external">고옹연 일정</a>
 									<%}else{ %>
-										<a data-toggle="modal" href="#myModal" >고옹연 일정</a>
+										<a data-toggle="modal" href="#myModal">고옹연 일정</a>
 									<%} %>
 										</li><!-- 로그인이 필요한 경우  -->
+										
 			<li><a class="external" href="aboutus.do">About our site</a></li>
          	<li><a class="external" href="videoBbs.do">뮤지션's 버스킹</a></li>
-            <li><a class="external" href="schedule.do">공연일정</a></li>
-            <li><a class="external" href="contact.do">공연섭외문의</a></li>
+            
+            <li class="afterloginOK"><%if(dto !=null){ %>
+            						<a class="external" href="schedule.do">공연일정</a>
+            						<%}else{ %>
+            						<a data-toggle="modal" href="#myModal" >공연일정</a>
+            						<%} %>
+            						</li>
+            <li class="afterloginOK"><%if(dto !=null){ %>
+            						<a class="external" href="contact.do">공연섭외</a>
+            						<%}else{ %>
+            						<a data-toggle="modal" href="#myModal" >공연섭외</a>
+            						<%} %>
+            						</li>
+            
 			<li><a href="VideoBBS.do" class="external">영상게시판</a></li>
+			
 			<%if(dto==null){ %>
 				<li><a data-toggle="modal" href="#myModal">Login</a></li>
 			<%}else{ %>
@@ -134,7 +150,7 @@ $("ul li").click(function () {
 	<%
 	if(session.getAttribute("user") == null){
 	%>
-		if( $(this).hasClass("afterloginOK") ==true ){
+		if( $(this).hasClass("afterloginOK") == true ){
 			alert("로그인 후 가능합니다.");	
 			location.href="#home-slider";
 		}
