@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -11,6 +10,7 @@
 	
 <html>
 <head>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
@@ -77,8 +77,11 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 
+  
 </script>
 <!-- End Analytics -->
+    
+
 </head>
 <body>
 
@@ -122,30 +125,10 @@
 </footer>
 
 <!-- Js -->
-<script type="text/javascript">
-function ajaxMoreList() {
-	
-	$.ajax({
-		type:"POST",
-		url:"<%=application.getContextPath() %>/castMoreList.do",
-		async:true,
-		data:"id="+id+"&rdate="+rdate,
-		success:function(){	
-			
-			alert("success");
-			
-			/* if(msg.my != null){
-				
-				$.each(msg.my, function(index, value) { 
-					alert(index + '번째:' + value.title);					
-				});
-			}  */ 
-		}
-	});
-}
-</script>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> <!-- jQuery Core -->
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> <!-- jQuery Core -->
 <script src="_include/js/bootstrap.min.js"></script> <!-- Bootstrap -->
 <script src="_include/js/supersized.3.2.7.min.js"></script> <!-- Slider -->
 <script src="_include/js/waypoints.js"></script> <!-- WayPoints -->

@@ -6,9 +6,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<body>	
 <%
-/* response.sendRedirect("regi.do"); */
 response.sendRedirect("main.do");
 %>
 </body>

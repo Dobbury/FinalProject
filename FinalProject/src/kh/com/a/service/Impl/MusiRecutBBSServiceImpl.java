@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import kh.com.a.dao.MusiRecuBBSDao;
 import kh.com.a.model.MusiRecuBBSDto;
+import kh.com.a.model.Param;
+import kh.com.a.model.RecuMusiInfoDto;
 import kh.com.a.service.MusiRecuBBSService;
 
 
@@ -17,7 +19,55 @@ public class MusiRecutBBSServiceImpl implements MusiRecuBBSService{
 	MusiRecuBBSDao dao;
 
 	@Override
-	public List<MusiRecuBBSDto> getMusiRecuList() {
-		return dao.getMusiRecuList();
+	public List<MusiRecuBBSDto> getMusiRecuPagingList(Param param) {
+		return dao.getMusiRecuPagingList(param);
+	}
+
+	@Override
+	public int getMusiRecuBBSCount(Param param) {
+		// TODO Auto-generated method stub
+		return dao.getMusiRecuBBSCount(param);
+	}
+
+	@Override
+	public MusiRecuBBSDto getMusiRecuBBSDetail(int musi_recu_seq) {
+		// TODO Auto-generated method stub
+		return dao.getMusiRecuBBSDetail(musi_recu_seq);
+	}
+
+	@Override
+	public void addRecuMusiInfo(RecuMusiInfoDto recuMusiInfoDto) {
+		
+		dao.addRecuMusiInfo(recuMusiInfoDto);
+		
+	}
+
+	@Override
+	public int getRecuMusiCount(RecuMusiInfoDto recuMusiInfoDto) {
+		// TODO Auto-generated method stub
+		return dao.getRecuMusiCount(recuMusiInfoDto);
+	}
+
+	@Override
+	public int getRecuMusiInfo(RecuMusiInfoDto recuMusiInfoDto) {
+		// TODO Auto-generated method stub
+		return dao.getRecuMusiInfo(recuMusiInfoDto);
+	}
+
+	@Override
+	public void delRecuMusiInfo(RecuMusiInfoDto recuMusiInfoDto) {
+		dao.delRecuMusiInfo(recuMusiInfoDto);
+	}
+
+	@Override
+	public List<MusiRecuBBSDto> getRecuMusiDeadLineList() {
+		// TODO Auto-generated method stub
+		return dao.getRecuMusiDeadLineList();
+	}
+
+	@Override
+	public List<MusiRecuBBSDto> moreMusiRecuDeadLineList() {
+		// TODO Auto-generated method stub
+		return dao.moreMusiRecuDeadLineList();
 	}
 }	
