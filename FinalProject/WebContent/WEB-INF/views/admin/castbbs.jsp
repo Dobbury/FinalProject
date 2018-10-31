@@ -99,7 +99,7 @@ int perform_seq = -1;
 						</div>
 						<div class="form-group">
 							<label for="recipient-name" class="control-label">문의사항</label>
-							<textarea class="form-control">${castbbs.agegrade}</textarea>
+							<textarea class="form-control">${castbbs.content}</textarea>
 						</div>
 						
 			
@@ -130,7 +130,7 @@ perform_seq = castbbslist.get(index).getPerform_seq();
 </c:if>
 
 <div id="add2">
-<button id="addbtn2" onclick="moreList2();">더보기2</button>
+<button id="addbtn2" onclick="moreList2();">더보기</button>
 </div>
 
 <script>
