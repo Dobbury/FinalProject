@@ -121,12 +121,8 @@
 
 
 <script type="text/javascript">
-/* $(function(){
-	getCommentList();
-	
-}); */
 
-/* var seq = ${getVideoBbs.video_seq};
+var seq = ${getVideoBbs.video_seq};
 var list = {
 		"video_seq" : seq,
         };
@@ -164,12 +160,12 @@ $.ajax({
     	alert("댓글불러오기 안돼");
    }
     
-}); */
+});
 
 
 
 
-/* 
+
 
 function fn_comment(code){
 	
@@ -199,7 +195,6 @@ function fn_comment(code){
     });
 }
     
-} */
     function Follow() {
 		
 		var following_id = "${getVideoBbs.id}";
@@ -230,8 +225,7 @@ function fn_comment(code){
 			
 		});
 	}
-/*     
->>>>>>> d53ab2b2cc70d786834f2de5530d91018286cf0a
+	
     function getCommentList(){
     	var seq = ${getVideoBbs.video_seq};
     	var list = {
@@ -311,7 +305,7 @@ $("#_btnUpdate").click(function() {
 $("#_btnDelete").click(function() {	
 	alert('삭제하기');	
 	$("#_bbsfrm").attr({ "target":"_self", "action":"videoBbsDelete.do?seq="+${getVideoBbs.video_seq}}).submit();
-}); */
+});
 </script>
 
 
