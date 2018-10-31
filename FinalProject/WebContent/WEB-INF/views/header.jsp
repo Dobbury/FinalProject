@@ -90,7 +90,7 @@
 <!-- End Header -->
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog"
+<div class="modal fade" id="myModal" role="dialog" tabindex="-1"
 	style="background-color: #26292E; width: 20%; height: 40%;">
 	<div class="modal-dialog">
 
@@ -121,7 +121,70 @@
 	</div>
 </div>
 
+<!-- Modal -->
+<div align="center" class="modal fade" id="castModal" role="dialog"
+	style="background-color: #26292E; width: 50%; height: 80%;">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" ><font color="white">x</font></button>
+				<h4 class="modal-title"
+					style="font-family: Icons; font-size: 40; font-weight: bold; margin: 0">추가 기재사항</h4>
+			</div>
+			<div class="modal-body" align="left" style="background-color: #2F3238; height: 90%">
+				<h5 style="margin-bottom: 0">제목</h5>
+				<input type="text" style="height: 30px" placeholder="제목 입역" id="_title">
+				<br>
+				<h5 style="margin-bottom: 0">모집 마감일</h5>
+				<input type="date" style="height: 30px" id="_edate">
+				<br>
+				<h5 style="margin-bottom: 0">모집 설명</h5>
+				<textarea placeholder="모집에 대한 설명을 입력 하세요" rows="10" style="width: 100%" id="_content"></textarea>
+			</div>
+			<div class="modal-footer" style="background-color: #26292E;">
+			<!-- castbbs에 있는 castBtn을 누르게 하는 버튼  -->
+				<button type="button" class="btn btn-default" data-dismiss="modal" id="movecastBtn">승인</button>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+
+<div class="modal fade" id="museDetailModal" tabindex="-1" role="dialog" 
+   aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-lg"><!--  큰창:<div class="modal-dialog modal-lg"> 작은창 :<div class="modal-dialog modal-sm">  -->
+      <div class="modal-content" style="text-align: center">
+        아이디 : ${meminfo.id }
+        <br><br>
+        소속그룹 / 멤버 : ${meminfo.teamname }
+        <br><br>
+        이메일 : ${meminfo.email }
+        <br><br>
+        연락처 : ${meminfo.phone }
+        <br><br>
+        장르 : ${meminfo.genre }
+        <br><br>
+        지역 : ${meminfo.location }
+        <br><br>
+        팔로워 수 : 
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+               닫기
+            </button>
+         </div>
+      </div> 
+   </div> 
+</div>
+
 <script type="text/javascript">
+
+
+$("#movecastBtn").click(function () {
+	$("#castBtn").click();
+});
+
 $("#login").on('click',function(){
 	$.ajax({
 		url:"login.do",

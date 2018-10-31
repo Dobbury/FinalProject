@@ -10,6 +10,23 @@
 	VALUES(#{id}, #{title}, #{content}, #{video}, #{thumbnail}, #{genre}, SYSDATE, 0, VIDEO_SEQ.NEXTVAL)
 	</insert>
 	
+	<insert id="like" parameterType="kh.com.a.model.Video_LikeDto">
+	INSERT INTO VIDEO_LIKE(MEMID, VIDEO_SEQ)
+	VALUES(#{memid}, #{video_seq})
+	</insert>
+	
+	<delete id="unLike" parameterType="kh.com.a.model.Video_LikeDto">
+	DELETE
+	FROM VIDEO_LIKE
+	WHERE MEMID=#{memid} AND VIDEO_SEQ=#{video_seq}
+	</delete>
+	
+	<select id="getLike" resultType="kh.com.a.model.Video_LikeDto">
+	SELECT MEMID, VIDEO_SEQ
+	FROM VIDEO_LIKE
+	WHERE MEMID=#{memid} AND VIDEO_SEQ=#{video_seq}
+	</select>
+	
 	<select id="getVideoBbsList" resultType="kh.com.a.model.VideoBBSDto">
 	SELECT  ID, TITLE, CONTENT, VIDEO, THUMBNAIL, WDATE, READCOUNT, VIDEO_SEQ, GENRE 
 	FROM VIDEOBBS
@@ -25,6 +42,12 @@
 	<update id="videoBbsUpdate" parameterType="kh.com.a.model.VideoBBSDto">
 	UPDATE VIDEOBBS
 	SET TITLE=#{title}, CONTENT=#{content}, WDATE=SYSDATE
+	WHERE VIDEO_SEQ=#{video_seq}
+	</update>
+	
+	<update id="incReadCount" parameterType="kh.com.a.model.VideoBBSDto">
+	UPDATE VIDEOBBS
+	SET READCOUNT=READCOUNT+1
 	WHERE VIDEO_SEQ=#{video_seq}
 	</update>
 	

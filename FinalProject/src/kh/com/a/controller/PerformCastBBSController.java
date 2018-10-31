@@ -87,8 +87,8 @@ public class PerformCastBBSController {
 	
 	@ResponseBody
 	@RequestMapping(value="approveAf.do", method=RequestMethod.GET)
-	public void approveAf(int seq_approve){
-		
+	public void approveAf(int seq_approve,PerformCastBBSDto dto){
+		System.out.println(dto.toString());
 		performCastBBSService.approveAf(seq_approve);
 		
 	}

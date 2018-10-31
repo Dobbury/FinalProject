@@ -245,5 +245,32 @@ public class MemController {
 		return "aboutus.tiles";
 	}
 	
-	
+	@RequestMapping(value="loginAf.do", method=RequestMethod.GET)
+	public String loginAf(HttpServletRequest req, HttpServletResponse rep, MemDto mem) throws IOException{
+		logger.info("KhMemberController loginAf" + new Date());
+		
+		MemDto login = null;
+		// login을 DB 확인
+		//login = memberService.login(mem);
+		PrintWriter out;
+		
+		
+		login = new MemDto("testId", "testPwd", "testName", "01020233808", "yuns0316@gmail.com", "Rock", "Seoul", "890209", "testTN", "IMG", "IMG", "Vocal", 1, 1, 1, "M", 1);
+				/*new MemDto("testTN", "testId", "testPwd", "testName", "01020233808", "yuns0316@gmail.com", "Rock", "Seoul", 890209, "IMG", "Vocal", 1, 1, 1, "M", 1);*/
+		if(login != null && !login.getId().equals("")) {
+			
+			req.getSession().setAttribute("login", login);
+			
+			return "redirect:/main.do";			
+		}else {
+			req.getSession().invalidate();
+			
+			out = rep.getWriter();
+			out.println("로그인 아이디 또는 비밀번호가 일치하지 않습니다"); 
+			out.close();
+		 						
+			return "login.tiles";
+		//	return "forward:/login.do";
+		}	
+	}
 }

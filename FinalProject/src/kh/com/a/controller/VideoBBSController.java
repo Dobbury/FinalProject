@@ -36,8 +36,12 @@ import kh.com.a.arrow.FUpUtil;
 import kh.com.a.model.MemDto;
 import kh.com.a.model.VideoBBSDto;
 import kh.com.a.model.Video_CommentDto;
+import kh.com.a.model.Video_LikeDto;
+import kh.com.a.service.MemService;
 import kh.com.a.service.VideoBBSService;
 import kh.com.a.service.Video_CommentService;
+
+
 
 
 @Controller
@@ -50,6 +54,9 @@ public class VideoBBSController {
 	
 	@Autowired
 	Video_CommentService video_CommentService;
+	
+	@Autowired
+	MemService memberService;
 	
 	@RequestMapping(value="VideoBBS.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public String VideoBBSList(Model model) throws Exception
@@ -165,13 +172,34 @@ public class VideoBBSController {
 	
 	
 	@RequestMapping(value="VideoBbsDetail.do", method= {RequestMethod.GET, RequestMethod.POST})
-	public String VideoBbsDetail(int seq, Model model) throws Exception
+	public String VideoBbsDetail(int seq, Model model, HttpServletRequest req) throws Exception
 	{
-		logger.info("VideoBBSController VideoBbsDetail" + new Date());
+		logger.info("VideoBBSController VideoBbsDetail " + new Date());
 		
 		VideoBBSDto dto = videoBBSService.getVideoBbs(seq);
+		
+		videoBBSService.incReadCount(seq);
+		
 		List<VideoBBSDto> bbslist = videoBBSService.getVideoBbsList();
 		
+		MemDto mdto = memberService.login(dto.getId());
+		
+		HttpSession session = req.getSession();
+		MemDto login = (MemDto)session.getAttribute("user");
+		
+		Video_LikeDto vlDto = new Video_LikeDto();
+		
+		vlDto.setMemid(login.getId());
+		vlDto.setVideo_seq(seq);
+		
+		boolean b = videoBBSService.getLike(vlDto);
+		
+		if(b)
+			model.addAttribute("likecheck", true);
+		else
+			model.addAttribute("likecheck", false);
+		
+		model.addAttribute("meminfo", mdto);
 		model.addAttribute("bbslist", bbslist);
 		model.addAttribute("getVideoBbs", dto);
 		
@@ -222,15 +250,12 @@ public class VideoBBSController {
 		int seq = Integer.parseInt(req.getParameter("video_seq"));
 		String comment = req.getParameter("comment");
 		
-		System.out.println("seq = " + seq + " comment = " + comment);
-		
 		Video_CommentDto vcDto = new Video_CommentDto();
 		
 		vcDto.setVideo_seq(seq);
 		vcDto.setVcomment(comment);
 		vcDto.setId(mdto.getId());
 		
-		System.out.println(vcDto.toString());
 		video_CommentService.addComment(vcDto);
 		
 		return "success";
@@ -265,6 +290,37 @@ public class VideoBBSController {
 		
 		return hlist;
     }
+	
+	@RequestMapping(value="like.do", method= {RequestMethod.GET, RequestMethod.POST})
+	@ResponseBody
+	public String like(HttpServletRequest req) throws Exception
+	{
+		logger.info("VideoBBSController like " + new Date());
+		HttpSession session = req.getSession();
+		MemDto mdto = (MemDto)session.getAttribute("user");
+		
+		int seq = Integer.parseInt(req.getParameter("video_seq"));
+		
+		Video_LikeDto vlDto = new Video_LikeDto();
+		
+		vlDto.setMemid(mdto.getId());
+		vlDto.setVideo_seq(seq);
+		
+		boolean b = videoBBSService.getLike(vlDto);
+		String like = "";
+		if(b == true)
+		{
+			videoBBSService.unLike(vlDto);
+			like = "unlike";
+		}
+		else if(b == false)
+		{
+			videoBBSService.like(vlDto);
+			like = "like";
+		}
+		
+		return like;
+	}
 	
 	@ResponseBody
 	@RequestMapping(value="ClickFollow.do", method={RequestMethod.GET, RequestMethod.POST})

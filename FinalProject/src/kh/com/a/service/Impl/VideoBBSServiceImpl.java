@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import kh.com.a.dao.VideoBBSDao;
 import kh.com.a.model.VideoBBSDto;
+import kh.com.a.model.Video_LikeDto;
 import kh.com.a.service.VideoBBSService;
 
 @Service
@@ -50,6 +51,28 @@ public class VideoBBSServiceImpl implements VideoBBSService {
 	}
 
 	@Override
+	public void like(Video_LikeDto vlDto) {
+		dao.like(vlDto);
+	}
+
+	@Override
+	public void unLike(Video_LikeDto vlDto) {
+		dao.unlike(vlDto);
+		
+	}
+
+	@Override
+	public boolean getLike(Video_LikeDto vlDto) {
+		return dao.getLike(vlDto);
+		
+	}
+
+	@Override
+	public boolean incReadCount(int seq) {
+		
+		return dao.incReadCount(seq);
+	}
+	
 	public int CheckAndFollow(HashMap<String, String> map) throws Exception {
 		System.out.println("afterCheck1 = ");
 		System.out.println(map.get("follower"));
@@ -69,9 +92,5 @@ public class VideoBBSServiceImpl implements VideoBBSService {
 			return -1;
 		
 	}
-	
-	
-	
-	
 	
 }	

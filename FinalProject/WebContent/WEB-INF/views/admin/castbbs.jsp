@@ -102,9 +102,10 @@ int perform_seq = -1;
 							<textarea class="form-control" readonly="readonly">${castbbs.content}</textarea>
 						</div>
 						
-					
+
 						<div align="right">
-						<button onclick="approve(${castbbs.perform_seq}, index${vs.count})">승인</button>
+						 <button style="display: none;" id="castBtn" onclick="approve(${castbbs.perform_seq}, index${vs.count})">승인</button>
+						<a data-toggle="modal" href="#castModal" >승인</a>
 						</div>
 					</div>
 				</div>
@@ -152,7 +153,12 @@ var endindex = 7;
 	        async: true,
 	        type : "GET",
 	        cache : false,
-	        data : "seq_approve="+seq_approve, /* +"&perform_seq="+perform_seq, */
+	        data : {
+	        	"seq_approve":+seq_approve,
+	        	"title":$("#_title").val(),
+	        	"edate":$("#_edate").val(),
+	        	"content":$("#_content").val()
+	        }, /* +"&perform_seq="+perform_seq, */
 	        // datatype: code200 error : 뭣모르고 데이터타입 json으로 했다가 리턴값도 없는데 에러만 주구장창 걸렸음, 기억할것...
 	        success : function(){
 	        	
@@ -160,6 +166,7 @@ var endindex = 7;
 	            $('#addbtn2').remove();//remove btn
 	            $(divId).remove();
 	            $(btn).appendTo("#add2");
+	           
 	        }, error:function(request,status,error){
 	            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 	           }
