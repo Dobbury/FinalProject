@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kh.com.a.model.IndexDto;
 import kh.com.a.model.LocationDto;
 import kh.com.a.model.PerformCastBBSDto;
 import kh.com.a.service.LocationService;

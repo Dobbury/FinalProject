@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import kh.com.a.dao.PerformCastBBSDao;
 import kh.com.a.dao.ScheduleBBSDao;
 import kh.com.a.dao.VideoBBSDao;
-import kh.com.a.model.IndexDto;
 import kh.com.a.model.PerformCastBBSDto;
 import kh.com.a.service.PerformCastBBSService;
 
