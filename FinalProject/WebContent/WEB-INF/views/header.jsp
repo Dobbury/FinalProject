@@ -5,28 +5,19 @@
 	MemDto dto = (MemDto)session.getAttribute("user");
 %>
 
-<!-- 아이디 저장 -->
-<%
-	Cookie[] cookie = request.getCookies();
-	String id = "";
-	if(cookie != null){
-		for(int i = 0 ; i < cookie.length ; i++){
-			if(cookie[i].getName().trim().equals("id")){
-				System.out.println(cookie[i].getValue());
-				id = cookie[i].getValue();
-			}
-		}
-	}
 
-%>
 
 <style>
+.modal.fade{
+	top:-100%;
+}
 .modal-body {
 	vertical-align: middle;
 }
-</style>
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
+</style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/jquery/jquery.cookie.js"></script>
 <!-- Header -->
 <div class="sticky-nav">
 
@@ -79,7 +70,7 @@
 			<li><a href="VideoBBS.do" class="external">영상게시판</a></li>
 			
 			<%if(dto==null){ %>
-				<li><a data-toggle="modal" href="#myModal">Login</a></li>
+				<li><a data-toggle="modal" data-target="#myModal" href="#myModal">Login</a></li>
 			<%}else{ %>
 				<li><a href="logoff.do" class="external">LogOff</a></li>
 			<%} %>
@@ -90,8 +81,8 @@
 <!-- End Header -->
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog" tabindex="-1"
-	style="background-color: #26292E; width: 20%; height: 40%;">
+<div class="modal fade login" id="myModal" role="dialog"
+	style="background-color: #26292E; width: 20%; height: 40%; " >
 	<div class="modal-dialog">
 
 		<!-- Modal content-->
@@ -108,8 +99,7 @@
 				<input type="password" style="height: 20%" placeholder="비밀번호 입력" name="pwd" id="pwd">
 				<br>
 				<div align="right" style="padding-right: 13%">
-					ID 저장&nbsp;<input type="checkbox" style="margin-bottom: 1px;" id="_chk_save_id"
-							<% if(id.length() > 1) out.println("checked"); %>/>
+					ID 저장&nbsp;<input type="checkbox" style="margin-bottom: 1px;" id="_chk_save_id"/>
 				</div>
 			</div>
 			<div class="modal-footer" style="background-color: #26292E;">
@@ -122,8 +112,8 @@
 </div>
 
 <!-- Modal -->
-<div align="center" class="modal fade" id="castModal" role="dialog" tabindex="-1"
-	style="background-color: #26292E; width: 50%; height: 80%;">
+<div align="center" class="modal fade" id="castModal" role="dialog"
+	style="background-color: #26292E; width: 50%; height: 80%; ">
 	<div class="modal-dialog">
 		<!-- Modal content-->
 		<div class="modal-content">
@@ -152,7 +142,7 @@
 </div>
 
 
-<div class="modal fade" id="museDetailModal" tabindex="-1" role="dialog" 
+<div class="modal fade" id="museDetailModal" role="dialog" 
    aria-labelledby="myModalLabel" aria-hidden="true">
    <div class="modal-dialog modal-lg"><!--  큰창:<div class="modal-dialog modal-lg"> 작은창 :<div class="modal-dialog modal-sm">  -->
       <div class="modal-content" style="text-align: center">
@@ -261,11 +251,12 @@ $("ul li").click(function () {
     </div>
 <!-- End Header -->
 <script type="text/javascript">
+
 var user_id = $.cookie("user_id");
 if(user_id != null){
    $("#id").val(user_id);
    $("#_chk_save_id").attr("checked", "checked");
-}
+}     
 
 $("#_chk_save_id").click(function() {      
    if($('input:checkbox[id="_chk_save_id"]').is(":checked")){
@@ -274,6 +265,7 @@ $("#_chk_save_id").click(function() {
          alert("아이디를 입력해 주십시오");
       }else{
          $.cookie("user_id", $("#id").val(), { expires: 7, path: '/' });
+         alert("aaa");
       }      
    }else{
       $.removeCookie("user_id", { path:'/' });

@@ -19,4 +19,6 @@ public interface MusiRecuBBSDao {
 	
 	public List<MusiRecuBBSDto> getRecuMusiDeadLineList();
 	public List<MusiRecuBBSDto> moreMusiRecuDeadLineList();
+	
+	public void addMusiRecuBBS(MusiRecuBBSDto dto);
 }

@@ -69,4 +69,10 @@ public class MusiRecuBBSDaoImpl implements MusiRecuBBSDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace + "moreMusiRecuDeadLineList");
 	}
+
+	@Override
+	public void addMusiRecuBBS(MusiRecuBBSDto dto) {
+		// TODO Auto-generated method stub
+		sqlSession.insert(namespace+ "addMusiRecuBBS",dto);
+	}
 }
