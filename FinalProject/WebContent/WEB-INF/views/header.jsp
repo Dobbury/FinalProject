@@ -1,6 +1,6 @@
 <%@page import="kh.com.a.model.MemDto"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <%
 	MemDto dto = (MemDto)session.getAttribute("user");
 %>
@@ -40,8 +40,10 @@
 			<%if(dto!=null){ %>
 			<li><a href="myPage.do" class="external">My page</a></li>
 			<%} %>
+			
 			<li class="current"><a href="#home-slider">Home</a></li>
 			<li><a href="main.do" class="external">Main</a></li>
+			
 			<li class="afterloginOK"><%if(dto !=null){ %>
 										<a href="musireculist.do"  class="external">뮤지션 모집</a>
 									<%}else{ %>
@@ -51,11 +53,31 @@
 			<!--  
                 <li><a href="#contact">Contact</a></li>
 				<li><a href="shortcodes.html" class="external">Shortcodes</a></li> -->
+			<li class="afterloginOK"><%if(dto !=null){ %>
+										<a href="perform_scheduleslist.do"  class="external">고옹연 일정</a>
+									<%}else{ %>
+										<a data-toggle="modal" href="#myModal">고옹연 일정</a>
+									<%} %>
+										</li><!-- 로그인이 필요한 경우  -->
+										
 			<li><a class="external" href="aboutus.do">About our site</a></li>
          	<li><a class="external" href="videoBbs.do">뮤지션's 버스킹</a></li>
-            <li><a class="external" href="schedule.do">공연일정</a></li>
-            <li><a class="external" href="contact.do">공연섭외문의</a></li>
+            
+            <li class="afterloginOK"><%if(dto !=null){ %>
+            						<a class="external" href="schedule.do">공연일정</a>
+            						<%}else{ %>
+            						<a data-toggle="modal" href="#myModal" >공연일정</a>
+            						<%} %>
+            						</li>
+            <li class="afterloginOK"><%if(dto !=null){ %>
+            						<a class="external" href="contact.do">공연섭외</a>
+            						<%}else{ %>
+            						<a data-toggle="modal" href="#myModal" >공연섭외</a>
+            						<%} %>
+            						</li>
+            
 			<li><a href="VideoBBS.do" class="external">영상게시판</a></li>
+			
 			<%if(dto==null){ %>
 				<li><a data-toggle="modal" href="#myModal">Login</a></li>
 			<%}else{ %>
@@ -86,7 +108,7 @@
 				<input type="password" style="height: 20%" placeholder="비밀번호 입력" name="pwd" id="pwd">
 				<br>
 				<div align="right" style="padding-right: 13%">
-					ID 저장&nbsp;<input type="checkbox" style="margin-bottom: 1px;" name="id_rem" id="id_rem"
+					ID 저장&nbsp;<input type="checkbox" style="margin-bottom: 1px;" id="_chk_save_id"
 							<% if(id.length() > 1) out.println("checked"); %>/>
 				</div>
 			</div>
@@ -131,8 +153,7 @@ $("#login").on('click',function(){
 		url:"login.do",
 		data:{
 			id: $("#id").val(),
-			pwd:$("#pwd").val(),
-			id_rem:$("#id_rem").val()
+			pwd:$("#pwd").val()
 		},
 		dataType:"json",
 		success:function(data){
@@ -155,7 +176,7 @@ $("ul li").click(function () {
 	<%
 	if(session.getAttribute("user") == null){
 	%>
-		if( $(this).hasClass("afterloginOK") ==true ){
+		if( $(this).hasClass("afterloginOK") == true ){
 			alert("로그인 후 가능합니다.");	
 			location.href="#home-slider";
 		}
@@ -164,7 +185,6 @@ $("ul li").click(function () {
 	%>
 });
 </script>
-    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>    
@@ -172,7 +192,7 @@ $("ul li").click(function () {
 <fmt:requestEncoding value="utf-8"/>
  
 <span class="accordion-heading togglize">
-                            <a class="accordion-toggle inactive collapsed" data-toggle="collapse" data-parent="#" href="#castbbs">
+                            <a class="accordion-toggle inactive collapsed" data-toggle="collapse" data-parent="#" href="#adminmenu">
                                 	관리
                                 <span class="font-icon-plus"></span>
                                 <span class="font-icon-minus"></span>
@@ -198,5 +218,28 @@ $("ul li").click(function () {
         
     </div>
     
-    <div id="castbbs"><font color="#ffffff"><a href="castbbs.do">섭외신청목록</a></font></div>
+    <div id="adminmenu">
+    	<font color="#ffffff"><a href="castbbs.do">섭외신청목록</a></font><br>
+    	<font color="#ffffff"><a href="musi_recu_deadline.do">뮤지션 모집 마감 목록</a></font>
+    </div>
 <!-- End Header -->
+<script type="text/javascript">
+var user_id = $.cookie("user_id");
+if(user_id != null){
+   $("#id").val(user_id);
+   $("#_chk_save_id").attr("checked", "checked");
+}
+
+$("#_chk_save_id").click(function() {      
+   if($('input:checkbox[id="_chk_save_id"]').is(":checked")){
+      if($("#id").val() == ""){
+         $(this).prop("checked", false);
+         alert("아이디를 입력해 주십시오");
+      }else{
+         $.cookie("user_id", $("#id").val(), { expires: 7, path: '/' });
+      }      
+   }else{
+      $.removeCookie("user_id", { path:'/' });
+   }
+});
+</script>

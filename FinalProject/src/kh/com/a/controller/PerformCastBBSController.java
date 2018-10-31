@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kh.com.a.model.LocationDto;
 import kh.com.a.model.PerformCastBBSDto;
+import kh.com.a.service.LocationService;
 import kh.com.a.service.PerformCastBBSService;
 
 
@@ -29,20 +31,28 @@ public class PerformCastBBSController {
 	@Autowired
 	PerformCastBBSService performCastBBSService;
 	
+	@Autowired
+	LocationService locationService;
+	
 	@RequestMapping(value="contact.do", method=RequestMethod.GET)
-	public String contactPage() {
+	public String contactPage(Model model) {
 		
 		logger.info("PerformCastBbsController Contact" + new Date());
+		
+		/*model.addAttribute("locationList",locationService.getLocationList());*/
+		List<LocationDto> locationList = locationService.getLocationList();
+		model.addAttribute("locationList", locationList);
 		
 		return "contact.tiles";
 	}
 	
 	@ResponseBody
 	@RequestMapping(value="moreList.do", method= {RequestMethod.GET, RequestMethod.POST})
-	public List<PerformCastBBSDto> getCompanyList() {
+	public List<PerformCastBBSDto> getMoreList(PerformCastBBSDto dto, Model model) {
 		
-		List<PerformCastBBSDto> list = performCastBBSService.getMoreList();
+		List<PerformCastBBSDto> list = performCastBBSService.getMoreList(dto);
 		
+		model.addAttribute("castbbslist", list);
 		return list;
 		
 	}
@@ -52,7 +62,7 @@ public class PerformCastBBSController {
 	public String castSchedule(HttpServletRequest req, HttpServletResponse resp,PerformCastBBSDto dto, Model model) throws Exception {
 		
 		//req.setCharacterEncoding("UTF-8");
-	
+		System.out.println("공연섭외:"+dto.toString());
 		
 		String agegrade[] = new String[6];
 		String temp = new String();
@@ -75,12 +85,22 @@ public class PerformCastBBSController {
 		return "redirect:/contact.do";  
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="approveAf.do", method=RequestMethod.GET)
+	public void approveAf(int seq_approve){
+		
+		performCastBBSService.approveAf(seq_approve);
+		
+	}
+	
 	@RequestMapping(value="castbbs.do", method=RequestMethod.GET)
 	public String getCastbbs(Model model) {
 		
 		List<PerformCastBBSDto> castbbslist = performCastBBSService.getCastBbs();
 		
 		model.addAttribute("castbbslist", castbbslist);
+		
+		
 		if (castbbslist != null) {
 			for (int i = 0; i < castbbslist.size(); i++) {
 				System.out.println(castbbslist.get(i).toString());

@@ -6,8 +6,8 @@
   
 <mapper namespace="VideoBBS">
 	<insert id="videoBbsWrite" parameterType="kh.com.a.model.VideoBBSDto">
-	INSERT INTO VIDEOBBS(ID, TITLE, CONTENT, VIDEO, THUMBNAIL, WDATE, READCOUNT, VIDEO_SEQ)
-	VALUES(#{id}, #{title}, #{content}, #{video}, #{thumbnail}, SYSDATE, 0, VIDEO_SEQ.NEXTVAL)
+	INSERT INTO VIDEOBBS(ID, TITLE, CONTENT, VIDEO, THUMBNAIL, GENRE, WDATE, READCOUNT, VIDEO_SEQ)
+	VALUES(#{id}, #{title}, #{content}, #{video}, #{thumbnail}, #{genre}, SYSDATE, 0, VIDEO_SEQ.NEXTVAL)
 	</insert>
 	
 	<insert id="like" parameterType="kh.com.a.model.Video_LikeDto">
@@ -28,15 +28,16 @@
 	</select>
 	
 	<select id="getVideoBbsList" resultType="kh.com.a.model.VideoBBSDto">
-	SELECT  ID, TITLE, CONTENT, VIDEO, THUMBNAIL, WDATE, READCOUNT, VIDEO_SEQ 
+	SELECT  ID, TITLE, CONTENT, VIDEO, THUMBNAIL, WDATE, READCOUNT, VIDEO_SEQ, GENRE 
 	FROM VIDEOBBS
 	</select>
 	
 	<select id="getVideoBbs" resultType="kh.com.a.model.VideoBBSDto">
-	SELECT  ID, TITLE, CONTENT, VIDEO, THUMBNAIL, WDATE, READCOUNT, VIDEO_SEQ
+	SELECT ID, TITLE, CONTENT, VIDEO, THUMBNAIL, WDATE, READCOUNT, VIDEO_SEQ, GENRE
 	FROM VIDEOBBS
 	WHERE VIDEO_SEQ=#{video_seq}
 	</select>
+
 	
 	<update id="videoBbsUpdate" parameterType="kh.com.a.model.VideoBBSDto">
 	UPDATE VIDEOBBS
@@ -56,29 +57,33 @@
 		WHERE VIDEO_SEQ=#{video_seq}
 	</delete>
 
-	<!-- <select id="getVideosForMember" 
-			parameterType="kh.com.a.model.MemDto"
-			resultType="kh.com.a.model.VideoBBSDto">	
-	</select> -->
-	
-	<!-- 비로그인 유저 / 로그인 유저 (공통) -->
-	<!-- 1. 뮤지션 Table (뮤지션 별 업로드 영상의 누적 좋아요 순 랭킹 정렬) -->
+
 	<select id="getVideoRank" resultType="kh.com.a.model.VideoBBSDto">
 							
-		SELECT VB.ID, VB.TITLE, VB.CONTENT, VB.VIDEO, VB.WDATE, VB.VIDEO_SEQ FROM VIDEOBBS VB,(SELECT VIDEO_SEQ, COUNT(MEMID) TOTAL FROM VIDEO_LIKE 
-							GROUP BY VIDEO_SEQ ORDER BY COUNT(MEMID)) VL WHERE VB.VIDEO_SEQ = VL.VIDEO_SEQ ORDER BY TOTAL DESC
+		SELECT VB.ID, VB.TITLE, VB.CONTENT, VB.VIDEO, VB.WDATE, 
+		VB.THUMBNAIL, VB.GENRE, VB.READCOUNT, VB.VIDEO_SEQ FROM VIDEOBBS VB,
+					(SELECT VIDEO_SEQ, COUNT(MEMID) TOTAL FROM VIDEO_LIKE 
+					GROUP BY VIDEO_SEQ ORDER BY COUNT(MEMID)) VL 
+					WHERE VB.VIDEO_SEQ = VL.VIDEO_SEQ ORDER BY TOTAL DESC
 							
 	</select>
 	
+	<select id="checkfollow" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM FOLLOW WHERE MEMID = #{follower} AND MUSEID = #{following}
+		<!-- SELECT NVL2(FOLLOW_SEQ, FOLLOW_SEQ, 0) FROM FOLLOW WHERE MEMID = #{follower} AND MUSEID = #{following} -->
+		<!-- NVL2(FOLLOW_SEQ, FOLLOW_SEQ, 0) -->
+	</select>
 	
-	<!-- 메인페이지 
-	1. 뮤지션 Table (뮤지션 별 업로드 영상의 누적 좋아요 순 랭킹 정렬)
-	2. Schedule BBS (시작날짜 <>= SYSDATE 조건 -> SYSDATE기준 시작날짜가 임박한 데이터 // 현재날짜에 가까운 순 정렬) 
-	3. Schedule BBS (종료날짜 <>= SYSDATE 조건 -> SYSDATE기준 시작날짜가 초과했지만 종료날짜가 지나지 않은 데이터 // 종료임박 데이터 순 정렬) 
-	-->
-	<!-- 1. 뮤지션 Table (뮤지션 별 업로드 한 게시글의 누적 좋아요 순 랭킹 정렬)
-	2. Session login 개인정보의 선호장르에 일치하는 Video 데이터 (좋아요 순?) 
-	3. Session login 개인정보의 Location에 일치하는 행사 데이터
-	 -->
+	<select id="checkSeq" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+		SELECT FOLLOW_SEQ FROM FOLLOW WHERE MEMID = #{follower} AND MUSEID = #{following}
+	</select>
+	<delete id="cancelFollow" parameterType="java.lang.Integer">
+		DELETE FROM FOLLOW WHERE FOLLOW_SEQ = #{seq}
+	</delete>
+	
+	<insert id="dofollow" parameterType="java.util.HashMap">
+		INSERT INTO FOLLOW VALUES(FOLLOW_SEQ.NEXTVAL, #{follower}, #{following})
+	</insert>
+	
 	
 </mapper>

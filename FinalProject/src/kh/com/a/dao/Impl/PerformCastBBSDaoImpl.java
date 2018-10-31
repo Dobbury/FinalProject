@@ -29,8 +29,20 @@ public class PerformCastBBSDaoImpl implements PerformCastBBSDao {
 	}
 
 	@Override
-	public List<PerformCastBBSDto> getMoreList() {
-		return sqlSession.selectList(namespace + "getMoreList");
+	public List<PerformCastBBSDto> getMoreList(PerformCastBBSDto dto) {
+		return sqlSession.selectList(namespace + "getMoreList", dto);
+		
+	}
+
+	@Override
+	public void approveAf(int seq_approve) {
+		 sqlSession.update(namespace + "approveAf", seq_approve);
+		 
+	}
+
+	@Override
+	public PerformCastBBSDto getPerformCastInfo(int perform_seq) {
+		return sqlSession.selectOne(namespace + "getPerformCastInfo",perform_seq);
 	}
 	
 	

@@ -7,29 +7,22 @@ public class MusiRecuBBSDto implements Serializable {
 
 	private Date sdate;
 	private Date edate;
-	private Date perform_date;
-	private String compname;
-	private String location;
-	private String place;
-	private int totalcount;
-	private int agegrage;
+	private String title;
+	private String content;
+	private int perform_seq;
 	private int musi_recu_seq;
 
 	public MusiRecuBBSDto() {
 		super();
 	}
 
-	public MusiRecuBBSDto(Date sdate, Date edate, Date perform_date, String compname, String location, String place,
-			int totalcount, int agegrage, int musi_recu_seq) {
+	public MusiRecuBBSDto(Date sdate, Date edate, String title, String content, int perform_seq, int musi_recu_seq) {
 		super();
 		this.sdate = sdate;
 		this.edate = edate;
-		this.perform_date = perform_date;
-		this.compname = compname;
-		this.location = location;
-		this.place = place;
-		this.totalcount = totalcount;
-		this.agegrage = agegrage;
+		this.title = title;
+		this.content = content;
+		this.perform_seq = perform_seq;
 		this.musi_recu_seq = musi_recu_seq;
 	}
 
@@ -49,52 +42,28 @@ public class MusiRecuBBSDto implements Serializable {
 		this.edate = edate;
 	}
 
-	public Date getPerform_date() {
-		return perform_date;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setPerform_date(Date perform_date) {
-		this.perform_date = perform_date;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-	public String getCompname() {
-		return compname;
+	public String getContent() {
+		return content;
 	}
 
-	public void setCompname(String compname) {
-		this.compname = compname;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
-	public String getLocation() {
-		return location;
+	public int getPerform_seq() {
+		return perform_seq;
 	}
 
-	public void setLocation(String location) {
-		this.location = location;
-	}
-
-	public String getPlace() {
-		return place;
-	}
-
-	public void setPlace(String place) {
-		this.place = place;
-	}
-
-	public int getTotalcount() {
-		return totalcount;
-	}
-
-	public void setTotalcount(int totalcount) {
-		this.totalcount = totalcount;
-	}
-
-	public int getAgegrage() {
-		return agegrage;
-	}
-
-	public void setAgegrage(int agegrage) {
-		this.agegrage = agegrage;
+	public void setPerform_seq(int perform_seq) {
+		this.perform_seq = perform_seq;
 	}
 
 	public int getMusi_recu_seq() {
@@ -107,11 +76,9 @@ public class MusiRecuBBSDto implements Serializable {
 
 	@Override
 	public String toString() {
-		return "MusiRecuBBSDto [sdate=" + sdate + ", edate=" + edate + ", perform_date=" + perform_date + ", compname="
-				+ compname + ", location=" + location + ", place=" + place + ", totalcount=" + totalcount
-				+ ", agegrage=" + agegrage + ", musi_recu_seq=" + musi_recu_seq + "]";
+		return "MusiRecuBBSDto [sdate=" + sdate + ", edate=" + edate + ", title=" + title + ", content=" + content
+				+ ", perform_seq=" + perform_seq + ", musi_recu_seq=" + musi_recu_seq + "]";
 	}
-
 	
 	
 	

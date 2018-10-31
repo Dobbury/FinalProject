@@ -20,6 +20,7 @@
 	</div>
 	</c:forEach>
 </div>
+
 <form action="VideoBBSWrite.do" method="post" style="text-align: center">
 	<c:set var = "auth" value = "${user.auth}"/>
 	<c:if test="${auth == 2}" >

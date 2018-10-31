@@ -91,7 +91,7 @@ public class MemController {
 	}
 	
 	@RequestMapping(value="myPage.do",method= {RequestMethod.GET, RequestMethod.POST})
-	public String myPage(HttpSession session, Model model) {
+	public String myPage(Model model) {
 		logger.info("MemController myPage "+ new Date());
 		
 		model.addAttribute("genreList",genreService.getGenreList());
@@ -122,18 +122,9 @@ public class MemController {
 		}
 		
 		
-		if(id_rem!=null && id_rem.trim().equals("on")) { //체크가 되어있다면
-			cookie = new Cookie("id",java.net.URLEncoder.encode(id));
-			cookie.setMaxAge(60*60*24*365);//유효기간 1년
-			resp.addCookie(cookie);//쿠키값 클라이언트에 저장
-		}else {
-			cookie = new Cookie("id",null);
-			cookie.setMaxAge(0);
-			resp.addCookie(cookie);//쿠키값 클라이언트에 저장
-		}
 		map.put("result", "success");
 		session.setAttribute("user", dto);
-		
+		session.setAttribute("login", dto);
 		return map;
 	}
 	
@@ -142,6 +133,8 @@ public class MemController {
 		logger.info("MemController logoff "+ new Date());
 		
 		session.invalidate();//모든 세션 삭제
+		//session.removeAttribute("login");
+		//session.removeValue("user");
 		return "redirect:/main.do";
 	}
 	

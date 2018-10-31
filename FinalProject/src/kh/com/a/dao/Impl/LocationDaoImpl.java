@@ -21,8 +21,8 @@ public class LocationDaoImpl implements LocationDao {
 	@Override
 	public List<LocationDto> getLocationList() {
 		
-		int[] arr = new int[5];
 		List<LocationDto> list = sqlSession.selectList(namespace + "getLocationList");
+		
 		return list;
 	}
 	
