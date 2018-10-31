@@ -225,7 +225,7 @@ function captureReturnKey(e) {
                 <p class="contact-comment">
                 	<textarea id="contact-comment" placeholder="기관이나 단체에 대한 한마디 또는 다른 문의사항 입력해주세요" name="content" rows="15" cols="40"></textarea>
                 </p>              
-                	 <input id="sending" type="submit" value="문의하기" style="background: #5e0404" onclick="show_alert();">
+                	 <input id="sending" type="submit" value="문의하기" style="background: #5e0404">
                 	
                 <div id="response">
                 
@@ -304,13 +304,13 @@ function captureReturnKey(e) {
 		document.forms[0].submit();
 	}
 	
-	/* $("#sending").click(function() {	
+	 $("#sending").click(function() {	
 		$("#lat").val(Marker_lat);
 		$("#lng").val(Marker_lng);
 		alert($("#lat").val());
 		alert('문의신청이 되었습니다');	
 		
-	}); */
+	}); 
 </script>
 
 
