@@ -8,6 +8,8 @@
 <%-- <% request.setCharacterEncoding("UTF-8"); %> --%>
 <fmt:requestEncoding value="utf-8"/>
 	
+	
+
 <html>
 <head>
 
@@ -123,6 +125,9 @@
 <footer>
 	<tiles:insertAttribute name="footer"/>
 </footer>
+
+
+
 
 <!-- Js -->
 

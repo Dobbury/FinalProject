@@ -18,8 +18,8 @@ public class PerformCastBBSDto implements Serializable {
 	private int approval;
 	private String wdate;
 	private String perform_date;
-	private double lat;
-	private double lng;
+	private double lati;
+	private double longi;
 	private int sindex;
 	private int eindex;
 	
@@ -27,10 +27,9 @@ public class PerformCastBBSDto implements Serializable {
 		super();
 	}
 
-	
 	public PerformCastBBSDto(int perform_seq, String name, String compname, String email, String phone, String place,
-			String price, String location, double lat, double lng, int totalcount, String agegrade, String content,
-			int approval, String wdate, String perform_date, int sindex, int eindex) {
+			String price, String location, int totalcount, String agegrade, String content, int approval, String wdate,
+			String perform_date, double lati, double longi, int sindex, int eindex) {
 		super();
 		this.perform_seq = perform_seq;
 		this.name = name;
@@ -40,63 +39,16 @@ public class PerformCastBBSDto implements Serializable {
 		this.place = place;
 		this.price = price;
 		this.location = location;
-		this.lat = lat;
-		this.lng = lng;
 		this.totalcount = totalcount;
 		this.agegrade = agegrade;
 		this.content = content;
 		this.approval = approval;
 		this.wdate = wdate;
 		this.perform_date = perform_date;
+		this.lati = lati;
+		this.longi = longi;
 		this.sindex = sindex;
 		this.eindex = eindex;
-	}
-	
-	public int getSindex() {
-		return sindex;
-	}
-
-
-
-	public void setSindex(int sindex) {
-		this.sindex = sindex;
-	}
-
-	
-
-	public int getEindex() {
-		return eindex;
-	}
-
-
-
-	public void setEindex(int eindex) {
-		this.eindex = eindex;
-	}
-
-	
-
-
-
-	public String getPerform_date() {
-		return perform_date;
-	}
-
-
-
-	public void setPerform_date(String perform_date) {
-		this.perform_date = perform_date;
-	}
-
-
-
-	public String getWdate() {
-		return wdate;
-	}
-
-	public void setWdate(String wdate) {
-		this.wdate = wdate;
-
 	}
 
 	public int getPerform_seq() {
@@ -163,22 +115,6 @@ public class PerformCastBBSDto implements Serializable {
 		this.location = location;
 	}
 
-	public double getLat() {
-		return lat;
-	}
-
-	public void setLat(double lat) {
-		this.lat = lat;
-	}
-
-	public double getLng() {
-		return lng;
-	}
-
-	public void setLng(double lng) {
-		this.lng = lng;
-	}
-
 	public int getTotalcount() {
 		return totalcount;
 	}
@@ -211,6 +147,56 @@ public class PerformCastBBSDto implements Serializable {
 		this.approval = approval;
 	}
 
+	public String getWdate() {
+		return wdate;
+	}
+
+	public void setWdate(String wdate) {
+		this.wdate = wdate;
+	}
+
+	public String getPerform_date() {
+		return perform_date;
+	}
+
+	public void setPerform_date(String perform_date) {
+		this.perform_date = perform_date;
+	}
+
+	public double getLati() {
+		return lati;
+	}
+
+	public void setLati(double lati) {
+		this.lati = lati;
+	}
+
+	public double getLongi() {
+		return longi;
+	}
+
+	public void setLongi(double longi) {
+		this.longi = longi;
+	}
+
+	public int getSindex() {
+		return sindex;
+	}
+
+	public void setSindex(int sindex) {
+		this.sindex = sindex;
+	}
+
+	public int getEindex() {
+		return eindex;
+	}
+
+	public void setEindex(int eindex) {
+		this.eindex = eindex;
+	}
+
+	
+	
 	
 	
 }

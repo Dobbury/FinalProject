@@ -15,4 +15,6 @@ public interface PerformCastBBSService {
 	
 
 	public PerformCastBBSDto getPerformCastInfo(int perform_seq);
+	
+	
 }

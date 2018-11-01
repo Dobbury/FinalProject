@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import kh.com.a.dao.MusiRecuBBSDao;
 import kh.com.a.model.MusiRecuBBSDto;
 import kh.com.a.model.Param;
+import kh.com.a.model.PerformCastBBSDto;
 import kh.com.a.model.RecuMusiInfoDto;
 import kh.com.a.service.MusiRecuBBSService;
 
@@ -70,4 +71,10 @@ public class MusiRecutBBSServiceImpl implements MusiRecuBBSService{
 		// TODO Auto-generated method stub
 		return dao.moreMusiRecuDeadLineList();
 	}
+	
+	@Override
+	public void addMusiRecuBBS(MusiRecuBBSDto dto) {
+		dao.addMusiRecuBBS(dto);
+	}
+
 }	

@@ -12,86 +12,82 @@
 	MemDto dto = (MemDto)session.getAttribute("user");
 %>
 
-<!-- 아이디 저장 -->
-<%
-	Cookie[] cookie = request.getCookies();
-	String id = "";
-	if(cookie != null){
-		for(int i = 0 ; i < cookie.length ; i++){
-			if(cookie[i].getName().trim().equals("id")){
-				System.out.println(cookie[i].getValue());
-				id = cookie[i].getValue();
-			}
-		}
-	}
-
-%>
-
 <style>
+.modal.fade{
+	top:-100%;
+}
 .modal-body {
 	vertical-align: middle;
 }
 
-.modal.fade{
-   top:-100%;
+#menu-nav ul{
+	display:none;
+	position:absolute;
 }
 
+#menu-nav li:hover ul {
+ display: block;
+}
 </style>
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/jquery/jquery.cookie.js"></script>
 <!-- Header -->
 <div class="sticky-nav">
-
 	<div id="logo">
 		<a id="goUp" href="#home-slider"
 			title="Brushed | Responsive One Page Template">Brushed Template</a>
 	</div>
 
+
 	<nav id="menu">
 		<ul id="menu-nav">
-			<%if(dto!=null){ %>
+		
+			<li><a href="main.do" class="external">Main</a></li>
+			<li><a class="external" href="aboutus.do">About</a></li>
+			<%if(dto!=null){ 
+				if(dto.getAuth()==0){
+			%>
+			<li><a href="#" id="current">관리</a>
+		         <ul>
+		           <li ><a href="castbbs.do" class="external">섭외신청목록</a></li>
+		           <li ><a href="musi_recu_deadline.do" class="external">뮤지션 모집 마감 목록</a></li>
+		         </ul>
+	      	</li>
+			<%	} %>
 			<li><a href="myPage.do" class="external">My page</a></li>
 			<%} %>
-			
-			<li class="current"><a href="#home-slider">Home</a></li>
-			<li><a href="main.do" class="external">Main</a></li>
-			
 			<li class="afterloginOK"><%if(dto !=null){ %>
 										<a href="musireculist.do"  class="external">뮤지션 모집</a>
 									<%}else{ %>
 										<a data-toggle="modal" href="#myModal" >뮤지션 모집</a>
 									<%} %>
 										</li><!-- 로그인이 필요한 경우  -->
-			<!--  
-                <li><a href="#contact">Contact</a></li>
-				<li><a href="shortcodes.html" class="external">Shortcodes</a></li> -->
+			
 			<li class="afterloginOK"><%if(dto !=null){ %>
-										<a href="perform_scheduleslist.do"  class="external">고옹연 일정</a>
+										<a href="perform_scheduleslist.do"  class="external">공연 일정</a>
 									<%}else{ %>
-										<a data-toggle="modal" href="#myModal">고옹연 일정</a>
+										<a data-toggle="modal" href="#myModal">공연 일정</a>
 									<%} %>
 										</li><!-- 로그인이 필요한 경우  -->
-										
-			<li><a class="external" href="aboutus.do">About our site</a></li>
-         	<li><a class="external" href="videoBbs.do">뮤지션's 버스킹</a></li>
-            
+
             <li class="afterloginOK"><%if(dto !=null){ %>
-            						<a class="external" href="schedule.do">공연일정</a>
+            							<a class="external" href="schedule.do">뮤지션's 버스킹</a>
             						<%}else{ %>
-            						<a data-toggle="modal" href="#myModal" >공연일정</a>
+            							<a data-toggle="modal" href="#myModal" >뮤지션's 버스킹</a>
             						<%} %>
-            						</li>
+            							</li>
             <li class="afterloginOK"><%if(dto !=null){ %>
-            						<a class="external" href="contact.do">공연섭외</a>
+            							<a class="external" href="contact.do">공연섭외</a>
             						<%}else{ %>
-            						<a data-toggle="modal" href="#myModal" >공연섭외</a>
+            							<a data-toggle="modal" href="#myModal" >공연섭외</a>
             						<%} %>
-            						</li>
+            							</li>
             
 			<li><a href="VideoBBS.do" class="external">영상게시판</a></li>
 			
 			<%if(dto==null){ %>
-				<li><a data-toggle="modal" href="#myModal">Login</a></li>
+				<li><a data-toggle="modal" data-target="#myModal" href="#myModal">Login</a></li>
 			<%}else{ %>
 				<li><a href="logoff.do" class="external">LogOff</a></li>
 			<%} %>
@@ -102,8 +98,8 @@
 <!-- End Header -->
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog"
-	style="background-color: #26292E; width: 20%; height: 40%;">
+<div class="modal fade login" id="myModal" role="dialog"
+	style="background-color: #26292E; width: 20%; height: 40%; " >
 	<div class="modal-dialog">
 
 		<!-- Modal content-->
@@ -120,8 +116,7 @@
 				<input type="password" style="height: 20%" placeholder="비밀번호 입력" name="pwd" id="pwd">
 				<br>
 				<div align="right" style="padding-right: 13%">
-					ID 저장&nbsp;<input type="checkbox" style="margin-bottom: 1px;" id="_chk_save_id"
-							<% if(id.length() > 1) out.println("checked"); %>/>
+					ID 저장&nbsp;<input type="checkbox" style="margin-bottom: 1px;" id="_chk_save_id"/>
 				</div>
 			</div>
 			<div class="modal-footer" style="background-color: #26292E;">
@@ -133,7 +128,38 @@
 	</div>
 </div>
 
-<div class="modal fade" id="museDetailModal" tabindex="-1" role="dialog" 
+<!-- Modal -->
+<div align="center" class="modal fade" id="castModal" role="dialog"
+	style="background-color: #26292E; width: 50%; height: 80%; ">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" ><font color="white">x</font></button>
+				<h4 class="modal-title"
+					style="font-family: Icons; font-size: 40; font-weight: bold; margin: 0">추가 기재사항</h4>
+			</div>
+			<div class="modal-body" align="left" style="background-color: #2F3238; height: 90%">
+				<h5 style="margin-bottom: 0">제목</h5>
+				<input type="text" style="height: 30px" placeholder="제목 입역" id="_title">
+				<br>
+				<h5 style="margin-bottom: 0">모집 마감일</h5>
+				<input type="date" style="height: 30px" id="_edate">
+				<br>
+				<h5 style="margin-bottom: 0">모집 설명</h5>
+				<textarea placeholder="모집에 대한 설명을 입력 하세요" rows="10" style="width: 100%" id="_content"></textarea>
+			</div>
+			<div class="modal-footer" style="background-color: #26292E;">
+			<!-- castbbs에 있는 castBtn을 누르게 하는 버튼  -->
+				<button type="button" class="btn btn-default" data-dismiss="modal" id="movecastBtn">승인</button>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+
+<div class="modal fade" id="museDetailModal" role="dialog" 
    aria-labelledby="myModalLabel" aria-hidden="true">
    <div class="modal-dialog modal-lg"><!--  큰창:<div class="modal-dialog modal-lg"> 작은창 :<div class="modal-dialog modal-sm">  -->
       <div class="modal-content" style="text-align: center">
@@ -160,6 +186,12 @@
 </div>
 
 <script type="text/javascript">
+
+
+$("#movecastBtn").click(function () {
+	$("#castBtn").click();
+});
+
 $("#login").on('click',function(){
 	$.ajax({
 		url:"login.do",
@@ -198,45 +230,25 @@ $("ul li").click(function () {
 });
 </script>
 
+
  
 <span class="accordion-heading togglize">
-                            <a class="accordion-toggle inactive collapsed" data-toggle="collapse" data-parent="#" href="#adminmenu">
-                                	관리
-                                <span class="font-icon-plus"></span>
-                                <span class="font-icon-minus"></span>
-                            </a>
-                        </span> 
+    <a class="accordion-toggle inactive collapsed" data-toggle="collapse" data-parent="#" href="#adminmenu">
+        	관리
+        <span class="font-icon-plus"></span>
+        <span class="font-icon-minus"></span>
+    </a>
+</span> 
 
-<!-- Header -->
-    <div class="sticky-nav">
-    	<a id="mobile-nav" class="menu-nav" href="#menu-nav"></a>
-    	
-    		
-        <!-- <ul>
-        <li style="line-height: 20px; margin: 15px; list-style: none; cursor: pointer;"> -->
-       	<a href="castbbs.do" class="font-icon-cog" style="font-size: 32px;"></a>
-        <!-- </li>
-        </ul> -->
-        <!-- <a id="pcmenu" href="#" class="font-icon-align-justify" style="font-size: 30px;"></a> -->	     
- 	        
-        <!-- <div id="logo">
-        	<a id="goUp" href="#home-slider" title="Brushed | Responsive One Page Template">Brushed Template</a>
-        </div>
-         -->
-        
-    </div>
-    
-    <div id="adminmenu">
-    	<font color="#ffffff"><a href="castbbs.do">섭외신청목록</a></font><br>
-    	<font color="#ffffff"><a href="musi_recu_deadline.do">뮤지션 모집 마감 목록</a></font>
-    </div>
+
 <!-- End Header -->
 <script type="text/javascript">
+
 var user_id = $.cookie("user_id");
 if(user_id != null){
    $("#id").val(user_id);
    $("#_chk_save_id").attr("checked", "checked");
-}
+}     
 
 $("#_chk_save_id").click(function() {      
    if($('input:checkbox[id="_chk_save_id"]').is(":checked")){
@@ -245,6 +257,7 @@ $("#_chk_save_id").click(function() {
          alert("아이디를 입력해 주십시오");
       }else{
          $.cookie("user_id", $("#id").val(), { expires: 7, path: '/' });
+         alert("aaa");
       }      
    }else{
       $.removeCookie("user_id", { path:'/' });

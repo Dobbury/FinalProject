@@ -44,6 +44,8 @@ public class PerformCastBBSDaoImpl implements PerformCastBBSDao {
 	public PerformCastBBSDto getPerformCastInfo(int perform_seq) {
 		return sqlSession.selectOne(namespace + "getPerformCastInfo",perform_seq);
 	}
+
+
 	
 	
 }

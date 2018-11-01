@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,8 +19,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kh.com.a.model.LocationDto;
+import kh.com.a.model.MusiRecuBBSDto;
 import kh.com.a.model.PerformCastBBSDto;
 import kh.com.a.service.LocationService;
+import kh.com.a.service.MusiRecuBBSService;
 import kh.com.a.service.PerformCastBBSService;
 
 
@@ -33,6 +36,9 @@ public class PerformCastBBSController {
 	
 	@Autowired
 	LocationService locationService;
+	
+	@Autowired
+	MusiRecuBBSService musiRecuBBSService;
 	
 	@RequestMapping(value="contact.do", method=RequestMethod.GET)
 	public String contactPage(Model model) {
@@ -87,8 +93,16 @@ public class PerformCastBBSController {
 	
 	@ResponseBody
 	@RequestMapping(value="approveAf.do", method=RequestMethod.GET)
-	public void approveAf(int seq_approve){
+	public void approveAf(int seq_approve,String edate,String title,String content){
 		
+		MusiRecuBBSDto dto = new MusiRecuBBSDto();
+		
+		dto.setTitle(title);
+		dto.setContent(content);
+		dto.setEdate(edate);
+		
+		dto.setPerform_seq(seq_approve);
+		musiRecuBBSService.addMusiRecuBBS(dto);
 		performCastBBSService.approveAf(seq_approve);
 		
 	}

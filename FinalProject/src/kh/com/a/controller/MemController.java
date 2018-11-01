@@ -45,10 +45,12 @@ import kh.com.a.service.PositionService;
 import kh.com.a.model.MemDto;
 import kh.com.a.model.PerformScheduleBBSDto;
 import kh.com.a.model.ScheduleBBSDto;
+import kh.com.a.model.TicketParam;
 import kh.com.a.model.VideoBBSDto;
 import kh.com.a.service.MemService;
 import kh.com.a.service.PerformScheduleBBSService;
 import kh.com.a.service.ScheduleBBSService;
+import kh.com.a.service.TicketService;
 import kh.com.a.service.VideoBBSService;
 
 
@@ -68,8 +70,9 @@ public class MemController {
 	@Autowired
 	PerformScheduleBBSService performScheduleService;
 	@Autowired
+	TicketService ticketService;
+	@Autowired
 	VideoBBSService videoBbsService;
-	
 	@Autowired
 	ScheduleBBSService scheduleBbsService;
 	
@@ -150,13 +153,21 @@ public class MemController {
 	}
 	
 	@RequestMapping(value="myPage.do",method= {RequestMethod.GET, RequestMethod.POST})
-	public String myPage(Model model) {
+	public String myPage(Model model,HttpSession session) {
 		logger.info("MemController myPage "+ new Date());
 		
 		model.addAttribute("genreList",genreService.getGenreList());
 		model.addAttribute("positionList",positionService.getPositionList());
 		model.addAttribute("locationList",locationService.getLocationList());
 	
+		MemDto dto  = (MemDto)session.getAttribute("user");
+		
+		List<TicketParam> TicketList = ticketService.myTicketList(dto.getId());
+		System.out.println(TicketList.size());
+		model.addAttribute("myTicketList",TicketList);
+		
+		
+		
 		return "mypage.tiles";
 	}
 	
@@ -275,16 +286,21 @@ public class MemController {
 		// logger.info("업로드 경로: " + fupload);
 
 		// 폴더
-		String fupload = "d:\\tmp";
+		//String fupload = "d:\\tmp";
 
+		//파일 기본경로
+        String defaultPath = req.getServletContext().getRealPath("/");
+        //파일 기본경로 _ 상세경로
+        String path = defaultPath + "upload" + File.separator;
+        
 		String f = dto.getOri_profilIMG();
 		String newFile = FUpUtil.getNewFile(f);
 
 		dto.setNew_profilIMG(newFile);
 		logger.info("변경된 파일명: " + newFile);
 
-		File file = new File(fupload + "/" + newFile);
-		logger.info("경로와 파일명: " + fupload + "/" + newFile);
+		File file = new File(path + "/" + newFile);
+		logger.info("경로와 파일명: " + path + "/" + newFile);
 
 		// 실제로 업로드 되는 부분
 		FileUtils.writeByteArrayToFile(file, fileload.getBytes());

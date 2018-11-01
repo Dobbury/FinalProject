@@ -9,13 +9,13 @@ public class Video_CommentDto implements Serializable {
 	private int video_seq;
 	private String id;
 	private String vcomment;
-	private Date wdate;
+	private String wdate;
 	
 	public Video_CommentDto() {
 		super();
 	}
 	
-	public Video_CommentDto(int vcomment_seq, int video_seq, String id, String vcomment, Date wdate) {
+	public Video_CommentDto(int vcomment_seq, int video_seq, String id, String vcomment, String wdate) {
 		super();
 		this.vcomment_seq = vcomment_seq;
 		this.video_seq = video_seq;
@@ -48,10 +48,10 @@ public class Video_CommentDto implements Serializable {
 	public void setVcomment(String vcomment) {
 		this.vcomment = vcomment;
 	}
-	public Date getWdate() {
+	public String getWdate() {
 		return wdate;
 	}
-	public void setWdate(Date wdate) {
+	public void setWdate(String wdate) {
 		this.wdate = wdate;
 	}
 	@Override

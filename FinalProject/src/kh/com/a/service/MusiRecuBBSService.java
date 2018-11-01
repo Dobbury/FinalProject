@@ -4,6 +4,7 @@ import java.util.List;
 
 import kh.com.a.model.MusiRecuBBSDto;
 import kh.com.a.model.Param;
+import kh.com.a.model.PerformCastBBSDto;
 import kh.com.a.model.RecuMusiInfoDto;
 
 public interface MusiRecuBBSService {
@@ -18,4 +19,6 @@ public interface MusiRecuBBSService {
 	
 	public List<MusiRecuBBSDto> getRecuMusiDeadLineList();
 	public List<MusiRecuBBSDto> moreMusiRecuDeadLineList();
+	
+	public void addMusiRecuBBS(MusiRecuBBSDto dto);
 }
