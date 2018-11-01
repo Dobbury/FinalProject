@@ -11,7 +11,7 @@
 		 LOCATION,TOTALCOUNT,AGEGRADE,CONTENT,APPROVAL,WDATE,PERFORM_DATE,LATI,LONGI)
 	    VALUES(PERFORM_SEQ.NEXTVAL, #{name}, #{compname}, #{email}, 
 	    #{phone}, #{place}, #{price}, #{location}, #{totalcount}, 
-	    #{agegrade}, #{content}, 0, SYSDATE, TO_DATE(#{perform_date}), #{lat}, #{lng})
+	    #{agegrade}, #{content}, 0, SYSDATE, TO_DATE(#{perform_date}), #{lati}, #{longi})
 	</insert>
 	
 	<!-- APPROVAL = 1(승인) // 0(미승인) -->
