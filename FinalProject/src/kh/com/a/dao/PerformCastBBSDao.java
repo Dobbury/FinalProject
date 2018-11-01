@@ -15,5 +15,7 @@ public interface PerformCastBBSDao {
 	public void approveAf(int seq_approve);
 
 	public PerformCastBBSDto getPerformCastInfo(int perform_seq);
+	
+	
 
 }
