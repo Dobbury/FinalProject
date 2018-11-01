@@ -3,6 +3,7 @@ package kh.com.a.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import kh.com.a.model.MemDto;
 import kh.com.a.model.VideoBBSDto;
 import kh.com.a.model.Video_LikeDto;
 
@@ -33,5 +34,9 @@ public interface VideoBBSDao {
 	public int CancelFollow(HashMap<String, String> map)throws Exception;
 	
 	public int doFollow(HashMap<String, String> map)throws Exception;
+	
+	public List<VideoBBSDto> getFollowingList(MemDto dto) throws Exception;
+	
+	public List<VideoBBSDto> latelyVideoList() throws Exception;
 	
 }

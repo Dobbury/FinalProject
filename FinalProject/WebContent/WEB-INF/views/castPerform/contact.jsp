@@ -299,18 +299,18 @@ function captureReturnKey(e) {
 <!-- End Socialize -->
 
 <script>
-	function show_alert(){
-	if(confirm("문의신청을 하시겠습니까?"))
+	/* function show_alert(){ */
+	/* if(confirm("문의신청을 하시겠습니까?"))
 		document.forms[0].submit();
-	}
+	} */
 	
-	/* $("#sending").click(function() {	
+	 $("#sending").click(function() {	
 		$("#lat").val(Marker_lat);
 		$("#lng").val(Marker_lng);
 		alert($("#lat").val());
 		alert('문의신청이 되었습니다');	
 		
-	}); */
+	}); 
 </script>
 
 

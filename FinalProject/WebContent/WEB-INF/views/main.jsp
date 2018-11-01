@@ -9,41 +9,30 @@
 
 <!-- Our Work Section -->
 
+
+<!-- 
+model.addAttribute("videoRankList", videoRank);
+model.addAttribute("followingList", followingList);
+model.addAttribute("performScheduleList", scheduleList);
+model.addAttribute("latelyVideoList", latelyVideoList); 
+-->
+
 <div class="container">
 	<!-- Title Page -->
 	<div class="row">
 		<div class="span12">
 			<div class="title-page">
-				<h2 class="title">Our Work</h2>
+				<h2 class="title">MusiCulture</h2>
 				<h3 class="title-description">
-					Check Out Our Projects on <a href="#">Dribbble</a>.
+					<!-- Check Out Our Projects on <a href="#">Dribbble</a>. -->
 				</h3>
 			</div>
 		</div>
-	</div>
+	</div>	
 	
-	
-	<!-- ComingList
-	IngList
-	videoList -->
-	
-	
-	<c:forEach items="${ComingList}" var="cSchedule" varStatus="vs">${vs.count}-${cSchedule.sdate}</c:forEach>
-	<c:forEach items="${IngList}" var="iSchedule" varStatus="vs">${vs.count}-${iSchedule.sdate}</c:forEach>
-	 
-	
-	
+
 	<!-- End Title Page -->
-	
-	<c:if test="${empty videoList}">
-	
-		<h1>영상이 없음</h1>
-		
-	</c:if>
-	
-	<%-- <c:forEach items="${videoList}" var="video" varStatus="vs">
-		<h1>${video.title}</h1>
-	</c:forEach> --%>
+ 
 	
 	<!-- Portfolio Projects -->
 	<div class="row">
@@ -51,174 +40,117 @@
 			<!-- Filter -->
 			<nav id="options" class="work-nav">
 				<ul id="filters" class="option-set" data-option-key="filter">
-					<li class="type-work">Type of Work</li>
-					<li><a href="#filter" data-option-value="*" class="selected">All
-							Projects</a></li>
-					<li><a href="#filter">Design</a></li><!-- data-option-value=".design" -->
-					<li><a href="#filter">Photography</a></li><!-- data-option-value=".photography" -->
-					<li><a href="#filter">Video</a></li><!-- data-option-value=".video" -->
+					<li class="type-work">MusiCulture</li>
+					<li><a href="#filter" data-option-value=".lately" class="selected">개인영상(최신순)</a></li>
+					<li><a href="#filter" data-option-value=".like">개인영상(인기순)</a></li><!-- data-option-value=".design" -->
+					<li><a href="#filter" data-option-value=".following">팔로잉 영상</a></li><!-- data-option-value=".photography" -->
+					<li><a href="#filter" data-option-value=".schedule">기부공연 행사일정</a></li><!-- data-option-value=".video" -->
 				</ul>
 			</nav>
 			<!-- End Filter -->
 		</div>
 		
-		<!-- <div id="header" class="style-scope ytd-item-section-renderer"></div>
-		<div><p class="navbar-text item-thumbs design">추천 장르 영상</p></div>
-		<div><p class="navbar-text item-thumbs photography">활동 지역 영상</p></div>
-		<div><p class="navbar-text item-thumbs video">랭킹별</p></div> -->
-		
-		<!-- <h5 id="pagination" class="page-header">
-		<a class="anchorjs-link" href="#pagination"><span class="anchorjs-icon"></span></a></h5> -->
 		
 		<hr><hr>
 		
 		<%
-		MemDto loginDto = (MemDto)session.getAttribute("login");
+		MemDto loginDto = (MemDto)session.getAttribute("user");
 		
 		if(loginDto != null){
 					
 		%>
-		<%-- <c:if test="${login.id ne '' || login.id ne null}"> --%>
-		
-		<h1>${login.id}</h1>
-		<h1>Log On</h1>
 	
+	
+	<%-- 
+	<c:forEach items="${ComingList}" var="cSchedule" varStatus="vs">${vs.count}-${cSchedule.sdate}</c:forEach>
+	<c:forEach items="${IngList}" var="iSchedule" varStatus="vs">${vs.count}-${iSchedule.sdate}</c:forEach> --%>
+		
+<%-- 	
+	<c:forEach items="${videoRankList}" var="rank" varStatus="vs"></c:forEach>
+	<c:forEach items="${followingList}" var="followings" varStatus="vs">${vs.count}-${followings.id}</c:forEach> 
+	<c:forEach items="${performScheduleList}" var="latelySchedule" varStatus="vs"></c:forEach>
+	<c:forEach items="${latelyVideoList}" var="lateVideo" varStatus="vs"> 
+--%>		
+		
+		
+		<h1>${user.id}</h1>
+		<h1>Log On</h1>
+	   
+	    <c:if test="${empty videoRankList}"><h3>인기 영상이 없습니다.</h3></c:if>
+	    <c:if test="${empty followingList}"><h3>팔로잉 대상이 없습니다.</h3></c:if>
+	    <c:if test="${empty latelyVideoList}"><h3>최신 영상이 없습니다.</h3></c:if>
+	    <c:if test="${empty performScheduleList}"><h3>최신 공연행사가 없습니다.</h3></c:if>
+	    
 		<div class="span9">
 			<div class="row">
 				<section id="projects">
 					<ul id="thumbs">
 						<div>
 						<!-- Item Project and Filter Name -->
-						<c:if test="${!empty videoList }">
-						<c:forEach items="${videoList}" var="video" varStatus="vs">
-						<li class="item-thumbs span3 design">
+						<c:forEach items="${videoRankList}" var="Vrank" varStatus="vs" begin = "1" end = "9">
+						<li class="item-thumbs span3 like">
 							<!-- Fancybox - Gallery Enabled - Title - Full Image --> <a
 							class="hover-wrap fancybox" data-fancybox-group="gallery"
-							title="The City" href="VideoBbsDetail.do?seq=${video.video_seq}">
+							title="${Vrank.title}" href="VideoBbsDetail.do?seq=${Vrank.video_seq}">
 								<span class="overlay-img"></span> <span
 								class="overlay-img-thumb font-icon-plus"></span>
 						</a> <!-- Thumb Image and Description --> <img
-							src="${video.thumbnail}"
+							src="${Vrank.thumbnail}"
 							alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
 						</li>
 						</c:forEach>
-						</c:if> 
-						<li class="item-thumbs span3 design">
+						
+						
+						<!-- Item Project and Filter Name -->
+						<c:forEach items="${followingList}" var="followings" varStatus="vs" begin = "1" end = "9">
+						<li class="item-thumbs span3 following">
 							<!-- Fancybox - Gallery Enabled - Title - Full Image --> <a
 							class="hover-wrap fancybox" data-fancybox-group="gallery"
-							title="The City" href="VideoBbsDetail.do?seq=44">
+							title="${followings.title}" href="VideoBbsDetail.do?seq=${followings.video_seq}">
 								<span class="overlay-img"></span> <span
 								class="overlay-img-thumb font-icon-plus"></span>
 						</a> <!-- Thumb Image and Description --> <img
-							src="_include/img/work/thumbs/image-01.jpg"
-							alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
+							src="${followings.thumbnail }"
+							alt="">
 						</li>
+						</c:forEach>
 						<!-- End Item Project -->
 
 						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs span3 design">
+					    <c:forEach items="${latelyVideoList}" var="lateVideo" varStatus="vs" begin = "1" end = "9"> 
+						<li class="item-thumbs span3 lately">
 							<!-- Fancybox - Gallery Enabled - Title - Full Image --> <a
 							class="hover-wrap fancybox" data-fancybox-group="gallery"
-							title="The Office"
-							href="_include/img/work/full/image-02-full.jpg"> <span
+							title="${lateVideo.title}"
+							href="VideoBbsDetail.do?seq=${lateVideo.video_seq}"> <span
 								class="overlay-img"></span> <span
 								class="overlay-img-thumb font-icon-plus"></span>
 						</a> <!-- Thumb Image and Description --> <img
-							src="_include/img/work/thumbs/image-02.jpg"
-							alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
+							src="${lateVideo.thumbnail}"
+							alt="">
 						</li>
+						</c:forEach> 
 						<!-- End Item Project -->
-
+						
+						
 						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs span3 photography">
+						<c:forEach items="${performScheduleList}" var="lateSchedule" varStatus="vs" begin = "1" end = "9">
+						<li class="item-thumbs span3 schedule">
 							<!-- Fancybox - Gallery Enabled - Title - Full Image --> <a
 							class="hover-wrap fancybox" data-fancybox-group="gallery"
-							title="The Mountains"
-							href="_include/img/work/full/image-03-full.jpg"> <span
+							title="${lateSchedule.title}"
+							href="perform_scheduledetail.do?seq=${lateSchedule.perform_schedule_seq}"> <span
 								class="overlay-img"></span> <span
 								class="overlay-img-thumb font-icon-plus"></span>
 						</a> <!-- Thumb Image and Description --> <img
-							src="_include/img/work/thumbs/image-03.jpg"
-							alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
+							src="${lateSchedule.new_consertIMG}"
+							alt="">
 						</li>
+						</c:forEach>
 						</div>
 						<!-- End Item Project -->
-						<div><hr>
-						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs span3 video">
-							<!-- Fancybox Media - Gallery Enabled - Title - Link to Video -->
-							<a class="hover-wrap fancybox-media" data-fancybox-group="video"
-							title="Video Content From Vimeo" href="http://vimeo.com/51460511">
-								<span class="overlay-img"></span> <span
-								class="overlay-img-thumb font-icon-plus"></span>
-						</a> <!-- Thumb Image and Description --> <img
-							src="_include/img/work/thumbs/image-08.jpg" alt="Video">
-						</li>
-						<!-- End Item Project -->
-
-						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs span3 photography">
-							<!-- Fancybox - Gallery Enabled - Title - Full Image --> <a
-							class="hover-wrap fancybox" data-fancybox-group="gallery"
-							title="The Sea" href="_include/img/work/full/image-04-full.jpg">
-								<span class="overlay-img"></span> <span
-								class="overlay-img-thumb font-icon-plus"></span>
-						</a> <!-- Thumb Image and Description --> <img
-							src="_include/img/work/thumbs/image-04.jpg"
-							alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
-						</li>
-						<!-- End Item Project -->
-
-						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs span3 photography">
-							<!-- Fancybox - Gallery Enabled - Title - Full Image --> <a
-							class="hover-wrap fancybox" data-fancybox-group="gallery"
-							title="Clouds" href="_include/img/work/full/image-05-full.jpg">
-								<span class="overlay-img"></span> <span
-								class="overlay-img-thumb font-icon-plus"></span>
-						</a> <!-- Thumb Image and Description --> <img
-							src="_include/img/work/thumbs/image-05.jpg"
-							alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
-						</li>
-						<!-- End Item Project -->
-						</div>
-						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs span3 video">
-							<!-- Fancybox Media - Gallery Enabled - Title - Link to Video -->
-							<a class="hover-wrap fancybox-media" data-fancybox-group="video"
-							title="Video Content From Vimeo" href="http://vimeo.com/50834315">
-								<span class="overlay-img"></span> <span
-								class="overlay-img-thumb font-icon-plus"></span>
-						</a> <!-- Thumb Image and Description --> <img
-							src="_include/img/work/thumbs/image-09.jpg" alt="Video">
-						</li>
-						<!-- End Item Project -->
-
-						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs span3 design">
-							<!-- Fancybox - Gallery Enabled - Title - Full Image --> <a
-							class="hover-wrap fancybox" data-fancybox-group="gallery"
-							title="The Dark" href="_include/img/work/full/image-06-full.jpg">
-								<span class="overlay-img"></span> <span
-								class="overlay-img-thumb font-icon-plus"></span>
-						</a> <!-- Thumb Image and Description --> <img
-							src="_include/img/work/thumbs/image-06.jpg"
-							alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
-						</li>
-						<!-- End Item Project -->
-
-						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs span3 design">
-							<!-- Fancybox - Gallery Enabled - Title - Full Image --> <a
-							class="hover-wrap fancybox" data-fancybox-group="gallery"
-							title="The Beach" href="_include/img/work/full/image-07-full.jpg">
-								<span class="overlay-img"></span> <span
-								class="overlay-img-thumb font-icon-plus"></span>
-						</a> <!-- Thumb Image and Description --> <img
-							src="_include/img/work/thumbs/image-07.jpg"
-							alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
-						</li>
-						<!-- End Item Project -->
+						
+						
 					</ul>
 				</section>
 
@@ -235,7 +167,7 @@
 					
 						<!-- Item Project and Filter Name -->
 						
-						<li class="item-thumbs span3 design">
+						<li class="item-thumbs span3 lately">
 							<!-- Fancybox - Gallery Enabled - Title - Full Image --> <a
 							class="hover-wrap fancybox" data-fancybox-group="gallery"
 							title="The City" href="_include/img/work/full/image-01-full.jpg">
@@ -248,7 +180,7 @@
 						<!-- End Item Project -->
 
 						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs span3 design">
+						<li class="item-thumbs span3 lately">
 							<!-- Fancybox - Gallery Enabled - Title - Full Image --> <a
 							class="hover-wrap fancybox" data-fancybox-group="gallery"
 							title="The Office"
@@ -262,7 +194,7 @@
 						<!-- End Item Project -->
 
 						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs span3 photography">
+						<li class="item-thumbs span3 lately">
 							<!-- Fancybox - Gallery Enabled - Title - Full Image --> <a
 							class="hover-wrap fancybox" data-fancybox-group="gallery"
 							title="The Mountains"
@@ -276,7 +208,7 @@
 						<!-- End Item Project -->
 
 						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs span3 video">
+						<li class="item-thumbs span3 rank">
 							<!-- Fancybox Media - Gallery Enabled - Title - Link to Video -->
 							<a class="hover-wrap fancybox-media" data-fancybox-group="video"
 							title="Video Content From Vimeo" href="http://vimeo.com/51460511">
@@ -288,7 +220,7 @@
 						<!-- End Item Project -->
 
 						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs span3 photography">
+						<li class="item-thumbs span3 rank">
 							<!-- Fancybox - Gallery Enabled - Title - Full Image --> <a
 							class="hover-wrap fancybox" data-fancybox-group="gallery"
 							title="The Sea" href="_include/img/work/full/image-04-full.jpg">
@@ -301,7 +233,8 @@
 						<!-- End Item Project -->
 
 						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs span3 photography">
+						<c:forEach begin="1" end="9">
+						<li class="item-thumbs span3 schedule">
 							<!-- Fancybox - Gallery Enabled - Title - Full Image --> <a
 							class="hover-wrap fancybox" data-fancybox-group="gallery"
 							title="Clouds" href="_include/img/work/full/image-05-full.jpg">
@@ -311,10 +244,12 @@
 							src="_include/img/work/thumbs/image-05.jpg"
 							alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
 						</li>
+						</c:forEach>
 						<!-- End Item Project -->
 
 						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs span3 video">
+						<c:forEach begin="1" end="9">
+						<li class="item-thumbs span3 schedule">
 							<!-- Fancybox Media - Gallery Enabled - Title - Link to Video -->
 							<a class="hover-wrap fancybox-media" data-fancybox-group="video"
 							title="Video Content From Vimeo" href="http://vimeo.com/50834315">
@@ -323,10 +258,12 @@
 						</a> <!-- Thumb Image and Description --> <img
 							src="_include/img/work/thumbs/image-09.jpg" alt="Video">
 						</li>
+						</c:forEach>
 						<!-- End Item Project -->
 
 						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs span3 design">
+						<c:forEach begin="1" end="9">
+						<li class="item-thumbs span3 like">
 							<!-- Fancybox - Gallery Enabled - Title - Full Image --> <a
 							class="hover-wrap fancybox" data-fancybox-group="gallery"
 							title="The Dark" href="_include/img/work/full/image-06-full.jpg">
@@ -336,10 +273,12 @@
 							src="_include/img/work/thumbs/image-06.jpg"
 							alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
 						</li>
+						</c:forEach>
 						<!-- End Item Project -->
 
 						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs span3 design">
+						<c:forEach begin="1" end="9">
+						<li class="item-thumbs span3 like">
 							<!-- Fancybox - Gallery Enabled - Title - Full Image --> <a
 							class="hover-wrap fancybox" data-fancybox-group="gallery"
 							title="The Beach" href="_include/img/work/full/image-07-full.jpg">
@@ -349,6 +288,7 @@
 							src="_include/img/work/thumbs/image-07.jpg"
 							alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
 						</li>
+						</c:forEach>
 						<!-- End Item Project -->
 					</ul>
 				</section>
@@ -361,4 +301,10 @@
 	<!-- End Portfolio Projects -->
 </div>
 
+
+
+<script>
+
+
+</script>
 <!-- End Our Work Section -->

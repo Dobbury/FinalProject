@@ -94,24 +94,6 @@
 		<span class="font-icon-calendar">&nbsp;${bbs.wdate }<br>
 		<p></p>
 	</c:if>
-  	
-  	<!-- 해당 뮤지션의 영상 조건문 -->
-  	<%-- <c:if test = "${getVideoBbs.video_seq } == ${bbs.video_seq }"> --%>
-	  	<tr align="center" style="margin: 10px">
-			<td>
-				<img alt="썸네일" src=${bbs.thumbnail} width="150px" height="80px">
-			</td>
-	    	<td><a href="VideoBbsDetail.do?seq=${bbs.video_seq}">${bbs.title}</a></td>
-			<td>${bbs.readcount }</td>
-			<td>${bbs.wdate }</td>
-		</tr>
-		<tr>
-			<td><br></td>
-			<td><br></td>
-			<td><br></td>
-			<td><br></td>
-		</tr>
-	<%-- </c:if> --%>
 	</c:forEach>
 </div>
 </div>
@@ -199,7 +181,10 @@ function fn_comment(code){
 		
 		var following_id = "${getVideoBbs.id}";
 		var follower = "${user.id}";
-		
+		if (follower == null || follower == "") {
+			alert("로그인 하셔야 합니다");
+			return;
+		}
 		$.ajax({
 			
 			url : "ClickFollow.do",

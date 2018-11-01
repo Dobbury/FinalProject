@@ -47,6 +47,12 @@ public class PerformScheduleBBSServiceImpl implements PerformScheduleBBSService 
 		return dao.getPerformScheduleSeqMax();
 	}
 
+	@Override
+	public List<PerformScheduleBBSDto> latelyPerformSchedules() {
+
+		return dao.latelyPerformSchedules();
+	}
+
 	
 	
 }	

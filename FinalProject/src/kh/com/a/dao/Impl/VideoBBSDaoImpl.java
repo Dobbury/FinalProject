@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.com.a.dao.VideoBBSDao;
+import kh.com.a.model.MemDto;
 import kh.com.a.model.VideoBBSDto;
 import kh.com.a.model.Video_LikeDto;
 
@@ -105,6 +106,19 @@ public class VideoBBSDaoImpl implements VideoBBSDao {
 		sqlSession.insert(namespace + "dofollow", map);
 		
 		return 1;
+	}
+
+	@Override
+	public List<VideoBBSDto> getFollowingList(MemDto dto) throws Exception {
+		
+		System.out.println("여기는 getFollowing DaoMethod="+ dto.getId());
+		return sqlSession.selectList(namespace + "getfollowingList", dto);
+ 
+	}
+
+	@Override
+	public List<VideoBBSDto> latelyVideoList() throws Exception {
+		return sqlSession.selectList(namespace + "latelyVideoList");
 	}
 	
 	

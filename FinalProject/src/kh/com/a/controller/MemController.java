@@ -7,6 +7,7 @@ import java.util.Map;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -42,9 +43,11 @@ import kh.com.a.service.LocationService;
 import kh.com.a.service.PositionService;
 
 import kh.com.a.model.MemDto;
+import kh.com.a.model.PerformScheduleBBSDto;
 import kh.com.a.model.ScheduleBBSDto;
 import kh.com.a.model.VideoBBSDto;
 import kh.com.a.service.MemService;
+import kh.com.a.service.PerformScheduleBBSService;
 import kh.com.a.service.ScheduleBBSService;
 import kh.com.a.service.VideoBBSService;
 
@@ -62,8 +65,8 @@ public class MemController {
 	GenreService genreService;
 	@Autowired
 	PositionService positionService;
-	
-	
+	@Autowired
+	PerformScheduleBBSService performScheduleService;
 	@Autowired
 	VideoBBSService videoBbsService;
 	
@@ -74,17 +77,73 @@ public class MemController {
 	public String mainView(HttpServletRequest req, HttpServletResponse rep, Model model) {
 		logger.info("KhMemberController mainView"+ new Date());
 		
+		// 개인버스킹영상 최신순
+		// 좋아요 순
+		// 팔로잉(랜덤)
+		// 공연스케줄(최신)
+		
 		List<VideoBBSDto> videoRank = null;
-		List<ScheduleBBSDto> ComingSchedule = null;
-		List<ScheduleBBSDto> IngSchedule = null;
+		//List<ScheduleBBSDto> ComingSchedule = null;
+		//List<ScheduleBBSDto> IngSchedule = null;
+		List<VideoBBSDto> followingList = null;
+		List<PerformScheduleBBSDto> scheduleList = null;
+		List<VideoBBSDto> latelyVideoList = null;
+		
+		HttpSession session = req.getSession();
+		MemDto login = (MemDto)session.getAttribute("user");
 		
 		videoRank = videoBbsService.getVideoForUser();
-		ComingSchedule = scheduleBbsService.getComingSchedule();
-		IngSchedule = scheduleBbsService.getIngSchedule();
+		//ComingSchedule = scheduleBbsService.getComingSchedule();
+		//IngSchedule = scheduleBbsService.getIngSchedule();
+		scheduleList = performScheduleService.latelyPerformSchedules();
 		
-		model.addAttribute("videoList", videoRank);
-		model.addAttribute("ComingList", ComingSchedule);
-		model.addAttribute("IngList", IngSchedule);
+		try {
+			latelyVideoList = videoBbsService.latelyVideoList();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		
+		// 2018/11/01/15:30 // 2018/11/01/18:00
+		/*int tmp = -1;
+		Date iDate = new Date();
+		Date jDate = new Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmm")
+		for (int i = 0; i < latelyVideoList.size(); i++) {
+			for (int j = 0; j < latelyVideoList.size()-1; j++) {
+				if (latelyVideoList.get(i).getId()) {
+					
+				}
+				
+			}
+		}*/
+		if (login != null) {
+			
+			try {
+				System.out.println("main.do login "+login.getId());
+				followingList = videoBbsService.getFollowingList(login);
+			} catch (Exception e) {
+				System.out.println("MemberController main.do (followingList) error 발생");
+				e.printStackTrace();
+			} finally {
+				System.out.println("followingList finished to get");
+			}
+			
+		}
+		
+		model.addAttribute("videoRankList", videoRank);
+		//model.addAttribute("ComingList", ComingSchedule);
+		//model.addAttribute("IngList", IngSchedule);
+		model.addAttribute("followingList", followingList);
+		model.addAttribute("performScheduleList", scheduleList);
+		model.addAttribute("latelyVideoList", latelyVideoList);
+		
+		if (followingList == null) {
+			System.out.println("following null");
+		}else {
+		for (int i = 0; i < followingList.size(); i++) {
+			System.out.println("followingList"+i+"번째="+followingList.get(i).getId());
+			}
+		}
 		/*model.addAttribute("login", login);*/
 		
 		return "main.tiles";
@@ -124,7 +183,6 @@ public class MemController {
 		
 		map.put("result", "success");
 		session.setAttribute("user", dto);
-		session.setAttribute("login", dto);
 		return map;
 	}
 	
@@ -245,32 +303,5 @@ public class MemController {
 		return "aboutus.tiles";
 	}
 	
-	@RequestMapping(value="loginAf.do", method=RequestMethod.GET)
-	public String loginAf(HttpServletRequest req, HttpServletResponse rep, MemDto mem) throws IOException{
-		logger.info("KhMemberController loginAf" + new Date());
-		
-		MemDto login = null;
-		// login을 DB 확인
-		//login = memberService.login(mem);
-		PrintWriter out;
-		
-		
-		login = new MemDto("testId", "testPwd", "testName", "01020233808", "yuns0316@gmail.com", "Rock", "Seoul", "890209", "testTN", "IMG", "IMG", "Vocal", 1, 1, 1, "M", 1);
-				/*new MemDto("testTN", "testId", "testPwd", "testName", "01020233808", "yuns0316@gmail.com", "Rock", "Seoul", 890209, "IMG", "Vocal", 1, 1, 1, "M", 1);*/
-		if(login != null && !login.getId().equals("")) {
-			
-			req.getSession().setAttribute("login", login);
-			
-			return "redirect:/main.do";			
-		}else {
-			req.getSession().invalidate();
-			
-			out = rep.getWriter();
-			out.println("로그인 아이디 또는 비밀번호가 일치하지 않습니다"); 
-			out.close();
-		 						
-			return "login.tiles";
-		//	return "forward:/login.do";
-		}	
-	}
+	
 }
