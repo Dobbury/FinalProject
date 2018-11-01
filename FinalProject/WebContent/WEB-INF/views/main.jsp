@@ -34,6 +34,18 @@ model.addAttribute("latelyVideoList", latelyVideoList);
 	<!-- End Title Page -->
  
 	
+	
+		
+		
+		<hr><hr>
+		
+		<%
+		MemDto loginDto = (MemDto)session.getAttribute("user");
+		
+		if(loginDto != null){
+					
+		%>
+	
 	<!-- Portfolio Projects -->
 	<div class="row">
 		<div class="span3">
@@ -49,17 +61,6 @@ model.addAttribute("latelyVideoList", latelyVideoList);
 			</nav>
 			<!-- End Filter -->
 		</div>
-		
-		
-		<hr><hr>
-		
-		<%
-		MemDto loginDto = (MemDto)session.getAttribute("user");
-		
-		if(loginDto != null){
-					
-		%>
-	
 	
 	<%-- 
 	<c:forEach items="${ComingList}" var="cSchedule" varStatus="vs">${vs.count}-${cSchedule.sdate}</c:forEach>
@@ -71,15 +72,15 @@ model.addAttribute("latelyVideoList", latelyVideoList);
 	<c:forEach items="${performScheduleList}" var="latelySchedule" varStatus="vs"></c:forEach>
 	<c:forEach items="${latelyVideoList}" var="lateVideo" varStatus="vs"> 
 --%>		
-		
+
 		
 		<h1>${user.id}</h1>
 		<h1>Log On</h1>
 	   
-	    <c:if test="${empty videoRankList}"><h3>인기 영상이 없습니다.</h3></c:if>
-	    <c:if test="${empty followingList}"><h3>팔로잉 대상이 없습니다.</h3></c:if>
-	    <c:if test="${empty latelyVideoList}"><h3>최신 영상이 없습니다.</h3></c:if>
-	    <c:if test="${empty performScheduleList}"><h3>최신 공연행사가 없습니다.</h3></c:if>
+	    
+	    
+	    
+	    
 	    
 		<div class="span9">
 			<div class="row">
@@ -87,7 +88,12 @@ model.addAttribute("latelyVideoList", latelyVideoList);
 					<ul id="thumbs">
 						<div>
 						<!-- Item Project and Filter Name -->
-						<c:forEach items="${videoRankList}" var="Vrank" varStatus="vs" begin = "1" end = "9">
+						<%-- <c:forEach items="${videoRankList}" var="Vrank" varStatus="vs" begin = "1" end = "9"> --%>
+						<div class="item-thumbs span3 like">
+						<c:if test="${empty videoRankList}"><h3>인기 영상이 없습니다</h3></c:if>
+						</div>
+						<c:if test="${!empty videoRankList}">
+						<c:forEach items="${videoRankList}" var="Vrank" varStatus="vs">
 						<li class="item-thumbs span3 like">
 							<!-- Fancybox - Gallery Enabled - Title - Full Image --> <a
 							class="hover-wrap fancybox" data-fancybox-group="gallery"
@@ -99,10 +105,15 @@ model.addAttribute("latelyVideoList", latelyVideoList);
 							alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
 						</li>
 						</c:forEach>
+						</c:if>
 						
 						
 						<!-- Item Project and Filter Name -->
-						<c:forEach items="${followingList}" var="followings" varStatus="vs" begin = "1" end = "9">
+						<div class="item-thumbs span3 following">
+						<c:if test="${empty followingList}"><h3>팔로잉 대상이 없습니다</h3></c:if>
+						</div>
+						<c:if test="${!empty followingList}">
+						<c:forEach items="${followingList}" var="followings" varStatus="vs">
 						<li class="item-thumbs span3 following">
 							<!-- Fancybox - Gallery Enabled - Title - Full Image --> <a
 							class="hover-wrap fancybox" data-fancybox-group="gallery"
@@ -114,10 +125,19 @@ model.addAttribute("latelyVideoList", latelyVideoList);
 							alt="">
 						</li>
 						</c:forEach>
+						</c:if>
 						<!-- End Item Project -->
 
+				
+						
 						<!-- Item Project and Filter Name -->
-					    <c:forEach items="${latelyVideoList}" var="lateVideo" varStatus="vs" begin = "1" end = "9"> 
+						<div class="item-thumbs span3 lately">
+						<c:if test="${empty latelyVideoList}"><h3>최신 영상이 없습니다</h3></c:if>
+						</div>
+						<c:if test="${!empty latelyVideoList}">
+					    <c:forEach items="${latelyVideoList}" var="lateVideo" varStatus="vs">
+					    <p>${latelyVideo.title }</p>
+					    <img alt="" src="${latelyVideo.thumbnail}">  
 						<li class="item-thumbs span3 lately">
 							<!-- Fancybox - Gallery Enabled - Title - Full Image --> <a
 							class="hover-wrap fancybox" data-fancybox-group="gallery"
@@ -129,12 +149,18 @@ model.addAttribute("latelyVideoList", latelyVideoList);
 							src="${lateVideo.thumbnail}"
 							alt="">
 						</li>
-						</c:forEach> 
+						</c:forEach>
+						</c:if> 
 						<!-- End Item Project -->
 						
 						
 						<!-- Item Project and Filter Name -->
-						<c:forEach items="${performScheduleList}" var="lateSchedule" varStatus="vs" begin = "1" end = "9">
+						<div class="item-thumbs span3 schedule">
+						<c:if test="${empty performScheduleList}"><h3>최신 공연행사가 없습니다</h3></c:if>
+						</div>
+						<c:if test="${!empty performScheduleList}">
+						<c:forEach items="${performScheduleList}" var="lateSchedule" varStatus="vs">
+						
 						<li class="item-thumbs span3 schedule">
 							<!-- Fancybox - Gallery Enabled - Title - Full Image --> <a
 							class="hover-wrap fancybox" data-fancybox-group="gallery"
@@ -147,6 +173,7 @@ model.addAttribute("latelyVideoList", latelyVideoList);
 							alt="">
 						</li>
 						</c:forEach>
+						</c:if>
 						</div>
 						<!-- End Item Project -->
 						
@@ -160,6 +187,23 @@ model.addAttribute("latelyVideoList", latelyVideoList);
 		<%-- <c:if test="${login.id eq '' || login.id eq null}"> --%>
 		<% }else{ %>
 		<h1>Log Off</h1>
+		
+		<!-- Portfolio Projects -->
+	<div class="row">
+		<div class="span3">
+			<!-- Filter -->
+			<nav id="options" class="work-nav">
+				<ul id="filters" class="option-set" data-option-key="filter">
+					<li class="type-work">MusiCulture</li>
+					<li><a href="#filter" data-option-value=".lately" class="selected">개인영상(최신순)</a></li>
+					<li><a href="#filter" data-option-value=".like">개인영상(인기순)</a></li><!-- data-option-value=".design" -->
+					<li><a href="#filter" data-option-value=".following">팔로잉 영상</a></li><!-- data-option-value=".photography" -->
+					<li><a href="#filter" data-option-value=".schedule">기부공연 행사일정</a></li><!-- data-option-value=".video" -->
+				</ul>
+			</nav>
+			<!-- End Filter -->
+		</div>
+		
 		<div class="span9">
 			<div class="row">
 				<section id="projects">
