@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class MusiRecuBBSDto implements Serializable {
 
-	private Date sdate;
+	private String sdate;
 	private String edate;
 	private String title;
 	private String content;
@@ -16,7 +16,7 @@ public class MusiRecuBBSDto implements Serializable {
 		super();
 	}
 
-	public MusiRecuBBSDto(Date sdate, String edate, String title, String content, int perform_seq, int musi_recu_seq) {
+	public MusiRecuBBSDto(String sdate, String edate, String title, String content, int perform_seq, int musi_recu_seq) {
 		super();
 		this.sdate = sdate;
 		this.edate = edate;
@@ -26,11 +26,11 @@ public class MusiRecuBBSDto implements Serializable {
 		this.musi_recu_seq = musi_recu_seq;
 	}
 
-	public Date getSdate() {
+	public String getSdate() {
 		return sdate;
 	}
 
-	public void setSdate(Date sdate) {
+	public void setSdate(String sdate) {
 		this.sdate = sdate;
 	}
 

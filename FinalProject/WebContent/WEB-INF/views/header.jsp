@@ -5,8 +5,6 @@
 	MemDto dto = (MemDto)session.getAttribute("user");
 %>
 
-
-
 <style>
 .modal.fade{
 	top:-100%;
@@ -14,58 +12,69 @@
 .modal-body {
 	vertical-align: middle;
 }
+#menu-nav ul{
+	display:none;
+	position:absolute;
+}
+
+#menu-nav li:hover ul {
+ display: block;
+}
 
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/jquery/jquery.cookie.js"></script>
 <!-- Header -->
 <div class="sticky-nav">
-
 	<div id="logo">
 		<a id="goUp" href="#home-slider"
 			title="Brushed | Responsive One Page Template">Brushed Template</a>
 	</div>
 
+
 	<nav id="menu">
 		<ul id="menu-nav">
-			<%if(dto!=null){ %>
+		
+			<li><a href="main.do" class="external">Main</a></li>
+			<li><a class="external" href="aboutus.do">About</a></li>
+			<%if(dto!=null){ 
+				if(dto.getAuth()==0){
+			%>
+			<li><a href="#" id="current">관리</a>
+		         <ul>
+		           <li ><a href="castbbs.do" class="external">섭외신청목록</a></li>
+		           <li ><a href="musi_recu_deadline.do" class="external">뮤지션 모집 마감 목록</a></li>
+		         </ul>
+	      	</li>
+			<%	} %>
 			<li><a href="myPage.do" class="external">My page</a></li>
 			<%} %>
-			
-			<li class="current"><a href="#home-slider">Home</a></li>
-			<li><a href="main.do" class="external">Main</a></li>
-			
 			<li class="afterloginOK"><%if(dto !=null){ %>
 										<a href="musireculist.do"  class="external">뮤지션 모집</a>
 									<%}else{ %>
 										<a data-toggle="modal" href="#myModal" >뮤지션 모집</a>
 									<%} %>
 										</li><!-- 로그인이 필요한 경우  -->
-			<!--  
-                <li><a href="#contact">Contact</a></li>
-				<li><a href="shortcodes.html" class="external">Shortcodes</a></li> -->
+			
 			<li class="afterloginOK"><%if(dto !=null){ %>
-										<a href="perform_scheduleslist.do"  class="external">고옹연 일정</a>
+										<a href="perform_scheduleslist.do"  class="external">공연 일정</a>
 									<%}else{ %>
-										<a data-toggle="modal" href="#myModal">고옹연 일정</a>
+										<a data-toggle="modal" href="#myModal">공연 일정</a>
 									<%} %>
 										</li><!-- 로그인이 필요한 경우  -->
-										
-			<li><a class="external" href="aboutus.do">About our site</a></li>
-         	<li><a class="external" href="videoBbs.do">뮤지션's 버스킹</a></li>
-            
+
             <li class="afterloginOK"><%if(dto !=null){ %>
-            						<a class="external" href="schedule.do">공연일정</a>
+            							<a class="external" href="schedule.do">뮤지션's 버스킹</a>
             						<%}else{ %>
-            						<a data-toggle="modal" href="#myModal" >공연일정</a>
+            							<a data-toggle="modal" href="#myModal" >뮤지션's 버스킹</a>
             						<%} %>
-            						</li>
+            							</li>
             <li class="afterloginOK"><%if(dto !=null){ %>
-            						<a class="external" href="contact.do">공연섭외</a>
+            							<a class="external" href="contact.do">공연섭외</a>
             						<%}else{ %>
-            						<a data-toggle="modal" href="#myModal" >공연섭외</a>
+            							<a data-toggle="modal" href="#myModal" >공연섭외</a>
             						<%} %>
-            						</li>
+            							</li>
             
 			<li><a href="VideoBBS.do" class="external">영상게시판</a></li>
 			
@@ -212,43 +221,7 @@ $("ul li").click(function () {
 	%>
 });
 </script>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>    
 
-<fmt:requestEncoding value="utf-8"/>
- 
-<span class="accordion-heading togglize">
-                            <a class="accordion-toggle inactive collapsed" data-toggle="collapse" data-parent="#" href="#adminmenu">
-                                	관리
-                                <span class="font-icon-plus"></span>
-                                <span class="font-icon-minus"></span>
-                            </a>
-                        </span> 
-
-<!-- Header -->
-    <div class="sticky-nav">
-    	<a id="mobile-nav" class="menu-nav" href="#menu-nav"></a>
-    	
-    		
-        <!-- <ul>
-        <li style="line-height: 20px; margin: 15px; list-style: none; cursor: pointer;"> -->
-       	<a href="castbbs.do" class="font-icon-cog" style="font-size: 32px;"></a>
-        <!-- </li>
-        </ul> -->
-        <!-- <a id="pcmenu" href="#" class="font-icon-align-justify" style="font-size: 30px;"></a> -->	     
- 	        
-        <!-- <div id="logo">
-        	<a id="goUp" href="#home-slider" title="Brushed | Responsive One Page Template">Brushed Template</a>
-        </div>
-         -->
-        
-    </div>
-    
-    <div id="adminmenu">
-    	<font color="#ffffff"><a href="castbbs.do">섭외신청목록</a></font><br>
-    	<font color="#ffffff"><a href="musi_recu_deadline.do">뮤지션 모집 마감 목록</a></font>
-    </div>
 <!-- End Header -->
 <script type="text/javascript">
 

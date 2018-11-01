@@ -1,11 +1,14 @@
 package kh.com.a.dao.Impl;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.com.a.dao.MemDao;
 import kh.com.a.model.MemDto;
+import kh.com.a.model.TicketParam;
 
 @Repository
 public class MemDaoImpl implements MemDao{
@@ -39,5 +42,6 @@ public class MemDaoImpl implements MemDao{
 		sqlSession.update(namespace + "updateGeneral",dto);
 		
 	}
+	
 
 }
