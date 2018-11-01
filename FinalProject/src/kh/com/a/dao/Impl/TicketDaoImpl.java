@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kh.com.a.dao.TicketDao;
 import kh.com.a.model.TicketDto;
+
 import kh.com.a.model.TicketParam;
 
 @Repository
@@ -36,11 +37,14 @@ public class TicketDaoImpl implements TicketDao{
 		return sqlSession.selectOne(namespace + "countTicket",ticket);
 	}
 
+	
+	
 	@Override
 	public List<TicketParam> myTicketList(String id) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace + "myTicketList",id);
 	}
+	
 	
 	
 }

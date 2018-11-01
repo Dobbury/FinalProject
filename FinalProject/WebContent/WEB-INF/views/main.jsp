@@ -53,7 +53,7 @@ model.addAttribute("latelyVideoList", latelyVideoList);
 			<nav id="options" class="work-nav">
 				<ul id="filters" class="option-set" data-option-key="filter">
 					<li class="type-work">MusiCulture</li>
-					<li><a href="#filter" data-option-value=".lately" class="selected">개인영상(최신순)</a></li>
+					<li><a href="#filter" data-option-value=".lately">개인영상(최신순)</a></li>
 					<li><a href="#filter" data-option-value=".like">개인영상(인기순)</a></li><!-- data-option-value=".design" -->
 					<li><a href="#filter" data-option-value=".following">팔로잉 영상</a></li><!-- data-option-value=".photography" -->
 					<li><a href="#filter" data-option-value=".schedule">기부공연 행사일정</a></li><!-- data-option-value=".video" -->
@@ -195,7 +195,7 @@ model.addAttribute("latelyVideoList", latelyVideoList);
 			<nav id="options" class="work-nav">
 				<ul id="filters" class="option-set" data-option-key="filter">
 					<li class="type-work">MusiCulture</li>
-					<li><a href="#filter" data-option-value=".lately" class="selected">개인영상(최신순)</a></li>
+					<li><a href="#filter" data-option-value=".lately">개인영상(최신순)</a></li>
 					<li><a href="#filter" data-option-value=".like">개인영상(인기순)</a></li><!-- data-option-value=".design" -->
 					<li><a href="#filter" data-option-value=".following">팔로잉 영상</a></li><!-- data-option-value=".photography" -->
 					<li><a href="#filter" data-option-value=".schedule">기부공연 행사일정</a></li><!-- data-option-value=".video" -->

@@ -45,7 +45,9 @@ import kh.com.a.service.PositionService;
 import kh.com.a.model.MemDto;
 import kh.com.a.model.PerformScheduleBBSDto;
 import kh.com.a.model.ScheduleBBSDto;
+
 import kh.com.a.model.TicketParam;
+
 import kh.com.a.model.VideoBBSDto;
 import kh.com.a.service.MemService;
 import kh.com.a.service.PerformScheduleBBSService;
@@ -161,6 +163,7 @@ public class MemController {
 		model.addAttribute("locationList",locationService.getLocationList());
 	
 		MemDto dto  = (MemDto)session.getAttribute("user");
+		
 		
 		List<TicketParam> TicketList = ticketService.myTicketList(dto.getId());
 		System.out.println(TicketList.size());
