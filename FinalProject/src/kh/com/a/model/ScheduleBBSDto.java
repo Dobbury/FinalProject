@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.sql.Date;
 
 public class ScheduleBBSDto implements Serializable {
-	private Date sdate;
-	private Date edate;
+	private String sdate;
+	private String edate;
 	private String location;
 	private String place;
 	private int count;
@@ -16,7 +16,7 @@ public class ScheduleBBSDto implements Serializable {
 	public ScheduleBBSDto() {
 		super();
 	}
-	public ScheduleBBSDto(Date sdate, Date edate, String location, String place, int count, int price,
+	public ScheduleBBSDto(String sdate, String edate, String location, String place, int count, int price,
 			String ori_consertIMG, String new_consertIMG, int schedule_seq) {
 		super();
 		this.sdate = sdate;
@@ -29,16 +29,16 @@ public class ScheduleBBSDto implements Serializable {
 		this.new_consertIMG = new_consertIMG;
 		this.schedule_seq = schedule_seq;
 	}
-	public Date getSdate() {
+	public String getSdate() {
 		return sdate;
 	}
-	public void setSdate(Date sdate) {
+	public void setSdate(String sdate) {
 		this.sdate = sdate;
 	}
-	public Date getEdate() {
+	public String getEdate() {
 		return edate;
 	}
-	public void setEdate(Date edate) {
+	public void setEdate(String edate) {
 		this.edate = edate;
 	}
 	public String getLocation() {

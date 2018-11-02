@@ -32,7 +32,7 @@
 </div>
 
 <div class="general" align="center" style="display: none;">
-<form action="generalregi.do" method="post">
+<form action="generalregi.do" method="post" id="contact-form">
 <h5 class="title-description" style="margin: 0px">아이디</h5>
 <input type="text" id="gid" name="id" placeholder="아이디을 입력하세요">
 <br>
@@ -113,7 +113,7 @@
 </div>
 
 <div class="musition" align="center" style="display: none;" >
-<form action="musitionregi.do" method="post" enctype="multipart/form-data">
+<form action="musitionregi.do" id="contact-form" method="post" enctype="multipart/form-data">
 <table>
 <tr>
 <td align="center">

@@ -11,9 +11,6 @@ h3{
 	margin:0px;
 	padding: 0px;
 }
-div{
-	min-height: 100px;
-}
 </style>
 
 <script>
@@ -35,7 +32,7 @@ $(function(){
 	
 	//스크롤이벤트가 발생하면 
 	$(window).scroll(function(){ 
-		yPosition = $win.scrollTop() - 1100; //이부분을 조정해서 화면에 보이도록 맞추세요 
+		yPosition = $win.scrollTop() - 550; //이부분을 조정해서 화면에 보이도록 맞추세요 
 		if (yPosition < 0) {
 			yPosition = 0; 
 		} 
@@ -50,11 +47,8 @@ $(function(){
 	// Initialize and add the map
 	function initMap() {
 		// The location of Uluru
-		//var uluru = {lat: ${performCastBBSDto.lat}, lng: ${performCastBBSDto.lng}};
-		var uluru = {
-			lat : 1,
-			lng : 1
-		};
+		var uluru = {lat: ${performCastBBSDto.lati}, lng: ${performCastBBSDto.longi}};
+	
 
 		// The map, centered at Uluru
 		var map = new google.maps.Map(document.getElementById('map'), {
@@ -153,8 +147,9 @@ function requestPay() {
 					2018년 11월 5일 1시
 					</div> 
 					<hr style="border: 1.8px solid white;">
-					<h3>공연장소 위치</h3> 
+					<h3>공연장소 위치 및  지도</h3> 
 					<hr>
+					<div id="map"></div>
 					<div class="place">
 						${performCastBBSDto.place }
 					</div>

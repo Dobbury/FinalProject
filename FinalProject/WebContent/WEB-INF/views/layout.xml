@@ -42,9 +42,7 @@
 <definition name="VideoBbsUpdate.tiles" extends="main.tiles">
 	<put-attribute name="content" value="/WEB-INF/views/VideoBBS/VideoBBSUpdate.jsp"/>
 </definition>
-
-
-
+	
 <definition name="aboutus.tiles" extends="main.tiles">
 	<put-attribute name="content" value="/WEB-INF/views/introduce/aboutus.jsp"/>	
 </definition>

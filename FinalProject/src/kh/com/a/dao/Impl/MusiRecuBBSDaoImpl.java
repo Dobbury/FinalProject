@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import kh.com.a.dao.MusiRecuBBSDao;
 import kh.com.a.model.MusiRecuBBSDto;
 import kh.com.a.model.Param;
+import kh.com.a.model.PerformCastBBSDto;
 import kh.com.a.model.RecuMusiInfoDto;
 
 @Repository
@@ -68,5 +69,10 @@ public class MusiRecuBBSDaoImpl implements MusiRecuBBSDao {
 	public List<MusiRecuBBSDto> moreMusiRecuDeadLineList() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace + "moreMusiRecuDeadLineList");
+	}
+	
+	@Override
+	public void addMusiRecuBBS(MusiRecuBBSDto dto) {
+		sqlSession.insert(namespace + "addMusiRecuBBS",dto );
 	}
 }

@@ -11,7 +11,7 @@ int perform_seq = -1;
 %> 
 <fmt:requestEncoding value="utf-8"/>
 
-<h2 style="position: relative; margin-bottom: 100px; text-align: center;">castBbs.jsp</h2>    
+<h2 style="position: relative; margin-bottom: 100px; text-align: center;">castBbs.jsp..</h2>    
 
 
 <!--
@@ -30,7 +30,7 @@ int perform_seq = -1;
 <fmt:parseNumber var="eindex" type="number" value="${end}" />
 
  --%>
-
+<div class="container">
 <div class="span6">
             	<h3 class="spec">신청 목록</h3>
            <c:if test="${empty castbbslist}">
@@ -57,54 +57,55 @@ int perform_seq = -1;
 						<div class="form-group">
 							<label for="recipient-name" class="control-label">문의자 성함</label>
 							<input type="text" class="form-control"
-								value="${castbbs.name}">
+								value="${castbbs.name}" readonly="readonly">
 						</div>
 						<div class="form-group">
 							<label for="recipient-name" class="control-label">회사(단체)명</label>
 							<input type="text" class="form-control" 
-								value="${castbbs.compname}">
+								value="${castbbs.compname}" readonly="readonly">
 						</div>
 						<div class="form-group">
 							<label for="recipient-name" class="control-label">이메일</label> <input
 								type="text" class="form-control"
-								value="${castbbs.email}">
+								value="${castbbs.email}" readonly="readonly">
 						</div>
 						<div class="form-group">
 							<label for="recipient-name" class="control-label">연락처</label> <input
-								type="text" class="form-control" value="${castbbs.phone}">
+								type="text" class="form-control" value="${castbbs.phone}" readonly="readonly">
 						</div>
 						<div class="form-group">
 							<label for="recipient-name" class="control-label">지역</label> <input
-								type="text" class="form-control" value="${castbbs.location}">
+								type="text" class="form-control" value="${castbbs.location}" readonly="readonly">
 						</div>
 						<div class="form-group">
 							<label for="recipient-name" class="control-label">공연장소</label> <input
-								type="text" class="form-control" value="${castbbs.place}">
+								type="text" class="form-control" value="${castbbs.place}" readonly="readonly">
 						</div>
 						<div class="form-group">
 							<label for="recipient-name" class="control-label">공연예산</label> <input
-								type="text" class="form-control" value="${castbbs.price}">
+								type="text" class="form-control" value="${castbbs.price}" readonly="readonly">
 						</div>
 						<div class="form-group">
 							<label for="recipient-name" class="control-label">공연날짜</label> <input
-								type="text" class="form-control" value="${castbbs.perform_date}">
+								type="text" class="form-control" value="${castbbs.perform_date}" readonly="readonly">
 						</div>
 						<div class="form-group">
 							<label for="recipient-name" class="control-label">공연횟수</label> <input
-								type="text" class="form-control" value="${castbbs.totalcount}">
-						</div>
+								type="text" class="form-control" value="${castbbs.totalcount}" readonly="readonly">
+						</div> 
 						<div class="form-group">
 							<label for="recipient-name" class="control-label">연령대</label> <input
-								type="text" class="form-control" value="${castbbs.agegrade}">
+								type="text" class="form-control" value="${castbbs.agegrade}" readonly="readonly">
 						</div>
 						<div class="form-group">
 							<label for="recipient-name" class="control-label">문의사항</label>
-							<textarea class="form-control">${castbbs.agegrade}</textarea>
+							<textarea class="form-control" readonly="readonly">${castbbs.content}</textarea>
 						</div>
 						
-			
+
 						<div align="right">
-						<button onclick="approve(${castbbs.perform_seq}, index${vs.count})">승인</button>
+						 <button style="display: none;" id="castBtn" onclick="approve(${castbbs.perform_seq}, index${vs.count})">승인</button>
+						<a data-toggle="modal" href="#castModal" >승인</a>
 						</div>
 					</div>
 				</div>
@@ -130,7 +131,9 @@ perform_seq = castbbslist.get(index).getPerform_seq();
 </c:if>
 
 <div id="add2">
-<button id="addbtn2" onclick="moreList2();">더보기2</button>
+<button id="addbtn2" onclick="moreList2();">더보기</button>
+</div>
+
 </div>
 
 <script>
@@ -150,14 +153,20 @@ var endindex = 7;
 	        async: true,
 	        type : "GET",
 	        cache : false,
-	        data : "seq_approve="+seq_approve, /* +"&perform_seq="+perform_seq, */
+	        data : {
+	        	"seq_approve":+seq_approve,
+	        	"title":$("#_title").val(),
+	        	"edate":$("#_edate").val(),
+	        	"content":$("#_content").val()
+	        }, /* +"&perform_seq="+perform_seq, */
 	        // datatype: code200 error : 뭣모르고 데이터타입 json으로 했다가 리턴값도 없는데 에러만 주구장창 걸렸음, 기억할것...
 	        success : function(){
-	        	
+	        	alert("승인 되었습니다.");
 	            btn="<button id='addbtn2' onclick='moreList2();'>더보기2</button>";
 	            $('#addbtn2').remove();//remove btn
 	            $(divId).remove();
 	            $(btn).appendTo("#add2");
+	           
 	        }, error:function(request,status,error){
 	            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 	           }

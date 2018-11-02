@@ -85,7 +85,7 @@ public class MusiRecuBBSController {
 	
 		PerformCastBBSDto pDto = performCastBBSService.getPerformCastInfo(dto.getPerform_seq());
 		model.addAttribute("performCastBBSDto",pDto);
-		
+		System.out.println(pDto.getLati());
 		
 		
 		RecuMusiInfoDto recuMusiInfoDto = new RecuMusiInfoDto();
@@ -164,6 +164,7 @@ public class MusiRecuBBSController {
 		model.addAttribute("musiRecuBBSDto",dto);
 		
 		PerformCastBBSDto pDto = performCastBBSService.getPerformCastInfo(dto.getPerform_seq());
+		
 		model.addAttribute("performCastBBSDto",pDto);
 		
 		RecuMusiInfoDto recuMusiInfoDto = new RecuMusiInfoDto();
