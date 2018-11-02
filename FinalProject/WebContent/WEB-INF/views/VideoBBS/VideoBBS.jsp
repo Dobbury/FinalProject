@@ -7,15 +7,35 @@
 
 <div style="display: table; margin: auto">
   	<c:forEach items="${bbslist }" var="bbs" varStatus="vs">
-	<div style="width: 400px; height: 450px; float: left; margin-right: 30px; margin-left: 70px">  	
-	  	<div style="width: 400px; ">
+	<div style="width: 300px; height: 300px; float: left; margin-right: 30px; margin-left: 70px">  	
+	  	<div style="width: 300px; ">
 	  		<img alt="썸네일" src=${bbs.thumbnail } width="100%" height="100%">
 	  	</div>
-	  	<div style="width: 400px; height: 140px; text-align: center">
-	  		<span class="font-icon-book">&nbsp;</span><a href="VideoBbsDetail.do?seq=${bbs.video_seq}">${bbs.title }</a><br>
-	  		<span class="font-icon-group">&nbsp;${bbs.id }<br>
-	  		<span class="font-icon-eye">&nbsp;${bbs.readcount }<br>
-	  		<span class="font-icon-calendar">&nbsp;${bbs.wdate }
+	  	<div style="width: 300px; height: 140px;">
+	  	<div align="center">
+	  		<table>
+	  	<tr>
+	  		<td>
+	  			<span class="font-icon-book">&nbsp;</span><a href="VideoBbsDetail.do?seq=${bbs.video_seq}">${bbs.title }</a><br>
+	  		</td>
+	  	</tr>
+	  	<tr>
+	  		<td>
+	  			<span class="font-icon-group">&nbsp;${bbs.id }<br>
+	  		</td>
+	  	</tr>
+	  	<tr>
+	  		<td>
+	  			<span class="font-icon-eye">&nbsp;${bbs.readcount }<br>
+	  		</td>
+	  	</tr>
+	  	<tr>
+	  		<td>
+	  			<span class="font-icon-calendar">&nbsp;${bbs.wdate }
+	  		</td>
+	  	</tr>
+	  	</table>
+	  	</div>
 	  	</div>
 	</div>
 	</c:forEach>

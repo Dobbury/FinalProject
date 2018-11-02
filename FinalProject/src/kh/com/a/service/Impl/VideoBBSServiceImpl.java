@@ -49,6 +49,18 @@ public class VideoBBSServiceImpl implements VideoBBSService {
 		dao.videoBbsDelete(seq);
 		
 	}
+	
+	@Override
+	public void BbsCommentDelete(int seq) throws Exception {
+		dao.BbsCommentDelete(seq);
+		
+	}
+
+	@Override
+	public void BbsLikeDelete(int seq) throws Exception {
+		dao.BbsLikeDelete(seq);
+		
+	}
 
 	@Override
 	public void like(Video_LikeDto vlDto) {
@@ -90,7 +102,20 @@ public class VideoBBSServiceImpl implements VideoBBSService {
 			
 		}else
 			return -1;
-		
 	}
+	
+	
+
+	@Override
+	public int FollowerCount(String museid) {
+		return dao.FollowerCount(museid);
+	}
+
+	@Override
+	public int likeCount(int seq) {
+		return dao.likeCount(seq);
+	}
+	
+	
 	
 }	
