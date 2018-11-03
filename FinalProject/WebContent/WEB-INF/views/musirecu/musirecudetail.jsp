@@ -112,11 +112,11 @@ function initMap() {
 				<td colspan="4">
 					<div class="basicDiv" style="border: 1px solid gray; margin-top: 0px; margin-bottom: 5%">
 						${musiRecuBBSDto.content}<br>
+						<!-- <h3>asd</h3>
 						<h3>asd</h3>
 						<h3>asd</h3>
 						<h3>asd</h3>
-						<h3>asd</h3>
-						<h3>asd</h3>
+						<h3>asd</h3> -->
 						
 					</div>
 				</td>

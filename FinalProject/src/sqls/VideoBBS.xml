@@ -42,6 +42,7 @@
 	<select id="getVideoBbsList" resultType="kh.com.a.model.VideoBBSDto">
 	SELECT  ID, TITLE, CONTENT, VIDEO, THUMBNAIL, WDATE, READCOUNT, VIDEO_SEQ, GENRE 
 	FROM VIDEOBBS
+	ORDER BY VIDEO_SEQ ASC
 	</select>
 	
 	<select id="getVideoBbs" resultType="kh.com.a.model.VideoBBSDto">

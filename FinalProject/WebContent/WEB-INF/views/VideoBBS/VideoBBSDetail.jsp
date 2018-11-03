@@ -18,14 +18,12 @@
 			</td>
 		</tr>
 		<tr>
-			<td><span class="font-icon-book">&nbsp;&nbsp;${getVideoBbs.title }<br></td>
+			<td><h3>&nbsp;&nbsp;${getVideoBbs.title }</h3></td>
 		</tr>
 		<tr>
 			<td>
-				<span class="font-icon-eye">&nbsp;&nbsp;<span id="ReadCnt"><br></span>				
+				조회수&nbsp;&nbsp;<span id="ReadCnt"></span>회				
 			</td>
-		</tr>
-		<tr>
 			<td>
 				<c:if test="${likecheck == true }">
 					<a class="font-icon-heart" name="like" id="_like" onClick="fn_like()"/>&nbsp;&nbsp;<span id="likeCnt"><br></span>
@@ -34,16 +32,24 @@
 					<a class="font-icon-heart-line" name="like" id="_like" onClick="fn_like()"/>&nbsp;&nbsp;<span id="likeCnt"><br></span>
 				</c:if>
 			</td>
+		</tr>
+		<tr>
 			<td><%-- <button id="followB" onclick="Follow(${user.id}, ${getVideoBbs.id})">Follow</button> --%></td>
 		</tr>
+		</table>
+		<table style="border-top: solid 1px white; width: 100%">
+		<tr>
+			<td><span class="font-icon-group">&nbsp;&nbsp;<a data-toggle="modal" href="#museDetailModal">${getVideoBbs.id }</a></td>
+		</tr>
+		<tr>
+			<td>게시일 : ${getVideoBbs.wdate }</td>
+		</tr>
+		<tr>
+			<td align="center">${getVideoBbs.content }</td>
+		</tr>
+		</table>
 		
-		<tr>
-			<td><span class="font-icon-group">&nbsp;&nbsp;<a data-toggle="modal" href="#museDetailModal">${getVideoBbs.id }</a><br></td>
-		</tr>
-		<tr>
-			<td><span class="font-icon-paste">&nbsp;&nbsp;${getVideoBbs.content }</td>
-		</tr>
-	</table>
+	
 	
 	<c:if test="${getVideoBbs.id eq user.id}">
 	<div align="right">
@@ -51,6 +57,7 @@
 		<a href="#none" id="_btnDelete" title="삭제하기">삭제하기</a>
 	</div>
 	</c:if>
+	
 </form>
 
 <form name="commentfrm" id="commentfrm" method="post" style="margin: 20px">
@@ -87,16 +94,20 @@
 <button id="followB" onclick="Follow()">Follow</button>
 </c:if>
 
-<div style="display: inline-block; vertical-align: top">
+<div style="display: inline-block; vertical-align: top; width: 150px; white-space: nowrap;">
 <p align="center"><strong>뮤지션의 다른영상</strong></p>
 	<c:set var = "thisvideo" value = "${getVideoBbs.id }"/>
   	<c:forEach items="${bbslist }" var="bbs" varStatus="vs">
 	<c:set var = "othervideo" value = "${bbs.id }"/>
   	<c:if test = "${thisvideo eq othervideo }">
 	  	<img alt="썸네일" src=${bbs.thumbnail } width="150px" height="80px" ><br>	
-	    <span class="font-icon-book">&nbsp;<a href="VideoBbsDetail.do?seq=${bbs.video_seq}">${bbs.title }</a><br>
+	  	<div style=" width:150px; padding:0 5px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+	  	<span class="font-icon-book">&nbsp;<a href="VideoBbsDetail.do?seq=${bbs.video_seq}">${bbs.title }</a><br>
+	  	</div>
+	  	<div>
 		<span class="font-icon-eye">&nbsp;${bbs.readcount }<br>
 		<span class="font-icon-calendar">&nbsp;${bbs.wdate }<br>
+		</div>
 		<p></p>
 	</c:if>
 	</c:forEach>

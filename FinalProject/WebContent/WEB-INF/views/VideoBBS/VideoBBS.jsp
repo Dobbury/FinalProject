@@ -43,7 +43,7 @@
 
 <form action="VideoBBSWrite.do" method="post" style="text-align: center">
 	<c:set var = "auth" value = "${user.auth}"/>
-	<c:if test="${auth == 2}" >
+	<c:if test="${auth == 1 || auth == 2}" >
 		<input class="button button-small" type="submit" value="게시글 작성" style="margin-top: 30px">
 	</c:if>
 </form>
