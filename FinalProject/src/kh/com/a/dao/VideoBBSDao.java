@@ -39,4 +39,6 @@ public interface VideoBBSDao {
 	
 	public List<VideoBBSDto> latelyVideoList() throws Exception;
 	
+	public int HowManyFollowers(String id) throws Exception;
+	
 }

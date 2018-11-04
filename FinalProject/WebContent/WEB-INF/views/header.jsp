@@ -175,7 +175,7 @@
         <br><br>
         지역 : ${meminfo.location }
         <br><br>
-        팔로워 수 : 
+        팔로워 수 : ${meminfo.followers}명
          <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">
                닫기

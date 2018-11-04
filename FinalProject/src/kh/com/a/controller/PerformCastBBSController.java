@@ -2,6 +2,7 @@ package kh.com.a.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -112,7 +113,9 @@ public class PerformCastBBSController {
 		
 		List<PerformCastBBSDto> castbbslist = performCastBBSService.getCastBbs();
 		
+		
 		model.addAttribute("castbbslist", castbbslist);
+		
 		
 		
 		if (castbbslist != null) {
@@ -120,7 +123,7 @@ public class PerformCastBBSController {
 				System.out.println(castbbslist.get(i).toString());
 			}
 		}else {
-			System.out.println("its null");
+			System.out.println("castbbs.do = its null");
 		}
 		return "castbbs.tiles";
 	}

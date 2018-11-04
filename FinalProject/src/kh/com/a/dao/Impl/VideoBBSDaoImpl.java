@@ -120,6 +120,12 @@ public class VideoBBSDaoImpl implements VideoBBSDao {
 	public List<VideoBBSDto> latelyVideoList() throws Exception {
 		return sqlSession.selectList(namespace + "latelyVideoList");
 	}
+
+	@Override
+	public int HowManyFollowers(String id) throws Exception {
+		
+		return sqlSession.selectOne(namespace + "HowManyFollowers", id);
+	}
 	
 	
 	

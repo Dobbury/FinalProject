@@ -105,5 +105,11 @@ public class VideoBBSServiceImpl implements VideoBBSService {
 		
 		return dao.latelyVideoList();
 	}
+
+	@Override
+	public int HowManyFollowers(String id) throws Exception {
+		
+		return dao.HowManyFollowers(id);
+	}
 	
 }	

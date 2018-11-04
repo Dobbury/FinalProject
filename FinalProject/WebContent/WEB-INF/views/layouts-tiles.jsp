@@ -29,7 +29,7 @@
  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>  -->
 
 <!-- Main Style -->
-<link href="_include/css/main.css" rel="stylesheet">
+<link href="_include/css/main.css?ver=4" rel="stylesheet">
 
 <!-- Supersized -->
 <link href="_include/css/supersized.css" rel="stylesheet">
@@ -83,7 +83,23 @@
 </script>
 <!-- End Analytics -->
     
+<style type="text/css">
+.wrappers {
+  display: grid;
+  grid-template-columns: 100px 100px 100px;
+  grid-gap: 10px;
+  /* background-color: #fff; */
+  color: #444;
+}
 
+.box {
+  background-color: #444;
+  color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 150%;
+}
+</style>
 </head>
 <body>
 
@@ -143,7 +159,7 @@
 <script src="_include/js/jquery.fancybox-media.js"></script> <!-- Fancybox for Media -->
 <script src="_include/js/jquery.tweet.js"></script> <!-- Tweet -->
 <script src="_include/js/plugins.js"></script> <!-- Contains: jPreloader, jQuery Easing, jQuery ScrollTo, jQuery One Page Navi -->
-<script src="_include/js/main.js"></script> <!-- Default JS -->
+<script src="_include/js/main.js?ver=4"></script> <!-- Default JS -->
 <!-- End Js -->
 </body>
 </html>

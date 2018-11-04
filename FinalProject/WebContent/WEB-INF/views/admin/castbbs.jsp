@@ -11,7 +11,7 @@ int perform_seq = -1;
 %> 
 <fmt:requestEncoding value="utf-8"/>
 
-<h2 style="position: relative; margin-bottom: 100px; text-align: center;">castBbs.jsp..</h2>    
+<h2 style="position: relative; margin-bottom: 100px; text-align: center; font-family: fantasy;">들어온 섭외 목록</h2>    
 
 
 <!--
@@ -31,8 +31,8 @@ int perform_seq = -1;
 
  --%>
 <div class="container">
-<div class="span6">
-            	<h3 class="spec">신청 목록</h3>
+<div class="span12">
+           <h3 class="spec">신청 목록</h3>
            <c:if test="${empty castbbslist}">
 	    
 				신청된 목록이 없습니다 
@@ -49,7 +49,7 @@ int perform_seq = -1;
 				<div class="accordion-heading accordionize">
 					<a class="accordion-toggle inactive collapsed" data-toggle="collapse"
 						data-parent="#accordionArea" href="#Area${vs.count}">
-						${castbbs.compname}<p align="right">${castbbs.wdate}</p><span class="font-icon-arrow-simple-down"></span>
+						${castbbs.compname}<p style="margin-right: 30px;" align="right">${castbbs.wdate}</p><span class="font-icon-arrow-simple-down"></span>
 					</a>
 				</div>
 				<div id="Area${vs.count}" class="accordion-body collapse" style="height: 0px;">
@@ -250,10 +250,11 @@ var endindex = 7;
 	                	"<label for='recipient-name' class='control-label'>문의사항</label>"+
 	                	"<textarea class='form-control' id='recipient-name'>"+data[i].content+"</textarea></div>"+
 	                	"<div align='right'>"+
-						"<button onclick='approve("+data[i].perform_seq+", index"+j+")'>승인</button>"+
-						"</div>"+
+						"<button style='display: none;' id='castBtn' onclick='approve("+data[i].perform_seq+", index"+j+")'>승인</button>"+
+						"<a data-toggle='modal' href='#castModal'>승인</a></div>"+
 	                	"</div></div></div>";
-	                	/* 더이상 신청 목록이 없습니다 */
+	                	
+	                	
 	                	
 	                	j++;
 	                		                	
@@ -263,7 +264,7 @@ var endindex = 7;
 	            	alert("더이상 신청 목록이 없습니다");
 	            	return;
 	            }
-	            btn="<button id='addbtn2' onclick='moreList2();'>더보기2</button>";
+	            btn="<button id='addbtn2' onclick='moreList2();'>더보기</button>";
 	            $('#addbtn2').remove();//remove btn
 	            $(content).appendTo("#accordionArea");
 	            $(btn).appendTo("#add2");

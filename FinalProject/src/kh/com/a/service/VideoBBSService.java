@@ -34,5 +34,7 @@ public interface VideoBBSService {
 	public List<VideoBBSDto> getFollowingList(MemDto dto) throws Exception;
 	
 	public List<VideoBBSDto> latelyVideoList() throws Exception;
+	
+	public int HowManyFollowers(String id) throws Exception;
 
 }
