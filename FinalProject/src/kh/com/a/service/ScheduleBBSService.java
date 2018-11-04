@@ -14,8 +14,8 @@ public interface ScheduleBBSService {
 	public List<ScheduleBBSDto> getComingSchedule();
 	
 	public List<ScheduleBBSDto> getScheduleList() throws Exception;
-	public List<ScheduleBBSDto> getScheduleOne() throws Exception;
+	public ScheduleBBSDto getSchedule(int seq) throws Exception;
 	
-	public boolean wirteBbs(ScheduleBBSDto bbs) throws Exception;
+	public boolean writeBbs(ScheduleBBSDto dto) throws Exception;
 	
 }
