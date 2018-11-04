@@ -31,11 +31,11 @@
 	<put-attribute name="content" value="/WEB-INF/views/VideoBBS/VideoBBS.jsp"/>
 </definition>
 
-<definition name="VideoBBSWrite.tiles" extends="login.tiles">
+<definition name="VideoBBSWrite.tiles" extends="main.tiles">
 	<put-attribute name="content" value="/WEB-INF/views/VideoBBS/VideoBBSWrite.jsp"/>
 </definition>
 
-<definition name="VideoBbsDetail.tiles" extends="login.tiles">
+<definition name="VideoBbsDetail.tiles" extends="main.tiles">
 	<put-attribute name="content" value="/WEB-INF/views/VideoBBS/VideoBBSDetail.jsp"/>
 </definition>
 

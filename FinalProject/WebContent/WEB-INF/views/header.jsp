@@ -84,7 +84,7 @@
             						<%} %>
             							</li>
             
-			<li><a href="VideoBBS.do" class="external">영상게시판</a></li>
+			<li><a class="external" href="VideoBBS.do">영상게시판</a></li>
 			
 			<%if(dto==null){ %>
 				<li><a data-toggle="modal" data-target="#myModal" href="#myModal">Login</a></li>
@@ -161,28 +161,37 @@
 
 <div class="modal fade" id="museDetailModal" role="dialog" 
    aria-labelledby="myModalLabel" aria-hidden="true">
-   <div class="modal-dialog modal-lg"><!--  큰창:<div class="modal-dialog modal-lg"> 작은창 :<div class="modal-dialog modal-sm">  -->
-      <div class="modal-content" style="text-align: center">
-        아이디 : ${meminfo.id }
-        <br><br>
-        소속그룹 / 멤버 : ${meminfo.teamname }
-        <br><br>
-        이메일 : ${meminfo.email }
-        <br><br>
-        연락처 : ${meminfo.phone }
-        <br><br>
-        장르 : ${meminfo.genre }
-        <br><br>
-        지역 : ${meminfo.location }
-        <br><br>
-        팔로워 수 : ${meminfo.followers}명
-         <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">
-               닫기
-            </button>
-         </div>
-      </div> 
-   </div> 
+
+
+	<div class="modal-dialog modal-sm"><!--  큰창:<div class="modal-dialog modal-lg"> 작은창 :<div class="modal-dialog modal-sm">  -->
+		<div class="modal-header" align="center" style="background-color: #2F3238">
+			<h4 class="modal-title"
+					style="font-family: Icons; font-size: 40; font-weight: bold; margin: 0">뮤지션 정보</h4>
+		</div>
+		<div class="modal-content" style="text-align: center">
+			<div class="modal-body" align="center" style="background-color: #2F3238; height: 60%">
+				아이디 : ${meminfo.id }
+	        	<br>
+				소속그룹 / 멤버 : ${meminfo.teamname }
+	       		<br>
+				이메일 : ${meminfo.email }
+	        	<br>
+				연락처 : ${meminfo.phone }
+	        	<br>
+				장르 : ${meminfo.genre }
+	        	<br>
+				지역 : ${meminfo.location }
+	        	<br>
+				팔로워 수 : ${followerCnt }
+			</div>
+			<div class="modal-footer" style="background-color: #26292E;">
+	            <button type="button" class="btn btn-default" data-dismiss="modal">
+				닫기
+	            </button>
+			</div>
+		</div> 
+	</div> 
+
 </div>
 
 <script type="text/javascript">

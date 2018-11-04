@@ -20,12 +20,16 @@ public interface VideoBBSService {
 	public void videoBbsUpdate(VideoBBSDto bbs)throws Exception;
 	
 	public void videoBbsDelete(int seq)throws Exception;
+	public void BbsCommentDelete(int seq)throws Exception;
+	public void BbsLikeDelete(int seq)throws Exception;
 	
 	public void like(Video_LikeDto vlDto);
 	
 	public void unLike(Video_LikeDto vlDto);
 	
 	public boolean getLike(Video_LikeDto vlDto);
+	
+	public int likeCount(int seq);
 	
 	public boolean incReadCount(int seq);
 	
@@ -36,5 +40,8 @@ public interface VideoBBSService {
 	public List<VideoBBSDto> latelyVideoList() throws Exception;
 	
 	public int HowManyFollowers(String id) throws Exception;
+
+	public int FollowerCount(String museid);
+
 
 }

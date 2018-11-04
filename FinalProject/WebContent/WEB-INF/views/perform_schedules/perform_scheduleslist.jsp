@@ -30,8 +30,8 @@ var str='<%=category%>';
 	<div class="row">
 		<div class="span12">
 			<div class="title-page">
-				<h2 class="title">뮤지션 모집</h2>
-				<h3 class="title-description">재능기부할 뮤지션 모집함</h3>
+				<h2 class="title">공연일정</h2>
+				<h3 class="title-description">관심있는 공연을 관람해보세요!</h3>
 			</div>
 		</div>
 	</div>

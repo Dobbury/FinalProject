@@ -52,7 +52,19 @@ public class VideoBBSDaoImpl implements VideoBBSDao {
 
 	@Override
 	public void videoBbsDelete(int seq) throws Exception {
-		sqlSession.update(namespace + "videoBbsDelete", seq);
+		sqlSession.delete(namespace + "videoBbsDelete", seq);
+		
+	}
+	
+	@Override
+	public void BbsCommentDelete(int seq) throws Exception {
+		sqlSession.delete(namespace + "bbsCommentDelete", seq);
+		
+	}
+
+	@Override
+	public void BbsLikeDelete(int seq) throws Exception {
+		sqlSession.delete(namespace + "bbsLikeDelete", seq);
 		
 	}
 
@@ -125,6 +137,16 @@ public class VideoBBSDaoImpl implements VideoBBSDao {
 	public int HowManyFollowers(String id) throws Exception {
 		
 		return sqlSession.selectOne(namespace + "HowManyFollowers", id);
+
+	}
+	public int FollowerCount(String museid) {
+		return sqlSession.selectOne(namespace + "followerConunt", museid);
+	}
+
+	@Override
+	public int likeCount(int seq) {
+		return sqlSession.selectOne(namespace + "likeCount", seq);
+
 	}
 	
 	
