@@ -29,7 +29,7 @@
  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>  -->
 
 <!-- Main Style -->
-<link href="_include/css/main.css" rel="stylesheet">
+<link href="_include/css/main.css?ver=4" rel="stylesheet">
 
 <!-- Supersized -->
 <link href="_include/css/supersized.css" rel="stylesheet">
@@ -42,7 +42,7 @@
 <link href="_include/css/fonts.css" rel="stylesheet">
 
 <!-- Shortcodes -->
-<link href="_include/css/shortcodes.css" rel="stylesheet">
+<link href="_include/css/shortcodes.css?ver=1" rel="stylesheet">
 
 <!-- Responsive -->
 <link href="_include/css/bootstrap-responsive.min.css" rel="stylesheet">
@@ -56,12 +56,18 @@
 <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900' rel='stylesheet' type='text/css'>
 
 <!-- Fav Icon -->
+
+<!-- <link rel="shortcut icon" href="#"> -->
+
 <!-- <link rel="shortcut icon" href="#">
 
-<link rel="apple-touch-icon" href="#">
-<link rel="apple-touch-icon" sizes="114x114" href="#">
+<!-- <link rel="apple-touch-icon" href="#"> -->
+<!-- <link rel="apple-touch-icon" sizes="114x114" href="#">
 <link rel="apple-touch-icon" sizes="72x72" href="#">
-<link rel="apple-touch-icon" sizes="144x144" href="#">   --> 
+
+<link rel="apple-touch-icon" sizes="144x144" href="#">      --> 
+
+
 
 <!-- Modernizr -->
 <script src="_include/js/modernizr.js"></script>
@@ -83,7 +89,23 @@
 </script>
 <!-- End Analytics -->
     
+<style type="text/css">
+.wrappers {
+  display: grid;
+  grid-template-columns: 100px 100px 100px;
+  grid-gap: 10px;
+  /* background-color: #fff; */
+  color: #444;
+}
 
+.box {
+  background-color: #444;
+  color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 150%;
+}
+</style>
 </head>
 <body>
 
@@ -143,7 +165,7 @@
 <script src="_include/js/jquery.fancybox-media.js"></script> <!-- Fancybox for Media -->
 <script src="_include/js/jquery.tweet.js"></script> <!-- Tweet -->
 <script src="_include/js/plugins.js"></script> <!-- Contains: jPreloader, jQuery Easing, jQuery ScrollTo, jQuery One Page Navi -->
-<script src="_include/js/main.js"></script> <!-- Default JS -->
+<script src="_include/js/main.js?ver=4"></script> <!-- Default JS -->
 <!-- End Js -->
 </body>
 </html>

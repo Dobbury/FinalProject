@@ -70,8 +70,17 @@
 .accordion {
   	margin-bottom: 20px;
 }
-
+.accordion2 {
+  	margin-bottom: 20px;
+}
 .accordion-group {
+  	margin-bottom: 4px;
+  	border: none;
+  	-webkit-border-radius: 0;
+       -moz-border-radius: 0;
+          	border-radius: 0;
+}
+.accordion-group2 {
   	margin-bottom: 4px;
   	border: none;
   	-webkit-border-radius: 0;
@@ -80,6 +89,9 @@
 }
 
 .accordion-heading {
+  	border-bottom: 0 none;
+}
+.accordion-heading2 {
   	border-bottom: 0 none;
 }
 
@@ -99,13 +111,36 @@
 	-o-transition: all 0.1s linear 0s;
 	transition: all 0.1s linear 0s;
 }
+.accordion-heading2 .accordion-toggle2 {
+	position: relative;
+  	display: block;
+  	padding: 15px;
+	background:#3C3F45;
+	color: #23262C;
+	font-size: 18px;
+	font-weight: 600;
+	text-transform: uppercase;
+	
+	-webkit-transition: all 0.1s linear 0s;
+	-moz-transition: all 0.1s linear 0s;
+	-ms-transition: all 0.1s linear 0s;
+	-o-transition: all 0.1s linear 0s;
+	transition: all 0.1s linear 0s;
+}
 
 .accordion-toggle {
   	cursor: pointer;
 }
-
+.accordion-toggle2 {
+  	cursor: pointer;
+}
 .accordion-heading:hover .accordion-toggle,
 .accordion-heading:hover .accordion-toggle.inactive {
+	background:#DE5E60;
+	color:#FFFFFF;
+}
+.accordion-heading2:hover .accordion-toggle2,
+.accordion-heading2:hover .accordion-toggle2.inactive2 {
 	background:#DE5E60;
 	color:#FFFFFF;
 }
@@ -114,8 +149,16 @@
 	background:#DE5E60;
 	color:#FFFFFF;
 }
+.accordion-heading2 .accordion-toggle2.active2 {
+	background:#DE5E60;
+	color:#FFFFFF;
+}
+
 
 .accordion-heading .accordion-toggle.inactive {
+	background:#3C3F45;
+}
+.accordion-heading2 .accordion-toggle2.inactive2 {
 	background:#3C3F45;
 }
 
@@ -134,13 +177,35 @@
 	-o-transition: all 0.1s linear 0s;
 	transition: all 0.1s linear 0s;
 }
+.accordion-heading2.accordionize2 .accordion-toggle2 span2,
+.accordion-heading2.togglize2 .accordion-toggle2 span2 {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    margin: -8px 0 0 0;
+    color: #23262C;
+    font-size: 18px;
+	
+	-webkit-transition: all 0.1s linear 0s;
+	-moz-transition: all 0.1s linear 0s;
+	-ms-transition: all 0.1s linear 0s;
+	-o-transition: all 0.1s linear 0s;
+	transition: all 0.1s linear 0s;
+}
 
 .accordion-heading:hover .accordion-toggle span {
+	color: #FFFFFF;
+}
+.accordion-heading2:hover .accordion-toggle2 span2 {
 	color: #FFFFFF;
 }
 
 .accordion-heading .accordion-toggle.active span,
 .accordion-heading:hover .accordion-toggle.inactive span {
+	color: #FFFFFF;	
+}
+.accordion-heading2 .accordion-toggle2.active2 span2,
+.accordion-heading2:hover .accordion-toggle2.inactive2 span2 {
 	color: #FFFFFF;	
 }
 
@@ -152,8 +217,20 @@
 	-o-transform: rotate(180deg);
 	transform: rotate(180deg);
 }
+.accordion-heading2.accordionize2 .accordion-toggle2.active2 span2,
+.accordion-heading2.togglize2 .accordion-toggle2.active2 span2 {
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	transform: rotate(180deg);
+}
 
 .accordion-heading.togglize .accordion-toggle span {
+	margin: -8px 0 0 0;
+	font-size: 18px;
+}
+.accordion-heading2.togglize2 .accordion-toggle2 span2 {
 	margin: -8px 0 0 0;
 	font-size: 18px;
 }
@@ -162,13 +239,25 @@
 	opacity:0;
 	filter: alpha(opacity=0);
 }
-
+.accordion-heading2.togglize2 .accordion-toggle2.active2 span2 {
+	opacity:0;
+	filter: alpha(opacity=0);
+}
 .accordion-heading.togglize .accordion-toggle.active span + span {
+	opacity:1;
+	filter: alpha(opacity=100);
+}
+.accordion-heading2.togglize2 .accordion-toggle2.active2 span2 + span2 {
 	opacity:1;
 	filter: alpha(opacity=100);
 }
 
 .accordion-inner {
+	background: #26292E;
+  	padding: 16px 20px;
+	border: none;
+}
+.accordion-inner2 {
 	background: #26292E;
   	padding: 16px 20px;
 	border: none;

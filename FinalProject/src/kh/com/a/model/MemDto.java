@@ -5,6 +5,8 @@ import java.sql.Date;
 
 public class MemDto implements Serializable {
 	
+	
+
 	private String id;
 	private String pwd;
 	private String name;
@@ -22,6 +24,7 @@ public class MemDto implements Serializable {
 	private int online_check;
 	private String gender;
 	private int mem_seq;
+	private int followers;
 	
 	public MemDto() {
 		super();
@@ -43,12 +46,13 @@ public class MemDto implements Serializable {
 		this.online_check = online_check;
 		this.gender = gender;
 		this.mem_seq = mem_seq;
+		
 	}
 
 	//뮤지션
 	public MemDto(String id, String pwd, String name, String phone, String email, String genre, String location,
 			String birth, String teamname, String ori_profilIMG,String new_profilIMG, String position, int right, int auth, int online_check,
-			String gender, int mem_seq) {
+			String gender, int mem_seq, int followers) {
 		super();
 		this.id = id;
 		this.pwd = pwd;
@@ -67,8 +71,17 @@ public class MemDto implements Serializable {
 		this.online_check = online_check;
 		this.gender = gender;
 		this.mem_seq = mem_seq;
+		this.followers = followers;
 	}
 
+	public int getFollowers() {
+		return followers;
+	}
+
+	public void setFollowers(int followers) {
+		this.followers = followers;
+	}
+	
 	public String getId() {
 		return id;
 	}

@@ -49,6 +49,12 @@ public class PerformScheduleBBSDaoImpl implements PerformScheduleBBSDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace + "getPerformScheduleSeqMax");
 	}
+
+	@Override
+	public List<PerformScheduleBBSDto> latelyPerformSchedules() {
+			
+		return sqlSession.selectList(namespace+"latelyPerformSchedules");
+	}
 	
 	
 

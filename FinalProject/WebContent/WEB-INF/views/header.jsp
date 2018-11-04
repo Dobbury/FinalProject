@@ -1,5 +1,12 @@
-<%@page import="kh.com.a.model.MemDto"%>
+<%@ page import="kh.com.a.model.MemDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>    
+
+<fmt:requestEncoding value="utf-8"/>
+
+
 
 <%
 	MemDto dto = (MemDto)session.getAttribute("user");
@@ -21,8 +28,8 @@
 #menu-nav li:hover ul {
  display: block;
 }
-
 </style>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/jquery/jquery.cookie.js"></script>
 <!-- Header -->
@@ -154,6 +161,8 @@
 
 <div class="modal fade" id="museDetailModal" role="dialog" 
    aria-labelledby="myModalLabel" aria-hidden="true">
+
+
 	<div class="modal-dialog modal-sm"><!--  큰창:<div class="modal-dialog modal-lg"> 작은창 :<div class="modal-dialog modal-sm">  -->
 		<div class="modal-header" align="center" style="background-color: #2F3238">
 			<h4 class="modal-title"
@@ -182,13 +191,16 @@
 			</div>
 		</div> 
 	</div> 
+
 </div>
 
 <script type="text/javascript">
-
+var tmp = 0;
 
 $("#movecastBtn").click(function () {
-	$("#castBtn").click();
+	var btnName = "#"+$("#vsValue").val();
+	   alert(btnName);
+	   $(btnName).click();
 });
 
 $("#login").on('click',function(){
@@ -228,6 +240,17 @@ $("ul li").click(function () {
 	%>
 });
 </script>
+
+
+ 
+<span class="accordion-heading togglize">
+    <a class="accordion-toggle inactive collapsed" data-toggle="collapse" data-parent="#" href="#adminmenu">
+        	관리
+        <span class="font-icon-plus"></span>
+        <span class="font-icon-minus"></span>
+    </a>
+</span> 
+
 
 <!-- End Header -->
 <script type="text/javascript">

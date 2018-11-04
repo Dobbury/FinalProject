@@ -257,7 +257,10 @@ function fn_comment(code){
 		
 		var following_id = "${getVideoBbs.id}";
 		var follower = "${user.id}";
-		
+		if (follower == null || follower == "") {
+			alert("로그인 하셔야 합니다");
+			return;
+		}
 		$.ajax({
 			
 			url : "ClickFollow.do",

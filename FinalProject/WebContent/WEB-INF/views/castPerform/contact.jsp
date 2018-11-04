@@ -232,7 +232,7 @@ function captureReturnKey(e) {
 	
 	
     <!-- Contact Form -->
-    <form id="contact-form" class="contact-form" method="post" action="castSchedule.do" onkeydown="return captureReturnKey(event)">
+    <form id="contact-form"  name="Form" class="contact-form" method="post" action="castSchedule.do" onkeydown="return captureReturnKey(event)">
     <div class="row">
     	<div class="span9">
         
@@ -250,7 +250,6 @@ function captureReturnKey(e) {
                 	<input id="contact_phone" style="margin-bottom: 1px; width: 100%" type="text" placeholder="연락처 " maxlength="13" oninput="autoHypenPhone(this)" value="" name="phone"/>
                 </p>
                 
-               
                 <!-- Map -->
                 <div id="map" style="height: 400px;" ></div>
                 <input type="text" class="text text-default" id="search" placeholder="지도 검색할 위치를 입력해주세요" style="width: 100%; margin-bottom: 2px;">
@@ -301,6 +300,7 @@ function captureReturnKey(e) {
         	<div class="contact-details">
         		<p style="font-family: fantasy; color: #7da5e8">공연을 관람하는 대상, 연령별 선택 <br>(중복선택 가능)<font color="red">*</font></p>
         		<span id="ch7" style="width: auto;">
+
         		<label class="agegradeLabel" style="font-weight: bolder; top:-10px">
 				  <input type="checkbox" name="agegrade" value="중,고등학생">
 				  <span class="checkmark" style="width:88%;"><span class="agegrade" style=" left:60px;">중,고등학생</span></span>
@@ -335,6 +335,7 @@ function captureReturnKey(e) {
 				<span id="ch5" style="width: 78%" class="wpcf7-list-item first"><input style="width: 40%" type="checkbox" class="agegrade" name="agegrade" value="장애인"><span class="wpcf7-list-item-label">장애인</span></span>
 				<span id="ch6" style="width: 78%" class="wpcf7-list-item first"><input style="width: 40%" type="checkbox" class="agegrade" name="agegrade" value="외국인"><span class="wpcf7-list-item-label">외국인</span></span>
 				</span> -->
+
                 
             </div>
         </div>       
@@ -389,15 +390,105 @@ function captureReturnKey(e) {
 <!-- End Socialize -->
 
 <script>
-	function show_alert(){
-	if(confirm("문의신청을 하시겠습니까?"))
-		document.forms[0].submit();
-	}
+
 	
-	 $("#sending").click(function() {	
+	/* function show_alert(){ */
+	/* if(confirm("문의신청을 하시겠습니까?"))
+		document.forms[0].submit();
+	} */
+	
+	 $("#sending").click(function(event) {	      
+		 
 		$("#lat").val(Marker_lat);
-		$("#lng").val(Marker_lng);
+		$("#lng").val(Marker_lng);	
 		alert($("#lat").val());
+		alert($("#lng").val());
+		
+		 var name = document.forms["Form"]["name"].value;
+		 var compname = document.forms["Form"]["compname"].value;
+		 var email = document.forms["Form"]["email"].value;
+		 var phone = document.forms["Form"]["phone"].value;
+		 var place = document.forms["Form"]["place"].value;
+		 var price = document.forms["Form"]["price"].value;
+		 var location = document.forms["Form"]["location"].value;
+		 
+		 var content = document.forms["Form"]["content"].value;
+		 var perform_date = document.forms["Form"]["perform_date"].value;
+		 var lati = $("#lat").val(); 
+		 var longi = $("#lng").val(); 
+		 
+		 var deny_char = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|\*]+$/; // 이름 입력시 한글 및 영어만 쓰도록 하는 체크변수
+		 var regex= /[^0-9]+$/; // 전화번호 입력시 숫자만 입력하도록 체킹변수
+		 
+		 //document.forms["Form"]["lati"].value;
+		 //document.forms["Form"]["longi"].value;
+		 	
+			if (name == null || name=="") {
+		        alert("성함을 입력하세요");
+		        return false;
+		    }else if (compname==null || compname=="") {
+		    	alert("회사명을 입력하세요");
+		        return false;
+			}else if (email==null || email=="") {
+				alert("이메일을 입력하세요");
+		        return false;
+			}else if (phone==null || phone=="") {
+				alert("전화번호를 입력해주세요");
+		        return false;
+			}else if (price==null || price=="") {
+				alert("공연예산을 선택해주세요");
+		        return false;
+			}else if (location==null || location=="") {
+				alert("지역을 선택해주세요");
+		        return false;
+			}else if (content==null || content=="") {
+				alert("기타 문의사항을 입력하세요");
+		        return false;
+			}else if (perform_date==null || perform_date=="") {
+				alert("공연날짜를 선택하세요");
+		        return false;
+			}else if (lati==null || lati=="") {
+				alert("지도 위치를 클릭해주세요");
+		        return false;
+			}else if (longi==null || longi=="") {
+				alert("지도 위치를 클릭해주세요");
+		        return false;
+			}else if (place==null || place=="") {
+				alert("상세장소를 입력하세요");
+		        return false;
+			}else if (!deny_char.test(name)){
+				alert("올바른 이름을 입력해주세요");
+				return false;
+			}else if(!/^[0-9]+$/.test(phone)){
+				alert("연락처에 숫자만 입력해주세요");
+				return false;
+				
+			}
+						
+			var ch1 = $("#Check1").prop("checked"); //단일건
+			var ch2 = $("#Check2").prop("checked"); //단일건
+			var ch3 = $("#Check3").prop("checked"); //단일건
+			var ch4 = $("#Check4").prop("checked"); //단일건
+			var ch5 = $("#Check5").prop("checked"); //단일건
+			var ch6 = $("#Check6").prop("checked"); //단일건
+			
+			if (ch1 == false && ch2 == false && ch3 == false && ch4 == false && ch5 == false && ch6 == false) {
+				alert("연령대를 선택하세요");
+				return false;
+			}
+			
+				
+			alert(document.getElementById("contact_email").value);
+
+			var email = document.getElementById("contact_email").value;
+
+			var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+
+			if(exptext.test(email)==false){	
+				alert("이메일형식이 올바르지 않습니다.");
+				return false;
+			}
+			
 		alert('문의신청이 되었습니다');	
 		
 	}); 

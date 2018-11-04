@@ -179,9 +179,14 @@ public class VideoBBSController {
 		
 		VideoBBSDto dto = videoBBSService.getVideoBbs(seq);
 		
+		videoBBSService.incReadCount(seq);
+		
+		int count_followers = videoBBSService.HowManyFollowers(dto.getId());
+		
 		List<VideoBBSDto> bbslist = videoBBSService.getVideoBbsList();
 		
 		MemDto mdto = memberService.login(dto.getId());
+		mdto.setFollowers(count_followers);
 		
 		HttpSession session = req.getSession();
 		MemDto login = (MemDto)session.getAttribute("user");
@@ -214,7 +219,7 @@ public class VideoBBSController {
 		model.addAttribute("meminfo", mdto);
 		model.addAttribute("bbslist", bbslist);
 		model.addAttribute("getVideoBbs", dto);
-		
+	
 		return "VideoBbsDetail.tiles";
 	}
 	

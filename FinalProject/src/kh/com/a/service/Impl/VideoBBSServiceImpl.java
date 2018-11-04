@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kh.com.a.dao.VideoBBSDao;
+
 import kh.com.a.model.FollowDto;
+
+import kh.com.a.model.MemDto;
 import kh.com.a.model.VideoBBSDto;
 import kh.com.a.model.Video_LikeDto;
 import kh.com.a.service.VideoBBSService;
@@ -91,7 +94,7 @@ public class VideoBBSServiceImpl implements VideoBBSService {
 		
 		return dao.incReadCount(seq);
 	}
-	
+	@Override
 	public int CheckAndFollow(HashMap<String, String> map) throws Exception {
 		System.out.println("afterCheck1 = ");
 		System.out.println(map.get("follower"));
@@ -109,6 +112,24 @@ public class VideoBBSServiceImpl implements VideoBBSService {
 			
 		}else
 			return -1;
+	}
+
+	@Override
+	public List<VideoBBSDto> getFollowingList(MemDto dto) throws Exception {
+		
+		return dao.getFollowingList(dto);
+	}
+
+	@Override
+	public List<VideoBBSDto> latelyVideoList() throws Exception {
+		
+		return dao.latelyVideoList();
+	}
+
+	@Override
+	public int HowManyFollowers(String id) throws Exception {
+		
+		return dao.HowManyFollowers(id);
 	}
 	
 	

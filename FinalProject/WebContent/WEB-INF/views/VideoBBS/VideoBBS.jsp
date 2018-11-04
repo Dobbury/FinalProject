@@ -148,3 +148,16 @@ $("#write").click(function () {
 });
 </script>
 
+
+<script>
+	function authCheck(auth) {
+		if (auth == 1 || auth == undefined) {
+			alert("뮤지션만 이용할 수 있습니다");
+			alert(auth);
+			return false;
+		}else{
+		    location.href = "VideoBBSWrite.do";	
+		}
+	}
+</script>
+

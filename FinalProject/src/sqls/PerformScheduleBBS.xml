@@ -41,4 +41,10 @@
 		SELECT MAX(PERFORM_SCHEDULE_SEQ) FROM PERFORM_SCHEDULEBBS
 	</select>
 	
+	<select id="latelyPerformSchedules" resultType="kh.com.a.model.PerformScheduleBBSDto">
+		SELECT PS.* FROM PERFORM_SCHEDULEBBS PS, PERFORM_CAST_BBS PC
+		WHERE PS.PERFORM_SEQ = PC.PERFORM_SEQ ORDER BY PC.PERFORM_DATE ASC	
+	</select>
+	
+		
 </mapper>
