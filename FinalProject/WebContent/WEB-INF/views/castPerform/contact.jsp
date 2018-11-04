@@ -7,15 +7,79 @@
 <script src="//code.jquery.com/jquery.min.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANm_LhhJlAxtWnzBHskkYxoHViNJhqiKw&libraries=places"></script>    
-<script>
-$(function() {
-  $( "#datepicker1" ).datepicker({
-    dateFormat: 'yy-mm-dd'
-  });
-});
-</script>    
 
 
+<style>
+/* Customize the label (the container) */
+.agegradeLabel {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.agegradeLabel input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 50px;
+  width: 50px;
+  background-color: #2F3238;
+}
+
+/* On mouse-over, add a grey background color */
+.agegradeLabel:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.agegradeLabel input:checked ~ .checkmark {
+  background-color: #26292E;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.agegradeLabel input:checked ~ .checkmark:after {
+  display: block;
+}
+
+
+
+.checkmark .agegrade{
+	position: absolute;
+	top:15px;
+	left:14px;
+	color: white;
+}
+
+/* Style the checkmark/indicator */
+.agegradeLabel .checkmark:after {
+  opacity:0;
+ 
+}
+</style>
 <script>
    // In the following example, markers appear when the user clicks on the map.
    // Each marker is labeled with a single alphabetical character.
@@ -174,31 +238,31 @@ function captureReturnKey(e) {
         
         	<!-- <form id="contact-form" class="contact-form" method="post" action="castSchedule.do"> -->
             	<p class="contact-name">
-            		<input id="contact_name" type="text" placeholder="문의자 성함" value="" name="name" />
+            		<input id="contact_name" style="margin-bottom: 1px; width: 100%" type="text" placeholder="문의자 성함" value="" name="name" />
                 </p>
                 <p class="contact-company">
-            		<input id="contact_company" type="text" placeholder="기업 또는 단체명" value="" name="compname" />
+            		<input id="contact_company" style="margin-bottom: 1px; width: 100%" type="text" placeholder="기업 또는 단체명" value="" name="compname" />
                 </p>
                 <p class="contact-email">
-            		<input id="contact_email" type="text" placeholder="이메일 주소" value="" name="email" />
+            		<input id="contact_email" style="margin-bottom: 1px; width: 100%" type="text" placeholder="이메일 주소" value="" name="email" />
                 </p>
                 <p class="contact-phone">
-                	<input id="contact_phone" type="text" placeholder="연락처 ('-'제외하고 입력)" value="" name="phone"/>
+                	<input id="contact_phone" style="margin-bottom: 1px; width: 100%" type="text" placeholder="연락처 " maxlength="13" oninput="autoHypenPhone(this)" value="" name="phone"/>
                 </p>
                 
                
                 <!-- Map -->
-                <div id="map" style="height: 400px;"></div>
-                <input type="text" class="text text-default" id="search" placeholder="지도 검색할 위치를 입력해주세요" style="width: 100%">
+                <div id="map" style="height: 400px;" ></div>
+                <input type="text" class="text text-default" id="search" placeholder="지도 검색할 위치를 입력해주세요" style="width: 100%; margin-bottom: 2px;">
                                             
                 
                 <p class="contact-place">
-                	<input id="contact_place" type="text" placeholder="상세장소(ex:강남 파이낸스센터)" value="" name="place"/>
-                <input type="hidden" name="lat" id="lat" value="">
-                <input type="hidden" name="lng" id="lng" value="">
+                	<input id="contact_place" style="margin-bottom: 1px; width: 100%" type="text" placeholder="상세장소(ex:강남 파이낸스센터)" value="" name="place"/>
+                <input type="hidden" name="lati" id="lat" value="">
+                <input type="hidden" name="longi" id="lng" value="">
                 </p>
                 
-                <select style="margin-bottom: 1px;" name="location">
+                <select style="margin-bottom: 1px; width: 100%" name="location">
                 	<option draggable="false">지역</option>
 					<c:forEach items="${locationList}" var="locationitem" varStatus="status">
 						<option>${locationitem.location }</option>
@@ -206,10 +270,10 @@ function captureReturnKey(e) {
 				</select>
 				
 				<p class="contact-performdate">
-                	<input id="contact-performd_ate" type="date" placeholder="공연날짜" value="" name="perform_date"/>
+                	<input id="contact-performd_ate" style="margin-bottom: 1px; width: 100%" type="date" placeholder="공연날짜" value="" name="perform_date"/>
                 </p>
                 
-                <select  style="margin-bottom: 1px;" name="price">
+                <select  style="margin-bottom: 1px; width: 100%" name="price">
                 	<option value="init" style="text-shadow: background;">예상 섭외 예산(최소 50만원 이상)</option>
   					<option value="50-100">50-100만원</option>
 					  <option value="100-150">100-150만원</option>
@@ -218,12 +282,12 @@ function captureReturnKey(e) {
 				</select>
 				
 				<p class="contact-totalcount">
-                	<input id="contact_totalcount" type="number" placeholder="수용 관객 수" value="" name="totalcount"/>
+                	<input id="contact_totalcount" style="margin-bottom: 1px; width: 100%" type="number" placeholder="수용 관객 수" value="" name="totalcount"/>
                 </p>
 			
 				
                 <p class="contact-comment">
-                	<textarea id="contact-comment" placeholder="기관이나 단체에 대한 한마디 또는 다른 문의사항 입력해주세요" name="content" rows="15" cols="40"></textarea>
+                	<textarea id="contact-comment"  placeholder="기관이나 단체에 대한 한마디 또는 다른 문의사항 입력해주세요" name="content" rows="15" style="margin-bottom: 1px; width: 100%"></textarea>
                 </p>              
                 	 <input id="sending" type="submit" value="문의하기" style="background: #5e0404">
                 	
@@ -237,14 +301,40 @@ function captureReturnKey(e) {
         	<div class="contact-details">
         		<p style="font-family: fantasy; color: #7da5e8">공연을 관람하는 대상, 연령별 선택 <br>(중복선택 가능)<font color="red">*</font></p>
         		<span id="ch7" style="width: auto;">
-				<span id="ch1" style="width: 78%" class="wpcf7-list-item first"><input type="checkbox" name="agegrade" value="중,고등학생"><span class="wpcf7-list-item-label">중,고등학생</span></span>
-				<span id="ch2" style="width: 78%" class="wpcf7-list-item first"><input type="checkbox" name="agegrade" value="대학생"><span class="wpcf7-list-item-label">대학생</span></span>
-				<span id="ch3" style="width: 78%" class="wpcf7-list-item first"><input type="checkbox" name="agegrade" value="성인남녀"><span class="wpcf7-list-item-label">성인남녀</span></span>
+        		<label class="agegradeLabel" style="font-weight: bolder; top:-10px">
+				  <input type="checkbox" name="agegrade" value="중,고등학생">
+				  <span class="checkmark" style="width:88%;"><span class="agegrade" style=" left:60px;">중,고등학생</span></span>
+				</label>
+				<label class="agegradeLabel" style="font-weight: bolder; top:40px;">
+				  <input type="checkbox" name="agegrade" value="대학생">
+				  <span class="checkmark" style="width:88%;"><span class="agegrade" style=" left:84px;">대학생</span></span>
+				</label>
+				<label class="agegradeLabel" style="font-weight: bolder; top:90px;">
+				  <input type="checkbox" name="agegrade" value="성인남녀">
+				  <span class="checkmark" style="width:88%;"><span class="agegrade" style=" left:72px;">성인남녀</span></span>
+				</label>
+				<label class="agegradeLabel" style="font-weight: bolder; top:140px;">
+				  <input type="checkbox" name="agegrade" value="고령자">
+				  <span class="checkmark" style="width:88%;"><span class="agegrade" style=" left:84px;">고령자</span></span>
+				</label>
+				<label class="agegradeLabel" style="font-weight: bolder; top:190px;">
+				  <input type="checkbox" name="agegrade" value="장애인">
+				  <span class="checkmark" style="width:88%;"><span class="agegrade" style=" left:84px;">장애인</span></span>
+				</label>
+				<label class="agegradeLabel" style="font-weight: bolder; top:240px;">
+				  <input type="checkbox" name="agegrade"  value="외국인">
+				  <span class="checkmark" style="width:88%;"><span class="agegrade" style=" left:84px;">외국인</span></span>
+				</label>
+				
+				
+				<!-- <span id="ch1" style="width: 78%" class="wpcf7-list-item first"><input style="width: 40%" type="checkbox" class="agegrade" name="agegrade" value="중,고등학생"><span class="wpcf7-list-item-label">중,고등학생</span></span>
+				<span id="ch2" style="width: 78%" class="wpcf7-list-item first"><input style="width: 40%" type="checkbox" class="agegrade" name="agegrade" value="대학생"><span class="wpcf7-list-item-label">대학생</span></span>
+				<span id="ch3" style="width: 78%" class="wpcf7-list-item first"><input style="width: 40%" type="checkbox" class="agegrade" name="agegrade" value="성인남녀"><span class="wpcf7-list-item-label">성인남녀</span></span>
 				<br>
-				<span id="ch4" style="width: 78%" class="wpcf7-list-item first"><input type="checkbox" name="agegrade" value="고령자"><span class="wpcf7-list-item-label">고령자</span></span>
-				<span id="ch5" style="width: 78%" class="wpcf7-list-item first"><input type="checkbox" name="agegrade" value="장애인"><span class="wpcf7-list-item-label">장애인</span></span>
-				<span id="ch6" style="width: 78%" class="wpcf7-list-item first"><input type="checkbox" name="agegrade" value="외국인"><span class="wpcf7-list-item-label">외국인</span></span>
-				</span>
+				<span id="ch4" style="width: 78%" class="wpcf7-list-item first"><input style="width: 40%" type="checkbox" class="agegrade" name="agegrade" value="고령자"><span class="wpcf7-list-item-label">고령자</span></span>
+				<span id="ch5" style="width: 78%" class="wpcf7-list-item first"><input style="width: 40%" type="checkbox" class="agegrade" name="agegrade" value="장애인"><span class="wpcf7-list-item-label">장애인</span></span>
+				<span id="ch6" style="width: 78%" class="wpcf7-list-item first"><input style="width: 40%" type="checkbox" class="agegrade" name="agegrade" value="외국인"><span class="wpcf7-list-item-label">외국인</span></span>
+				</span> -->
                 
             </div>
         </div>       
@@ -311,6 +401,42 @@ function captureReturnKey(e) {
 		alert('문의신청이 되었습니다');	
 		
 	}); 
+	 	
+	 function autoHypenPhone(str){
+	     str = str.toString().replace(/[^0-9]/g, '');
+	     
+	     var tmp = '';
+	     if( str.length < 4){
+	         return str;
+	     }else if(str.length < 7){
+	         tmp += str.substr(0, 3);
+	         tmp += '-';
+	         tmp += str.substr(3);
+	         return tmp;
+	     }else if(str.length < 11){
+	         tmp += str.substr(0, 3);
+	         tmp += '-';
+	         tmp += str.substr(3, 3);
+	         tmp += '-';
+	         tmp += str.substr(6);
+	         return tmp;
+	     }else{              
+	         tmp += str.substr(0, 3);
+	         tmp += '-';
+	         tmp += str.substr(3, 4);
+	         tmp += '-';
+	         tmp += str.substr(7);
+	         return tmp;
+	     }
+	     return str;
+	 }
+
+	 var cellgPhone = document.getElementById('contact_phone');
+	 cellgPhone.onkeyup = function(event){
+	 event = event || window.event;
+	 var _val = this.value.trim();
+	 this.value = autoHypenPhone(_val) ;
+	 }
 </script>
 
 

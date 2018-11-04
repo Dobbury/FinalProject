@@ -13,7 +13,7 @@
 // Initialize and add the map
 function initMap() {
   // The location of Uluru
-  var uluru = {lat: ${performCastBBSDto.lat}, lng: ${performCastBBSDto.lng}};
+  var uluru = {lat: ${performCastBBSDto.lati}, lng: ${performCastBBSDto.longi}};
   // The map, centered at Uluru
   var map = new google.maps.Map(
       document.getElementById('map'), {zoom: 12, center: uluru});
@@ -125,7 +125,7 @@ function initMap() {
 	</div>
 	
 	<div class="basicDiv" align="center">
-		<input type="button" value="공연 일정 추가" id="addPerformBtn" onclick="location.href='perform_schedulewrite.do?perform_seq=${musiRecuBBSDto.perform_seq}'">		
+		<input type="button" value="공연 일정 추가" id="addPerformBtn" onclick="location.href='perform_schedulewrite.do?perform_seq=${musiRecuBBSDto.perform_seq}&musi_recu_seq=${musiRecuBBSDto.musi_recu_seq }'">		
 
 	</div>
 </div>
