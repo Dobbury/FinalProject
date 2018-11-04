@@ -46,7 +46,7 @@
 			<li><a href="main.do" class="external">Main</a></li>
 			<li><a class="external" href="aboutus.do">About</a></li>
 			<%if(dto!=null){ 
-				if(dto.getAuth()==2){
+				if(dto.getAuth()==0){
 			%>
 			<li><a href="#" id="current">관리</a>
 		         <ul>

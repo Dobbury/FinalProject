@@ -208,7 +208,7 @@ public class VideoBBSController {
 		model.addAttribute("meminfo", mdto);
 		model.addAttribute("bbslist", bbslist);
 		model.addAttribute("getVideoBbs", dto);
-		
+	
 		return "VideoBbsDetail.tiles";
 	}
 	

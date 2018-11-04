@@ -67,7 +67,9 @@ public class PerformCastBBSController {
 	
 	@RequestMapping(value="castSchedule.do", method={RequestMethod.GET,RequestMethod.POST})
 	public String castSchedule(HttpServletRequest req, HttpServletResponse resp,PerformCastBBSDto dto, Model model) throws Exception {
-		
+		System.out.println(dto.toString());
+		System.out.println("lati="+dto.getLati());
+		System.out.println("longi="+dto.getLongi());
 		//req.setCharacterEncoding("UTF-8");
 		System.out.println("공연섭외:"+dto.toString());
 		
@@ -97,7 +99,10 @@ public class PerformCastBBSController {
 	public void approveAf(int seq_approve,String edate,String title,String content){
 		
 		MusiRecuBBSDto dto = new MusiRecuBBSDto();
-		
+		System.out.println("seq = "+seq_approve);
+		System.out.println("edate = "+ edate);
+		System.out.println("title = "+ title);
+		System.out.println("content = "+ content);
 		dto.setTitle(title);
 		dto.setContent(content);
 		dto.setEdate(edate);
@@ -112,19 +117,13 @@ public class PerformCastBBSController {
 	public String getCastbbs(Model model) {
 		
 		List<PerformCastBBSDto> castbbslist = performCastBBSService.getCastBbs();
-		
+		for (int i = 0; i < castbbslist.size(); i++) {
+			System.out.println(castbbslist.get(i).toString());
+			System.out.println(castbbslist.get(i).getPerform_seq());
+		}
 		
 		model.addAttribute("castbbslist", castbbslist);
 		
-		
-		
-		if (castbbslist != null) {
-			for (int i = 0; i < castbbslist.size(); i++) {
-				System.out.println(castbbslist.get(i).toString());
-			}
-		}else {
-			System.out.println("castbbs.do = its null");
-		}
 		return "castbbs.tiles";
 	}
 	

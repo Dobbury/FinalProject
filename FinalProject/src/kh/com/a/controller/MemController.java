@@ -241,16 +241,18 @@ public class MemController {
 
 		// upload 경로
 		// tomcat
-		// String fupload = req.getServletContext().getRealPath("/upload");
+		String fupload = req.getServletContext().getRealPath("/upload");
 		// logger.info("업로드 경로: " + fupload);
 
 		// 폴더
-		String fupload = "d:\\tmp";
+		//String fupload = "d:\\tmp";
 
 		String f = dto.getOri_profilIMG();
 		String newFile = FUpUtil.getNewFile(f);
 
-		dto.setNew_profilIMG(newFile);
+		
+		//dto.setNew_profilIMG(newFile);
+		dto.setNew_profilIMG("/FinalProject/upload/"+ newFile);
 		logger.info("변경된 파일명: " + newFile);
 
 		File file = new File(fupload + "/" + newFile);
