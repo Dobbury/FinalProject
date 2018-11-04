@@ -45,7 +45,7 @@
 	</insert>
 	
 	<insert id="addRecuMusiInfo" parameterType="kh.com.a.model.RecuMusiInfoDto">
-		INSERT INTO RECU_MUSI_INFO(RECU_MUSI_INFO_SEQ,MUSI_RECU_SEQ, MUSIID) VALUES(RECU_MUSI_INFO_SEQ.NEXTVAL,#{musi_recu_seq},#{musiid})
+		INSERT INTO RECU_MUSI_INFO(RECU_MUSI_INFO_SEQ,MUSI_RECU_SEQ, MUSIID,SELECT_MUSI) VALUES(RECU_MUSI_INFO_SEQ.NEXTVAL,#{musi_recu_seq},#{musiid},0)
 	</insert>
 	
 	<select id="getRecuMusiCount" parameterType="kh.com.a.model.RecuMusiInfoDto" resultType="java.lang.Integer">
@@ -54,6 +54,10 @@
 	
 	<select id="getRecuMusiInfo" parameterType="kh.com.a.model.RecuMusiInfoDto" resultType="java.lang.Integer">
 		SELECT COUNT(*) FROM RECU_MUSI_INFO WHERE MUSI_RECU_SEQ=#{musi_recu_seq} AND MUSIID=#{musiid}
+	</select>
+	
+	<select id="getRecuMusiInfoList" parameterType="kh.com.a.model.RecuMusiInfoDto" resultType="kh.com.a.model.RecuMusiInfoDto">
+		SELECT * FROM RECU_MUSI_INFO WHERE MUSI_RECU_SEQ=#{musi_recu_seq}
 	</select>
 	
 	<delete id="delRecuMusiInfo" parameterType="kh.com.a.model.RecuMusiInfoDto" >

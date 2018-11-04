@@ -29,7 +29,7 @@
 <div class="sticky-nav">
 	<div id="logo">
 		<a id="goUp" href="#home-slider"
-			title="Brushed | Responsive One Page Template">Brushed Template</a>
+			title="Brushed | Responsive One Page Template" style="width: 163px">Brushed Template</a>
 	</div>
 
 
@@ -161,19 +161,19 @@
 		</div>
 		<div class="modal-content" style="text-align: center">
 			<div class="modal-body" align="center" style="background-color: #2F3238; height: 60%">
-				아이디 : ${meminfo.id }
+				아이디 : <span id="meminfo_id">${meminfo.id }</span>
 	        	<br>
-				소속그룹 / 멤버 : ${meminfo.teamname }
+				소속그룹 / 멤버 : <span id="meminfo_teamname">${meminfo.teamname }</span>
 	       		<br>
-				이메일 : ${meminfo.email }
+				이메일 : <span id="meminfo_email">${meminfo.email }</span>
 	        	<br>
-				연락처 : ${meminfo.phone }
+				연락처 : <span id="meminfo_phone">${meminfo.phone }</span>
 	        	<br>
-				장르 : ${meminfo.genre }
+				장르 : <span id="meminfo_genre">${meminfo.genre }</span>
 	        	<br>
-				지역 : ${meminfo.location }
+				지역 : <span id="meminfo_location">${meminfo.location }</span>
 	        	<br>
-				팔로워 수 : ${followerCnt }
+				팔로워 수 : <span id="followerCnt">${followerCnt }</span>
 			</div>
 			<div class="modal-footer" style="background-color: #26292E;">
 	            <button type="button" class="btn btn-default" data-dismiss="modal">

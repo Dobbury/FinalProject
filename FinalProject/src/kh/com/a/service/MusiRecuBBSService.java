@@ -16,6 +16,7 @@ public interface MusiRecuBBSService {
 	public int getRecuMusiCount(RecuMusiInfoDto recuMusiInfoDto);
 	public int getRecuMusiInfo(RecuMusiInfoDto recuMusiInfoDto);
 	public void delRecuMusiInfo(RecuMusiInfoDto recuMusiInfoDto);
+	public List<RecuMusiInfoDto> getRecuMusiInfoList(RecuMusiInfoDto recuMusiInfoDto);
 	
 	public List<MusiRecuBBSDto> getRecuMusiDeadLineList();
 	public List<MusiRecuBBSDto> moreMusiRecuDeadLineList();

@@ -24,7 +24,7 @@
 <!-- Our Work Section -->
 <div class="container" align="center">
 	<!-- Title Page -->
-			<h2 class="title">My Page.</h2>
+			<h2 class="title">My Page</h2>
 	<!-- End Title Page -->
 </div>
 <%if(dto.getAuth()==1){//일반회원%>
@@ -41,7 +41,7 @@
 <input type="date" id="gbirth" name="birth" style="width: 50%" value="<%=dto.getBirth() %>">
 <br>
 <h5 class="title-description" style="margin: 15 0 0 5">연락처</h5>
-<input type="text" name="phone" maxlength="13" style="width: 50%" oninput="autoHypenPhone(this)" placeholder="핸드폰 번호를 입력하세요" value="<%=dto.getPhone() %>">
+<input type="text" name="phone" id="gphone" maxlength="13" style="width: 50%" oninput="autoHypenPhone(this)" placeholder="핸드폰 번호를 입력하세요" value="<%=dto.getPhone() %>">
 <br>
 <h5 class="title-description" style="margin: 15 0 0 5">이메일</h5>
 <input type="text" name="email" placeholder="이메일을 입력하세요" style="width: 50%" value="<%=dto.getEmail() %>">
@@ -87,6 +87,7 @@
 <tr>
 <td align="center">
 <!-- src d://tmp로 하면 권한때문에 이미지를 못가지고옴... -->
+
 <img alt="" src="${user.new_profilIMG }" id="profileImg" style="height: 300px; width: 300px">
 <br><br>
 <input type="file" style="display: none;" id="upload" name="profileImgUpload" >
@@ -118,7 +119,7 @@
 <input type="date" name="birth" style="width: 100%" value="${user.birth }">
 <br>
 <h5 class="title-description" style="margin: 15 0 0 5">연락처</h5>
-<input type="text" name="phone" maxlength="13" oninput="autoHypenPhone(this)" placeholder="핸드폰 번호를 입력하세요" value="${user.phone }">
+<input type="text" name="phone" maxlength="13" id="mphone" oninput="autoHypenPhone(this.value)" placeholder="핸드폰 번호를 입력하세요" value="${user.phone }">
 <br>
 <h5 class="title-description" style="margin: 15 0 0 5">이메일</h5>
 <input type="text" name="email" placeholder="이메일을 입력하세요" value="${user.email }">
@@ -214,7 +215,7 @@
 
 <script type="text/javascript">
 function autoHypenPhone(str){
-    str = str.replace(/[^0-9]/g, '');
+    str = str.toString().replace(/[^0-9]/g, '');
     var tmp = '';
     if( str.length < 4){
         return str;
@@ -241,12 +242,17 @@ function autoHypenPhone(str){
     return str;
 }
 
-var cellPhone = document.getElementsByName('phone');
-cellPhone.onkeyup = function(event){
-event = event || window.event;
-var _val = this.value.trim();
-this.value = autoHypenPhone(_val) ;
-}
+ $(document).on("keyup","#gphone",function(event){
+		event = event || window.event;
+		var _val = this.value.trim();
+		this.value = autoHypenPhone(_val) ;	
+	});
+$(document).on("keyup","#mphone",function(event){
+	event = event || window.event;
+	var _val = this.value.trim();
+	this.value = autoHypenPhone(_val) ;	
+});
+
 
 $("#uploadBtn").click(function () {
 	$("#upload").click();
