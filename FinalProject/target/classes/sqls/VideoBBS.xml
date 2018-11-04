@@ -95,5 +95,9 @@
 		SELECT * FROM VIDEOBBS ORDER BY WDATE DESC
 	</select>
 	
+	<select id="HowManyFollowers" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT COUNT(MEMID) FROM FOLLOW WHERE MUSEID = #{id}
+	</select>
+	
 	
 </mapper>
