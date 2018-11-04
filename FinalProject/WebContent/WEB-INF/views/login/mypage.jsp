@@ -87,7 +87,8 @@
 <tr>
 <td align="center">
 <!-- src d://tmp로 하면 권한때문에 이미지를 못가지고옴... -->
-<img alt="" src="/FinalProject/upload/${user.new_profilIMG }" id="profileImg" style="height: 300px; width: 300px">
+
+<img alt="" src="${user.new_profilIMG }" id="profileImg" style="height: 300px; width: 300px">
 <br><br>
 <input type="file" style="display: none;" id="upload" name="profileImgUpload" >
 <input type="button" value="파일 업로드" id="uploadBtn" style="width: 300px; height: 50px">
@@ -105,7 +106,7 @@
 <input type="password" id="mpwd" name="pwd" placeholder="비밀번호를 입력하세요" value="${user.pwd }">
 <br>
 <h5 class="title-description" style="margin: 15 0 0 5">팀명</h5>
-<input type="text" name="teamname" placeholder="팀명을 입력하세요" ${user.teamname }>
+<input type="text" name="teamname" placeholder="팀명을 입력하세요" value="${user.teamname }">
 <br>
 <h5 class="title-description" style="margin: 15 0 0 5">Position</h5>
 <select style="width: 100%" name="position">

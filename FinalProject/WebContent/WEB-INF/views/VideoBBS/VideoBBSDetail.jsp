@@ -4,6 +4,95 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <fmt:requestEncoding value="utf-8"/>
 
+<style>
+/* ### ### ### 05 */
+.button_base {
+    margin: 0;
+    border: 0;
+    font-size: 14px;
+    position: relative;
+    width: 100px;
+    height: 10px;
+    text-align: center;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-user-select: none;
+    cursor: default;
+}
+.button_base:hover {
+    cursor: pointer;
+}
+
+.b05_3d_roll {
+    perspective: 500px;
+    -webkit-perspective: 500px;
+    -moz-perspective: 500px;
+}
+
+.b05_3d_roll div {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    height: 51px;
+    padding: 10px;
+    pointer-events: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.b05_3d_roll div:nth-child(1) {
+    color: #ffffff;
+    background-color: #ffffff;
+    transform: rotateX(90deg);
+    -webkit-transform: rotateX(90deg);
+    -moz-transform: rotateX(90deg);
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform-origin: 50% 50% -25px;
+    -webkit-transform-origin: 50% 50% -25px;
+    -moz-transform-origin: 50% 50% -25px;
+}
+
+.b05_3d_roll div:nth-child(2) {
+    color: #ffffff;
+    background-color: #26292E;
+    transform: rotateX(0deg);
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform-origin: 50% 50% -25px;
+    -webkit-transform-origin: 50% 50% -25px;
+    -moz-transform-origin: 50% 50% -25px;
+}
+
+.b05_3d_roll:hover div:nth-child(1) {
+    color: #26292E;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform: rotateX(0deg);
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+}
+
+.b05_3d_roll:hover div:nth-child(2) {
+    background-color: #ffffff;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform: rotateX(-90deg);
+    -webkit-transform: rotateX(-90deg);
+    -moz-transform: rotateX(-90deg);
+}
+
+
+</style>
+
 <div style="width: 1000px; margin: auto">
 <div style="display: inline-block; width:auto; border-right: 1px solid gray; margin: auto">
 <form name="bbsfrm" id="_bbsfrm" method="post" action="videoBbsUpdate.do" style="margin: 40px">	
@@ -69,11 +158,14 @@
                 <table class="table">                    
                     <tr>
                         <td>
+                        <textarea style="width: 105%" rows="1" cols="40" id="comment" name="_comment" placeholder="댓글을 입력하세요"></textarea>
+                        </td>
+                        <td>
                             <div>
-                            <p class="contact-message">
-                            	<textarea style="width: 500px" rows="1" cols="30" id="comment" name="_comment" placeholder="댓글을 입력하세요"></textarea>
-                                &nbsp;&nbsp;&nbsp;<a onClick="fn_comment()" class="button button-mini" align="right">등록</a>
-                            </p>
+                                <div class="button_base b05_3d_roll"id="commentBtn" style="margin:auto">
+									<div>댓글</div>
+								    <div>댓글</div>
+								</div>
                             	
                             </div>
                         </td>
@@ -123,7 +215,10 @@ $(document).ready(function() {
 	getCommentList();	
 });
 
+$("#commentBtn").click(function () {
 
+	fn_comment();
+});
 
 function fn_comment(code){
 	

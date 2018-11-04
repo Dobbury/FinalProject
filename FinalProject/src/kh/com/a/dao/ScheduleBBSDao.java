@@ -6,13 +6,13 @@ import kh.com.a.model.ScheduleBBSDto;
 
 public interface ScheduleBBSDao {
 
-	public List<ScheduleBBSDto> getComingSchedule();
+	List<ScheduleBBSDto> getComingSchedule();
 	
-	public List<ScheduleBBSDto> getIngSchedule();
+	List<ScheduleBBSDto> getIngSchedule();
 	
 	List<ScheduleBBSDto> getScheduleList() throws Exception;
 	
-	List<ScheduleBBSDto> getScheduleOne() throws Exception;
+	ScheduleBBSDto getSchedule(int seq) throws Exception;
 	
 	boolean writeBbs(ScheduleBBSDto dto) throws Exception;
 }
