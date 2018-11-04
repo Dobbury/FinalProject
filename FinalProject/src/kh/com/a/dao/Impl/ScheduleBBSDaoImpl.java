@@ -32,15 +32,15 @@ public class ScheduleBBSDaoImpl implements ScheduleBBSDao {
 	}
 
 	@Override
-	public List<ScheduleBBSDto> getScheduleOne() throws Exception {
-		List<ScheduleBBSDto> OneList = sqlSession.selectOne(namespace + "getScheduleOne"); 
-		return OneList;
-	}
-	
-	@Override
 	public boolean writeBbs(ScheduleBBSDto bbs) throws Exception {
 		sqlSession.insert(namespace + "writeBBs", bbs);
 		return true;
 	}
+	@Override
+	public ScheduleBBSDto getSchedule(int seq) throws Exception {
+		ScheduleBBSDto dto = sqlSession.selectOne(namespace + "getSchedule", seq);
+		return dto;
+	}
 
+	
 }

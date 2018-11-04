@@ -36,7 +36,7 @@ function initMap() {
 <input type="hidden" id="seq" value="${musiRecuBBSDto.musi_recu_seq }">
 
 
-<div class="container" style="background-color: #26292E;" >
+<div class="container" style="background-color: #26292E; box-shadow: 3px 3px 20px #000;" >
 	<div class="basicDiv" style="margin-bottom: 0px; padding-bottom: 0px;">
 		<table style="width: 100%; height: 100%">
 			<col width="15%"><col width="35%"><col width="15%"><col width="35%">
@@ -112,11 +112,11 @@ function initMap() {
 				<td colspan="4">
 					<div class="basicDiv" style="border: 1px solid gray; margin-top: 0px; margin-bottom: 5%">
 						${musiRecuBBSDto.content}<br>
+						<!-- <h3>asd</h3>
 						<h3>asd</h3>
 						<h3>asd</h3>
 						<h3>asd</h3>
-						<h3>asd</h3>
-						<h3>asd</h3>
+						<h3>asd</h3> -->
 						
 					</div>
 				</td>

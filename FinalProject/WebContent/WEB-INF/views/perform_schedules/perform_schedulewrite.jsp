@@ -1,7 +1,96 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<style>
+/* ### ### ### 05 */
+.button_base {
+    margin: 0;
+    border: 0;
+    font-size: 18px;
+    position: relative;
+    width: 230px;
+    height: 50px;
+    text-align: center;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-user-select: none;
+    cursor: default;
+}
+.button_base:hover {
+    cursor: pointer;
+}
+
+.b05_3d_roll {
+    perspective: 500px;
+    -webkit-perspective: 500px;
+    -moz-perspective: 500px;
+}
+
+.b05_3d_roll div {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    height: 51px;
+    padding: 10px;
+    pointer-events: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.b05_3d_roll div:nth-child(1) {
+    color: #ffffff;
+    background-color: #ffffff;
+    transform: rotateX(90deg);
+    -webkit-transform: rotateX(90deg);
+    -moz-transform: rotateX(90deg);
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform-origin: 50% 50% -25px;
+    -webkit-transform-origin: 50% 50% -25px;
+    -moz-transform-origin: 50% 50% -25px;
+}
+
+.b05_3d_roll div:nth-child(2) {
+    color: #ffffff;
+    background-color: #26292E;
+    transform: rotateX(0deg);
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform-origin: 50% 50% -25px;
+    -webkit-transform-origin: 50% 50% -25px;
+    -moz-transform-origin: 50% 50% -25px;
+}
+
+.b05_3d_roll:hover div:nth-child(1) {
+    color: #26292E;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform: rotateX(0deg);
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+}
+
+.b05_3d_roll:hover div:nth-child(2) {
+    background-color: #ffffff;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform: rotateX(-90deg);
+    -webkit-transform: rotateX(-90deg);
+    -moz-transform: rotateX(-90deg);
+}
 
 
+</style>
 <script language="javascript">
 //ENTER 안먹게 하는것
 function captureReturnKey(e) {
@@ -35,12 +124,63 @@ function captureReturnKey(e) {
 					<img alt="파일 없슴" src="" id="consertImg" style="height: 280px; width: 218px">
 					<br><br>
 					<input type="file" style="display: none;" id="upload" name="consertImgUpload" >
-					<input style="width: 218px;" type="button" value="파일 업로드" id="uploadBtn">
+					<div class="button_base b05_3d_roll" style="width: 218px" id="uploadBtn">
+						<div>파일 업로드</div>
+						<div>파일 업로드</div>
+					</div>					
 				</div>
-			</p>
 			<p class="contact-ticket_price">
             	<input id="contact_ticket_price" type="number" placeholder="티켓 가격 입력" value="" name="ticket_price" />
 			</p>
+			<p>
+				<table style="width: 100%">
+					<col width="40%"><col width="20%"><col width="40%">
+					<tr style="height :50px; background-color: #26292E">
+						<th>
+							지원 팀 목록
+						</th>
+						<th rowspan="2">
+							<div id="btnAdd" class="button_base b05_3d_roll" style="width: 99%; left:1px">
+								<div>추 가</div>
+								<div>추 가</div>
+							</div>
+							<br>
+							<div id="btnSub" class="button_base b05_3d_roll" style="width: 99%; left:1px">
+								<div>삭 제</div>
+								<div>삭 제</div>
+							</div>
+						</th>
+						<th>
+							공연 팀 목록
+						</th>
+					</tr>
+					<tr>
+						<td>
+							<select id="leftValues" size="10" multiple="multiple" style="background-color:#2F3238; overflow: auto; padding:2; height: 300px;">
+								<c:forEach items="${recuMusiInfoList }" var="item" varStatus="status">
+								
+									<option style="margin: 2px; width: auto; height: auto">${item.musiid }</option>
+								</c:forEach>
+								
+								
+								<!-- <option style="margin: 2px; width: auto; height: auto">1</option>
+							 -->
+					
+							</select>
+						</td>
+						<td>
+							<select id="rightValues" size="10" multiple="multiple" style="background-color:#2F3238; overflow: auto; padding:2; height: 300px;">
+							
+							</select>
+						</td>			
+					</tr>
+					<tr style="height: 50px; background-color: #26292E">
+						<td colspan="3">
+						</td>
+					</tr>
+				</table>
+			</p>
+			
 			<p class="contact-notice">
 				<div align="center" style="border: 1px solid #26292E;">
 					<input type="text" value="Notice 입력" readonly="readonly">
@@ -84,6 +224,47 @@ $("#upload").on('change', function () {
     reader.readAsDataURL($(this)[0].files[0]);
     
 });
+
+$("#btnSub").click(function () {
+    var selectedItem = $("#rightValues option:selected");
+    $("#leftValues").append(selectedItem);
+});
+
+$("#btnAdd").click(function () {
+    var selectedItem = $("#leftValues option:selected");
+    $("#rightValues").append(selectedItem);
+});
+
+$(document).on("dblclick","option",function () {
+	//alert(this.value);
+	var musiid=this.value;
+	$.ajax({
+		url:"musiInfo.do",
+		data:{
+			id:musiid
+		},
+		dataType:"json",
+		success:function(data){
+			$("#meminfo_id").html(data.musiInfo.id);
+			$("#meminfo_teamname").html(data.musiInfo.teamname);
+			$("#meminfo_location").html(data.musiInfo.location);
+			$("#meminfo_genre").html(data.musiInfo.genre);
+			$("#meminfo_email").html(data.musiInfo.email);
+			$("#meminfo_phone").html(data.musiInfo.phone);
+			$("#followerCnt").html(data.followerCnt);
+			
+		},
+		error:function(){
+			
+		}
+		
+	});
+	
+	
+	$("#museDetailModal").modal("show");
+});
+
+
 </script>
 <script type="text/javascript">
       var oEditors = [];
@@ -141,6 +322,11 @@ $("#upload").on('change', function () {
       });
 
       function submitContents(elClickedObj) {
+    	  $("#rightValues option").attr("selected","selected");
+  
+    	  
+    	  alert($("#rightValues").children('option').length);
+    	  
     	  oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []); // 에디터의 내용이 textarea에 적용됩니다.
     	  oEditors2.getById["ir2"].exec("UPDATE_CONTENTS_FIELD", []); // 에디터의 내용이 textarea에 적용됩니다.
          try {
@@ -148,5 +334,5 @@ $("#upload").on('change', function () {
          } catch (e) {
          }
       }
-
+	
 </script>

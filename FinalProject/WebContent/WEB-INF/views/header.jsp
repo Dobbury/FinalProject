@@ -12,6 +12,7 @@
 .modal-body {
 	vertical-align: middle;
 }
+
 #menu-nav ul{
 	display:none;
 	position:absolute;
@@ -28,7 +29,7 @@
 <div class="sticky-nav">
 	<div id="logo">
 		<a id="goUp" href="#home-slider"
-			title="Brushed | Responsive One Page Template">Brushed Template</a>
+			title="Brushed | Responsive One Page Template" style="width: 163px">Brushed Template</a>
 	</div>
 
 
@@ -38,7 +39,7 @@
 			<li><a href="main.do" class="external">Main</a></li>
 			<li><a class="external" href="aboutus.do">About</a></li>
 			<%if(dto!=null){ 
-				if(dto.getAuth()==2){
+				if(dto.getAuth()==0){
 			%>
 			<li><a href="#" id="current">관리</a>
 		         <ul>
@@ -76,7 +77,7 @@
             						<%} %>
             							</li>
             
-			<li><a href="VideoBBS.do" class="external">영상게시판</a></li>
+			<li><a class="external" href="VideoBBS.do">영상게시판</a></li>
 			
 			<%if(dto==null){ %>
 				<li><a data-toggle="modal" data-target="#myModal" href="#myModal">Login</a></li>
@@ -153,35 +154,42 @@
 
 <div class="modal fade" id="museDetailModal" role="dialog" 
    aria-labelledby="myModalLabel" aria-hidden="true">
-   <div class="modal-dialog modal-lg"><!--  큰창:<div class="modal-dialog modal-lg"> 작은창 :<div class="modal-dialog modal-sm">  -->
-      <div class="modal-content" style="text-align: center">
-        아이디 : ${meminfo.id }
-        <br><br>
-        소속그룹 / 멤버 : ${meminfo.teamname }
-        <br><br>
-        이메일 : ${meminfo.email }
-        <br><br>
-        연락처 : ${meminfo.phone }
-        <br><br>
-        장르 : ${meminfo.genre }
-        <br><br>
-        지역 : ${meminfo.location }
-        <br><br>
-        팔로워 수 : 
-         <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">
-               닫기
-            </button>
-         </div>
-      </div> 
-   </div> 
+	<div class="modal-dialog modal-sm"><!--  큰창:<div class="modal-dialog modal-lg"> 작은창 :<div class="modal-dialog modal-sm">  -->
+		<div class="modal-header" align="center" style="background-color: #2F3238">
+			<h4 class="modal-title"
+					style="font-family: Icons; font-size: 40; font-weight: bold; margin: 0">뮤지션 정보</h4>
+		</div>
+		<div class="modal-content" style="text-align: center">
+			<div class="modal-body" align="center" style="background-color: #2F3238; height: 60%">
+				아이디 : <span id="meminfo_id">${meminfo.id }</span>
+	        	<br>
+				소속그룹 / 멤버 : <span id="meminfo_teamname">${meminfo.teamname }</span>
+	       		<br>
+				이메일 : <span id="meminfo_email">${meminfo.email }</span>
+	        	<br>
+				연락처 : <span id="meminfo_phone">${meminfo.phone }</span>
+	        	<br>
+				장르 : <span id="meminfo_genre">${meminfo.genre }</span>
+	        	<br>
+				지역 : <span id="meminfo_location">${meminfo.location }</span>
+	        	<br>
+				팔로워 수 : <span id="followerCnt">${followerCnt }</span>
+			</div>
+			<div class="modal-footer" style="background-color: #26292E;">
+	            <button type="button" class="btn btn-default" data-dismiss="modal">
+				닫기
+	            </button>
+			</div>
+		</div> 
+	</div> 
 </div>
 
 <script type="text/javascript">
 
 
 $("#movecastBtn").click(function () {
-	$("#castBtn").click();
+	var btnName = "#"+$("#vsValue").val();
+	$(btnName).click();
 });
 
 $("#login").on('click',function(){

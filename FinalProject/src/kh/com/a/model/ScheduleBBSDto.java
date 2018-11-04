@@ -4,91 +4,116 @@ import java.io.Serializable;
 import java.sql.Date;
 
 public class ScheduleBBSDto implements Serializable {
-	private String sdate;
-	private String edate;
+	private String scheduledate;
+	private String buskingTime;
 	private String location;
 	private String place;
-	private int count;
-	private int price;
-	private String ori_consertIMG;
-	private String new_consertIMG;
 	private int schedule_seq;
+	private String id;
+	private String teamname;
+	private double lati;
+	private double longi;
+	
 	public ScheduleBBSDto() {
 		super();
 	}
-	public ScheduleBBSDto(String sdate, String edate, String location, String place, int count, int price,
-			String ori_consertIMG, String new_consertIMG, int schedule_seq) {
+
+	public ScheduleBBSDto(String scheduledate, String buskingTime, String location, String place, int schedule_seq,
+			String id, String teamname, double lati, double longi) {
 		super();
-		this.sdate = sdate;
-		this.edate = edate;
+		this.scheduledate = scheduledate;
+		this.buskingTime = buskingTime;
 		this.location = location;
 		this.place = place;
-		this.count = count;
-		this.price = price;
-		this.ori_consertIMG = ori_consertIMG;
-		this.new_consertIMG = new_consertIMG;
 		this.schedule_seq = schedule_seq;
+		this.id = id;
+		this.teamname = teamname;
+		this.lati = lati;
+		this.longi = longi;
 	}
-	public String getSdate() {
-		return sdate;
+
+	public String getScheduledate() {
+		return scheduledate;
 	}
-	public void setSdate(String sdate) {
-		this.sdate = sdate;
+
+	public void setScheduledate(String scheduledate) {
+		this.scheduledate = scheduledate;
 	}
-	public String getEdate() {
-		return edate;
+
+	public String getBuskingTime() {
+		return buskingTime;
 	}
-	public void setEdate(String edate) {
-		this.edate = edate;
+
+	public void setBuskingTime(String buskingTime) {
+		this.buskingTime = buskingTime;
 	}
+
 	public String getLocation() {
 		return location;
 	}
+
 	public void setLocation(String location) {
 		this.location = location;
 	}
+
 	public String getPlace() {
 		return place;
 	}
+
 	public void setPlace(String place) {
 		this.place = place;
 	}
-	public int getCount() {
-		return count;
-	}
-	public void setCount(int count) {
-		this.count = count;
-	}
-	public int getPrice() {
-		return price;
-	}
-	public void setPrice(int price) {
-		this.price = price;
-	}
-	public String getOri_consertIMG() {
-		return ori_consertIMG;
-	}
-	public void setOri_consertIMG(String ori_consertIMG) {
-		this.ori_consertIMG = ori_consertIMG;
-	}
-	public String getNew_consertIMG() {
-		return new_consertIMG;
-	}
-	public void setNew_consertIMG(String new_consertIMG) {
-		this.new_consertIMG = new_consertIMG;
-	}
+
 	public int getSchedule_seq() {
 		return schedule_seq;
 	}
+
 	public void setSchedule_seq(int schedule_seq) {
 		this.schedule_seq = schedule_seq;
 	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getTeamname() {
+		return teamname;
+	}
+
+	public void setTeamname(String teamname) {
+		this.teamname = teamname;
+	}
+
+	public double getLati() {
+		return lati;
+	}
+
+	public void setLati(double lati) {
+		this.lati = lati;
+	}
+
+	public double getLongi() {
+		return longi;
+	}
+
+	public void setLongi(double longi) {
+		this.longi = longi;
+	}
+
 	@Override
 	public String toString() {
-		return "ScheduleBBSDto [sdate=" + sdate + ", edate=" + edate + ", location=" + location + ", place=" + place
-				+ ", count=" + count + ", price=" + price + ", ori_consertIMG=" + ori_consertIMG + ", new_consertIMG="
-				+ new_consertIMG + ", schedule_seq=" + schedule_seq + "]";
+		return "ScheduleBBSDto [scheduledate=" + scheduledate + ", buskingTime=" + buskingTime + ", location="
+				+ location + ", place=" + place + ", schedule_seq=" + schedule_seq + ", id=" + id + ", teamname="
+				+ teamname + ", lati=" + lati + ", longi=" + longi + "]";
 	}
+
+	
+	
+	
 	
 	
 	

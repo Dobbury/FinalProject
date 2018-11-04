@@ -61,7 +61,7 @@ public class VideoBBSController {
 	@RequestMapping(value="VideoBBS.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public String VideoBBSList(Model model) throws Exception
 	{
-		logger.info("VideoBBSController VideoBBSList" + new Date());
+		logger.info("VideoBBSController VideoBBS.do VideoBBSList " + new Date());
 		
 		List<VideoBBSDto> bbslist = videoBBSService.getVideoBbsList();
 		
@@ -178,8 +178,6 @@ public class VideoBBSController {
 		
 		VideoBBSDto dto = videoBBSService.getVideoBbs(seq);
 		
-		videoBBSService.incReadCount(seq);
-		
 		List<VideoBBSDto> bbslist = videoBBSService.getVideoBbsList();
 		
 		MemDto mdto = memberService.login(dto.getId());
@@ -194,11 +192,14 @@ public class VideoBBSController {
 		
 		boolean b = videoBBSService.getLike(vlDto);
 		
+		int followerCnt = videoBBSService.FollowerCount(dto.getId());
+		
 		if(b)
 			model.addAttribute("likecheck", true);
 		else
 			model.addAttribute("likecheck", false);
 		
+		model.addAttribute("followerCnt", followerCnt);
 		model.addAttribute("meminfo", mdto);
 		model.addAttribute("bbslist", bbslist);
 		model.addAttribute("getVideoBbs", dto);
@@ -211,6 +212,8 @@ public class VideoBBSController {
 	{
 		logger.info("VideoBBSController VideoBbsDelete" + new Date());
 		
+		videoBBSService.BbsLikeDelete(seq);
+		videoBBSService.BbsCommentDelete(seq);
 		videoBBSService.videoBbsDelete(seq);
 		
 		return "redirect:/VideoBBS.do";
@@ -320,6 +323,36 @@ public class VideoBBSController {
 		}
 		
 		return like;
+	}
+	
+	@RequestMapping(value="likeCount.do", method= {RequestMethod.GET, RequestMethod.POST})
+	@ResponseBody
+	public int likeCount(HttpServletRequest req) throws Exception
+	{
+		logger.info("VideoBBSController likeCount " + new Date());
+		
+		int seq = Integer.parseInt(req.getParameter("video_seq"));
+		
+		
+		int likeCnt = videoBBSService.likeCount(seq);
+		
+		
+		return likeCnt;
+	}
+	
+	@RequestMapping(value="ReadCount.do", method= {RequestMethod.GET, RequestMethod.POST})
+	@ResponseBody
+	public int ReadCount(HttpServletRequest req) throws Exception
+	{
+		logger.info("VideoBBSController ReadCount " + new Date());
+		
+		int seq = Integer.parseInt(req.getParameter("video_seq"));
+		
+		videoBBSService.incReadCount(seq);
+		
+		VideoBBSDto dto = videoBBSService.getVideoBbs(seq);
+		
+		return dto.getReadcount();
 	}
 	
 	@ResponseBody

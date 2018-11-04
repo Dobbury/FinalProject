@@ -77,4 +77,10 @@ public class MusiRecutBBSServiceImpl implements MusiRecuBBSService{
 		dao.addMusiRecuBBS(dto);
 	}
 
+	@Override
+	public List<RecuMusiInfoDto> getRecuMusiInfoList(RecuMusiInfoDto recuMusiInfoDto) {
+		// TODO Auto-generated method stub
+		return dao.getRecuMusiInfoList(recuMusiInfoDto);
+	}
+
 }	

@@ -32,6 +32,7 @@ import kh.com.a.model.MusiRecuBBSDto;
 import kh.com.a.model.Param;
 import kh.com.a.model.PerformCastBBSDto;
 import kh.com.a.model.PerformScheduleBBSDto;
+import kh.com.a.model.RecuMusiInfoDto;
 import kh.com.a.model.ScheduleBBSDto;
 import kh.com.a.model.TicketDto;
 import kh.com.a.service.MusiRecuBBSService;
@@ -119,11 +120,16 @@ public class PerformScheduleBBSController {
 	}
 
 	@RequestMapping(value = "perform_schedulewrite.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String perform_schedulewrite(Model model, int perform_seq) throws Exception {
+	public String perform_schedulewrite(Model model, int perform_seq,int musi_recu_seq) throws Exception {
 		logger.info("PerformScheduleBBSController perform_scheduledetail " + new Date());
 		
 		model.addAttribute("performCastBBSDto", performCastBBSService.getPerformCastInfo(perform_seq));
-
+		
+		RecuMusiInfoDto recuMusiInfoDto = new RecuMusiInfoDto();
+		
+		recuMusiInfoDto.setMusi_recu_seq(musi_recu_seq);
+		model.addAttribute("recuMusiInfoList",musiRecuBBSService.getRecuMusiInfoList(recuMusiInfoDto));
+		
 		return "perform_schedulewrite.tiles";
 	}
 

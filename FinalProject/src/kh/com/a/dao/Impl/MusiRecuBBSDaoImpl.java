@@ -75,4 +75,10 @@ public class MusiRecuBBSDaoImpl implements MusiRecuBBSDao {
 	public void addMusiRecuBBS(MusiRecuBBSDto dto) {
 		sqlSession.insert(namespace + "addMusiRecuBBS",dto );
 	}
+
+	@Override
+	public List<RecuMusiInfoDto> getRecuMusiInfoList(RecuMusiInfoDto recuMusiInfoDto) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace + "getRecuMusiInfoList",recuMusiInfoDto);
+	}
 }

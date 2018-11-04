@@ -3,40 +3,41 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <fmt:requestEncoding value="utf-8"/>
-게시글 수정=====
 
-${getVideoBbs.title }
+<div style="width: 520px; margin: auto;text-align: center">
 <form name="bbsfrm" id="_bbsfrm" method="post" action="videoBbsUpdateAf.do">
-	<table border="solid">
-	<tr>
-		<th>THUMBNAIL</th>
-		<th>ID</th>
-		<th>TITLE</th>
-		<th>READCOUNT</th>
-		<th>CONTENT</th>
-		<th>VIDEO</th>
-	</tr>
-	
+	<table>
 	<tr align="center">
-		<td><img src= ${getVideoBbs.thumbnail } width="200" height="150" alt="Thumbnail" title="Thumbnail"></td>
-		<td>${getVideoBbs.id }</td>
-		<td><input type="text" name="title" id="_title" value="${getVideoBbs.title }"></td>
-		<td>${getVideoBbs.readcount }</td>
-		<td style="text-align: left"><textarea rows="10" cols="50" 
+		<td><img src= ${getVideoBbs.thumbnail } width="100%" alt="Thumbnail" title="Thumbnail"></td>
+		</tr>
+		<tr>
+			<td align="center"><span class="font-icon-group">&nbsp;&nbsp;${getVideoBbs.id }</td>
+		</tr>
+		<tr>
+			<td align="center"><span class="font-icon-book">&nbsp;&nbsp;<input type="text" name="title" id="_title" value="${getVideoBbs.title }"></td>
+		</tr>
+		<tr>
+			<td align="center"><span class="font-icon-eye">&nbsp;&nbsp;${getVideoBbs.readcount }</td>
+		</tr>
+		<tr>
+			<td style="text-align: center"><span class="font-icon-paste">&nbsp;&nbsp;<textarea rows="10" cols="100" 
 			name='content' id="_content">${getVideoBbs.content }</textarea></td>
-		<td>
+		</tr>
+		<tr>
+			<td>
 			<video
 				style="margin: 45px; display: inline-block; width: 80%; height: 250px"
 				src=${getVideoBbs.video } controls="controls">이 브라우저는 재생이 불가능합니다.
 			</video>
-		</td>
-	</tr>
+			</td>
+		</tr>
 	</table>
 	
 	<c:if test="${getVideoBbs.id eq user.id}">
 	<a href="#none" id="_btnUpdate" title="글수정하기">수정하기</a>
 	</c:if>
 </form>
+</div>
 
 <script type="text/javascript">
 $("#_btnUpdate").click(function() {	
