@@ -104,15 +104,15 @@ int perform_seq = -1;
 						
 
 						<div align="right">
-						 <button style="display: none;" id="castBtn" onclick="approve(${castbbs.perform_seq}, index${vs.count})">승인</button>
-						<a data-toggle="modal" href="#castModal" >승인</a>
+						 <button style="display: none;" id="castBtn${vs.count}" onclick="approve(${castbbs.perform_seq}, index${vs.count})">승인</button>
+						<a data-toggle="modal" href="#castModal" onclick="saveVs('castBtn${vs.count}')">승인</a>
 						</div>
 					</div>
 				</div>
 			</div>
 			
 		</c:forEach>
-		
+		<input type="hidden" id="vsValue">
 	</div>
 	<!-- End Accordion -->
 </div>
@@ -137,6 +137,11 @@ perform_seq = castbbslist.get(index).getPerform_seq();
 </div>
 
 <script>
+function saveVs(vs){
+	$("#vsValue").val(vs);
+}
+</script>
+<script>
 
 var vs = 5;
 var perform_seq = <%= perform_seq %>
@@ -144,7 +149,7 @@ var startindex = 1;
 var endindex = 7;
 
 	function approve(seq_approve, id){
-		
+		alert(seq_approve);
 		
 		var divId = id;
 		

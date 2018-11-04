@@ -188,7 +188,8 @@
 
 
 $("#movecastBtn").click(function () {
-	$("#castBtn").click();
+	var btnName = "#"+$("#vsValue").val();
+	$(btnName).click();
 });
 
 $("#login").on('click',function(){
