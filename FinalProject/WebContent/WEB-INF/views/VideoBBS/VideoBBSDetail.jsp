@@ -123,12 +123,19 @@
 			</td>
 		</tr>
 		<tr>
-			<td><%-- <button id="followB" onclick="Follow(${user.id}, ${getVideoBbs.id})">Follow</button> --%></td>
 		</tr>
 		</table>
 		<table style="border-top: solid 1px white; width: 100%">
 		<tr>
 			<td><span class="font-icon-group">&nbsp;&nbsp;<a data-toggle="modal" href="#museDetailModal">${getVideoBbs.id }</a></td>
+			<td>
+					<c:if test="${followcheck == true }">
+						&nbsp;&nbsp;<a id="followB" onclick="Follow()" class="font-icon-ok-sign"></a>
+					</c:if>
+					<c:if test="${followcheck == false }">
+						&nbsp;&nbsp;<a id="followB" onclick="Follow()" class="font-icon-ok-circle"></a>
+					</c:if>
+			</td>
 		</tr>
 		<tr>
 			<td>게시일 : ${getVideoBbs.wdate }</td>
@@ -182,9 +189,7 @@
 </div>
 
 <div style="display: inline-block; vertical-align: top; margin-left: 50px">
-<c:if test="${user.id ne getVideoBbs.id}">
-<button id="followB" onclick="Follow()">Follow</button>
-</c:if>
+
 
 <div style="display: inline-block; vertical-align: top; width: 150px; white-space: nowrap;">
 <p align="center"><strong>뮤지션의 다른영상</strong></p>
@@ -262,13 +267,10 @@ function fn_comment(code){
 			data : "follower="+follower+"&following="+following_id,
 			dataType : 'json',
 			success : function(data) {
-				alert(data);
 				if (data == 1) {
-					alert("팔로잉 하셨습니다");
-					$("#followB").attr( "color", "red" );
+					$('#followB').prop("class","font-icon-ok-sign");
 				}else if (data == 0) {
-					alert("팔로잉을 취소하셨습니다");
-					$("#followB").attr( "color", "white" );
+					$("#followB").prop("class", "font-icon-ok-circle");
 				}
 					
 			
