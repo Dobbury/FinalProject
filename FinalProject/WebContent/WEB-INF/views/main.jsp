@@ -82,7 +82,7 @@ model.addAttribute("latelyVideoList", latelyVideoList);
 						<!-- Item Project and Filter Name -->
 						<%-- <c:forEach items="${videoRankList}" var="Vrank" varStatus="vs" begin = "1" end = "9"> --%>
 						<c:if test="${empty videoRankList}">
-						<li class="item-thumbs span3 like">
+						<li style="margin: 30px;" class="item-thumbs span3 like">
 						<div>인기순</div>
 						<h3>인기 영상이 없습니다</h3>
 						</li>
@@ -94,9 +94,9 @@ model.addAttribute("latelyVideoList", latelyVideoList);
 						<li class="item-thumbs span3 like">
 						
 						<c:if test="${vs.count eq 1 }">
-						<div>인기순</div>
+						<font size="5px" style="font-family: sans-serif; font-weight: bold; color: #fff;">인기순</font>
 						</c:if>
-						<hr>
+						<hr style="border: none; border: 5px double #0066cc;">
 							<!-- Fancybox - Gallery Enabled - Title - Full Image --> <a
 							class="hover-wrap fancybox" data-fancybox-group="gallery"
 							title="${Vrank.title}" href="VideoBbsDetail.do?seq=${Vrank.video_seq}">
@@ -146,9 +146,9 @@ model.addAttribute("latelyVideoList", latelyVideoList);
 						
 						<li class="item-thumbs span3 following">
 						<c:if test="${vs.count eq 1 }">
-						<div>팔로잉</div>
+						<font size="5px" style="font-family: sans-serif; font-weight: bold; color: #fff;">팔로잉</font>
 						</c:if>
-						<hr>
+						<hr style="border: none; border: 5px double #0066cc;">
 							<!-- Fancybox - Gallery Enabled - Title - Full Image --> <a
 							class="hover-wrap fancybox" data-fancybox-group="gallery"
 							title="${followings.title}" href="VideoBbsDetail.do?seq=${followings.video_seq}">
@@ -191,10 +191,10 @@ model.addAttribute("latelyVideoList", latelyVideoList);
 					 
 						<li class="item-thumbs span3 lately">
 						<c:if test="${vs.count eq 1 }">
-						<div>최신순</div>
+						<font size="5px" style="font-family: sans-serif; font-weight: bold; color: #fff;">최신순</font>
 						</c:if>
 						
-						<hr>
+						<hr style="border: none; border: 5px double #0066cc;">
 							<!-- Fancybox - Gallery Enabled - Title - Full Image --> <a
 							class="hover-wrap fancybox" data-fancybox-group="gallery"
 							title="${lateVideo.title}"
@@ -239,8 +239,16 @@ model.addAttribute("latelyVideoList", latelyVideoList);
 						
 						<li class="item-thumbs span3 schedule">
 						<c:if test="${vs.count eq 1 }">
-						<div>공연/행사</div>
+						<font size="5px" style="font-family: sans-serif; font-weight: bold; color: #fff;">공연/행사</font>
+						<hr style="border: none; border: 5px double #0066cc;">
 						</c:if>
+						<c:otherwise>
+							
+							<hr style="border: none; border: 5px double #0066cc;">
+						</c:otherwise>
+						
+						
+						
 							<!-- Fancybox - Gallery Enabled - Title - Full Image --> <a
 							class="hover-wrap fancybox" data-fancybox-group="gallery"
 							title="${lateSchedule.title}"

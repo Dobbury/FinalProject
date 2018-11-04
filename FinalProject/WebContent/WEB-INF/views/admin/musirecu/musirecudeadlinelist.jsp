@@ -13,7 +13,34 @@
 
 </div>
 
- 
+
+<div class="container">
+<div class="span12">
+           <h3 class="spec">신청 목록</h3>
+              
+            	<!-- Start Accordion -->
+	
+<div class="accordion2" id="accordionArea2">
+		<c:forEach items="${musiRecuDeadLineList}" var="item" varStatus="vs">
+			
+			<div id="index${vs.count}" class="accordion-group2">
+				
+				<div class="accordion-heading2 accordionize2">
+					<div style="margin: 30px;" align="left">
+					<a class="accordion-toggle2 inactive2 collapsed"
+						data-parent="#accordionArea2" href='musirecudeadlinedetail.do?musi_recu_seq=${item.musi_recu_seq}'>
+						공고 제목 : ${item.title}<p style="margin-right: 30px;" align="right">마감날짜</p><p style="margin-right: 30px;" align="right">${item.edate}</p>
+					</a>									
+				</div>
+				</div>
+			</div>
+		</c:forEach>
+		</div>
+	</div>
+</div>
+		
+<%-- 
+
 <table id="list_table" class="list_table" style="width:85%;">
 	<colgroup>
 		<col style="width:70px;" />
@@ -53,9 +80,14 @@
 </tbody>
 
 </table>
+ --%>
+
+
 <div id="add">
 <button id="addbtn" onclick="moreList();">더보기</button>
 </div>
+
+
 
 
 

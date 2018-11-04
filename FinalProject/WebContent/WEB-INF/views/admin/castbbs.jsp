@@ -100,8 +100,8 @@ int perform_seq = -1;
                	    </div>	
                	    ${castbbs.perform_seq}
    	    			<div align="right">
-					<button style="display: none;" id="castBtn" onclick="approve(${castbbs.perform_seq}, index${vs.count})">승인</button>
-					<a data-toggle="modal" href="#castModal" >승인</a>
+					<button style="display: none;" id="castBtn${vs.count}" onclick="approve(${castbbs.perform_seq}, index${vs.count})">승인</button>
+				 	<a data-toggle="modal" href="#castModal" onclick="saveVs('castBtn${vs.count}')">승인</a>
 					</div>
 						
 
@@ -110,6 +110,7 @@ int perform_seq = -1;
 			
 				</div>
 		</c:forEach>
+		<input type="hidden" id="vsValue">
 	
 	</div>
 	</div>
@@ -171,6 +172,12 @@ var endindex = 7;
 	           }
 	    }); 
 	}
+	
+	
+	function saveVs(vs){
+	   $("#vsValue").val(vs);
+	}
+	
 	
 	function moreList2(){
 		startindex += 7;

@@ -42,7 +42,7 @@
 <link href="_include/css/fonts.css" rel="stylesheet">
 
 <!-- Shortcodes -->
-<link href="_include/css/shortcodes.css" rel="stylesheet">
+<link href="_include/css/shortcodes.css?ver=1" rel="stylesheet">
 
 <!-- Responsive -->
 <link href="_include/css/bootstrap-responsive.min.css" rel="stylesheet">

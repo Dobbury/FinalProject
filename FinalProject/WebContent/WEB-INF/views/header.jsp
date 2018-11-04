@@ -195,10 +195,12 @@
 </div>
 
 <script type="text/javascript">
-
+var tmp = 0;
 
 $("#movecastBtn").click(function () {
-	$("#castBtn").click();
+	var btnName = "#"+$("#vsValue").val();
+	   alert(btnName);
+	   $(btnName).click();
 });
 
 $("#login").on('click',function(){
