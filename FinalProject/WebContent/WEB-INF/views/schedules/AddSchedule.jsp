@@ -8,6 +8,93 @@
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANm_LhhJlAxtWnzBHskkYxoHViNJhqiKw&libraries=places"></script> 
 
+<style>
+/* ### ### ### 05 */
+.button_base {
+    margin: 0;
+    border: 0;
+    font-size: 18px;
+    position: relative;
+    width: 100px;
+    height: 50px;
+    text-align: center;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-user-select: none;
+    cursor: default;
+}
+.button_base:hover {
+    cursor: pointer;
+}
+
+.b05_3d_roll {
+    perspective: 500px;
+    -webkit-perspective: 500px;
+    -moz-perspective: 500px;
+}
+
+.b05_3d_roll div {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    height: 51px;
+    padding: 10px;
+    pointer-events: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.b05_3d_roll div:nth-child(1) {
+    color: #ffffff;
+    background-color: #ffffff;
+    transform: rotateX(90deg);
+    -webkit-transform: rotateX(90deg);
+    -moz-transform: rotateX(90deg);
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform-origin: 50% 50% -25px;
+    -webkit-transform-origin: 50% 50% -25px;
+    -moz-transform-origin: 50% 50% -25px;
+}
+
+.b05_3d_roll div:nth-child(2) {
+    color: #ffffff;
+    background-color: #26292E;
+    transform: rotateX(0deg);
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform-origin: 50% 50% -25px;
+    -webkit-transform-origin: 50% 50% -25px;
+    -moz-transform-origin: 50% 50% -25px;
+}
+
+.b05_3d_roll:hover div:nth-child(1) {
+    color: #26292E;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform: rotateX(0deg);
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+}
+
+.b05_3d_roll:hover div:nth-child(2) {
+    background-color: #ffffff;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform: rotateX(-90deg);
+    -webkit-transform: rotateX(-90deg);
+    -moz-transform: rotateX(-90deg);
+}
+</style>
+
 <script>
 <% 
 MemDto dto = (MemDto)session.getAttribute("user");
@@ -136,7 +223,7 @@ function captureReturnKey(e) {
 }
 </script>
 
-<form id="addScheduleAfFrm" method="post" action="AddScheduleAf.do" onkeydown="return captureReturnKey(event)">
+<form method="post" action="AddScheduleAf.do" class="generalForm" onkeydown="return captureReturnKey(event)">
     <div class="row">
     	<div class="span9">
 			<p class="contact-name">
@@ -174,24 +261,28 @@ function captureReturnKey(e) {
 			</c:forEach>
 			</select>
 			
-			<input id="sending" type="submit" value="일정 등록" style="background: #5e0404">
+			<div class="button_base b05_3d_roll" id="btnAdd">
+				<div>일정등록</div>
+			    <div>일정등록</div>
+			</div>
 			   	
 		</div>
 	</div>
 </form>
 
 <script>
+
 	function show_alert(){
 	if(confirm("버스킹일정을 등록하시겠습니까?"))
 		document.forms[0].submit();
 	}
 	
-	 $("#sending").click(function() {	
+	 $("#btnAdd").click(function() {	
 		$("#lat").val(Marker_lat);
 		$("#lng").val(Marker_lng);
 		alert("lat = " + $("#lat").val());
 		alert("lng = " + $("#lng").val());
 		alert('버스킹일정 등록완료');
-		
+		$(".generalForm").attr("target", "_self").submit();
 	}); 
 </script>

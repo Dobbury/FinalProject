@@ -15,7 +15,7 @@
 .iw_inner h3 {font-size: 18px; padding-bottom: 7px}
 
 </style>
-<h2 align="center">버스킹 Detail</h4>
+<h2 align="center">${getSchedule.id }의 버스킹</h4>
 <div style="width:900px;margin:auto">
 	<div style="display: inline-block; width: 49%; height: 500px; margin: auto">		
 		<div id="map_v3"></div>
