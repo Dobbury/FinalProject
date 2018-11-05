@@ -299,7 +299,7 @@ submit:hover{
 </div>
 
 <div class="musition" align="center" style="display: none;" >
-<form action="musitionregi.do" id="contact-form" method="post" enctype="multipart/form-data">
+<form action="musitionregi.do" id="contact-form" method="post" enctype="multipart/form-data" class="musiForm">
 <table>
 <tr>
 <td align="center">
@@ -605,6 +605,6 @@ $("#mRegiBtn").click(function () {
 	}
 	
 	
-	$(".generalForm").attr("target", "_self").submit();
+	$(".musiForm").attr("target", "_self").submit();
 });
 </script>
