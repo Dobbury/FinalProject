@@ -88,38 +88,58 @@
 </style>
 
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<div class="title-page">
+    <h2 class="title">영상게시물 등록</h2>
+    <h6 class="title-description">음악영상을 공유해서 재능을 알려보세요!</h6>
+</div>
 
 <form action="VideoBBSWriteAf.do" id="contact-form" method="post" enctype="multipart/form-data" class="generalForm">
-<table style="margin: auto">
-<tr>
-<td align="center">
-<input type="file" id="videofile" name="videofile">
-</td>
-
-<td style="width: 100px"></td>
-
-<td align="center" width="40%">
-<h5 class="title-description">아이디</h5>
-<table style="margin: auto; width: 100%">
+<table style="margin: auto; width: 50%">
+	<tr>
+		<td>
+			<h5 class="title-description" align="center">영상파일</h5>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<input type="file" id="videofile" name="videofile" style="text-align: center">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<h5 class="title-description" style="text-align: center">아이디</h5>
+		</td>
+	</tr>
 	<tr>
 		<td style="width: 100%">
 			<input type="text" name="id" readonly="readonly" style="text-align: center" value="${user.id }">
 		</td>
 	</tr>
-</table>
-<span class="id_check_label"></span>
-<br>
-<h5 class="title-description" style="margin: 15 0 0 0">제목</h5>
-	<input type="text" name="title" style="text-align: center" placeholder="제목을 입력하세요."><br>
-<br>
-<h5 class="title-description" style="margin: 15 0 0 0">내용</h5>
-<textarea type="text" name="content" style="text-align: center" cols="1" rows="10" placeholder="내용을 입력하세요."></textarea><br>
-<br>
+	<tr>
+		<td>
+			<h5 class="title-description" style="margin: 15 0 0 0; text-align: center">제목</h5>
+		</td>
+		</tr>
+		<tr>
+		<td>
+			<input type="text" name="title" style="text-align: center" placeholder="제목을 입력하세요.">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<h5 class="title-description" style="margin: 15 0 0 0; text-align: center">내용</h5>
+		</td>
+		</tr>
+		<tr>
+		<td>
+			<textarea type="text" name="content" style="text-align: center" cols="1" rows="10" placeholder="내용을 입력하세요."></textarea><br>
+		</td>
+	</tr>
 </table>
 <table style="margin: auto">
 <tr>
 <td colspan="3" align="center">
-<div class="button_base b05_3d_roll" id="writeBtn">
+<div class="button_base b05_3d_roll" id="writeBtn" style="margin-top: 10px">
 	<div>작성완료</div>
 	<div>작성완료</div>
 </div>

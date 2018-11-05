@@ -158,7 +158,7 @@ model.addAttribute("latelyVideoList", latelyVideoList);
 					<!-- <section id="projects2">
 					<ul id="thumbs"> -->
 					
-					
+					<%-- 
 						<!-- Item Project and Filter Name -->
 						<c:if test="${empty followingList}">
 						<li class="item-thumbs span3 following">
@@ -195,7 +195,7 @@ model.addAttribute("latelyVideoList", latelyVideoList);
                         <li class="item-thumbs span3">
                         </li>
 						</c:if>
-						</c:if>
+						</c:if> --%>
 					
 						<!-- End Item Project -->
 				

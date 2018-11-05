@@ -19,6 +19,8 @@
 </style>
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
+<h1 style="text-align: center">영상게시글 수정</h1>
+
 <div style="width: 520px; margin: auto;text-align: center">
 <form name="bbsfrm" id="_bbsfrm" method="post" action="videoBbsUpdateAf.do">
 	<table>
@@ -26,16 +28,13 @@
 			<td><img src= ${getVideoBbs.thumbnail } width="100%" alt="Thumbnail" title="Thumbnail"></td>
 		</tr>
 		<tr>
-			<td align="center"><input type="text" readonly="readonly" value="${getVideoBbs.id }"></input></td>
+			<td align="center"><h3>ID</h3><input type="text" style="text-align: center" readonly="readonly" value="${getVideoBbs.id }"></input></td>
 		</tr>
 		<tr>
-			<td align="center"><input type="text" name="title" id="_title" value="${getVideoBbs.title }"></td>
+			<td align="center"><h3>TITLE</h3><input type="text" style="text-align: center" name="title" id="_title" value="${getVideoBbs.title }"></td>
 		</tr>
 		<tr>
-			<td align="center"><span class="font-icon-eye">&nbsp;&nbsp;${getVideoBbs.readcount }</td>
-		</tr>
-		<tr>
-			<td align="center"><textarea type="text" name="content" id="_content" style="text-align: center" cols="1" rows="7">${getVideoBbs.content }</textarea></td>
+			<td align="center"><h3>CONTENT</h3><textarea type="text" name="content" id="_content"  cols="1" rows="7">${getVideoBbs.content }</textarea></td>
 		</tr>
 	</table>
 	
