@@ -131,6 +131,7 @@
 	</c:forEach>
 </div>
 
+<tr>
 <form action="VideoBBSWrite.do" method="post" style="text-align: center" class="generalForm">
 	<c:set var = "auth" value = "${user.auth}"/>
 	<c:if test="${auth == 0 || auth == 2}" >
@@ -140,6 +141,7 @@
 		</div>
 	</c:if>
 </form>
+</tr>
 
 <script type="text/javascript">
 $("#write").click(function () {

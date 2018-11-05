@@ -89,9 +89,9 @@
     -webkit-transform: rotateX(-90deg);
     -moz-transform: rotateX(-90deg);
 }
-
-
 </style>
+
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
 <div style="width: 1000px; margin: auto">
 <div style="display: inline-block; width:auto; border-right: 1px solid gray; margin: auto">
@@ -107,7 +107,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td><h3>&nbsp;&nbsp;${getVideoBbs.title }</h3></td>
+			<td><h2>&nbsp;&nbsp;${getVideoBbs.title }</h2></td>
 		</tr>
 		<tr>
 			<td>
@@ -165,7 +165,7 @@
                 <table class="table">                    
                     <tr>
                         <td>
-                        <textarea style="width: 105%" rows="1" cols="40" id="comment" name="_comment" placeholder="댓글을 입력하세요"></textarea>
+                        <textarea type="text" style="width: 105%"  rows="1" cols="40" id="comment" name="_comment" placeholder="댓글을 입력하세요"></textarea>
                         </td>
                         <td>
                             <div>

@@ -2,7 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <style>
-/* ### ### ### 05 */
 .button_base {
     margin: 0;
     border: 0;
@@ -86,42 +85,35 @@
     -webkit-transform: rotateX(-90deg);
     -moz-transform: rotateX(-90deg);
 }
-
-
 </style>
 
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
-<form action="VideoBBSWriteAf.do" id="contact-form" method="post" class="generalForm" enctype="multipart/form-data">
+<form action="VideoBBSWriteAf.do" id="contact-form" method="post" enctype="multipart/form-data" class="generalForm">
 <table style="margin: auto">
 <tr>
 <td align="center">
-<input type="file" id="videofile" style="display: none">
-
-<div class="button_base b05_3d_roll" id="uploadBtn" style="width: 100%">
-	<div>파일 업로드</div>
-    <div>파일 업로드</div>
-</div>
+<input type="file" id="videofile" name="videofile">
 </td>
 
 <td style="width: 100px"></td>
 
 <td align="center" width="40%">
-<h5 class="title-description" style="margin:15 0 0 0">아이디</h5>
+<h5 class="title-description">아이디</h5>
 <table style="margin: auto; width: 100%">
 	<tr>
 		<td style="width: 100%">
-			<input type="text" name="id" readonly="readonly" value="${user.id }">
+			<input type="text" name="id" readonly="readonly" style="text-align: center" value="${user.id }">
 		</td>
 	</tr>
 </table>
 <span class="id_check_label"></span>
 <br>
 <h5 class="title-description" style="margin: 15 0 0 0">제목</h5>
-	<input type="text" name="title"><br>
+	<input type="text" name="title" style="text-align: center" placeholder="제목을 입력하세요."><br>
 <br>
 <h5 class="title-description" style="margin: 15 0 0 0">내용</h5>
-<input type="text" name="content"><br>
+<textarea type="text" name="content" style="text-align: center" cols="1" rows="10" placeholder="내용을 입력하세요."></textarea><br>
 <br>
 </table>
 <table style="margin: auto">
@@ -136,11 +128,8 @@
 </table>
 </form>
 
-<script type="text/javascript">
-$("#uploadBtn").click(function () {
-	$("#videofile").click();
-});
 
+<script type="text/javascript">
 $("#writeBtn").click(function () {
 	
 	$(".generalForm").attr("target", "_self").submit();
