@@ -33,6 +33,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.mysql.cj.x.json.JsonArray;
 
 import kh.com.a.arrow.FUpUtil;
+import kh.com.a.model.FollowDto;
 import kh.com.a.model.MemDto;
 import kh.com.a.model.VideoBBSDto;
 import kh.com.a.model.Video_CommentDto;
@@ -191,11 +192,16 @@ public class VideoBBSController {
 		MemDto login = (MemDto)session.getAttribute("user");
 		
 		Video_LikeDto vlDto = new Video_LikeDto();
+		FollowDto fDto = new FollowDto();
 		
 		vlDto.setMemid(login.getId());
 		vlDto.setVideo_seq(seq);
 		
+		fDto.setMemid(login.getId());
+		fDto.setMuseid(dto.getId());
+		
 		boolean b = videoBBSService.getLike(vlDto);
+		boolean f = videoBBSService.getFollow(fDto);
 		
 		int followerCnt = videoBBSService.FollowerCount(dto.getId());
 		
@@ -203,6 +209,11 @@ public class VideoBBSController {
 			model.addAttribute("likecheck", true);
 		else
 			model.addAttribute("likecheck", false);
+		
+		if(f)
+			model.addAttribute("followcheck", true);
+		else
+			model.addAttribute("followcheck", false);
 		
 		model.addAttribute("followerCnt", followerCnt);
 		model.addAttribute("meminfo", mdto);

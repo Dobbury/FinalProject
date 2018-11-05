@@ -27,6 +27,12 @@
 	WHERE MEMID=#{memid} AND VIDEO_SEQ=#{video_seq}
 	</select>
 	
+	<select id="getFollow" resultType="kh.com.a.model.FollowDto">
+	SELECT MEMID, MUSEID
+	FROM FOLLOW
+	WHERE MEMID=#{memid} AND MUSEID=#{museid}
+	</select>
+	
 	<select id="likeCount" resultType="java.lang.Integer">
 	SELECT COUNT(*)
 	FROM VIDEO_LIKE

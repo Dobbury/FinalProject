@@ -7,7 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kh.com.a.dao.VideoBBSDao;
+
 import kh.com.a.model.MemDto;
+
+import kh.com.a.model.FollowDto;
+
 import kh.com.a.model.VideoBBSDto;
 import kh.com.a.model.Video_LikeDto;
 import kh.com.a.service.VideoBBSService;
@@ -77,6 +81,12 @@ public class VideoBBSServiceImpl implements VideoBBSService {
 	@Override
 	public boolean getLike(Video_LikeDto vlDto) {
 		return dao.getLike(vlDto);
+		
+	}
+
+	@Override
+	public boolean getFollow(FollowDto fDto) {
+		return dao.getFollow(fDto);
 		
 	}
 

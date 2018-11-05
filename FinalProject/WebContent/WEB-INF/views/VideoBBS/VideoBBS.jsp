@@ -4,6 +4,96 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <fmt:requestEncoding value="utf-8"/>
+<style>
+/* ### ### ### 05 */
+.button_base {
+    margin: 0;
+    border: 0;
+    font-size: 18px;
+    position: relative;
+    width: 230px;
+    height: 50px;
+    text-align: center;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-user-select: none;
+    cursor: default;
+}
+.button_base:hover {
+    cursor: pointer;
+}
+
+.b05_3d_roll {
+    perspective: 500px;
+    -webkit-perspective: 500px;
+    -moz-perspective: 500px;
+}
+
+.b05_3d_roll div {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    height: 51px;
+    padding: 10px;
+    pointer-events: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.b05_3d_roll div:nth-child(1) {
+    color: #ffffff;
+    background-color: #ffffff;
+    transform: rotateX(90deg);
+    -webkit-transform: rotateX(90deg);
+    -moz-transform: rotateX(90deg);
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform-origin: 50% 50% -25px;
+    -webkit-transform-origin: 50% 50% -25px;
+    -moz-transform-origin: 50% 50% -25px;
+}
+
+.b05_3d_roll div:nth-child(2) {
+    color: #ffffff;
+    background-color: #26292E;
+    transform: rotateX(0deg);
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform-origin: 50% 50% -25px;
+    -webkit-transform-origin: 50% 50% -25px;
+    -moz-transform-origin: 50% 50% -25px;
+}
+
+.b05_3d_roll:hover div:nth-child(1) {
+    color: #26292E;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform: rotateX(0deg);
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+}
+
+.b05_3d_roll:hover div:nth-child(2) {
+    background-color: #ffffff;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform: rotateX(-90deg);
+    -webkit-transform: rotateX(-90deg);
+    -moz-transform: rotateX(-90deg);
+}
+
+
+</style>
+
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
 <div style="display: table; margin: auto">
   	<c:forEach items="${bbslist }" var="bbs" varStatus="vs">
@@ -41,13 +131,14 @@
 	</c:forEach>
 </div>
 
-<form action="VideoBBSWrite.do" method="post" style="text-align: center">
+<form action="VideoBBSWrite.do" method="post" style="text-align: center" class="generalForm">
 	<c:set var = "auth" value = "${user.auth}"/>
-	<c:if test="${auth == 0 || auth == 1 || auth == 2 || auth eq null}" >
-		<input class="button button-small" type="submit" value="게시글 작성" style="margin-top: 30px" onclick="authCheck(${auth})">
-	</c:if>
-</form>
 
+	<%-- <c:if test="${auth == 0 || auth == 1 || auth == 2 || auth eq null}" >
+		<input class="button button-small" type="submit" value="게시글 작성" style="margin-top: 30px" onclick="authCheck(${auth})">
+	</c:if> --%>
+</form>
+<!-- 
 <script>
 	function authCheck(auth) {
 		if (auth == 1 || auth == undefined) {
@@ -58,6 +149,22 @@
 		    location.href = "VideoBBSWrite.do";	
 		}
 	}
+</script>
+ -->
+
+	<c:if test="${auth == 0 || auth == 2}" >
+		<div class="button_base b05_3d_roll"id="write" style="margin: auto">
+			<div>게시글 작성</div>
+		    
+		</div>
+	</c:if>
+
+
+<script type="text/javascript">
+$("#write").click(function () {
+
+	$(".generalForm").attr("target", "_self").submit();
+});
 </script>
 
 

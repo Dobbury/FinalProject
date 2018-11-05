@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import kh.com.a.dao.VideoBBSDao;
 import kh.com.a.model.MemDto;
+import kh.com.a.model.FollowDto;
+
 import kh.com.a.model.VideoBBSDto;
 import kh.com.a.model.Video_LikeDto;
 
@@ -104,6 +106,19 @@ public class VideoBBSDaoImpl implements VideoBBSDao {
 		
 		return like;
 		
+	}
+	
+	@Override
+	public boolean getFollow(FollowDto fDto) {
+		FollowDto dto = sqlSession.selectOne(namespace + "getFollow", fDto);
+		boolean follow = true;
+		
+		if(dto == null)
+			follow = false;
+		else if(dto != null)
+			follow = true;
+		
+		return follow;
 	}
 
 	@Override

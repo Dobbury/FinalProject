@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.Date;
 
 public class ScheduleBBSDto implements Serializable {
+
 	
 	
 	   private String scheduledate;
@@ -112,6 +113,10 @@ public class ScheduleBBSDto implements Serializable {
 				+ location + ", place=" + place + ", schedule_seq=" + schedule_seq + ", id=" + id + ", teamname="
 				+ teamname + ", lati=" + lati + ", longi=" + longi + "]";
 	}
+
+	
+	
+	
 	
 	
 	

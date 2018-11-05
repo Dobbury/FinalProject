@@ -3,6 +3,8 @@
 	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!-- 검색 카테고리를 유지 start -->
 <%
@@ -10,7 +12,93 @@
 	if (category == null)
 		category = "";
 %>
+<style>
+/* ### ### ### 05 */
+.button_base {
+    margin: 0;
+    border: 0;
+    font-size: 18px;
+    position: relative;
+    width: 100px;
+    height: 50px;
+    text-align: center;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-user-select: none;
+    cursor: default;
+}
 
+.button_base:hover {
+    cursor: pointer;
+}
+
+.b05_3d_roll {
+    perspective: 500px;
+    -webkit-perspective: 500px;
+    -moz-perspective: 500px;
+}
+
+.b05_3d_roll div {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    height: 51px;
+    padding: 10px;
+    pointer-events: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.b05_3d_roll div:nth-child(1) {
+    color: #ffffff;
+    background-color: #ffffff;
+    transform: rotateX(90deg);
+    -webkit-transform: rotateX(90deg);
+    -moz-transform: rotateX(90deg);
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform-origin: 50% 50% -25px;
+    -webkit-transform-origin: 50% 50% -25px;
+    -moz-transform-origin: 50% 50% -25px;
+}
+
+.b05_3d_roll div:nth-child(2) {
+    color: #ffffff;
+    background-color: #26292E;
+    transform: rotateX(0deg);
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform-origin: 50% 50% -25px;
+    -webkit-transform-origin: 50% 50% -25px;
+    -moz-transform-origin: 50% 50% -25px;
+}
+
+.b05_3d_roll:hover div:nth-child(1) {
+    color: #26292E;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform: rotateX(0deg);
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+}
+
+.b05_3d_roll:hover div:nth-child(2) {
+    background-color: #ffffff;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform: rotateX(-90deg);
+    -webkit-transform: rotateX(-90deg);
+    -moz-transform: rotateX(-90deg);
+}
+</style>
 <script type="text/javascript">
 var str='<%=category%>';
 	$(document).ready(function() {
@@ -31,7 +119,8 @@ var str='<%=category%>';
 		<div class="span12">
 			<div class="title-page">
 				<h2 class="title">뮤지션 모집</h2>
-				<h3 class="title-description">재능기부할 뮤지션 모집함</h3>
+				<h3 class="title-description">자선사업 및 다양한 컨텐츠의 공연으로 재능기부하여 당신의 커리어를 쌓을 수 있는 기회 제공해 드립니다.</h3>
+				<h3 class="title-description">지금 도전하세요!</h3>
 			</div>
 		</div>
 	</div>
@@ -68,11 +157,11 @@ var str='<%=category%>';
 										<c:otherwise>
 											end
 										</c:otherwise>
-									</c:choose>">
+									</c:choose>" style=" background-color:#26292E; box-shadow: 3px 3px 20px #000;">
 								<a class="hover-wrap fancybox" data-fancybox-group="gallery" 
 								href="musirecudetail.do?musi_recu_seq=${item.musi_recu_seq }"> 
-									<span class="overlay-img"></span> 
-									<span class="overlay-img-thumb font-icon-plus"></span>
+									<span class="overlay-img" ></span> 
+									
 								</a> 
 								<!-- Thumb Image and Description --> 
 								<c:choose>
@@ -84,8 +173,19 @@ var str='<%=category%>';
 									</c:otherwise>
 								</c:choose>
 								<div>
-									<span>제목:${item.title }</span><br>
-									<span>모집기간:${item.sdate } ~ ${item.edate }</span><br>
+									<span style="margin: 10px">${item.title }</span>
+									<hr style="width:93%">
+									<span style="margin: 10px">모집기간
+									<p style="margin: 10px">
+										<fmt:parseDate value="${fn:substring(now,0,10) }" var="sdate" pattern="yyyy-MM-dd" />
+										<fmt:parseDate value="${fn:substring(item.edate,0,10) }" var="edate" pattern="yyyy-MM-dd"/>
+										
+										<fmt:formatDate value="${edate }" pattern="yyyy년 MM월 dd일"/> 까지
+										(<fmt:parseNumber value="${edate.time / (1000*60*60*24) - sdate.time / (1000*60*60*24) }" integerOnly="true"/>일 남음)
+										
+										
+									   	</p>
+									</span>
 								</div>
 							</li>
 							<!-- End Item Project -->
@@ -110,13 +210,13 @@ var str='<%=category%>';
 				<div class="box_border"
 					style="margin-top: 5px; margin-bottom: 10px;" align="right">
 
-					<form name="frmForm1" id="_frmFormSearch" method="post" action="">
+					<form name="frmForm1" id="contact-form" method="post" action="">
 
 						<table
 							style="margin-left: auto; margin-right: auto; margin-top: 3px; margin-bottom: 3px; border: 0; padding: 0;">
 							<tr>
-								<td style="padding-left: 5px;"><select id="_s_category"
-									name="s_category">
+								<td style="padding-left: 5px;">
+								<select id="_s_category" name="s_category" style="height: 49.5px">
 										<option value="" selected="selected">선택</option>
 										<option value="title">제목</option>
 										<option value="contents">내용</option>
@@ -124,8 +224,12 @@ var str='<%=category%>';
 								</select></td>
 								<td style="padding-left: 5px;"><input type="text"
 									id="_s_keyword" name="s_keyword" value="${s_keyword}" /></td>
-								<td style="padding-left: 5px;"><span class="button blue"><button
-											type="button" id="_btnSearch">검색</button></span></td>
+								<td style="padding-left: 5px;">
+									<div  class="button_base b05_3d_roll" class="button_base b05_3d_roll" id="_btnSearch">
+								        <div>검색</div>
+								        <div>검색</div>
+								    </div>
+								</td>
 							</tr>
 						</table>
 
@@ -148,4 +252,8 @@ var str='<%=category%>';
 		$("#_frmFormSearch").attr("target", "_self").attr("action",
 				"musireculist.do").submit();
 	}
+	$("#_btnSearch").click(function () {
+		$("#contact-form").attr("target", "_self").attr("action",
+		"musireculist.do").submit();
+	});
 </script>

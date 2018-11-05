@@ -36,7 +36,7 @@ function initMap() {
 <input type="hidden" id="seq" value="${musiRecuBBSDto.musi_recu_seq }">
 
 
-<div class="container" style="background-color: #26292E;" >
+<div class="container" style="background-color: #26292E; box-shadow: 3px 3px 20px #000;" >
 	<div class="basicDiv" style="margin-bottom: 0px; padding-bottom: 0px;">
 		<table style="width: 100%; height: 100%">
 			<col width="15%"><col width="35%"><col width="15%"><col width="35%">

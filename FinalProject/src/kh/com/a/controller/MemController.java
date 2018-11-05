@@ -101,7 +101,9 @@ public class MemController {
 		//ComingSchedule = scheduleBbsService.getComingSchedule();
 		//IngSchedule = scheduleBbsService.getIngSchedule();
 		scheduleList = performScheduleService.latelyPerformSchedules();
-		
+		for (int i = 0; i < scheduleList.size(); i++) {
+			System.out.println(scheduleList.get(i).toString());
+		}
 		try {
 			latelyVideoList = videoBbsService.latelyVideoList();
 		} catch (Exception e1) {
@@ -174,12 +176,12 @@ public class MemController {
 		return "mypage.tiles";
 	}
 	
+	
 	@ResponseBody
 	@RequestMapping(value="login.do",method= {RequestMethod.GET, RequestMethod.POST})
 	public Map<String ,Object> login(String id,String pwd,String id_rem, HttpServletResponse resp,HttpSession session) {
 		logger.info("MemController login "+ new Date());
 		
-		Cookie cookie= null;
 		
 		//아이디 비번 체크
 		MemDto dto=memberService.login(id);
@@ -200,6 +202,24 @@ public class MemController {
 		return map;
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="musiInfo.do",method= {RequestMethod.GET, RequestMethod.POST})
+	public Map<String ,Object> musiInfo(String id,Model model, HttpSession session) {
+		logger.info("MemController login "+ new Date());
+		
+		MemDto dto=memberService.login(id);
+		System.out.println(dto.toString());
+		Map<String, Object> map = new HashMap<>();
+		map.put("musiInfo", dto);
+		
+		int followerCnt = videoBbsService.FollowerCount(dto.getId());
+		map.put("followerCnt", followerCnt);
+		
+		model.addAttribute("followerCnt", followerCnt);
+		model.addAttribute("meminfo", dto);
+		
+		return map;
+	}
 	@RequestMapping(value="logoff.do",method= {RequestMethod.GET, RequestMethod.POST})
 	public String logoff(HttpSession session) {
 		logger.info("MemController logoff "+ new Date());
@@ -242,13 +262,18 @@ public class MemController {
 		// upload 경로
 		// tomcat
 		String fupload = req.getServletContext().getRealPath("/upload");
-		// logger.info("업로드 경로: " + fupload);
+
 
 		// 폴더
+
 		//String fupload = "d:\\tmp";
+
+		// String fupload = "d:\\tmp";
+
 
 		String f = dto.getOri_profilIMG();
 		String newFile = FUpUtil.getNewFile(f);
+
 
 		
 		//dto.setNew_profilIMG(newFile);
@@ -264,21 +289,24 @@ public class MemController {
 		dto.setAuth(2);
 		// DB 저장
 		memberService.addMusition(dto);
-
 		return "redirect:/main.do";
 	}
 	
 	@RequestMapping(value="generalUpdate.do",method= {RequestMethod.GET, RequestMethod.POST})
-	public String generalUpdate(MemDto dto) {
+	public String generalUpdate(MemDto dto,HttpSession session) {
 		logger.info("MemController generalUpdate "+ new Date());
 		
 		dto.setAuth(1);
 		memberService.updateGeneral(dto);
+		MemDto mDto = memberService.login(dto.getId());
+		
+		session.setAttribute("user", mDto);
+		
 		return "redirect:/main.do";
 	}
 	@RequestMapping(value="musitionUpdate.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String musitionUpdate(MemDto dto, HttpServletRequest req, Model model,
-			@RequestParam(value = "profileImgUpload", required = false) MultipartFile fileload) throws Exception {
+			@RequestParam(value = "profileImgUpload", required = false) MultipartFile fileload,HttpSession session) throws Exception {
 		logger.info("MemController musitionUpdate " + new Date());
 		
 		System.out.println(dto.toString());
@@ -313,7 +341,12 @@ public class MemController {
 		dto.setAuth(2);
 		// DB 저장
 		memberService.updateMusition(dto);
-
+		
+		memberService.updateGeneral(dto);
+		MemDto mDto = memberService.login(dto.getId());
+		
+		session.setAttribute("user", mDto);
+		
 		return "redirect:/main.do";
 	}
 

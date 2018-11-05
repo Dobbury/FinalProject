@@ -32,16 +32,18 @@ public class ScheduleBBSServiceImpl implements ScheduleBBSService {
 	}
 
 	@Override
-	public List<ScheduleBBSDto> getScheduleOne() throws Exception {
-		return dao.getScheduleOne();
-	}
-
-	@Override
-	public boolean wirteBbs(ScheduleBBSDto bbs) throws Exception {
+	public boolean writeBbs(ScheduleBBSDto bbs) throws Exception {
 		System.out.println("ServiceImpl");
 		return dao.writeBbs(bbs);
 	}
 
+	@Override
+	public ScheduleBBSDto getSchedule(int seq) throws Exception {
+		
+		return dao.getSchedule(seq);
+	}
+
+	
 	
 	
 }	
