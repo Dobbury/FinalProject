@@ -429,19 +429,12 @@ submit:hover{
 </form>
 </div>
 </div>
+
+
+
 <script type="text/javascript">
-$("#general").click(function () {
-	$(this).parent().hide(1000);
-	$(".general").show(1000);
-});
-
-$("#musition").click(function () {
-	$(this).parent().hide(1000);
-	$(".musition").show(1000);
-});
 
 
-</script>
 
 <script type="text/javascript">
 	

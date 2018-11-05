@@ -160,25 +160,25 @@ BRUSHED.filter2 = function (){
 			$container.isotope({
 			  // options
 			  animationEngine: 'best-available',
-			  itemSelector : '.item-thumbs',
+			  itemSelector : '.item-thumbs2',
 			  layoutMode : 'fitRows'
 			});
 		});
 	
 		
 		// filter items when filter link is clicked
-		var $optionSets = $('#options .option-set'),
+		var $optionSets = $('#options2 .option-set2'),
 			$optionLinks = $optionSets.find('a');
 	
 		  $optionLinks.click(function(){
 			var $this = $(this);
 			// don't proceed if already selected
-			if ( $this.hasClass('selected') ) {
+			if ( $this.hasClass('selected2') ) {
 			  return false;
 			}
-			var $optionSet = $this.parents('.option-set');
-			$optionSet.find('.selected').removeClass('selected');
-			$this.addClass('selected');
+			var $optionSet = $this.parents('.option-set2');
+			$optionSet.find('.selected2').removeClass('selected2');
+			$this.addClass('selected2');
 	  
 			// make option object dynamically, i.e. { filter: '.my-filter-class' }
 			var options = {},

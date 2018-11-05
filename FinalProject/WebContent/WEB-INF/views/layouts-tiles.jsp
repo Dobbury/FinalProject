@@ -29,7 +29,7 @@
  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>  -->
 
 <!-- Main Style -->
-<link href="_include/css/main.css?ver=4" rel="stylesheet">
+<link href="_include/css/main.css?ver=5" rel="stylesheet">
 
 <!-- Supersized -->
 <link href="_include/css/supersized.css" rel="stylesheet">
@@ -42,7 +42,7 @@
 <link href="_include/css/fonts.css" rel="stylesheet">
 
 <!-- Shortcodes -->
-<link href="_include/css/shortcodes.css?ver=1" rel="stylesheet">
+<link href="_include/css/shortcodes.css?ver=2" rel="stylesheet">
 
 <!-- Responsive -->
 <link href="_include/css/bootstrap-responsive.min.css" rel="stylesheet">
@@ -90,6 +90,34 @@
 <!-- End Analytics -->
     
 <style type="text/css">
+
+
+      #columns{
+        column-width: 250px;
+        column-gap: 15px;
+        
+      }
+      #columns figure{
+        
+        display: inline-block;
+        border:1px solid rgba(0,0,0,0.2); 
+        margin:0;
+        margin-bottom: 15px;
+        padding:10px;
+        box-shadow: 2px 2px 5px rgba(0,0,0,0.5);;
+      }
+      #columns figure img{
+        width:100%;
+      }
+      #columns figure figcaption{
+        border-top:1px solid rgba(0,0,0,0.2);
+        padding:10px;
+        margin-top:11px;
+      }
+  
+
+
+
 .wrappers {
   display: grid;
   grid-template-columns: 100px 100px 100px;
@@ -165,7 +193,7 @@
 <script src="_include/js/jquery.fancybox-media.js"></script> <!-- Fancybox for Media -->
 <script src="_include/js/jquery.tweet.js"></script> <!-- Tweet -->
 <script src="_include/js/plugins.js"></script> <!-- Contains: jPreloader, jQuery Easing, jQuery ScrollTo, jQuery One Page Navi -->
-<script src="_include/js/main.js?ver=4"></script> <!-- Default JS -->
+<script src="_include/js/main.js?ver=6"></script> <!-- Default JS -->
 <!-- End Js -->
 </body>
 </html>
