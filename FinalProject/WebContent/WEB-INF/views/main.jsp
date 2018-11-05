@@ -295,7 +295,7 @@ model.addAttribute("latelyVideoList", latelyVideoList);
    <!-- ============================================================= -->
    
    <!-- ============================================================= -->
-    <div id="columns" style="height: 2005px">
+    <div id="columns" style="height: 2012px; width: 100%">
     <div style="display: inline-block; height: 2005px">
     <h2 style="text-align: center">좋아요 순</h2>
     <c:forEach items="${videoRankList }" var="Vrank" varStatus="vs" end="4">
@@ -331,7 +331,7 @@ model.addAttribute("latelyVideoList", latelyVideoList);
       </figure>
     </c:forEach>
     </div>
-    <div style="display: inlin-block; vertical-align: top; heigh:2005px">
+    <div style="display: inlin-block; vertical-align: top; height:2002px">
     <h2 style="text-align: center">팔로우 뮤지션</h2>
     <c:forEach items="${followingList}" var="followings" varStatus="vs" end="4">
       <figure class="following">
@@ -349,7 +349,7 @@ model.addAttribute("latelyVideoList", latelyVideoList);
       </figure>
     </c:forEach>
     </div>
-    <div style="display: inlin-block; height:2002px">
+    <div style="display: inlin-block; height:2012px">
     <h2 style="text-align: center">최신 업로드 영상</h2>
     <c:forEach items="${latelyVideoList}" var="lateVideo" varStatus="vs" end="4">
       <figure class="lately">

@@ -116,10 +116,7 @@
 				<input type="text" style="height: 20%" placeholder="아이디 입력" name="id" id="id">
 				<br><br> 
 				<input type="password" style="height: 20%" placeholder="비밀번호 입력" name="pwd" id="pwd">
-				<br>
-				<div align="right" style="padding-right: 13%">
-					ID 저장&nbsp;<input type="checkbox" style="margin-bottom: 1px;" id="_chk_save_id"/>
-				</div>
+				
 			</div>
 			<div class="modal-footer" style="background-color: #26292E;">
 				<a href="regi.do" class="external">Sign up</a>
@@ -244,13 +241,7 @@ $("ul li").click(function () {
 
 
  
-<span class="accordion-heading togglize">
-    <a class="accordion-toggle inactive collapsed" data-toggle="collapse" data-parent="#" href="#adminmenu">
-        	관리
-        <span class="font-icon-plus"></span>
-        <span class="font-icon-minus"></span>
-    </a>
-</span> 
+
 
 
 <!-- End Header -->

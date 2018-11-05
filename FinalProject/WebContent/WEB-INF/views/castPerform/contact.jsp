@@ -300,7 +300,7 @@ function captureReturnKey(e) {
         	<div class="contact-details">
         		<p style="font-family: fantasy; color: #7da5e8">공연을 관람하는 대상, 연령별 선택 <br>(중복선택 가능)<font color="red">*</font></p>
         		<span id="ch7" style="width: auto;"></span>
-        		<label class="agegradeLabel" style="font-weight: bolder; top:-10px">
+        		<label class="agegradeLabel" style="font-weight: bolder; top:0px">
 				  <input id="Check1" type="checkbox" name="agegrade" value="중,고등학생">
 				  <span class="checkmark" style="width:88%;"><span class="agegrade" style=" left:60px;">중,고등학생</span></span>
 				</label>
@@ -399,8 +399,6 @@ function captureReturnKey(e) {
 		 
 		$("#lat").val(Marker_lat);
 		$("#lng").val(Marker_lng);	
-		alert($("#lat").val());
-		alert($("#lng").val());
 		
 		 var name = document.forms["Form"]["name"].value;
 		 var compname = document.forms["Form"]["compname"].value;
@@ -475,9 +473,7 @@ function captureReturnKey(e) {
 				return false;
 			}
 			
-				
-			alert(document.getElementById("contact_email").value);
-
+			
 			var email = document.getElementById("contact_email").value;
 
 			var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;

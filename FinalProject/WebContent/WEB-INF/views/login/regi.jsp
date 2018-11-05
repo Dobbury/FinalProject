@@ -299,7 +299,7 @@ submit:hover{
 </div>
 
 <div class="musition" align="center" style="display: none;" >
-<form action="musitionregi.do" id="contact-form" method="post" enctype="multipart/form-data">
+<form action="musitionregi.do" id="contact-form" method="post" enctype="multipart/form-data" class="musiForm">
 <table>
 <tr>
 <td align="center">
@@ -435,6 +435,18 @@ submit:hover{
 
 
 <script type="text/javascript">
+$("#general").click(function () {
+   $(this).parent().hide(1000);
+   $(".general").show(1000);
+});
+
+$("#musition").click(function () {
+   $(this).parent().hide(1000);
+   $(".musition").show(1000);
+});
+
+
+</script>
 
 
 
@@ -512,11 +524,7 @@ function idCheck(id) {
 		$(".id_check_label").html("<font color='green'>사용 가능한 아이디 입니다. 중복확인 버튼을 눌러주세요.</font>");
 		id_check = true;
 	}
-	
-	
 }
-
-
 </script>
 
 
@@ -600,6 +608,6 @@ $("#mRegiBtn").click(function () {
 	}
 	
 	
-	$(".generalForm").attr("target", "_self").submit();
+	$(".musiForm").attr("target", "_self").submit();
 });
 </script>

@@ -118,8 +118,8 @@
 	</insert>
 	
 	<select id="getfollowingList" parameterType="kh.com.a.model.MemDto" resultType="kh.com.a.model.VideoBBSDto">
-		SELECT V.* FROM FOLLOW F, VIDEOBBS V 
-		WHERE F.MUSEID = V.ID AND F.MEMID = #{id}
+	SELECT V.* FROM FOLLOW F, VIDEOBBS V 
+      WHERE F.MUSEID = V.ID AND F.MEMID = #{id} ORDER BY DBMS_RANDOM.VALUE
 	</select>
 	
 	<select id="latelyVideoList" parameterType="kh.com.a.model.VideoBBSDto" resultType="kh.com.a.model.VideoBBSDto">

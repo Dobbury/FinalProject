@@ -149,9 +149,6 @@
 <div id="home-slider">	
     <div class="overlay"></div>
 
-    <div class="slider-text">
-    	<div id="slidecaption"></div>
-    </div>    
 	
 	<div class="control-nav">
         <a id="prevslide" class="load-item"><i class="font-icon-arrow-simple-left"></i></a>

@@ -98,12 +98,8 @@ int perform_seq = -1;
                	    <div align="center" class="alert alert-standard fade in">                   
                     <strong>문의사항:</strong> ${castbbs.content}
                	    </div>	
-               	    ${castbbs.perform_seq}
-   	    			<div align="right">
-					<button style="display: none;" id="castBtn${vs.count}" onclick="approve(${castbbs.perform_seq}, index${vs.count})">승인</button>
-				 	<a data-toggle="modal" href="#castModal" onclick="saveVs('castBtn${vs.count}')">승인</a>
-					</div>
-						<div align="right">
+               	    
+					<div align="right">
 						 <button style="display: none;" id="castBtn${vs.count}" onclick="approve(${castbbs.perform_seq}, index${vs.count})">승인</button>
 						<a data-toggle="modal" href="#castModal" onclick="saveVs('castBtn${vs.count}')">승인</a>
 						</div>
@@ -113,8 +109,10 @@ int perform_seq = -1;
 				</div>
 		</c:forEach>
 		<input type="hidden" id="vsValue">
->>>>>>> c3b5d087e3267a29baaeaddac7ef3866d50f0efc
 	</div>
+	</div>
+	</div>
+	
 	<!-- End Accordion -->
 
 
@@ -210,7 +208,7 @@ var endindex = 7;
 	            index = data.length-1;
 	            perform_seq = data[index].perform_seq; // 더보기 누를 때마다 매번 달라지는 
 	            									   //lastIndex값의 시퀀스가 업데이트됨  
-				alert("After success, data[lastindex].perform_seq = "+ data[index].perform_seq);  
+				//alert("After success, data[lastindex].perform_seq = "+ data[index].perform_seq);  
 				var j = data[0].perform_seq; // id를 Area[sequence]로 지정, accordian slidedown href가 sequence에 맞는 데이터에 찾아감.
 				var setSnum="";
 				var setEnum="";
@@ -271,7 +269,6 @@ var endindex = 7;
 	               	 "<div align='center' class='alert alert-standard fade in'>"+                   
 	                    "<strong>기타 문의사항: </strong>" + data[i].content+
 	               	    "</div>" +	
-	               	    data[i].perform_seq+
 	   	    			"<div align='right'>"+
 						"<button style='display: none;' id='castBtn' onclick='approve("+data[i].perform_seq+", index"+j+")'>승인</button>"+
 						"<a data-toggle='modal' href='#castModal'>승인</a>"+
@@ -294,7 +291,6 @@ var endindex = 7;
 	           }
 	    }); 
 	}
-	
 </script>
 
 
