@@ -3,7 +3,8 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <style>
  .basicDiv{
@@ -41,12 +42,9 @@ function initMap() {
 		<table style="width: 100%; height: 100%">
 			<col width="15%"><col width="35%"><col width="15%"><col width="35%">
 			<tr style="height: 10%">
-				<th>
-					<h1>제목</h1>				
-				</th>
-				<td colspan="3">
+				<th colspan="4">
 					<h1>${musiRecuBBSDto.title}</h1>
-				</td>
+				</th>
 			</tr>
 			<tr style="height: 8%">
 				<th>
@@ -69,10 +67,13 @@ function initMap() {
 			</tr>
 			<tr style="height: 8%">
 				<th>
+					<br>
 					<h3>공연일정</h3>
 				</th>
 				<td colspan="3">
-					<h3>${performCastBBSDto.perform_date }</h3>
+					<br>
+					<fmt:parseDate value="${fn:substring(performCastBBSDto.perform_date,0,10) }" var="perform_date" pattern="yyyy-MM-dd"/>
+					<h3><fmt:formatDate value="${perform_date }" pattern="yyyy년 MM월 dd일"/></h3>
 				</td>
 			</tr>
 			<tr style="height: 8%">
@@ -127,13 +128,18 @@ function initMap() {
 	</div>
 	
 	<div class="basicDiv" align="center">
+		<fmt:parseDate value="${fn:substring(now,0,10) }" var="now_date" pattern="yyyy-MM-dd"/>
+		
+		<fmt:parseNumber value="${perform_date.time / (1000*60*60*24) - now_date.time / (1000*60*60*24) }" integerOnly="true" var="resultDate"/>
+		<c:if test="${resultDate > 0 }">
+		 
 		<input type="button" value="취소" id="recuCancelBtn" <c:if test="${check eq true}"> 
 																	style='display: none;'
 															</c:if> >
 		<input type="button" value="신청" id="recuBtn" <c:if test="${check eq false}"> 
 																	style='display: none;'
 															</c:if>>			
-
+		</c:if>
 	</div>
 </div>
 

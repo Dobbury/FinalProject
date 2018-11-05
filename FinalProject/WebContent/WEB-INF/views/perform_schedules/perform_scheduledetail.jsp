@@ -3,6 +3,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <%
 	String iamgePath=request.getServletContext().getRealPath("/upload");
 %>
@@ -12,7 +15,94 @@ h3{
 	padding: 0px;
 }
 </style>
+<style>
+/* ### ### ### 05 */
+.button_base {
+    margin: 0;
+    border: 0;
+    font-size: 18px;
+    position: relative;
+    width: 230px;
+    height: 50px;
+    text-align: center;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-user-select: none;
+    cursor: default;
+}
+.button_base:hover {
+    cursor: pointer;
+}
 
+.b05_3d_roll {
+    perspective: 500px;
+    -webkit-perspective: 500px;
+    -moz-perspective: 500px;
+}
+
+.b05_3d_roll div {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    height: 51px;
+    padding: 10px;
+    pointer-events: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.b05_3d_roll div:nth-child(1) {
+    color: #ffffff;
+    background-color: #ffffff;
+    transform: rotateX(90deg);
+    -webkit-transform: rotateX(90deg);
+    -moz-transform: rotateX(90deg);
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform-origin: 50% 50% -25px;
+    -webkit-transform-origin: 50% 50% -25px;
+    -moz-transform-origin: 50% 50% -25px;
+}
+
+.b05_3d_roll div:nth-child(2) {
+    color: #ffffff;
+    background-color: #7F8289;
+    transform: rotateX(0deg);
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform-origin: 50% 50% -25px;
+    -webkit-transform-origin: 50% 50% -25px;
+    -moz-transform-origin: 50% 50% -25px;
+}
+
+.b05_3d_roll:hover div:nth-child(1) {
+    color: #7F8289;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform: rotateX(0deg);
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+}
+
+.b05_3d_roll:hover div:nth-child(2) {
+    background-color: #ffffff;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform: rotateX(-90deg);
+    -webkit-transform: rotateX(-90deg);
+    -moz-transform: rotateX(-90deg);
+}
+
+
+</style>
 <script>
 $(function(){ 
 	var $win = $(window); 
@@ -44,31 +134,24 @@ $(function(){
 
 
 <script>
-	// Initialize and add the map
-	function initMap() {
-		// The location of Uluru
-		var uluru = {lat: ${performCastBBSDto.lati}, lng: ${performCastBBSDto.longi}};
-	
-
-		// The map, centered at Uluru
-		var map = new google.maps.Map(document.getElementById('map'), {
-			zoom : 12,
-			center : uluru
-		});
-		// The marker, positioned at Uluru
-		var marker = new google.maps.Marker({
-			position : uluru,
-			map : map
-		});
-	}
+// Initialize and add the map
+function initMap() {
+  // The location of Uluru
+  var uluru = {lat: ${performCastBBSDto.lati}, lng: ${performCastBBSDto.longi}};
+  // The map, centered at Uluru
+  var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 12, center: uluru});
+  // The marker, positioned at Uluru
+  var marker = new google.maps.Marker({position: uluru, map: map});
+}
 </script>
-<!--Load the API from the specified URL
+    <!--Load the API from the specified URL
     * The async attribute allows the browser to render the page while the API loads
     * The key parameter will contain your own API key (which is not needed for this tutorial)
     * The callback parameter executes the initMap() function
     -->
 <script async defer
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANm_LhhJlAxtWnzBHskkYxoHViNJhqiKw&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANm_LhhJlAxtWnzBHskkYxoHViNJhqiKw&callback=initMap">
 </script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
@@ -109,8 +192,8 @@ function requestPay() {
 
 </script>
 <div class="container" style=" width:950px;">
-	<div style="float: left; background-color: #26292E; padding: 20px"  >
-		<table style="width: 80%">
+	<div style="float: left; background-color: #26292E; padding: 20px; box-shadow: 1px 1px 10px #000;"  >
+		<table style="width: 100%">
 			<tr>
 				
 				
@@ -128,10 +211,19 @@ function requestPay() {
 							<td style="width: 60%; padding: 20px;">
 								<span>지역: ${performCastBBSDto.location }</span><br>
 								<span>장소: ${performCastBBSDto.place }</span><br>
-								<span>날짜: ${performCastBBSDto.perform_date }</span><br>
+								<fmt:parseDate value="${fn:substring(performCastBBSDto.perform_date,0,10) }" var="perform_date" pattern="yyyy-MM-dd"/>
+								<span>날짜: <fmt:formatDate value="${perform_date }" pattern="yyyy년 MM월 dd일"/></span><br>
 								<hr>
-								<span>가격정보: ${performScheduleBBSDto.ticket_price }</span><br>							<hr>
-								<span>참가뮤지션: </span><br>
+								<span>가격정보: ${performScheduleBBSDto.ticket_price }</span><br>							
+								<hr>
+								<span>참가뮤지션: 
+									<c:if test="${musiList ne null }">
+										<c:forEach items="${musiList }" var="items">
+											${items }
+										</c:forEach>							
+								
+									</c:if>  
+								</span><br>
 								
 							</td>
 						</tr>
@@ -144,12 +236,12 @@ function requestPay() {
 					<h3>공연시간 정보</h3> 
 					<hr>
 					<div class="perform_date" style="min-height: 100px">
-					2018년 11월 5일 1시
+					<fmt:formatDate value="${perform_date }" pattern="yyyy년 MM월 dd일"/>
 					</div> 
 					<hr style="border: 1.8px solid white;">
 					<h3>공연장소 위치 및  지도</h3> 
 					<hr>
-					<div id="map"></div>
+					<div id="map" style="width: 100%; height: 300px"></div>
 					<div class="place">
 						${performCastBBSDto.place }
 					</div>
@@ -178,13 +270,18 @@ function requestPay() {
 			</tr>
 		</table>
 	</div>
-	<div class="float_sidebar" align="center" style="float: left; margin: 10px; background-color: #26292E; width: 20%;height: 200px; ">
+	<div class="float_sidebar" align="center" style="float: left; margin: 10px; background-color: #26292E; width: 20%;height: 200px; box-shadow: 1px 1px 10px #000; ">
 		
 		<div style="padding: 10px;" align="left">
 			<span>상품명: ${performScheduleBBSDto.title } </span><br>
 			<span>가격: ${performScheduleBBSDto.ticket_price } </span><br>
 			<span>남은 티켓수: ${countTicket } </span>
 		</div>
-		<button onclick="requestPay()" style="width: 150px; height: 50px">결제하기</button>
+		<br>
+		<!-- <button onclick="requestPay()" style="width: 150px; height: 50px">결제하기</button> -->
+		<div class="button_base b05_3d_roll" id="mRegiBtn" style="width: 160px; height: 50px" onclick="requestPay()">
+			<div>결제하기</div>
+			<div>결제하기</div>
+		</div>
 	</div>
 </div>

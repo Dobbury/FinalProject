@@ -47,7 +47,6 @@
 		<ul id="menu-nav">
 		
 			<li><a href="main.do" class="external">Main</a></li>
-			<li><a class="external" href="aboutus.do">About</a></li>
 			<%if(dto!=null){ 
 				if(dto.getAuth()==0){
 			%>
@@ -202,8 +201,7 @@ var tmp = 0;
 
 $("#movecastBtn").click(function () {
 	var btnName = "#"+$("#vsValue").val();
-	   alert(btnName);
-	   $(btnName).click();
+	$(btnName).click();
 });
 
 $("#login").on('click',function(){

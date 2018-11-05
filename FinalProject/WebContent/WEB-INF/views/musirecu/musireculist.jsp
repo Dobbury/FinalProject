@@ -181,7 +181,19 @@ var str='<%=category%>';
 										<fmt:parseDate value="${fn:substring(item.edate,0,10) }" var="edate" pattern="yyyy-MM-dd"/>
 										
 										<fmt:formatDate value="${edate }" pattern="yyyy년 MM월 dd일"/> 까지
-										(<fmt:parseNumber value="${edate.time / (1000*60*60*24) - sdate.time / (1000*60*60*24) }" integerOnly="true"/>일 남음)
+										<fmt:parseNumber value="${edate.time / (1000*60*60*24) - sdate.time / (1000*60*60*24) }" integerOnly="true" var="resultDate"/>
+										<c:choose>
+											<c:when test="${resultDate < 0 }">
+												<font color="red">(지남)</font>	
+											</c:when>
+											<c:when test="${resultDate > 0 }">
+												(D - ${resultDate})
+											</c:when>
+											<c:when test="${resultDate == 0 }">
+												<font color="green">(오늘 마감)</font>
+											</c:when>
+										</c:choose>
+										
 										
 										
 									   	</p>

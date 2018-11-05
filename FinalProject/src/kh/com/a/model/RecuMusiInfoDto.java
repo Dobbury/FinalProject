@@ -8,6 +8,7 @@ public class RecuMusiInfoDto implements Serializable {
 	private String musiid;
 	private int select_musi;
 	private int musi_recu_seq;
+	
 	public RecuMusiInfoDto() {
 		super();
 	}
