@@ -4,32 +4,37 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <fmt:requestEncoding value="utf-8"/>
 
+<style type="text/css">
+#id,#pwd,#name,#phone,#email,#birth{
+	height: 30px
+}
+
+.btn span.glyphicon {    			
+	opacity: 0;				
+}
+.btn.active span.glyphicon {				
+	opacity: 1;				
+}
+
+</style>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+<h1 style="text-align: center">영상게시글 수정</h1>
+
 <div style="width: 520px; margin: auto;text-align: center">
 <form name="bbsfrm" id="_bbsfrm" method="post" action="videoBbsUpdateAf.do">
 	<table>
-	<tr align="center">
-		<td><img src= ${getVideoBbs.thumbnail } width="100%" alt="Thumbnail" title="Thumbnail"></td>
+		<tr align="center">
+			<td><img src= ${getVideoBbs.thumbnail } width="100%" alt="Thumbnail" title="Thumbnail"></td>
 		</tr>
 		<tr>
-			<td align="center"><span class="font-icon-group">&nbsp;&nbsp;${getVideoBbs.id }</td>
+			<td align="center"><h3>ID</h3><input type="text" style="text-align: center" readonly="readonly" value="${getVideoBbs.id }"></input></td>
 		</tr>
 		<tr>
-			<td align="center"><span class="font-icon-book">&nbsp;&nbsp;<input type="text" name="title" id="_title" value="${getVideoBbs.title }"></td>
+			<td align="center"><h3>TITLE</h3><input type="text" style="text-align: center" name="title" id="_title" value="${getVideoBbs.title }"></td>
 		</tr>
 		<tr>
-			<td align="center"><span class="font-icon-eye">&nbsp;&nbsp;${getVideoBbs.readcount }</td>
-		</tr>
-		<tr>
-			<td style="text-align: center"><span class="font-icon-paste">&nbsp;&nbsp;<textarea rows="10" cols="100" 
-			name='content' id="_content">${getVideoBbs.content }</textarea></td>
-		</tr>
-		<tr>
-			<td>
-			<video
-				style="margin: 45px; display: inline-block; width: 80%; height: 250px"
-				src=${getVideoBbs.video } controls="controls">이 브라우저는 재생이 불가능합니다.
-			</video>
-			</td>
+			<td align="center"><h3>CONTENT</h3><textarea type="text" name="content" id="_content"  cols="1" rows="7">${getVideoBbs.content }</textarea></td>
 		</tr>
 	</table>
 	
@@ -41,7 +46,7 @@
 
 <script type="text/javascript">
 $("#_btnUpdate").click(function() {	
-	alert('글수정하기');		
+		
 	$("#_bbsfrm").attr({ "target":"_self", "action":"videoBbsUpdateAf.do?seq="+${getVideoBbs.video_seq } }).submit();
 });
 </script>

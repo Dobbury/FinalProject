@@ -129,9 +129,10 @@ function initMap() {
 	
 	<div class="basicDiv" align="center">
 		<fmt:parseDate value="${fn:substring(now,0,10) }" var="now_date" pattern="yyyy-MM-dd"/>
+		<fmt:parseDate value="${fn:substring(musiRecuBBSDto.edate,0,10) }" var="e_date" pattern="yyyy-MM-dd"/>
 		
-		<fmt:parseNumber value="${perform_date.time / (1000*60*60*24) - now_date.time / (1000*60*60*24) }" integerOnly="true" var="resultDate"/>
-		<c:if test="${resultDate > 0 }">
+		<fmt:parseNumber value="${e_date.time / (1000*60*60*24) - now_date.time / (1000*60*60*24) }" integerOnly="true" var="resultDate"/>
+		<c:if test="${resultDate >= 0 }">
 		 
 		<input type="button" value="취소" id="recuCancelBtn" <c:if test="${check eq true}"> 
 																	style='display: none;'
@@ -141,7 +142,6 @@ function initMap() {
 															</c:if>>			
 		</c:if>
 	</div>
-</div>
 
 
 <script>

@@ -223,27 +223,38 @@ function captureReturnKey(e) {
 }
 </script>
 
+<div id="contact" class="page">
+<div class="container">
+<div class="row">
+        <div class="span12">
+            <div class="title-page">
+                <h2 class="title">버스킹일정 등록</h2>
+                <h6 class="title-description">버스킹 일정을 등록해 사람들이게 공연계획을 공유하세요!</h6>
+            </div>
+        </div>
+    </div>
+
 <form method="post" action="AddScheduleAf.do" class="generalForm" onkeydown="return captureReturnKey(event)">
     <div class="row">
-    	<div class="span9">
+    	<div class="span9" style="margin-left:16%">
 			<p class="contact-name">
-				<input type="text" value="${user.id }" name="id" readonly="readonly" />
-			   </p>
+				<input type="text" style="margin-bottom: 1px; width: 100%" value="${user.id }" name="id" readonly="readonly" />
+			</p>
 			   <p class="contact-company">
-				<input type="text"  value="${user.teamname }" name="teamname" readonly="readonly" />
+				<input type="text" style="margin-bottom: 1px; width: 100%"  value="${user.teamname }" name="teamname" readonly="readonly" />
 			   </p>
 			  
 			   <!-- Map -->
 			   <div id="map" style="height: 400px;"></div>
-			   <input type="text" class="text text-default" id="search" placeholder="지도 검색할 위치를 입력해주세요" style="width: 100%">
+			   <input type="text" style="margin-bottom: 1px; width: 100%" class="text text-default" id="search" placeholder="지도 검색할 위치를 입력해주세요" style="width: 100%">
 
 			   <p class="contact-place">
-			   	<input type="text" placeholder="상세장소(ex:강남 파이낸스센터)" name="place"/>
+			   	<input type="text" style="margin-bottom: 1px; width: 100%" placeholder="상세장소(ex:강남 파이낸스센터)" name="place"/>
 			    <input type="hidden" name="lati" id="lat" value="">
 			    <input type="hidden" name="longi" id="lng" value="">
 			   </p>
 			   
-			   <select style="margin-bottom: 1px;" name="location">
+			   <select style="margin-bottom: 1px; width: 100%" name="location">
 			   	<option draggable="false">지역</option>
 			<c:forEach items="${locationList}" var="locationitem" varStatus="status">
 			<option>${locationitem.location }</option>
@@ -251,27 +262,27 @@ function captureReturnKey(e) {
 			</select>
 			
 			<p class="contact-performdate">
-				<input type="date" placeholder="버스킹 날짜" value="" name="scheduledate"/>
+				<input type="date" style="margin-bottom: 1px; width: 100%" placeholder="버스킹 날짜" value="" name="scheduledate"/>
 			</p>
 			
-			<select style="margin-bottom: 1px;" name="buskingTime">
+			<select style="margin-bottom: 1px; width: 100%" name="buskingTime">
 			<option draggable="false">시간</option>
 			<c:forEach items="${timetableList}" var="timeitem" varStatus="status">
 			<option>${timeitem.buskingTime }</option>
 			</c:forEach>
 			</select>
 			
-			<div class="button_base b05_3d_roll" id="btnAdd">
+			<div class="button_base b05_3d_roll" id="btnAdd" style="margin: auto; margin-top: 10px">
 				<div>일정등록</div>
 			    <div>일정등록</div>
 			</div>
-			   	
 		</div>
 	</div>
 </form>
+</div>
+</div>
 
 <script>
-
 	function show_alert(){
 	if(confirm("버스킹일정을 등록하시겠습니까?"))
 		document.forms[0].submit();

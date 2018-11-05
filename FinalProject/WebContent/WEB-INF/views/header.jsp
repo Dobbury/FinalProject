@@ -1,5 +1,15 @@
-<%@page import="kh.com.a.model.MemDto"%>
+<%@ page import="kh.com.a.model.MemDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>    
+
+
+
+
+<fmt:requestEncoding value="utf-8"/>
+
+
 
 <%
 	MemDto dto = (MemDto)session.getAttribute("user");
@@ -21,8 +31,8 @@
 #menu-nav li:hover ul {
  display: block;
 }
-
 </style>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/jquery/jquery.cookie.js"></script>
 <!-- Header -->
@@ -37,11 +47,10 @@
 		<ul id="menu-nav">
 		
 			<li><a href="main.do" class="external">Main</a></li>
-			<li><a class="external" href="aboutus.do">About</a></li>
 			<%if(dto!=null){ 
 				if(dto.getAuth()==0){
 			%>
-			<li><a href="#" id="current">관리</a>
+			<li><a href="*" id="current">관리</a>
 		         <ul>
 		           <li ><a href="castbbs.do" class="external">섭외신청목록</a></li>
 		           <li ><a href="musi_recu_deadline.do" class="external">뮤지션 모집 마감 목록</a></li>
@@ -107,10 +116,7 @@
 				<input type="text" style="height: 20%" placeholder="아이디 입력" name="id" id="id">
 				<br><br> 
 				<input type="password" style="height: 20%" placeholder="비밀번호 입력" name="pwd" id="pwd">
-				<br>
-				<div align="right" style="padding-right: 13%">
-					ID 저장&nbsp;<input type="checkbox" style="margin-bottom: 1px;" id="_chk_save_id"/>
-				</div>
+				
 			</div>
 			<div class="modal-footer" style="background-color: #26292E;">
 				<a href="regi.do" class="external">Sign up</a>
@@ -154,6 +160,8 @@
 
 <div class="modal fade" id="museDetailModal" role="dialog" 
    aria-labelledby="myModalLabel" aria-hidden="true">
+
+
 	<div class="modal-dialog modal-sm"><!--  큰창:<div class="modal-dialog modal-lg"> 작은창 :<div class="modal-dialog modal-sm">  -->
 		<div class="modal-header" align="center" style="background-color: #2F3238">
 			<h4 class="modal-title"
@@ -182,10 +190,11 @@
 			</div>
 		</div> 
 	</div> 
+
 </div>
 
 <script type="text/javascript">
-
+var tmp = 0;
 
 $("#movecastBtn").click(function () {
 	var btnName = "#"+$("#vsValue").val();
@@ -229,6 +238,11 @@ $("ul li").click(function () {
 	%>
 });
 </script>
+
+
+ 
+
+
 
 <!-- End Header -->
 <script type="text/javascript">

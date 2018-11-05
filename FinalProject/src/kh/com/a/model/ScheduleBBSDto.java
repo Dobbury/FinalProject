@@ -4,15 +4,18 @@ import java.io.Serializable;
 import java.sql.Date;
 
 public class ScheduleBBSDto implements Serializable {
-	private String scheduledate;
-	private String buskingTime;
-	private String location;
-	private String place;
-	private int schedule_seq;
-	private String id;
-	private String teamname;
-	private double lati;
-	private double longi;
+
+	
+	
+	   private String scheduledate;
+	   private String buskingTime;
+	   private String location;
+	   private String place;
+	   private int schedule_seq;
+	   private String id;
+	   private String teamname;
+	   private double lati;
+	   private double longi;
 	
 	public ScheduleBBSDto() {
 		super();

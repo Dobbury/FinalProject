@@ -192,7 +192,7 @@ function requestPay() {
 
 </script>
 <div class="container" style=" width:950px;">
-	<div style="float: left; background-color: #26292E; padding: 20px; box-shadow: 1px 1px 10px #000;"  >
+	<div style="float: left; background-color: #26292E; padding: 20px; box-shadow: 1px 1px 10px #000; width:73%"  >
 		<table style="width: 100%">
 			<tr>
 				

@@ -3,6 +3,7 @@ package kh.com.a.dao;
 import java.util.List;
 
 import kh.com.a.model.TicketDto;
+
 import kh.com.a.model.TicketParam;
 
 public interface TicketDao {
@@ -12,4 +13,5 @@ public interface TicketDao {
 	public int countTicket(TicketDto ticket);
 	
 	public List<TicketParam> myTicketList(String id);
+	
 }

@@ -85,12 +85,14 @@ public class PerformScheduleBBSController {
 
 		param.setStart(start);
 		param.setEnd(end);
-
+			
 		// 글 개수
 		int totalRecordCount = performScheduleBBSService.getPerformScheduleBBSCount(param);
 
 		List<PerformScheduleBBSDto> list = performScheduleBBSService.getPerformSchedulPagingList(param);
-
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i).toString());
+		}
 		model.addAttribute("PerformSchedulPagingList", list);
 		model.addAttribute("pageNumber", sn);
 		model.addAttribute("pageCountPerScreen", 10);

@@ -352,6 +352,7 @@ submit:hover{
 	<col width="200px"><col width="200px">
 	<tr>
 		<td align="center">
+
 			<h5 class="title-description" style="margin: 15 0 0 0">생년월일</h5>
 		</td>
 		<td align="center">
@@ -381,6 +382,7 @@ submit:hover{
 </table>
 
 <br>
+
 <h5 class="title-description" style="margin: 15 0 0 0">연락처</h5>
 <input type="text" name="phone" id="mphone" maxlength="13" oninput="autoHypenPhone(this)" placeholder="핸드폰 번호를 입력하세요">
 <br>
@@ -429,19 +431,24 @@ submit:hover{
 </form>
 </div>
 </div>
+
+
+
 <script type="text/javascript">
 $("#general").click(function () {
-	$(this).parent().hide(1000);
-	$(".general").show(1000);
+   $(this).parent().hide(1000);
+   $(".general").show(1000);
 });
 
 $("#musition").click(function () {
-	$(this).parent().hide(1000);
-	$(".musition").show(1000);
+   $(this).parent().hide(1000);
+   $(".musition").show(1000);
 });
 
 
 </script>
+
+
 
 <script type="text/javascript">
 	
@@ -517,11 +524,7 @@ function idCheck(id) {
 		$(".id_check_label").html("<font color='green'>사용 가능한 아이디 입니다. 중복확인 버튼을 눌러주세요.</font>");
 		id_check = true;
 	}
-	
-	
 }
-
-
 </script>
 
 
