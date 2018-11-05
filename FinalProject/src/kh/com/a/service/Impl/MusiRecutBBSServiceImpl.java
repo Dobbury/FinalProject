@@ -83,4 +83,29 @@ public class MusiRecutBBSServiceImpl implements MusiRecuBBSService{
 		return dao.getRecuMusiInfoList(recuMusiInfoDto);
 	}
 
+	@Override
+	public void musiRecuApproval(int musi_recu_seq) {
+		// TODO Auto-generated method stub
+		dao.musiRecuApproval(musi_recu_seq);
+	}
+
+	@Override
+	public void selectMusi(List<String> idList) {
+		// TODO Auto-generated method stub
+		dao.selectMusi(idList);
+	}
+
+	@Override
+	public List<String> performSelectMusiList(int musi_recu_seq) {
+		// TODO Auto-generated method stub
+		return dao.performSelectMusiList(musi_recu_seq);
+	}
+
+	@Override
+	public MusiRecuBBSDto getMusiRecuBBS_perform_Seq(int perform_seq) {
+		// TODO Auto-generated method stub
+		return dao.getMusiRecuBBS_perform_Seq(perform_seq);
+	}
+
+	
 }	

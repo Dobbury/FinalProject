@@ -113,9 +113,10 @@ function captureReturnKey(e) {
 	
 	<form id="contact-form" class="contact-form" method="post" enctype="multipart/form-data" action="perform_schedulewriteAf.do" onkeydown="return captureReturnKey(event)">
     <input type="hidden" name="perform_seq" value="${performCastBBSDto.perform_seq }">
+    <input type="hidden" name="musi_recu_seq" value="${musi_recu_seq }">
     <div class="row">
     		<p class="contact-name">
-            	<input id="contact_title" type="text" placeholder="제목 입력" value="" name="title" />
+            	<input id="contact_title" type="text" placeholder="제목 입력" value="" name="title" id="title"/>
 			</p>
 			<div align="center" style="border: 1px solid #26292E;">
 				<input type="text" value="포스터 등록" readonly="readonly">
@@ -130,7 +131,7 @@ function captureReturnKey(e) {
 					</div>					
 				</div>
 			<p class="contact-ticket_price">
-            	<input id="contact_ticket_price" type="number" placeholder="티켓 가격 입력" value="" name="ticket_price" />
+            	<input id="contact_ticket_price" type="number" placeholder="티켓 가격 입력" value="" name="ticket_price"/>
 			</p>
 			<p>
 				<table style="width: 100%">
@@ -169,7 +170,7 @@ function captureReturnKey(e) {
 							</select>
 						</td>
 						<td>
-							<select id="rightValues" size="10" multiple="multiple" style="background-color:#2F3238; overflow: auto; padding:2; height: 300px;">
+							<select id="rightValues" name="musiList" size="10" multiple="multiple" style="background-color:#2F3238; overflow: auto; padding:2; height: 300px;">
 							
 							</select>
 						</td>			
@@ -201,7 +202,7 @@ function captureReturnKey(e) {
 					</div>
 				</div>
 			</p>
-			 <input id="sending" type="submit" onclick="submitContents(this)" value="공연 공고 올리기" style="background: #5e0404">
+			 <input id="sending" type="button" onclick="submitContents(this)" value="공연 공고 올리기" style="background: #5e0404">
                 </div>	
     </div>
     </form>
@@ -322,13 +323,47 @@ $(document).on("dblclick","option",function () {
       });
 
       function submitContents(elClickedObj) {
+    	  oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []); // 에디터의 내용이 textarea에 적용됩니다.
+    	  oEditors2.getById["ir2"].exec("UPDATE_CONTENTS_FIELD", []); // 에디터의 내용이 textarea에 적용됩니다.
+    	  
+    	  if($("#upload").val() == ""){
+    			alert("공연 포스터를 업로드 해주세요");
+    			//location.href="#upload";
+    			return;
+    		}
+
+    		if($("#title").val() == ""){
+    			alert("제목을 입력해 주세요");
+    			//location.href="#title";
+    			return;
+    		}
+    		if($("#contact_ticket_price").val() == ""){
+    			alert("티켓 가격을 입력해 주세요");
+    			//location.href="#contact_ticket_price";
+    			return;
+    		}
+    		if($("#rightValues").children('option').length == 0){
+    			alert("공연할 뮤지션을 1명 이상 선택해야 합니다");
+    			//location.href="#rightValues";
+    			return;
+    		}
+/* 
+    		if($("#ir2").val() == ""){
+    			alert("notice를 작성해주세요~!");
+    			//location.href="#ir2";
+    			return;
+    		}
+    		if($("#ir1").val() == ""){
+    			alert("공연 정보를 작성해 주세요~!");
+    			//location.href="#ir1";
+    			return;
+    		} */
+    		
     	  $("#rightValues option").attr("selected","selected");
   
     	  
     	  alert($("#rightValues").children('option').length);
-    	  
-    	  oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []); // 에디터의 내용이 textarea에 적용됩니다.
-    	  oEditors2.getById["ir2"].exec("UPDATE_CONTENTS_FIELD", []); // 에디터의 내용이 textarea에 적용됩니다.
+    	 
          try {
             elClickedObj.form.submit();
          } catch (e) {

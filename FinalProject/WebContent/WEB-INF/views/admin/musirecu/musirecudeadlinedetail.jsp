@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <style>
  .basicDiv{
@@ -9,6 +10,96 @@
 	padding:10px;
 } 
 </style>
+
+<style>
+/* ### ### ### 05 */
+.button_base {
+    margin: 0;
+    border: 0;
+    font-size: 18px;
+    position: relative;
+    width: 230px;
+    height: 50px;
+    text-align: center;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-user-select: none;
+    cursor: default;
+}
+.button_base:hover {
+    cursor: pointer;
+}
+
+.b05_3d_roll {
+    perspective: 500px;
+    -webkit-perspective: 500px;
+    -moz-perspective: 500px;
+}
+
+.b05_3d_roll div {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    height: 51px;
+    padding: 10px;
+    pointer-events: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.b05_3d_roll div:nth-child(1) {
+    color: #ffffff;
+    background-color: #ffffff;
+    transform: rotateX(90deg);
+    -webkit-transform: rotateX(90deg);
+    -moz-transform: rotateX(90deg);
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform-origin: 50% 50% -25px;
+    -webkit-transform-origin: 50% 50% -25px;
+    -moz-transform-origin: 50% 50% -25px;
+}
+
+.b05_3d_roll div:nth-child(2) {
+    color: #ffffff;
+    background-color: #26292E;
+    transform: rotateX(0deg);
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform-origin: 50% 50% -25px;
+    -webkit-transform-origin: 50% 50% -25px;
+    -moz-transform-origin: 50% 50% -25px;
+}
+
+.b05_3d_roll:hover div:nth-child(1) {
+    color: #26292E;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform: rotateX(0deg);
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+}
+
+.b05_3d_roll:hover div:nth-child(2) {
+    background-color: #ffffff;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform: rotateX(-90deg);
+    -webkit-transform: rotateX(-90deg);
+    -moz-transform: rotateX(-90deg);
+}
+
+
+</style>
+
 <script>
 // Initialize and add the map
 function initMap() {
@@ -34,17 +125,14 @@ function initMap() {
 <input type="hidden" id="seq" value="${musiRecuBBSDto.musi_recu_seq }">
 
 
-<div class="container" style="background-color: #26292E;" >
+<div class="container" style="background-color: #26292E; box-shadow: 3px 3px 20px #000;" >
 	<div class="basicDiv" style="margin-bottom: 0px; padding-bottom: 0px;">
 		<table style="width: 100%; height: 100%">
 			<col width="15%"><col width="35%"><col width="15%"><col width="35%">
 			<tr style="height: 10%">
-				<th>
-					<h1>제목</h1>				
-				</th>
-				<td colspan="3">
+				<th colspan="4">
 					<h1>${musiRecuBBSDto.title}</h1>
-				</td>
+				</th>
 			</tr>
 			<tr style="height: 8%">
 				<th>
@@ -65,12 +153,15 @@ function initMap() {
 					<div id="map" style="height: 100%; " ></div>
 				</td>
 			</tr>
-			<tr style="height: 8%">
+			<tr style="height: 8%;">
 				<th>
+					<br>
 					<h3>공연일정</h3>
 				</th>
 				<td colspan="3">
-					<h3>${performCastBBSDto.perform_date }</h3>
+					<br>
+					<fmt:parseDate value="${fn:substring(performCastBBSDto.perform_date,0,10) }" var="perform_date" pattern="yyyy-MM-dd"/>
+					<h3><fmt:formatDate value="${perform_date }" pattern="yyyy년 MM월 dd일"/></h3>
 				</td>
 			</tr>
 			<tr style="height: 8%">
@@ -110,12 +201,6 @@ function initMap() {
 				<td colspan="4">
 					<div class="basicDiv" style="border: 1px solid gray; margin-top: 0px; margin-bottom: 5%">
 						${musiRecuBBSDto.content}<br>
-						<h3>asd</h3>
-						<h3>asd</h3>
-						<h3>asd</h3>
-						<h3>asd</h3>
-						<h3>asd</h3>
-						
 					</div>
 				</td>
 			</tr>
@@ -124,8 +209,10 @@ function initMap() {
 		</div>
 	</div>
 	
-	<div class="basicDiv" align="center">
-		<input type="button" value="공연 일정 추가" id="addPerformBtn" onclick="location.href='perform_schedulewrite.do?perform_seq=${musiRecuBBSDto.perform_seq}&musi_recu_seq=${musiRecuBBSDto.musi_recu_seq }'">		
-
+	<div class="basicDiv" align="center">	
+		<div class="button_base b05_3d_roll" id="addPerformBtn" style="width: 400px" onclick="location.href='perform_schedulewrite.do?perform_seq=${musiRecuBBSDto.perform_seq}&musi_recu_seq=${musiRecuBBSDto.musi_recu_seq }'">
+			<div>공연 일정 추가</div>
+			<div>공연 일정 추가</div>
+		</div>
 	</div>
 </div>
