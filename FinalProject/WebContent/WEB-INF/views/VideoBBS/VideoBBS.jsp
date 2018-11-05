@@ -134,6 +134,25 @@
 <tr>
 <form action="VideoBBSWrite.do" method="post" style="text-align: center" class="generalForm">
 	<c:set var = "auth" value = "${user.auth}"/>
+
+	<%-- <c:if test="${auth == 0 || auth == 1 || auth == 2 || auth eq null}" >
+		<input class="button button-small" type="submit" value="게시글 작성" style="margin-top: 30px" onclick="authCheck(${auth})">
+	</c:if> --%>
+</form>
+<!-- 
+<script>
+	function authCheck(auth) {
+		if (auth == 1 || auth == undefined) {
+			alert("뮤지션만 이용할 수 있습니다");
+			alert(auth);
+			return false;
+		}else{
+		    location.href = "VideoBBSWrite.do";	
+		}
+	}
+</script>
+ -->
+
 	<c:if test="${auth == 0 || auth == 2}" >
 		<div class="button_base b05_3d_roll"id="write" style="margin: auto">
 			<div>게시글 작성</div>
@@ -143,13 +162,13 @@
 </form>
 </tr>
 
+
 <script type="text/javascript">
 $("#write").click(function () {
 
 	$(".generalForm").attr("target", "_self").submit();
 });
 </script>
-
 
 <script>
 	function authCheck(auth) {
@@ -162,4 +181,5 @@ $("#write").click(function () {
 		}
 	}
 </script>
+
 

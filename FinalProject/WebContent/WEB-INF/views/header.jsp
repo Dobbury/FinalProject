@@ -4,6 +4,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>    
 
+
+
+
 <fmt:requestEncoding value="utf-8"/>
 
 
@@ -48,7 +51,7 @@
 			<%if(dto!=null){ 
 				if(dto.getAuth()==0){
 			%>
-			<li><a href="#" id="current">관리</a>
+			<li><a href="*" id="current">관리</a>
 		         <ul>
 		           <li ><a href="castbbs.do" class="external">섭외신청목록</a></li>
 		           <li ><a href="musi_recu_deadline.do" class="external">뮤지션 모집 마감 목록</a></li>

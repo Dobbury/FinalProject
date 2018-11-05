@@ -220,13 +220,11 @@ submit:hover{
 
 <span class="id_check_label"></span>
 <br>
-
 <h5 class="title-description" style="margin: 15 0 0 0">비밀번호</h5>
 <input type="password" id="gpwd" name="pwd" placeholder="비밀번호를 입력하세요">
 <br>
 <h5 class="title-description" style="margin: 15 0 0 0">이름</h5>
 <input type="text" name="name" id="gname" placeholder="이름을 입력하세요">
-
 <br>
 <table>
 	<col width="200px"><col width="200px">
@@ -243,12 +241,10 @@ submit:hover{
 			<input type="date" id="gbirth" name="birth" style="width: 300px">
 		</td>
 		<td align="center">
-
 			<div class="btn-group" data-toggle="buttons">	
 				<label class="genderLabel" style="top: -18px; left: -34px; font-weight: bolder;">
 				  <input type="radio" name="gender" checked="checked" value="남">
 				  <span class="checkmark"><span class="gender">남</span></span>
-
 				</label>
 				
 				<label class="genderLabel" style="top: -30px; left: 18px; font-weight: bolder;">
@@ -261,13 +257,11 @@ submit:hover{
 </table>
 
 <br>
-
 <h5 class="title-description" style="margin: 15 0 0 0">연락처</h5>
 <input type="text" name="phone" id="gphone" maxlength="13" oninput="autoHypenPhone(this)" placeholder="핸드폰 번호를 입력하세요">
 <br>
 <h5 class="title-description" style="margin: 15 0 0 0">이메일</h5>
 <input type="text" name="email" id="gemail" placeholder="이메일을 입력하세요">
-
 <br>
 <table>
 	<col width="200px"><col width="200px">
@@ -281,14 +275,14 @@ submit:hover{
 	</tr>
 	<tr>
 		<td align="center">	
-			<select id="ggenre" style="width: 150px" name="genre">
+			<select style="width: 150px" name="genre">
 				<c:forEach items="${genreList}" var="genreitem" varStatus="status">
-					<option>${genreitem.genre}</option>
+					<option>${genreitem.genre }</option>
 				</c:forEach>
 			</select>
 		</td>
 		<td align="center">
-			<select id="glocation" style="width: 150px" name="location">
+			<select style="width: 150px" name="location">
 				<c:forEach items="${locationList}" var="locationitem" varStatus="status">
 					<option>${locationitem.location }</option>
 				</c:forEach>
@@ -297,17 +291,15 @@ submit:hover{
 	</tr>
 </table>
 <br>
-
 <div class="button_base b05_3d_roll" id="gRegiBtn" style="width: 400px">
 	<div>회원가입</div>
 	<div>회원가입</div>
 </div>
-
 </form>
 </div>
 
 <div class="musition" align="center" style="display: none;" >
-<form action="musitionregi.do" id="contact-form2" method="post" enctype="multipart/form-data">
+<form action="musitionregi.do" id="contact-form" method="post" enctype="multipart/form-data">
 <table>
 <tr>
 <td align="center">
@@ -322,7 +314,6 @@ submit:hover{
 </td>
 
 <td style="width: 100px"></td>
-
 
 <td align="center">
 <h5 class="title-description" style="margin:15 0 0 0">아이디</h5>
@@ -366,7 +357,6 @@ submit:hover{
 		</td>
 		<td align="center">
 			<h5 class="title-description" style="margin: 15 0 0 0">성별</h5>
-
 		</td>
 	</tr>
 	<tr>
@@ -398,7 +388,6 @@ submit:hover{
 <br>
 <h5 class="title-description" style="margin: 15 0 0 0">이메일</h5>
 <input type="text" name="email" id="memail" placeholder="이메일을 입력하세요">
-
 <br>
 <table>
 	<col width="200px"><col width="200px">
@@ -408,19 +397,18 @@ submit:hover{
 		</td>
 		<td align="center">
 			<h5 class="title-description" style="margin: 15 0 0 0">거주지</h5>
-
 		</td>
 	</tr>
 	<tr>
 		<td align="center">	
-			<select id="mgenre" style="width: 150px" name="genre">
+			<select style="width: 150px" name="genre">
 				<c:forEach items="${genreList}" var="genreitem" varStatus="status">
 					<option>${genreitem.genre }</option>
 				</c:forEach>
 			</select>
 		</td>
 		<td align="center">
-			<select id="mlocation" style="width: 150px" name="location">
+			<select style="width: 150px" name="location">
 				<c:forEach items="${locationList}" var="locationitem" varStatus="status">
 					<option>${locationitem.location }</option>
 				</c:forEach>
@@ -433,169 +421,22 @@ submit:hover{
 </tr>
 <tr>
 <td colspan="3" align="center">
-
 <div class="button_base b05_3d_roll" id="mRegiBtn" style="width: 400px">
 	<div>회원가입</div>
 	<div>회원가입</div>
 </div>
-
 </td>
 </tr>
 </table>
 </form>
 </div>
 </div>
+
+
+
 <script type="text/javascript">
 
 
-$("#regiGeneral").click(function () {
-	var gid = $("#gid").val();
-	var gpwd = $("#gpwd").val();
-	var gname = $("#gname").val();
-	var gbirth = $("#gbirth").val();
-	var gphone = $("#gphone").val();
-	var gemail = $("#gemail").val();
-	var ggenre = $("#ggenre").val();
-	var glocation = $("#glocation").val();
-	var ggender = $("#ggender").val();
-	var deny_charId = /^[a-z|A-Z|0-9|\*]+$/;
-	var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-	
-	if (gid == null || gid=="") {
-        alert("아이디를 입력하세요");
-        return false;
-    }else if (gpwd == null || gpwd=="") {
-		alert("비밀번호를 입력하세요");
-		return false;
-	}else if (gemail==null || email=="") {
-		alert("이메일을 입력하세요");
-        return false;
-	}else if (gphone==null || phone=="") {
-		alert("전화번호를 입력해주세요");
-        return false;
-	}else if (glocation==null || location=="") {
-		alert("지역을 선택해주세요");
-        return false;
-	}else if (!deny_char.test(gname)){
-		alert("올바른 이름을 입력해주세요");
-		return false;
-	}else if(!/^[0-9]+$/.test(phone)){
-		alert("연락처는 숫자만 입력이 됩니다");
-		return false;
-		
-	}else if (!deny_charId.test(gid)) {
-		alert("올바른 아이디가 아닙니다");
-		return false;
-	}else if (!deny_charId.test(gpwd)) {
-		alert("올바른 비밀번호가 아닙니다");
-		return false;
-	}
-	
-	
-	if(exptext.test(gemail)==false){	
-		alert("이메일형식이 올바르지 않습니다.");
-		return false;
-	}
-	
-});
-
-$("#regiMusition").click(function () {
-	var mid = $("#mid").val();
-	var mpwd = $("#mpwd").val();
-	var mname = $("#mname").val();
-	var mbirth = $("#mbirth").val();
-	var mphone = $("#mphone").val();
-	var memail = $("#memail").val();
-	var mgenre = $("#mgenre").val();
-	var mlocation = $("#mlocation").val();
-	var mgender = $("#mgender").val();
-	var deny_charId = /^[a-z|A-Z|0-9|\*]+$/;
-	var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-	
-	
-	if (mid == null || mid=="") {
-        alert("아이디를 입력하세요");
-        return false;
-    }else if (mpwd == null || mpwd=="") {
-		alert("비밀번호를 입력하세요");
-		return false;
-	}else if (memail==null || memail=="") {
-		alert("이메일을 입력하세요");
-        return false;
-	}else if (mphone==null || mphone=="") {
-		alert("전화번호를 입력해주세요");
-        return false;
-	}else if (mname==null || mname=="") {
-		alert("이름을 입력해주세요");
-        return false;
-	}else if (mlocation==null || mlocation=="") {
-		alert("지역을 선택해주세요");
-        return false;
-	}else if (!deny_char.test(mname)){
-		alert("올바른 이름을 입력해주세요");
-		return false;
-	}else if(!/^[0-9]+$/.test(mphone)){
-		alert("연락처는 숫자만 입력이 됩니다");
-		return false;
-		
-	}else if (!deny_charId.test(mid)) {
-		alert("올바른 아이디가 아닙니다");
-		return false;
-	}else if (!deny_charId.test(mpwd)) {
-		alert("올바른 비밀번호가 아닙니다");
-		return false;
-	}
-	
-	
-	if(exptext.test(memail)==false){	
-		alert("이메일형식이 올바르지 않습니다.");
-		return false;
-	}
-});
-	
-	
-	
-
-
-
-/* 
- * 
-gid
-gpwd
-gname
-gbirth
-gphone
-gemail
-ggenre
-glocation
-ggender
-*/
-
-
-/* 
-mid
-mpwd
-mname
-mbirth
-mphone
-memail
-mgenre
-mlocation
-mgender
-*/
-
-$("#general").click(function () {
-	$(this).parent().hide(1000);
-	$(".general").show(1000);
-});
-
-$("#musition").click(function () {
-	$(this).parent().hide(1000);
-	$(".musition").show(1000);
-});
-
-
-</script>
 
 <script type="text/javascript">
 	

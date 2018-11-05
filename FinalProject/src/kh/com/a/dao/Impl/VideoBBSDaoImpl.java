@@ -8,9 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.com.a.dao.VideoBBSDao;
-import kh.com.a.model.FollowDto;
 
+import kh.com.a.model.FollowDto;
 import kh.com.a.model.MemDto;
+
 import kh.com.a.model.VideoBBSDto;
 import kh.com.a.model.Video_LikeDto;
 

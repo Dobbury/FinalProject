@@ -101,7 +101,9 @@ public class MemController {
 		//ComingSchedule = scheduleBbsService.getComingSchedule();
 		//IngSchedule = scheduleBbsService.getIngSchedule();
 		scheduleList = performScheduleService.latelyPerformSchedules();
-		
+		for (int i = 0; i < scheduleList.size(); i++) {
+			System.out.println(scheduleList.get(i).toString());
+		}
 		try {
 			latelyVideoList = videoBbsService.latelyVideoList();
 		} catch (Exception e1) {
@@ -260,7 +262,7 @@ public class MemController {
 		// upload 경로
 		// tomcat
 		String fupload = req.getServletContext().getRealPath("/upload");
-		// logger.info("업로드 경로: " + fupload);
+
 
 		// 폴더
 		// String fupload = "d:\\tmp";
@@ -270,6 +272,7 @@ public class MemController {
 		String newFile = FUpUtil.getNewFile(f);
 
 		dto.setNew_profilIMG("/FinalProject/upload/"+newFile);
+
 
 		logger.info("변경된 파일명: " + newFile);
 
@@ -282,7 +285,6 @@ public class MemController {
 		dto.setAuth(2);
 		// DB 저장
 		memberService.addMusition(dto);
-
 		return "redirect:/main.do";
 	}
 	

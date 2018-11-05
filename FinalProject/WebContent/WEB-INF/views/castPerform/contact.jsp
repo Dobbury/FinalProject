@@ -299,34 +299,32 @@ function captureReturnKey(e) {
         <div class="span3">
         	<div class="contact-details">
         		<p style="font-family: fantasy; color: #7da5e8">공연을 관람하는 대상, 연령별 선택 <br>(중복선택 가능)<font color="red">*</font></p>
-        		<span id="ch7" style="width: auto;">
-
+        		<span id="ch7" style="width: auto;"></span>
         		<label class="agegradeLabel" style="font-weight: bolder; top:-10px">
-				  <input type="checkbox" name="agegrade" value="중,고등학생">
+				  <input id="Check1" type="checkbox" name="agegrade" value="중,고등학생">
 				  <span class="checkmark" style="width:88%;"><span class="agegrade" style=" left:60px;">중,고등학생</span></span>
 				</label>
 				<label class="agegradeLabel" style="font-weight: bolder; top:40px;">
-				  <input type="checkbox" name="agegrade" value="대학생">
+				  <input id="Check2" type="checkbox" name="agegrade" value="대학생">
 				  <span class="checkmark" style="width:88%;"><span class="agegrade" style=" left:84px;">대학생</span></span>
 				</label>
 				<label class="agegradeLabel" style="font-weight: bolder; top:90px;">
-				  <input type="checkbox" name="agegrade" value="성인남녀">
+				  <input id="Check3" type="checkbox" name="agegrade" value="성인남녀">
 				  <span class="checkmark" style="width:88%;"><span class="agegrade" style=" left:72px;">성인남녀</span></span>
 				</label>
 				<label class="agegradeLabel" style="font-weight: bolder; top:140px;">
-				  <input type="checkbox" name="agegrade" value="고령자">
+				  <input id="Check4" type="checkbox" name="agegrade" value="고령자">
 				  <span class="checkmark" style="width:88%;"><span class="agegrade" style=" left:84px;">고령자</span></span>
 				</label>
 				<label class="agegradeLabel" style="font-weight: bolder; top:190px;">
-				  <input type="checkbox" name="agegrade" value="장애인">
+				  <input id="Check5" type="checkbox" name="agegrade" value="장애인">
 				  <span class="checkmark" style="width:88%;"><span class="agegrade" style=" left:84px;">장애인</span></span>
 				</label>
 				<label class="agegradeLabel" style="font-weight: bolder; top:240px;">
-				  <input type="checkbox" name="agegrade"  value="외국인">
+				  <input id="Check6" type="checkbox" name="agegrade"  value="외국인">
 				  <span class="checkmark" style="width:88%;"><span class="agegrade" style=" left:84px;">외국인</span></span>
 				</label>
-				
-				
+
 				<!-- <span id="ch1" style="width: 78%" class="wpcf7-list-item first"><input style="width: 40%" type="checkbox" class="agegrade" name="agegrade" value="중,고등학생"><span class="wpcf7-list-item-label">중,고등학생</span></span>
 				<span id="ch2" style="width: 78%" class="wpcf7-list-item first"><input style="width: 40%" type="checkbox" class="agegrade" name="agegrade" value="대학생"><span class="wpcf7-list-item-label">대학생</span></span>
 				<span id="ch3" style="width: 78%" class="wpcf7-list-item first"><input style="width: 40%" type="checkbox" class="agegrade" name="agegrade" value="성인남녀"><span class="wpcf7-list-item-label">성인남녀</span></span>
@@ -459,11 +457,11 @@ function captureReturnKey(e) {
 			}else if (!deny_char.test(name)){
 				alert("올바른 이름을 입력해주세요");
 				return false;
-			}else if(!/^[0-9]+$/.test(phone)){
+			}/* else if(!/^[0-9]+$/.test(phone)){
 				alert("연락처에 숫자만 입력해주세요");
 				return false;
 				
-			}
+			} */
 						
 			var ch1 = $("#Check1").prop("checked"); //단일건
 			var ch2 = $("#Check2").prop("checked"); //단일건
