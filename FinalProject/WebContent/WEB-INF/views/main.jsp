@@ -31,7 +31,7 @@ model.addAttribute("latelyVideoList", latelyVideoList);
 		if(loginDto != null){
 					
 		%>
- <%-- <div class="container">
+<div class="container">
 	<!-- Title Page -->
 	<div class="row">
 		<div class="span12">
@@ -63,9 +63,9 @@ model.addAttribute("latelyVideoList", latelyVideoList);
 		
 	</c:if>
 	
-	<%-- <c:forEach items="${videoList}" var="video" varStatus="vs">
+	<c:forEach items="${videoList}" var="video" varStatus="vs">
 		<h1>${video.title}</h1>
-	</c:forEach> --%>
+	</c:forEach>
 	</div>	
 	<!-- Portfolio Projects -->
 	<div class="row">
@@ -147,7 +147,7 @@ model.addAttribute("latelyVideoList", latelyVideoList);
 					<!-- <section id="projects2">
 					<ul id="thumbs"> -->
 					
-					<%-- 
+
 						<!-- Item Project and Filter Name -->
 						<c:if test="${empty followingList}">
 						<li class="item-thumbs span3 following">
@@ -184,7 +184,7 @@ model.addAttribute("latelyVideoList", latelyVideoList);
                         <li class="item-thumbs span3">
                         </li>
 						</c:if>
-						</c:if> --%>
+						</c:if>
 					
 						<!-- End Item Project -->
 				
@@ -296,7 +296,7 @@ model.addAttribute("latelyVideoList", latelyVideoList);
 
 			</div>
 		</div>
-	</div> --%>
+	</div>
 	
 	
 	<div class="container">
