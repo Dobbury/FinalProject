@@ -15,18 +15,18 @@
 .iw_inner h3 {font-size: 18px; padding-bottom: 7px}
 
 </style>
-<h2 align="center">${getSchedule.id }의 버스킹</h4>
+<h1 align="center">${getSchedule.id }의 버스킹</h1>
 <div style="width:900px;margin:auto">
 	<div style="display: inline-block; width: 49%; height: 500px; margin: auto">		
 		<div id="map_v3"></div>
 		
 		<p align="center">장소 : ${getSchedule.place}</p>
 	</div>
-	<div style="display: inline-block; vertical-align: top;">
-		<h4>팀명</h3><p><a data-toggle="modal" href="#museDetailModal">${getSchedule.id }</a></p>
-		<h4>날짜</h3><p>${getSchedule.scheduledate}</p>
-		<h4>시간</h3><p>${getSchedule.buskingTime}</p>
-		<h4>지역</h3><p>${getSchedule.location}</p>
+	<div style="display: inline-block; vertical-align: top; margin-left:10%; text-align: center">
+		<h3 style="border-top: solid 1px white">팀명</h3><p><a data-toggle="modal" href="#museDetailModal">${getSchedule.id }</a></p>
+		<h3 style="border-top: solid 1px white">날짜</h3><p>${getSchedule.scheduledate}</p>
+		<h3 style="border-top: solid 1px white">시간</h3><p>${getSchedule.buskingTime}</p>
+		<h3 style="border-top: solid 1px white">지역</h3><p>${getSchedule.location}</p>
 	</div>	
 </div>
 

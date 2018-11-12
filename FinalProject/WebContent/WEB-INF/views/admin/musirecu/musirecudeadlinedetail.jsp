@@ -99,6 +99,7 @@
 
 
 </style>
+
 <script>
 // Initialize and add the map
 function initMap() {
@@ -124,17 +125,14 @@ function initMap() {
 <input type="hidden" id="seq" value="${musiRecuBBSDto.musi_recu_seq }">
 
 
-<div class="container" style="background-color: #26292E;" >
+<div class="container" style="background-color: #26292E; box-shadow: 3px 3px 20px #000;" >
 	<div class="basicDiv" style="margin-bottom: 0px; padding-bottom: 0px;">
 		<table style="width: 100%; height: 100%">
 			<col width="15%"><col width="35%"><col width="15%"><col width="35%">
 			<tr style="height: 10%">
-				<th>
-					<h1>제목</h1>				
-				</th>
-				<td colspan="3">
+				<th colspan="4">
 					<h1>${musiRecuBBSDto.title}</h1>
-				</td>
+				</th>
 			</tr>
 			<tr style="height: 8%">
 				<th>
@@ -155,13 +153,16 @@ function initMap() {
 					<div id="map" style="height: 100%; " ></div>
 				</td>
 			</tr>
-			<tr style="height: 8%">
+			<tr style="height: 8%;">
 				<th>
+					<br>
 					<h3>공연일정</h3>
 				</th>
 				<td colspan="3">
-					<fmt:parseDate value="${fn:substring(performCastBBSDto.perform_date,0,10) }" var="performdate" pattern="yyyy-MM-dd"/>			
-					<h3><fmt:formatDate value="${performdate }" pattern="yyyy년 MM월 dd일"/></h3>
+
+					<br>
+					<fmt:parseDate value="${fn:substring(performCastBBSDto.perform_date,0,10) }" var="perform_date" pattern="yyyy-MM-dd"/>
+					<h3><fmt:formatDate value="${perform_date }" pattern="yyyy년 MM월 dd일"/></h3>
 				</td>
 			</tr>
 			<tr style="height: 8%">
@@ -200,23 +201,20 @@ function initMap() {
 			<tr>
 				<td colspan="4">
 					<div class="basicDiv" style="border: 1px solid gray; margin-top: 0px; margin-bottom: 5%">
-						${musiRecuBBSDto.content}
-						
-						
+						${musiRecuBBSDto.content}<br>
 					</div>
 				</td>
 			</tr>
 		</table>
 		
-		</div>
 	</div>
+</div>
 	
-	<div class="basicDiv" align="center">
+
+	<div class="basicDiv" align="center">	
 		<div class="button_base b05_3d_roll" id="addPerformBtn" style="width: 400px" onclick="location.href='perform_schedulewrite.do?perform_seq=${musiRecuBBSDto.perform_seq}&musi_recu_seq=${musiRecuBBSDto.musi_recu_seq }'">
 			<div>공연 일정 추가</div>
 			<div>공연 일정 추가</div>
 		</div>
-		<%-- <input type="button" value="공연 일정 추가" id="addPerformBtn" onclick="location.href='perform_schedulewrite.do?perform_seq=${musiRecuBBSDto.perform_seq}&musi_recu_seq=${musiRecuBBSDto.musi_recu_seq }'">		
- --%>
 	</div>
-</div>
+

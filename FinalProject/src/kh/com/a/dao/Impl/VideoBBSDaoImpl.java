@@ -8,6 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.com.a.dao.VideoBBSDao;
+
+import kh.com.a.model.FollowDto;
+import kh.com.a.model.MemDto;
+
 import kh.com.a.model.VideoBBSDto;
 import kh.com.a.model.Video_LikeDto;
 
@@ -104,6 +108,19 @@ public class VideoBBSDaoImpl implements VideoBBSDao {
 		return like;
 		
 	}
+	
+	@Override
+	public boolean getFollow(FollowDto fDto) {
+		FollowDto dto = sqlSession.selectOne(namespace + "getFollow", fDto);
+		boolean follow = true;
+		
+		if(dto == null)
+			follow = false;
+		else if(dto != null)
+			follow = true;
+		
+		return follow;
+	}
 
 	@Override
 	public boolean incReadCount(int seq) {
@@ -120,6 +137,24 @@ public class VideoBBSDaoImpl implements VideoBBSDao {
 	}
 
 	@Override
+	public List<VideoBBSDto> getFollowingList(MemDto dto) throws Exception {
+		
+		System.out.println("여기는 getFollowing DaoMethod="+ dto.getId());
+		return sqlSession.selectList(namespace + "getfollowingList", dto);
+ 
+	}
+
+	@Override
+	public List<VideoBBSDto> latelyVideoList() throws Exception {
+		return sqlSession.selectList(namespace + "latelyVideoList");
+	}
+
+	@Override
+	public int HowManyFollowers(String id) throws Exception {
+		
+		return sqlSession.selectOne(namespace + "HowManyFollowers", id);
+
+	}
 	public int FollowerCount(String museid) {
 		return sqlSession.selectOne(namespace + "followerConunt", museid);
 	}
@@ -127,6 +162,7 @@ public class VideoBBSDaoImpl implements VideoBBSDao {
 	@Override
 	public int likeCount(int seq) {
 		return sqlSession.selectOne(namespace + "likeCount", seq);
+
 	}
 	
 	

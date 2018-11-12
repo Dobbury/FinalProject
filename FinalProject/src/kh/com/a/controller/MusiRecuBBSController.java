@@ -80,6 +80,15 @@ public class MusiRecuBBSController {
 	@RequestMapping(value = "musirecudetail.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String musirecudetail(HttpSession session,Model model, int musi_recu_seq) {
 		
+		
+		Date from = new Date();
+
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+		String now = transFormat.format(from);
+
+		model.addAttribute("now", now);
+		
 		MusiRecuBBSDto dto = musiRecuBBSService.getMusiRecuBBSDetail(musi_recu_seq);
 		model.addAttribute("musiRecuBBSDto",dto);
 	

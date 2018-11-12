@@ -27,14 +27,20 @@
 	WHERE MEMID=#{memid} AND VIDEO_SEQ=#{video_seq}
 	</select>
 	
+	<select id="getFollow" resultType="kh.com.a.model.FollowDto">
+	SELECT MEMID, MUSEID
+	FROM FOLLOW
+	WHERE MEMID=#{memid} AND MUSEID=#{museid}
+	</select>
+	
 	<select id="likeCount" resultType="java.lang.Integer">
 	SELECT COUNT(*)
 	FROM VIDEO_LIKE
 	WHERE VIDEO_SEQ=#{video_seq}
 	</select>
 	
-	<select id="followerConunt" resultType="java.lang.Integer">
-	SELECT COUNT(*)
+	<select id="followerConunt" parameterType="java.lang.String" resultType="java.lang.Integer">
+	SELECT COUNT(MEMID)
 	FROM FOLLOW
 	WHERE MUSEID=#{id}
 	</select>
@@ -93,6 +99,7 @@
 							
 	</select>
 	
+	<!-- 팔로우 영상 가져오기 전 체킹  -->
 	<select id="checkfollow" parameterType="java.util.HashMap" resultType="java.lang.Integer">
 		SELECT COUNT(*) FROM FOLLOW WHERE MEMID = #{follower} AND MUSEID = #{following}
 		<!-- SELECT NVL2(FOLLOW_SEQ, FOLLOW_SEQ, 0) FROM FOLLOW WHERE MEMID = #{follower} AND MUSEID = #{following} -->
@@ -109,6 +116,19 @@
 	<insert id="dofollow" parameterType="java.util.HashMap">
 		INSERT INTO FOLLOW VALUES(FOLLOW_SEQ.NEXTVAL, #{follower}, #{following})
 	</insert>
+	
+	<select id="getfollowingList" parameterType="kh.com.a.model.MemDto" resultType="kh.com.a.model.VideoBBSDto">
+	SELECT V.* FROM FOLLOW F, VIDEOBBS V 
+      WHERE F.MUSEID = V.ID AND F.MEMID = #{id} ORDER BY DBMS_RANDOM.VALUE
+	</select>
+	
+	<select id="latelyVideoList" parameterType="kh.com.a.model.VideoBBSDto" resultType="kh.com.a.model.VideoBBSDto">
+		SELECT * FROM VIDEOBBS ORDER BY WDATE DESC
+	</select>
+	
+	<select id="HowManyFollowers" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT COUNT(MEMID) FROM FOLLOW WHERE MUSEID = #{id}
+	</select>
 	
 	
 </mapper>

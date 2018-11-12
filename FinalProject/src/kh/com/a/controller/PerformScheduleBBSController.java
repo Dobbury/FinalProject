@@ -1,5 +1,6 @@
 package kh.com.a.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -84,12 +85,14 @@ public class PerformScheduleBBSController {
 
 		param.setStart(start);
 		param.setEnd(end);
-
+			
 		// 글 개수
 		int totalRecordCount = performScheduleBBSService.getPerformScheduleBBSCount(param);
 
 		List<PerformScheduleBBSDto> list = performScheduleBBSService.getPerformSchedulPagingList(param);
-
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i).toString());
+		}
 		model.addAttribute("PerformSchedulPagingList", list);
 		model.addAttribute("pageNumber", sn);
 		model.addAttribute("pageCountPerScreen", 10);
@@ -115,7 +118,11 @@ public class PerformScheduleBBSController {
 		model.addAttribute("performScheduleBBSDto", pDto);
 		model.addAttribute("countTicket",countTicket);
 		model.addAttribute("performCastBBSDto", performCastBBSService.getPerformCastInfo(pDto.getPerform_seq()));
-
+		
+		MusiRecuBBSDto mDto= musiRecuBBSService.getMusiRecuBBS_perform_Seq(pDto.getPerform_seq());
+		List<String> musiList= musiRecuBBSService.performSelectMusiList(mDto.getMusi_recu_seq());
+		
+		model.addAttribute("musiList",musiList);
 		return "perform_scheduledetail.tiles";
 	}
 
@@ -134,16 +141,23 @@ public class PerformScheduleBBSController {
 	}
 
 	@RequestMapping(value = "perform_schedulewriteAf.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String perform_schedulewriteAf(Model model,HttpSession session,int musi_recu_seq,PerformScheduleBBSDto dto,HttpServletRequest req,
+	public String perform_schedulewriteAf(Model model,HttpSession session,int musi_recu_seq, PerformScheduleBBSDto dto,HttpServletRequest req,
 			@RequestParam(value = "consertImgUpload", required = false) MultipartFile fileload) throws Exception {
 		logger.info("PerformScheduleBBSController perform_schedulewriteAf " + new Date());
 		
-		logger.info(dto.toString());
+		String musition[] = req.getParameterValues("musiList");
+		List<String> musiList = new ArrayList<>();
+		for (String str : musition) {
+			System.out.println(str);
+			musiList.add(str);
+		}
+		
 		//파일 기본경로
         String defaultPath = req.getServletContext().getRealPath("/");
         //파일 기본경로 _ 상세경로
         String path = defaultPath + "upload" + File.separator;
         
+       
         // filename 취득
         dto.setOri_consertIMG(fileload.getOriginalFilename());
 
@@ -176,7 +190,10 @@ public class PerformScheduleBBSController {
 		List<TicketDto> tickets = CreateTickets.create(performScheduleBBSService.getPerformScheduleSeqMax(), pDto.getTotalcount());
 		ticketService.createTicket(tickets);
 		
-		musiRecuBBSService.MusiRecuApproval(musi_recu_seq);
+
+		musiRecuBBSService.musiRecuApproval(musi_recu_seq);
+		
+		musiRecuBBSService.selectMusi(musiList);
 		
 		return "redirect:/perform_scheduleslist.do";
 	}

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kh.com.a.dao.MemDao;
 import kh.com.a.model.MemDto;
-import kh.com.a.model.TicketParam;
+
 
 @Repository
 public class MemDaoImpl implements MemDao{

@@ -12,7 +12,8 @@ public interface MusiRecuBBSDao {
 	public List<MusiRecuBBSDto> getMusiRecuPagingList(Param param);
 	public int getMusiRecuBBSCount(Param param);
 	public MusiRecuBBSDto getMusiRecuBBSDetail(int musi_recu_seq);
-	public void MusiRecuApproval(int musi_recu_seq);
+
+	public void musiRecuApproval(int musi_recu_seq);
 	
 	public void addRecuMusiInfo(RecuMusiInfoDto recuMusiInfoDto);
 	public int getRecuMusiCount(RecuMusiInfoDto recuMusiInfoDto);
@@ -24,4 +25,9 @@ public interface MusiRecuBBSDao {
 	public List<MusiRecuBBSDto> moreMusiRecuDeadLineList();
 	
 	public void addMusiRecuBBS(MusiRecuBBSDto dto);
+	
+	public void selectMusi(List<String> idList);
+	public List<String>	performSelectMusiList(int musi_recu_seq);
+	
+	public MusiRecuBBSDto getMusiRecuBBS_perform_Seq(int perform_seq);
 }

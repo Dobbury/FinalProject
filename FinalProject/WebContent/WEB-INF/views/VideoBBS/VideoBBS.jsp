@@ -131,15 +131,20 @@
 	</c:forEach>
 </div>
 
+<tr>
 <form action="VideoBBSWrite.do" method="post" style="text-align: center" class="generalForm">
 	<c:set var = "auth" value = "${user.auth}"/>
+
 	<c:if test="${auth == 0 || auth == 2}" >
 		<div class="button_base b05_3d_roll"id="write" style="margin: auto">
 			<div>게시글 작성</div>
 		    <div>게시글 작성</div>
 		</div>
 	</c:if>
+
 </form>
+</tr>
+
 
 <script type="text/javascript">
 $("#write").click(function () {
@@ -147,4 +152,17 @@ $("#write").click(function () {
 	$(".generalForm").attr("target", "_self").submit();
 });
 </script>
+
+<script>
+	function authCheck(auth) {
+		if (auth == 1 || auth == undefined) {
+			alert("뮤지션만 이용할 수 있습니다");
+			alert(auth);
+			return false;
+		}else{
+		    location.href = "VideoBBSWrite.do";	
+		}
+	}
+</script>
+
 

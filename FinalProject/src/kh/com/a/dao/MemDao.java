@@ -3,6 +3,7 @@ package kh.com.a.dao;
 import java.util.List;
 
 import kh.com.a.model.MemDto;
+
 import kh.com.a.model.TicketParam;
 
 public interface MemDao {
