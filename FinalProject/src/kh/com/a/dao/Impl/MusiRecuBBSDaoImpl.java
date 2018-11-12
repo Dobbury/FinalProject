@@ -81,4 +81,10 @@ public class MusiRecuBBSDaoImpl implements MusiRecuBBSDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace + "getRecuMusiInfoList",recuMusiInfoDto);
 	}
+
+	@Override
+	public void MusiRecuApproval(int musi_recu_seq) {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace + "MusiRecuApproval",musi_recu_seq);
+	}
 }

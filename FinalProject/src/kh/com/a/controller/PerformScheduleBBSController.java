@@ -129,12 +129,12 @@ public class PerformScheduleBBSController {
 		
 		recuMusiInfoDto.setMusi_recu_seq(musi_recu_seq);
 		model.addAttribute("recuMusiInfoList",musiRecuBBSService.getRecuMusiInfoList(recuMusiInfoDto));
-		
+		model.addAttribute("musi_recu_seq",musi_recu_seq);
 		return "perform_schedulewrite.tiles";
 	}
 
 	@RequestMapping(value = "perform_schedulewriteAf.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String perform_schedulewriteAf(Model model,HttpSession session, PerformScheduleBBSDto dto,HttpServletRequest req,
+	public String perform_schedulewriteAf(Model model,HttpSession session,int musi_recu_seq,PerformScheduleBBSDto dto,HttpServletRequest req,
 			@RequestParam(value = "consertImgUpload", required = false) MultipartFile fileload) throws Exception {
 		logger.info("PerformScheduleBBSController perform_schedulewriteAf " + new Date());
 		
@@ -175,6 +175,8 @@ public class PerformScheduleBBSController {
 		// 티켓 생성
 		List<TicketDto> tickets = CreateTickets.create(performScheduleBBSService.getPerformScheduleSeqMax(), pDto.getTotalcount());
 		ticketService.createTicket(tickets);
+		
+		musiRecuBBSService.MusiRecuApproval(musi_recu_seq);
 		
 		return "redirect:/perform_scheduleslist.do";
 	}

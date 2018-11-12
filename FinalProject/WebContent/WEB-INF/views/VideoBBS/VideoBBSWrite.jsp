@@ -96,7 +96,7 @@
 <table style="margin: auto">
 <tr>
 <td align="center">
-<input type="file" id="videofile" style="display: none">
+<input type="file" name="videofile" id="videofile" style="display: none">
 
 <div class="button_base b05_3d_roll" id="uploadBtn" style="width: 100%">
 	<div>파일 업로드</div>
@@ -142,7 +142,7 @@ $("#uploadBtn").click(function () {
 });
 
 $("#writeBtn").click(function () {
-	
+	alert($("#videofile").val());
 	$(".generalForm").attr("target", "_self").submit();
 });
 </script>

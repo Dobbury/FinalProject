@@ -102,6 +102,7 @@ function captureReturnKey(e) {
 <script type="text/javascript" src="./smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
 
 <div class="container" style="width: 750px;">
+
 	<!-- Title Page -->
 	<div class="row">
 			<div class="title-page">
@@ -113,6 +114,7 @@ function captureReturnKey(e) {
 	
 	<form id="contact-form" class="contact-form" method="post" enctype="multipart/form-data" action="perform_schedulewriteAf.do" onkeydown="return captureReturnKey(event)">
     <input type="hidden" name="perform_seq" value="${performCastBBSDto.perform_seq }">
+    <input type="hidden" name="musi_recu_seq" value="${musi_recu_seq }">
     <div class="row">
     		<p class="contact-name">
             	<input id="contact_title" type="text" placeholder="제목 입력" value="" name="title" />

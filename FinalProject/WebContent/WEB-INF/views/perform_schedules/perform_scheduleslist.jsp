@@ -118,7 +118,7 @@ var str='<%=category%>';
 	<div class="row">
 		<div class="span12">
 			<div class="title-page">
-				<h2 class="title">공연일정..............</h2>
+				<h2 class="title">공연일정</h2>
 				<h3 class="title-description">관심있는 공연을 관람해보세요!</h3>
 			</div>
 		</div>

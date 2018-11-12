@@ -3,6 +3,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 	String iamgePath=request.getServletContext().getRealPath("/upload");
 %>
@@ -13,6 +15,7 @@ h3{
 }
 </style>
 
+<!-- 따라다니는 창 -->
 <script>
 $(function(){ 
 	var $win = $(window); 
@@ -42,33 +45,25 @@ $(function(){
 
 </script>
 
-
 <script>
-	// Initialize and add the map
-	function initMap() {
-		// The location of Uluru
-		var uluru = {lat: ${performCastBBSDto.lati}, lng: ${performCastBBSDto.longi}};
-	
-
-		// The map, centered at Uluru
-		var map = new google.maps.Map(document.getElementById('map'), {
-			zoom : 12,
-			center : uluru
-		});
-		// The marker, positioned at Uluru
-		var marker = new google.maps.Marker({
-			position : uluru,
-			map : map
-		});
-	}
+// Initialize and add the map
+function initMap() {
+  // The location of Uluru
+  var uluru = {lat: ${performCastBBSDto.lati}, lng: ${performCastBBSDto.longi}};
+  // The map, centered at Uluru
+  var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 12, center: uluru});
+  // The marker, positioned at Uluru
+  var marker = new google.maps.Marker({position: uluru, map: map});
+}
 </script>
-<!--Load the API from the specified URL
+    <!--Load the API from the specified URL
     * The async attribute allows the browser to render the page while the API loads
     * The key parameter will contain your own API key (which is not needed for this tutorial)
     * The callback parameter executes the initMap() function
     -->
 <script async defer
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANm_LhhJlAxtWnzBHskkYxoHViNJhqiKw&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANm_LhhJlAxtWnzBHskkYxoHViNJhqiKw&callback=initMap">
 </script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
@@ -108,12 +103,10 @@ function requestPay() {
 }
 
 </script>
-<div class="container" style=" width:950px;">
-	<div style="float: left; background-color: #26292E; padding: 20px"  >
-		<table style="width: 80%">
+<div class="container" style=" width:950px; ">
+	<div style="float: left; background-color: #26292E; padding: 20px; box-shadow: 1px 1px 20px #000;"  >
+		<table style="width: 100%">
 			<tr>
-				
-				
 				<th colspan="2" align="left">
 					<h2>${performScheduleBBSDto.title }</h2>
 				</th>
@@ -128,7 +121,9 @@ function requestPay() {
 							<td style="width: 60%; padding: 20px;">
 								<span>지역: ${performCastBBSDto.location }</span><br>
 								<span>장소: ${performCastBBSDto.place }</span><br>
-								<span>날짜: ${performCastBBSDto.perform_date }</span><br>
+								<fmt:parseDate value="${fn:substring(performCastBBSDto.perform_date,0,10) }" var="performdate" pattern="yyyy-MM-dd"/>			
+					
+								<span>날짜: <fmt:formatDate value="${performdate }" pattern="yyyy년 MM월 dd일"/></span><br>
 								<hr>
 								<span>가격정보: ${performScheduleBBSDto.ticket_price }</span><br>							<hr>
 								<span>참가뮤지션: </span><br>
@@ -144,12 +139,12 @@ function requestPay() {
 					<h3>공연시간 정보</h3> 
 					<hr>
 					<div class="perform_date" style="min-height: 100px">
-					2018년 11월 5일 1시
+					<fmt:formatDate value="${performdate }" pattern="yyyy년 MM월 dd일"/>
 					</div> 
 					<hr style="border: 1.8px solid white;">
 					<h3>공연장소 위치 및  지도</h3> 
 					<hr>
-					<div id="map"></div>
+					<div id="map" style="widows: 100%;height: 300px"></div>
 					<div class="place">
 						${performCastBBSDto.place }
 					</div>
@@ -178,7 +173,7 @@ function requestPay() {
 			</tr>
 		</table>
 	</div>
-	<div class="float_sidebar" align="center" style="float: left; margin: 10px; background-color: #26292E; width: 20%;height: 200px; ">
+	<div class="float_sidebar" align="center" style="float: left; margin: 10px; background-color: #26292E; width: 20%;height: 200px; box-shadow: 1px 1px 20px #000;">
 		
 		<div style="padding: 10px;" align="left">
 			<span>상품명: ${performScheduleBBSDto.title } </span><br>

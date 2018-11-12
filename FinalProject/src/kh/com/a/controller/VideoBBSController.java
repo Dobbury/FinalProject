@@ -85,7 +85,9 @@ public class VideoBBSController {
 				@RequestParam(value="videofile", required=false)MultipartFile fileload)
 	{
 		logger.info("VideoBBSController VideoBBSWriteAf" + new Date());
+		System.out.println(fileload.getOriginalFilename());
 		String oname = fileload.getOriginalFilename();
+		
 		dto.setVideo(oname);
 		logger.info("OriginalFilename : " + dto.getVideo().toString());
 		

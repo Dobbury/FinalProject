@@ -88,7 +88,7 @@
 <td align="center">
 <!-- src d://tmp로 하면 권한때문에 이미지를 못가지고옴... -->
 
-<img alt="" src="${user.new_profilIMG }" id="profileImg" style="height: 300px; width: 300px">
+<img alt="" src="/FinalProject/upload/${user.new_profilIMG }" id="profileImg" style="height: 300px; width: 300px">
 <br><br>
 <input type="file" style="display: none;" id="upload" name="profileImgUpload" >
 <input type="button" value="파일 업로드" id="uploadBtn" style="width: 300px; height: 50px">

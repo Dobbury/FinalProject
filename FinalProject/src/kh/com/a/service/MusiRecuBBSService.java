@@ -11,6 +11,7 @@ public interface MusiRecuBBSService {
 	public List<MusiRecuBBSDto> getMusiRecuPagingList(Param param);
 	public int getMusiRecuBBSCount(Param param);
 	public MusiRecuBBSDto getMusiRecuBBSDetail(int musi_recu_seq);
+	public void MusiRecuApproval(int musi_recu_seq);
 	
 	public void addRecuMusiInfo(RecuMusiInfoDto recuMusiInfoDto);
 	public int getRecuMusiCount(RecuMusiInfoDto recuMusiInfoDto);
